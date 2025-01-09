@@ -11,6 +11,7 @@ import  Chat from '../../public/images/message.svg'
 import axios from "axios";
 import Link from "next/link";
 const Contactform = ({main_title,content , live_chat_with_us , form_address}) => {
+  
   const [ContactOptionData, setContactOptionData] = useState(null);
   const fetchContactOptionData = async () => {
     try {
@@ -87,7 +88,7 @@ const Contactform = ({main_title,content , live_chat_with_us , form_address}) =>
                               <Image src={Phone} alt='phone-svg'/>
                            </span>
                            {
-                             footer_phone_number &&  <Link href={ContactOptionData?.footer_phone_number.url} role='link' aria-label='address-link' >{ContactOptionData?.footer_phone_number.title}</Link>
+                            ContactOptionData?.footer_phone_number &&  <Link href={ContactOptionData?.footer_phone_number.url} role='link' aria-label='address-link' >{ContactOptionData?.footer_phone_number.title}</Link>
                            }
                            
                       </div>
@@ -96,7 +97,7 @@ const Contactform = ({main_title,content , live_chat_with_us , form_address}) =>
                               <Image src={Email} alt='email-svg'/>
                            </span>
                            {
-                               footer_email_address &&  <Link href={ContactOptionData?.footer_email_address.url} role='link' aria-label='address-link'>{ContactOptionData?.footer_email_address.title}</Link>
+                            ContactOptionData?.footer_email_address &&  <Link href={ContactOptionData?.footer_email_address.url} role='link' aria-label='address-link'>{ContactOptionData?.footer_email_address.title}</Link>
                            }
                           
                       </div>
