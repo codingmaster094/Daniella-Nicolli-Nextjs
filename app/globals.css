@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+   body {
+      @apply font-primary-font text-body text-black-900 
+   }
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6 {
+      @apply text-black-800
+   }
+   h1 {
+      @apply text-h2 lg:text-h1 leading-[1.1]
+   }
+   h2 {
+      @apply text-h4 sm:text-h3 md:text-h2 leading-normal md:leading-[47px]
+   }
+   h3 {
+      @apply text-xl sm:text-h4 lg:text-h3 font-semibold  leading-normal 2xl:leading-[35px]
+   }
+   h4{
+      @apply text-a lg:text-h4 font-semibold  leading-normal md:leading-[33px]
+   }
+   p {
+      @apply  text-body sm:text-a leading-[24px] sm:leading-[28px]
+   }
+   .bg-banner {
+      @apply relative py-10 md:py-20 h-full 2xl:h-[850px] bg-cover bg-no-repeat bg-center w-full px-10 md:px-[140px] flex items-center
+   }
+   .bg-banner ul {
+      @apply flex flex-col gap-3
+   }
+   .menu li {
+      @apply relative text-black-900 after:absolute after:left-0 after:top-0 after:mt-1 after:bg-velly-svg after:bg-contain after:w-5 after:h-5 ps-10 font-primary-font font-semibold
+   }
+   .Banner-sliders .owl-nav button.owl-next,
+   .Banner-sliders .owl-nav button.owl-prev,
+   .slider .owl-nav button.owl-next,
+   .slider .owl-nav button.owl-prev,
+   .Serviceslider .owl-nav button.owl-next,
+   .Serviceslider .owl-nav button.owl-prev,
+   .hover-sliders .owl-nav button.owl-next,
+   .hover-sliders .owl-nav button.owl-prev  {
+      @apply absolute w-[30px] h-[30px] md:w-[50px] md:h-[50px] !bg-Bgwhite inline-flex items-center justify-center z-10 top-1/2 -translate-y-full
+   }
+   .Banner-sliders .owl-nav button.owl-next,
+   .slider .owl-nav button.owl-next {
+      @apply right-6
+   }
+   .Banner-sliders .owl-nav button.owl-prev,
+   .slider .owl-nav button.owl-prev {
+      @apply left-6
+   }
+   .owl-carousel button.owl-prev span ,.owl-carousel button.owl-next span{
+        @apply !text-[32px]
+    }
+    .slider .owl-nav button.owl-prev,
+   .slider .owl-nav button.owl-next {
+      @apply !rounded-full !border !border-solid !border-Teal
+   }
+   .Client-sliders button.owl-dot,
+   .slider button.owl-dot,
+   .Serviceslider button.owl-dot {
+      @apply  !inline mt-4 !w-[14px] !h-[14px] rounded-full ms-3 !bg-black-600
+   }
+   .Client-sliders button.owl-dot.active,
+   .slider button.owl-dot.active,
+   .Serviceslider button.owl-dot.active {
+      @apply  !bg-black-800
+   }
+   .Client-sliders .owl-dots,
+   .slider .owl-dots,
+   .Serviceslider .owl-dots {
+      @apply text-center !mt-6
+   }
+   .slider .owl-nav button.owl-next,
+   .Serviceslider .owl-nav button.owl-next {
+      @apply right-[-15px] 4xl:-right-16
+   }
+   .slider .owl-nav button.owl-prev,
+   .Serviceslider .owl-nav button.owl-prev {
+      @apply left-[-15px] 4xl:-left-16
+   }
+   .hover-sliders .owl-nav button.owl-next
+    {
+      @apply right-0
+   }
+   .gallrey .owl-nav button.owl-next,
+   .gallrey .owl-nav button.owl-prev{
+      @apply !bg-BgTeal !text-white;
+   }
+   .custom-class-name a{
+       @apply hidden;
+   }
+   .Dash-menu li {
+      @apply inline-flex flex-col relative ps-8 after:absolute after:top-2 after:left-0 after:w-[24px] after:h-[2px] after:bg-Teal
+   }
+   table td,th{
+       @apply text-body border border-Teal px-2 py-2 sm:py-4 text-center sm:text-a
+   }
+   table th{
+       @apply text-body sm:text-a lg:text-h4 font-normal text-black-800
+   }
+   footer h4 {
+      @apply text-a font-medium text-black-800
+   }
+   footer ul {
+      @apply flex flex-col gap-4 sm:gap-5 [&_li>a]:text-black-800 font-medium transition-all duration-300 ease-in  text-a flex-1
+   }
+   footer ul li {
+      @apply flex [&_a]:hover:text-Teal gap-4 items-baseline
+   }
+
+}
+
