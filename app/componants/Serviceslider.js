@@ -46,6 +46,10 @@ const Serviceslider = ({main_title , all_ablauf}) => {
                           }
                       } 
                       }); 
+                      const buttons = document.querySelectorAll('.owl-dot');
+                      buttons.forEach((button, index) => {
+                        button.setAttribute('aria-label', `Slide ${index + 1}`);
+                      });
                     };
                       document.body.appendChild(owlCarouselJS);
                     };

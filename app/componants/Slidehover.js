@@ -49,6 +49,10 @@ const Slidehover = ({ main_title ,all_referenzen }) => {
                 },
               },
             });
+            const buttons = document.querySelectorAll('.owl-dot');
+            buttons.forEach((button, index) => {
+              button.setAttribute('aria-label', `Slide ${index + 1}`);
+            });
           };
           document.body.appendChild(owlCarouselJS);
         };

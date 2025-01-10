@@ -4,7 +4,7 @@ import React from 'react'
 const Categories = (props) => {
   const {title , description , BTN } = props
   return (
-    <section className="py-10 md:py-[70px] lg:py-[100px] bg-Category-bg bg-cover w-full bg-bottom">
+    <section className="py-10 md:py-[70px] lg:py-[100px] bg-Category-bg bg-cover  bg-bottom">
       <div className="w-full container mx-auto px-[15px]">
           <div className="flex w-full max-w-[922px] flex-col text-white gap-8 mx-auto text-center">
             <div className="flex flex-col gap-6">

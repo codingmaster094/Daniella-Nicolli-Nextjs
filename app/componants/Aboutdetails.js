@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 const Aboutdetails = (props) => {
   const { main_title, section_image, section_content,section_sub_content} = props
-  console.log('section_image', section_image)
   return (
     <section className="pb-10 md:py-[70px] md:pt-0 lg:py-[100px]">
       <div className="w-full max-w-[1780px] px-[15px] lg:px-0">

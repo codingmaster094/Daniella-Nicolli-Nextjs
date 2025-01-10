@@ -9,7 +9,6 @@ const AboutLambsheim = ({
   BTN,
   standorte_image,
 }) => {
-  console.log('  BTN,',   BTN,)
   return (
     <section className="py-10  md:py-[70px] lg:py-[100px]">
       <div className="w-full max-w-[1780px] px-[15px] lg:px-0 ms-auto">
