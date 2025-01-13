@@ -28,6 +28,10 @@ const Slidehover = ({ main_title ,all_referenzen }) => {
               nav: true,
               dots: false,
               items: 4,
+              navText: [
+                '<img src="/images/Vector(7).png" alt="Previous" />',
+                '<img src="/images/vector(6).png" alt="Next" />'
+          ],
               responsive: {
                 0: {
                   items: 1,
@@ -75,7 +79,7 @@ const Slidehover = ({ main_title ,all_referenzen }) => {
             {all_referenzen &&
               all_referenzen?.value?.map((item, index) => (
                 <div key={index} className="items h-[550px] lg:h-[700px] border-r border-Border flex items-end py-12  px-6 group relative after:absolute after:top-0  after:left-0 after:bg-slider-bg after:w-full after:h-full after:opacity-0 hover:after:opacity-100 transition-all ease-in duration-700">
-                  <div className=" flex flex-col  *:text-white h-full lg:h-[70%] justify-end z-10 transition-all ease-in duration-700">
+                  <div className=" flex flex-col  *:text-white h-[320px] 4xl:h-[240px] justify-end z-10 transition-all ease-in duration-700">
                     <div className="flex flex-col gap-4 h-[40px] sm:h-[80px] group-hover:h-full transition-all ease-in duration-700">
                       <div className=" flex gap-4   items-center  *:text-white ">
                         <span className="flex flex-shrink-0">

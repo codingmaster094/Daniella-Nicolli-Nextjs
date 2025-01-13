@@ -19,9 +19,9 @@ const AboutDeatilsLeft = ({title,description1,description2,description3,descript
                                  </div>
                          </div>
                      </div>
-                     <div className="flex items-center flex-col w-full lg:w-[35%] lg:flex-row p-0 lg:ps-16 lg:pb-16 relative after:none lg:after:absolute lg:after:left-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10">
-                         <div className="flex w-full  h-full  2xl:h-[578px] ">
-                             <Image src={Images} alt="About-img"  objectFit="cover" className='w-full h-full object-cover'/>
+                     <div className="flex items-center flex-col text-black-800 w-full lg:w-[35%] lg:flex-row p-0 lg:ps-16 lg:pb-16 relative after:none lg:after:absolute lg:after:left-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10">
+                         <div className="flex w-auto lg:w-full  h-full sm:h-[500px] 2xl:h-[578px] object-top">
+                             <Image src={Images} alt="About-img"  objectFit="cover" className='w-full h-full object-contain lg:object-cover '/>
                          </div>
                      </div>
                  </div>

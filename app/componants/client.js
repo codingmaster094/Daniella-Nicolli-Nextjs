@@ -28,6 +28,10 @@ const ClientCarousel = ({main_title , section_all_partners}) => {
                 autoplay: true,
                 autoplaySpeed: 1500,
                 autoplayHoverPause: false,
+                navText: [
+                  '<img src="/images/Vector(4).png" alt="Previous" />',
+                  '<img src="/images/vector5.png" alt="Next" />'
+            ],
                 responsive: {
                   0: { items: 1 },
                   400: { items: 2 },

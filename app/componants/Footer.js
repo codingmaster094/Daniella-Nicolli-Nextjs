@@ -31,13 +31,13 @@ const Footer = () => {
   return (
     <footer className='bg-salte w-full'>
         <div className="container mx-auto px-[15px] ">
-                 <div className="flex  gap-8 flex-wrap lg:justify-between flex-col md:flex-row py-8 md:py-20">
-                      <div className="flex flex-col w-auto    2xl:w-[25%] gap-5 sm:gap-[34px]">
+                 <div className="flex  gap-8 flex-wrap  flex-col md:flex-row py-8 md:py-20">
+                      <div className="flex flex-col  gap-5  2xl:w-[calc(20%-34px)]  sm:gap-[34px]">
                         <h4>{FooterData?.kontakt_label}</h4>
                         <ul className='[&_li>img]:mt-4'>
                           <li>
                               <Image src={LocationSvg} alt="location-svg"/>
-                              <div dangerouslySetInnerHTML={{ __html: FooterData?.footer_address}}/>
+                              <div dangerouslySetInnerHTML={{ __html: FooterData?.footer_address}} className="w-full sm:w-[300px]"/>
                           </li>
                           <li>
                             <span>
@@ -86,14 +86,14 @@ const Footer = () => {
                           </li>
                         </ul>    
                       </div>
-                       <div className="flex flex-col w-auto    2xl:w-[16.8%] gap-5 sm:gap-[34px]">
+                       <div className="flex flex-col 2xl:w-[calc(20%-34px)] gap-5 sm:gap-[34px]">
                         <h4>{FooterData?.footer_sprechzeiten_label}</h4>
-                        <ul className='[&_li]:gap:10 [&_li]:gap-0 sm:[&_li]:justify-between [&_li]:w-auto sm:[&_li]:w-[220px]'
-                        dangerouslySetInnerHTML={{ __html: FooterData?.footer_business_hours?.replace(/<\/?ul[^>]*>/g, '')}}
+                        <ul className='time-menu '
+                            dangerouslySetInnerHTML={{ __html: FooterData?.footer_business_hours?.replace(/<\/?ul[^>]*>/g, '')}}
                         >
                         </ul>   
                       </div>
-                      <div className="flex flex-col w-auto   2xl:w-[16.8%] gap-5 sm:gap-[34px]">
+                      <div className="flex flex-col  2xl:w-[calc(20%-34px)] gap-5 sm:gap-[34px]">
                         <h4>{FooterData?.footer_navigation_label}</h4>
                         <ul>
                           <li>
@@ -116,7 +116,7 @@ const Footer = () => {
                           </li>
                         </ul>   
                       </div>
-                      <div className="flex flex-col   w-auto    2xl:w-[16.8%] gap-5 sm:gap-[34px]">
+                      <div className="flex flex-col   2xl:w-[calc(20%-34px)] gap-5 sm:gap-[34px]">
                         <h4>{FooterData?.footer_rechtliches_label}</h4>
                         <ul>
                           <li>
@@ -127,7 +127,7 @@ const Footer = () => {
                           </li>
                         </ul>   
                       </div>
-                      <div className="flex md:flex-col md:w-[47%]  lg:w-auto 2xl:w-[16%] gap-4 flex-wrap">
+                      <div className="flex flex-col md:flex-col  2xl:w-[calc(20%-34px)] gap-4 flex-wrap">
                       {
                         FooterData && 
                         FooterData?.footer_all_logos?.map((val,index) => (
@@ -144,8 +144,7 @@ const Footer = () => {
                       </div>
                  </div>
             </div>
-            <div className="flex  justify-center bg-Teal p-[15px] text-white" dangerouslySetInnerHTML={{ __html: FooterData?.footer_copyright_content}}>
-                     
+            <div className="flex  justify-center bg-Teal p-[15px] text-white" dangerouslySetInnerHTML={{ __html: FooterData?.       footer_copyright_content}}>   
             </div>
     </footer>
   )

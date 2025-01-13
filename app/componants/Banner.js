@@ -27,6 +27,11 @@ useEffect(() => {
             autoplay: false,
             nav: true,
             dots: false,
+            autoHeight: true,
+            navText: [
+              '<img src="/images/Vector(4).png" alt="Previous" />',
+              '<img src="/images/vector5.png" alt="Next" />'
+        ],
           });
 
           // Add aria-label to the buttons
@@ -46,16 +51,16 @@ useEffect(() => {
 
   return (
     <section>
-      <div className={`Banner ${className || ""}`}>
+      <div className={`Banner ${className || ""} `}>
         <div className="owl-carousel Banner-sliders relative" ref={carouselRef}>
           {slidesData?.value &&
             slidesData?.value.map((slide, index) => (
               <div className="item" key={index}>
                 <div
-                  className="bg-banner bg-banner-img bg-cover"
+                  className="bg-banner bg-banner-img bg-cover px-[15px]"
                   style={{ backgroundImage: `url(${slide.hero_slider_image})` }}
                 >
-                  <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8">
+                  <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px]">
                     <h1>{slide.hero_slider_main_title}</h1>
                     <ul
                       className="menu"

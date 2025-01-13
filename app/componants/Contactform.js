@@ -39,12 +39,12 @@ const Contactform = ({main_title,content , live_chat_with_us , form_address}) =>
               <div className="flex justify-between gap-6 flex-col lg:flex-row">
                   <div className="flex flex-col w-full  lg:w-[60%]">
                    <form action="" className='w-full'>
-                        <div className="input-group flex flex-wrap gap-4 ">
+                        <div className="input-group flex flex-wrap gap-4">
                                <div className="input-box w-full">
                                    <label htmlFor="Name" className='hidden'>Name</label>
                                    <input type="text" placeholder='Name' className='border w-full border-Teal outline-none px-6 py-4 placeholder:text-black-900'/>
                                </div>
-                               <div className="input-box flex-auto sm:flex-1">
+                               <div className="input-box flex-auto sm:flex-1 ">
                                   <label htmlFor="Name" className='hidden'>Email</label>
                                   <input type="email" placeholder='Email' className='border w-full placeholder:text-black-900 border-Teal outline-none px-6 py-4'/>
                                </div>
@@ -59,16 +59,19 @@ const Contactform = ({main_title,content , live_chat_with_us , form_address}) =>
                                <div className="input-box w-full">
                                    <p>Bitte wählen Sie aus, über welchen Weg ich Sie kontaktieren darf:</p>
                                </div>
-                               <div className="input-box flex gap-2">
+                               <div className="input-box flex gap-2 items-center">
                                    <input type="checkbox" name="" id=""/>
                                    <label htmlFor="Email">Email</label>
                                </div>
-                               <div className="input-box flex gap-2">
+                               <div className="input-box flex gap-2 items-center">
                                    <input type="checkbox" name="" id=""/>
                                    <label htmlFor="Telefon">Telefon</label>
                                </div>
-                                   <p>Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Die Daten werden nach abgeschlossener Bearbeitung Ihrer Anfrage gelöscht. Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an info@heilpraktikerin-nicolli.de widerrufen. Detaillierte Informationen zum Umgang mit Nutzerdaten finden Sie in unserer Datenschutzerklärung.</p>
-                               <div className="input-box flex gap-2 w-full">
+                                  <div className="text-a">
+                                  <p>Ich stimme zu, dass meine Angaben aus dem Kontaktformular zur Beantwortung meiner Anfrage erhoben und verarbeitet werden. Die Daten werden nach abgeschlossener Bearbeitung Ihrer Anfrage gelöscht. Hinweis: Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an info@heilpraktikerin-nicolli.de widerrufen. Detaillierte Informationen zum Umgang mit Nutzerdaten finden Sie in unserer Datenschutzerklärung.</p>
+                                  </div>
+                                  
+                               <div className="input-box flex gap-2 w-full items-center">
                                    <input type="checkbox" name="" id=""/>
                                    <label htmlFor="checkbox">Hiermit bestätige ich den Datenschutz gelesen zu haben.</label>
                                </div>
@@ -84,7 +87,7 @@ const Contactform = ({main_title,content , live_chat_with_us , form_address}) =>
                   <div className="flex flex-col w-full  lg:w-[30%] gap-6 sm:gap-8 *:flex-shrink-0">
                     <div className="flex flex-col gap-6 [div&_a]:text-black-900 text-a font-medium">
                     <div className="flex gap-5 ">
-                           <span>
+                           <span className="flex flex-shrink-0">
                               <Image src={Phone} alt='phone-svg'/>
                            </span>
                            {
@@ -93,7 +96,7 @@ const Contactform = ({main_title,content , live_chat_with_us , form_address}) =>
                            
                       </div>
                       <div className="flex gap-5">
-                           <span>
+                           <span className="flex flex-shrink-0">
                               <Image src={Email} alt='email-svg'/>
                            </span>
                            {
@@ -102,7 +105,7 @@ const Contactform = ({main_title,content , live_chat_with_us , form_address}) =>
                           
                       </div>
                       <div className="flex gap-5">
-                           <span>
+                           <span className="flex flex-shrink-0">
                               <Image src={Chat} alt='chat-svg'/>
                            </span>
                            {
@@ -111,7 +114,7 @@ const Contactform = ({main_title,content , live_chat_with_us , form_address}) =>
                            }
                       </div>
                       <div className="flex gap-5">
-                           <span>
+                           <span className="flex flex-shrink-0">
                               <Image src={location} alt='location-svg'/>
                            </span>
                             <span>{form_address?.title}</span>

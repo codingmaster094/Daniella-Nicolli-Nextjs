@@ -63,7 +63,7 @@ const Page = () => {
         <div className="flex relative pb-6 lg:pb-[25px] after:absolute after:bottom-0 after:w-20 after:left-0 after:h-[1px] after:bg-black-800" >
               <h2>{blogData?.ratgeber_single_wichtigste_2_main_title?.value}</h2>
           </div>
-          <ul className='flex flex-col gap-3 text-a font-medium [ul&_li]:list-disc [ul&_li]:marker:text-Teal ps-4' dangerouslySetInnerHTML={{ __html: blogData?.ratgeber_single_wichtigste_content?.value.replace(/<\/?ul[^>]*>/g, '')}}></ul>
+          <ul className='flex flex-col gap-3 text-a font-medium [ul&_li]:list-disc [ul&_li]:marker:text-Teal ps-4' dangerouslySetInnerHTML={{ __html: blogData?.ratgeber_single_wichtigste_content_two?.value.replace(/<\/?ul[^>]*>/g, '')}}></ul>
         </div>
     </div>
     </section>

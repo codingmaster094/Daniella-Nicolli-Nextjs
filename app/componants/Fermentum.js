@@ -24,6 +24,10 @@ const Fermentum = ({main_title , all_vorteile}) => {
                   nav: true,
                   dots: true,
                   items: 4,
+                  navText: [
+                            '<img src="/images/Vector(4).png" alt="Previous" />',
+                            '<img src="/images/vector5.png" alt="Next" />'
+                      ],
                   responsive: {
                       0: {
                           items: 1
@@ -63,15 +67,15 @@ const Fermentum = ({main_title , all_vorteile}) => {
          <div className="w-full max-w-[1550px] px-[15px] mx-auto">
            <div className="flex flex-col gap-6 md:gap-11 lg:gap-16 ">
              <div className="flex justify-center">
-                <h2 className='text-h3 lg:text-h2'>{main_title}</h2>
+                <h2 className='sm:text-h3 lg:text-h2'>{main_title}</h2>
              </div>
              <div className="owl-carousel slider relative" ref={carouselRef}>
              {all_vorteile?.value?.map((service, index) => (
                <div className="items" key={index}>
                     <div className="flex flex-col border border-Teal p-6 xl:p-12 gap-4">
-                         <div className="flex gap-6">
+                         <div className="flex gap-6 items-center">
                               <Image src={service.home_all_vorteile_icon} width={56} height={56} alt="ServiceSvg1" className='!w-12 h-12'/>
-                              <h3 className='text-a md:text-h4 text-Teal'>{service.home_all_vorteile_title}</h3>
+                              <h3 className='text-a md:text-h4  text-Teal'>{service.home_all_vorteile_title}</h3>
                          </div>
                          <div className="flex">
                             <p dangerouslySetInnerHTML={{ __html: service.home_all_vorteile_content?.replace(/<p>/g, '').replace(/<\/p>/g, '').replace(/&amp;/g, '&')}}></p>

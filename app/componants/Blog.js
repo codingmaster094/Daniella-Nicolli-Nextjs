@@ -49,7 +49,7 @@ const Blog = ({ blogsData }) => {
             {filteredBlogs?.map((val, index) => (
               <div
                 key={index}
-                className="flex flex-col w-full md:w-[47%] lg:w-[30%] border border-Teal ps-6 pe-6 pb-6 xl:ps-12 xl:pe-12 xl:pb-12 gap-4 sm:gap-6 md:gap-8"
+                className="flex flex-col w-full md:w-[46%] lg:w-[30%] border border-Teal ps-6 pe-6 pb-6 xl:ps-12 xl:pe-12 xl:pb-12 gap-4 sm:gap-6 md:gap-8"
               >
                 <div className="flex -mt-6 justify-center xl:-mt-[50px]">
                  

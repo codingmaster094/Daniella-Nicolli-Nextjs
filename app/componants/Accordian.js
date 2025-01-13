@@ -24,7 +24,7 @@ const Accordian = ({ main_title, all_faqs }) => {
                   key={index}
                   className={`accordian flex flex-col p-4 lg:p-8 gap-4 ${
                     activeIndex === index ? "active" : ""
-                  } ${activeIndex === index ? "border border-Teal" : "border border-transparent"}`}
+                  } ${activeIndex === index ? "border-[1.5px] border-Teal" : "border border-transparent"}`}
                 >
                   <div
                     className="accordian-header flex justify-between gap-2 cursor-pointer"
@@ -48,7 +48,7 @@ const Accordian = ({ main_title, all_faqs }) => {
                     }}
                     ref={(el) => (contentRefs.current[index] = el)}
                   >
-                    <p className="mt-4" dangerouslySetInnerHTML={{ __html: item.all_faqs_answers?.replace(/<p>/g, '').replace(/<\/p>/g, '').replace(/&amp;/g, '&') }}></p>
+                    <p  dangerouslySetInnerHTML={{ __html: item.all_faqs_answers?.replace(/<p>/g, '').replace(/<\/p>/g, '').replace(/&amp;/g, '&') }}></p>
                   </div>
                 </div>
               ))}

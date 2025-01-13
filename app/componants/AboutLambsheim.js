@@ -26,13 +26,13 @@ const AboutLambsheim = ({
             </Link>
             }
           </div>
-          <div className=" relative flex items-center flex-col w-full lg:w-[55%]  md:flex-row py-0 lg:py-[30px] bg-white">
+          <div className=" relative flex items-center flex-col w-auto lg:w-[55%] h-[500px] object-top lg:h-[804px]  md:flex-row py-0 lg:py-[30px] bg-white">
           {
             standorte_image && 
             <Image
               src={standorte_image}
               alt="about-right.png"
-              className="w-full object-cover h-full absolute"
+              className="w-full object-contain lg:object-cover h-full  absolute"
               layout="fill"
               objectFit="cover"
             />

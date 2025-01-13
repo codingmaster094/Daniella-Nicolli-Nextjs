@@ -24,6 +24,10 @@ const Serviceslider = ({main_title , all_ablauf}) => {
                       nav: true,
                       dots: true,
                       items: 4,
+                      navText: [
+                        '<img src="/images/Vector(4).png" alt="Previous" />',
+                        '<img src="/images/vector5.png" alt="Next" />'
+                  ],
                       responsive: {
                           0: {
                               items: 1
@@ -60,20 +64,20 @@ const Serviceslider = ({main_title , all_ablauf}) => {
             }, []);
   return (
      <>
-     <section className="py-10  md:py-[70px] lg:py-[100px]">
+     <section className="py-10  md:py-[70px] lg:py-[100px] ">
          <div className="w-full max-w-[1470px] px-[15px] mx-auto">
            <div className="flex flex-col gap-6 md:gap-11 lg:gap-16 ">
              <div className="flex justify-center">
                 <h2 className='text-h3 lg:text-h2'>{main_title}</h2>
              </div>
-             <div className="owl-carousel Serviceslider relative" ref={carouselRef}>
+             <div className="owl-carousel Serviceslider relative after:bg-background-svg after:top-1/2 after:left-0     after:bg-no-repeat after:bg-contain after:w-full after:h-auto after:absolute" ref={carouselRef}>
              {
                all_ablauf?.value?.map((val,index) => (
                 <div className="items flex justify-center" key={index}>
                     <div className="flex flex-col gap-4 w-[250px]">
-                         <div className="flex gap-6 sm:gap-8 border border-Teal rounded-full flex-col   w-[250px] h-[250px] items-center justify-center">
-                              <Image src={val.home_all_ablauf_image} width={64} height={64} alt="ServiceImg1" className='!w-14 h-14'/>
-                              <h3 className='text-a md:text-h4'>{val.home_all_ablauf_title}</h3>
+                         <div className="flex gap-6 sm:gap-8 border border-Teal rounded-full flex-col   w-[250px] h-[250px] items-center justify-center ">
+                              <Image src={val.home_all_ablauf_image} width={64} height={64} alt="ServiceImg1" className='!w-14 h-14 object-contain'/>
+                              <h3 className='text-a md:text-h4 lg:text-h3'>{val.home_all_ablauf_title}</h3>
                          </div>
                          <div className="flex">
                             <p dangerouslySetInnerHTML={{ __html: val.home_all_ablauf_content?.replace(/<p>/g, '').replace(/<\/p>/g, '').replace(/&amp;/g, '&')}}></p>

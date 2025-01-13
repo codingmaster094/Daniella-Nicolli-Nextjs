@@ -23,13 +23,14 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                     } gap-4 md:gap-10 2xl:gap-[100px] justify-center`}
                   >
                     {/* Image Section */}
-                    <div className="flex flex-col w-full lg:w-[35%] p-0 lg:pe-16 lg:pb-16 relative after:none lg:after:absolute lg:after:right-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10">
-                      <div className="flex w-full h-full 2xl:h-[578px]">
+                    <div className={`
+                    ${ind % 2 === 1 ?  `flex items-center flex-col w-full lg:w-[35%] lg:flex-row p-0 lg:ps-16 lg:pb-16 relative after:none lg:after:absolute lg:after:left-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10` : `flex   w-full lg:w-[35%] lg:flex-row p-0 lg:pe-16 lg:pb-16 relative after:none lg:after:absolute lg:after:right-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10`} `}>
+                      <div className="flex w-auto lg:w-full h-full sm:h-[500px] object-top  2xl:h-[578px]  lg:after:z-10">
                         <Image
                           src={valData.aesthetik_all_faltenunterspritzung_image}
                           alt="About-img"
                           objectFit="cover"
-                          className="w-full h-full object-cover"
+                          className="w-full object-contain lg:object-cover  h-full"
                           width={578}
                           height={578}
                         />
@@ -47,7 +48,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                               __html:
                                 valData?.aesthetik_all_faltenunterspritzung_content}}>
                       </div>
-                        <div className=" flex flex-col gap-5 p-4 border border-Teal" dangerouslySetInnerHTML={{ __html:valData?.aesthetik_all_faltenunterspritzung_note}}>
+                        <div className=" flex flex-col text-black-800 gap-5 p-4 border border-Teal" dangerouslySetInnerHTML={{ __html:valData?.aesthetik_all_faltenunterspritzung_note}}>
                         </div>
                     </div>
                   </div>
