@@ -26,7 +26,7 @@ const AboutLambsheim = ({
             </Link>
             }
           </div>
-          <div className=" relative flex items-center flex-col w-auto lg:w-[55%] h-[500px] object-top lg:h-[804px]  md:flex-row py-0 lg:py-[30px] bg-white">
+          <div className=" relative flex items-center flex-col w-auto lg:w-[55%] h-full xm:h-[500px] object-top 2xl:h-[804px]  md:flex-row py-0 lg:py-[30px] bg-white">
           {
             standorte_image && 
             <Image

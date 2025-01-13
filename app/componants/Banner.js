@@ -57,10 +57,10 @@ useEffect(() => {
             slidesData?.value.map((slide, index) => (
               <div className="item" key={index}>
                 <div
-                  className="bg-banner bg-banner-img bg-cover px-[15px]"
+                  className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]"
                   style={{ backgroundImage: `url(${slide.hero_slider_image})` }}
                 >
-                  <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px]">
+                  <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
                     <h1>{slide.hero_slider_main_title}</h1>
                     <ul
                       className="menu"

@@ -24,8 +24,8 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                   >
                     {/* Image Section */}
                     <div className={`
-                    ${ind % 2 === 1 ?  `flex items-center flex-col w-full lg:w-[35%] lg:flex-row p-0 lg:ps-16 lg:pb-16 relative after:none lg:after:absolute lg:after:left-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10` : `flex   w-full lg:w-[35%] lg:flex-row p-0 lg:pe-16 lg:pb-16 relative after:none lg:after:absolute lg:after:right-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10`} `}>
-                      <div className="flex w-auto lg:w-full h-full sm:h-[500px] object-top  2xl:h-[578px]  lg:after:z-10">
+                    ${ind % 2 === 1 ?  `flex items-center flex-col w-full lg:w-[35%] lg:flex-row p-0 lg:ps-16 lg:pb-16 relative after:none lg:after:absolute lg:after:left-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10` : `flex   w-full lg:w-[35%] lg:flex-row p-0 lg:pe-16 lg:pb-16 relative after:none lg:after:absolute lg:after:right-0 lg:after:top-12 lg:after:border lg:after:border-Teal 2xl:after:w-[calc(100%-48px)] 2xl:after:h-[calc(100%-48px)] lg:after:-z-10`} `}>
+                      <div className="flex w-auto lg:w-full h-full sm:h-[550px] object-top  2xl:h-[578px]  lg:after:z-10">
                         <Image
                           src={valData.aesthetik_all_faltenunterspritzung_image}
                           alt="About-img"

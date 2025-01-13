@@ -25,7 +25,7 @@ const Gallrey = ({main_title , gallery_images}) => {
                 items: 4,
                 navText: [
                    '<img src="/images/Vector(7).png" alt="Previous" />',
-                '<img src="/images/vector(6).png" alt="Next" />'
+                   '<img src="/images/Vector(6).png" alt="Next" />'
               ],
                 responsive: {
                     0: {
