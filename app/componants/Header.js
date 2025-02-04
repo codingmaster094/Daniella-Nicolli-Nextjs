@@ -128,7 +128,7 @@ const Header = () => {
           )}
         </div>
         <div
-          className={`side-menu fixed opacity-0 z-20 px-5 lg:px-0 w-72 -left-full top-0 bg-Teal h-full pt-7 border-r-4 border-gray-light gap-4 xl:gap-8 lg:flex-1 lg:border-none lg:bg-transparent lg:opacity-100 lg:w-auto lg:static lg:flex lg:items-center transition-all duration-700 ease-in lg:transition-none lg:py-6 lg:justify-end ${
+          className={`side-menu fixed opacity-0 z-20 px-5 lg:px-0 w-72 -left-full top-0 bg-Teal h-full pt-7 border-r-4 border-gray-light gap-4 xl:gap-8 lg:flex-1 lg:border-none lg:bg-transparent lg:opacity-100 lg:w-auto lg:static lg:flex lg:items-center transition-all duration-700 ease-in lg:transition-none lg:py-6 lg:justify-end overflow-y-auto max-h-full ${
             menuOpen ? "left-0 opacity-100" : ""
           }`}
         >
@@ -139,7 +139,7 @@ const Header = () => {
           >
             <Image src={CloseBtn} alt="Close menu button" />
           </span>
-          <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto ">
+          <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
             {HeaderDatamenu?.menu?.map((item, index) => {
               item.slug = item.slug === "home" ? "/" : item.slug;
               const isActive =
@@ -164,11 +164,14 @@ const Header = () => {
                   <div
                     className="w-full lg:w-auto flex items-center justify-between cursor-pointer"
                     onClick={() => {
-                      if (
-                        window.innerWidth < 1024 &&
-                        item.children.length > 0
-                      ) {
-                        setSubmenuOpen(submenuOpen === index ? null : index);
+                      if (window.innerWidth < 1024) {
+                        if (item.children.length > 0) {
+                          setSubmenuOpen(submenuOpen === index ? null : index);
+                          setMenuOpen(true); // Open menu when submenu exists
+                        } else {
+                          setSubmenuOpen(null);
+                          setMenuOpen(false); // Close menu when no submenu
+                        }
                       }
                     }}
                   >
@@ -197,12 +200,13 @@ const Header = () => {
                       )}
                     </Link>
                   </div>
+
                   {item.children.length > 0 && (
                     <ul
-                      className="lg:absolute left-0 bg-white z-10 shadow-md top-full  transition-all duration-300 ease-in-out w-full lg:w-[250px] lg:overflow-y-hidden lg:h-auto h-[210px] overflow-y-auto "
+                      className="lg:absolute left-0 bg-white z-10 shadow-md top-full  transition-all duration-300 ease-in-out w-full lg:w-[250px]"
                       style={{
                         maxHeight: submenuOpen === index ? "500px" : "0px",
-                        // overflow: "hidden",
+                        overflow: "hidden",
                         transition: "max-height 0.4s ease-in-out",
                       }}
                     >
