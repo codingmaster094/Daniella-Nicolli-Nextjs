@@ -12,7 +12,7 @@ const Maps = ({main_title  , map_url , map_image}) => {
               {
                 map_url && 
                 <Link href={map_url} target='blank' className='block w-full min-h-96' aria-label='map-image' role='link'>
-                  <Image src={map_image?.url} alt='map_image'  width={map_image?.width} height={map_image?.height}/>
+                  <Image src={map_image?.url} alt='map_image'  width={map_image?.width} height={map_image?.height} className='h-full w-full object-cover'/>
                    </Link>
               }       
               </div>

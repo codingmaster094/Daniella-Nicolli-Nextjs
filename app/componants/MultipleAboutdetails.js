@@ -27,16 +27,16 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                   >
                     {/* Image Section */}
                     <div className={ind % 2 === 1 ? 
-                    "flex items-start flex-col text-black-800  w-full lg:w-1/2 2xl:w-[35%] lg:flex-row p-0 lg:ps-6 2xl:ps-16 lg:pb-6 2xl:pb-16 relative after:none lg:after:absolute lg:after:left-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)] lg:after:h-[calc(100%-48px)] lg:after:-z-10"
+                    "flex items-start flex-col text-black-800  w-full lg:w-1/2 2xl:w-[35%] lg:flex-row  ps-6 2xl:ps-16 pb-6 2xl:pb-16 relative after:absolute after:left-0  after:top-12 after:border after:border-Teal after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)] after:h-[calc(100%-48px)] after:-z-10"
                     :
-                    "flex items-start flex-col w-full lg:w-1/2 2xl:w-[35%] lg:flex-row p-0 lg:pe-8 lg:pb-8 2xl:pe-16 2xl:pb-16 relative after:none lg:after:absolute lg:after:right-0 lg:after:top-12 lg:after:border lg:after:border-Teal lg:after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)]  lg:after:h-[calc(100%-48px)] lg:after:-z-10"    
+                    "flex items-start flex-col w-full  lg:w-1/2 2xl:w-[35%] lg:flex-row  pe-8 pb-8 2xl:pe-16 2xl:pb-16 relative  after:absolute after:right-0 after:top-12 after:border after:border-Teal after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)]  after:h-[calc(100%-48px)] after:-z-10"    
                     }>
-                      <div className="w-auto lg:w-full  h-full sm:h-[550px] 2xl:h-[578px] object-top ">
+                      <div className="w-full h-full">
                         <Image
                           src={valData.aesthetik_all_faltenunterspritzung_image}
                           alt="About-img"
                           objectFit="cover"
-                          className="w-full object-contain lg:object-cover  h-full"
+                          className="w-full  object-cover  h-full"
                           width={578}
                           height={578}
                         />
