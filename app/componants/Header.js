@@ -139,7 +139,7 @@ const Header = () => {
           >
             <Image src={CloseBtn} alt="Close menu button" />
           </span>
-          <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row">
+          <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
             {HeaderDatamenu?.menu?.map((item, index) => {
               item.slug = item.slug === "home" ? "/" : item.slug;
               const isActive =
@@ -149,22 +149,33 @@ const Header = () => {
               return (
                 <li
                   key={item.id}
-                  className="relative group"
+                  className="relative group w-full lg:w-auto"
                   onMouseEnter={() => {
-                    if (item.children.length > 0) {
+                    if (window.innerWidth >= 1024 && item.children.length > 0) {
                       setSubmenuOpen(index);
-                      setMenuOpen(true);
-                    } else {
-                      setMenuOpen(false);
                     }
                   }}
                   onMouseLeave={() => {
-                    setSubmenuOpen(null);
-                    setMenuOpen(false);
+                    if (window.innerWidth >= 1024) {
+                      setSubmenuOpen(null);
+                    }
                   }}
                 >
-                  <div className="flex items-center justify-between cursor-pointer">
-                    <Link href={`/${item.slug}`}>
+                  <div
+                    className="w-full lg:w-auto flex items-center justify-between cursor-pointer"
+                    onClick={() => {
+                      if (
+                        window.innerWidth < 1024 &&
+                        item.children.length > 0
+                      ) {
+                        setSubmenuOpen(submenuOpen === index ? null : index);
+                      }
+                    }}
+                  >
+                    <Link
+                      href={`/${item.slug}`}
+                      className="flex items-center w-full lg:w-auto justify-between lg:justify-start gap-2"
+                    >
                       <span
                         className={`${
                           isActive
@@ -174,12 +185,24 @@ const Header = () => {
                       >
                         {item.title}
                       </span>
+                      {/* Arrow Toggle for Mobile */}
+                      {item.children.length > 0 && (
+                        <span
+                          className={`text-sm lg:hidden transition-transform duration-300 ${
+                            submenuOpen === index ? "rotate-180" : "rotate-0"
+                          }`}
+                        >
+                          ▼
+                        </span>
+                      )}
                     </Link>
                   </div>
                   {item.children.length > 0 && (
                     <ul
-                      className={`static lg:absolute left-0 bg-white z-10 shadow-md top-full p-2 transition-all duration-300 ease-in-out ${
-                        isSubmenuOpen ? "opacity-100 block" : "opacity-0 hidden"
+                      className={`lg:absolute left-0 bg-white z-10 shadow-md top-full p-2 transition-all duration-300 ease-in-out ${
+                        submenuOpen === index
+                          ? "opacity-100 block"
+                          : "opacity-0 hidden"
                       } lg:m-0 w-full lg:w-[250px]`}
                     >
                       {item.children.map((child) => (
