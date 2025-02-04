@@ -199,7 +199,7 @@ const Header = () => {
                   </div>
                   {item.children.length > 0 && (
                     <ul
-                      className="lg:absolute left-0 bg-white z-10 shadow-md top-full  transition-all duration-300 ease-in-out w-full lg:w-[250px] h-[210px] overflow-y-auto"
+                      className="lg:absolute left-0 bg-white z-10 shadow-md top-full  transition-all duration-300 ease-in-out w-full lg:w-[250px] lg:overflow-y-hidden lg:h-auto h-[210px] overflow-y-auto "
                       style={{
                         maxHeight: submenuOpen === index ? "500px" : "0px",
                         // overflow: "hidden",
