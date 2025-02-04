@@ -139,7 +139,7 @@ const Header = () => {
           >
             <Image src={CloseBtn} alt="Close menu button" />
           </span>
-          <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
+          <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto ">
             {HeaderDatamenu?.menu?.map((item, index) => {
               item.slug = item.slug === "home" ? "/" : item.slug;
               const isActive =
@@ -199,11 +199,12 @@ const Header = () => {
                   </div>
                   {item.children.length > 0 && (
                     <ul
-                      className={`lg:absolute left-0 bg-white z-10 shadow-md top-full p-2 transition-all duration-300 ease-in-out ${
-                        submenuOpen === index
-                          ? "opacity-100 block"
-                          : "opacity-0 hidden"
-                      } lg:m-0 w-full lg:w-[250px]`}
+                      className="lg:absolute left-0 bg-white z-10 shadow-md top-full  transition-all duration-300 ease-in-out w-full lg:w-[250px] h-[210px] overflow-y-auto"
+                      style={{
+                        maxHeight: submenuOpen === index ? "500px" : "0px",
+                        // overflow: "hidden",
+                        transition: "max-height 0.4s ease-in-out",
+                      }}
                     >
                       {item.children.map((child) => (
                         <li
