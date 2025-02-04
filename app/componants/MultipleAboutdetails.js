@@ -18,7 +18,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
           }
             {val?.aesthetik_all_faltenunterspritzung &&
               val?.aesthetik_all_faltenunterspritzung?.map((valData, ind) => (
-              <section className="py-10 md:py-[70px] lg:py-[100px]" key={ind} id={valData?.aesthetik_anfrage_id}>
+              <section className="py-10 md:py-[70px] lg:py-[105px]" key={ind} id={valData?.aesthetik_anfrage_id}>
                 <div className="container px-[15px] mx-auto">
                   <div
                     className={`flex flex-col ${
