@@ -13,9 +13,10 @@ import Slidehover from "../componants/Slidehover";
 import axios from "axios";
 import Link from "next/link";
 
-
+let username = 'nicolli_praxis_fuer_aesthetik/'
 const page = () => {
   const [HomePageData, setHomePageData] = useState(null);
+  
 
   const fetchHomeData = async () => {
     try {

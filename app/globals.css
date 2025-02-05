@@ -144,13 +144,13 @@
       @apply mt-4 mb-4 inline-block text-h4 md:text-2xl
   }
   .Im-section p ,.section p{
-      @apply break-all
+      @apply break-words
   }
   .Im-section strong{
      @apply mb-4 inline-block text-h4 md:text-xl
   }
   .Im-section a,.section a{
-    @apply text-Teal break-all
+    @apply text-Teal break-words
   }
   .Im-section h1,.section h1{
       @apply text-h3 md:text-h2  lg:text-h1
@@ -189,7 +189,7 @@
      @apply mb-8 w-[80px] !bg-Teal h-[2px] !border-Teal
 }
 .blogtemplate p{
-  @apply mb-4  lg:mb-5 break-all
+  @apply mb-4  lg:mb-5 break-words
 }
 .blogtemplate .wp-container-core-columns-is-layout-2,  .blogtemplate .wp-container-core-columns-is-layout-3{
    @apply flex gap-2 flex-wrap flex-col sm:flex-row sm:gap-4   mb-4 lg:mb-8

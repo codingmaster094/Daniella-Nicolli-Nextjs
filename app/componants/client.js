@@ -71,7 +71,7 @@ const ClientCarousel = ({main_title , section_all_partners}) => {
             return (
               <div className="item" key={index}>
                 <div className="client-logo text-center flex items-center justify-center sm:justify-between">
-                <Link href={val.partners_section_all_partners_website_link?.url} target={val.partners_section_all_partners_website_link?.target} aria-label={val.partners_section_all_partners_website_link?.title}>
+                <Link href={val.partners_section_all_partners_website_link?.url} target={val.partners_section_all_partners_website_link?.target} aria-label={val.partners_section_all_partners_website_link?.title} className="block">
                   <Image src={val.partners_section_all_partners_logos} alt={`client-logo${index + 1}`} className="!w-auto" height={85} width={157}/>
                 </Link>
                 </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BannerCarousel from '../componants/Banner'
 import ClientCarousel from '../componants/client';
 import UberAboutDeatils from '../componants/UberAboutDeatils';
@@ -8,33 +8,9 @@ import Counter from '../componants/Counter';
 import UberAboutDeatilsleft from '../componants/UberAboutDeatilsleft';
 import Gallrey from '../componants/Gallrey';
 import axios from "axios";
+
 const page = () => {
-
   const [Ubermich, setUbermich] = useState(null);
-  const [Instagram_img, setInstagram_img] = useState(null)
-
-  const FetxhInstagram_image = async()=>{
-    try {
-      const response = await axios.get(
-        "https://www.instagram.com/nicolli_praxis_fuer_aesthetik/"
-      );
-
-      console.log('response', response)
-      const posts = response.data.graphql.user.edge_owner_to_timeline_media.edges;
-      const imageUrls = posts.map((post) => ({
-        id: post.node.id,
-        media_url: post.node.display_url,
-        permalink: `https://www.instagram.com/p/${post.node.shortcode}/`,
-      }));
-
-      setInstagram_img(imageUrls);
-        console.log('imageUrls', imageUrls)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  console.log("Instagram_img" , Instagram_img)
   const fetchUbermich = async () => {
     try {
       const response = await axios.get(
@@ -48,7 +24,6 @@ const page = () => {
 
   useEffect(() => {
     fetchUbermich();
-    FetxhInstagram_image();
   }, []);
               
   return (
