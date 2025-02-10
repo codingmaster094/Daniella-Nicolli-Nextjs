@@ -83,15 +83,27 @@ const Counter = ({ main_title, all_leistungen }) => {
                   if(counters.length !=0){
                   // For the first counter, add "+" prefix
                   formattedValue = `+${counters[index]}`;
+                  }else{
+                    formattedValue = `+0`;
                   }
                 } else if (isThousand) {
-                  // For counters that need the "k" suffix (if the value is in thousands)
-                  formattedValue = counters[index] >= 1000
+                  if(counters.length !=0){
+                   // For counters that need the "k" suffix (if the value is in thousands)
+                   formattedValue = counters[index] >= 1000
                     ? `${Math.floor(counters[index] / 1000)}k` // Use Math.floor to avoid decimals
                     : counters[index];
+                  }else{
+                    formattedValue = `0k`;
+                  }
+                 
                 } else {
+                  if(counters.length !=0){
                   // Default case for other counters
                   formattedValue = counters[index];
+                  }else{
+                    formattedValue = `0`;
+                  }
+                  
                 }
 
                 return (
