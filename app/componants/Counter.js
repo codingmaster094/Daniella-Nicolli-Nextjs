@@ -1,23 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Counter = ({ main_title, all_leistungen }) => {
   const [counters, setCounters] = useState([]);
+  const [hasStarted, setHasStarted] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    if (all_leistungen && all_leistungen.length > 0) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        console.log("Is section visible?", entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setTimeout(() => setHasStarted(true), 500);
+        } else {
+          setHasStarted(false); 
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px 0px 0px",
+        threshold: 0.5,
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (hasStarted && all_leistungen && all_leistungen.length > 0) {
       // Initialize counters with zeros
       setCounters(all_leistungen.map(() => 0));
 
       // Animate counters
       all_leistungen.forEach((item, index) => {
-        const rawValue = item.ueber_all_leistungen_counter;
-        const isThousand = rawValue.toLowerCase().includes('k'); // Check for 'k' in the string
+        const rawValue = item.ueber_all_leistungen_counter || "0";
+        const isThousand = rawValue.toLowerCase().includes('k'); 
         const target = isThousand
-          ? parseInt(rawValue.replace(/[^0-9]/g, ''), 10) * 1000 // Remove non-numeric characters and multiply by 1000
-          : parseInt(rawValue, 10); // If no 'k', just parse the number
+          ? parseInt(rawValue.replace(/[^0-9]/g, ''), 10) * 1000 
+          : parseInt(rawValue, 10); 
 
         let start = 0;
-        const increment = Math.ceil(target / 200); // Adjust speed as needed
+        const increment = Math.ceil(target / 200); 
         const interval = setInterval(() => {
           start += increment;
           if (start >= target) {
@@ -29,28 +59,31 @@ const Counter = ({ main_title, all_leistungen }) => {
             updated[index] = start;
             return updated;
           });
-        }, 20); // Adjust interval time as needed
+        }, 20); 
       });
     }
-  }, [all_leistungen]);
+  }, [hasStarted, all_leistungen]); 
 
   return (
-    <section className="py-10 md:py-[70px] lg:py-[100px] bg-Teal">
+    <section ref={sectionRef} className="py-10 md:py-[70px] lg:py-[100px] bg-Teal">
       <div className="container mx-auto px-[15px] sm:px-[30px] lg:px-[61px]">
         <div className="flex text-center items-center justify-center flex-col gap-6 sm:gap-8 flex-wrap text-white">
           <div className="flex pb-[25px] text-white relative after:absolute after:bottom-0 after:w-20 after:left-[40%] after:h-[2px] after:bg-white">
             <h2 className='text-white'>{main_title}</h2>
           </div>
           <div className="flex justify-between flex-col md:flex-row gap-8">
-            {all_leistungen &&
+            {all_leistungen && all_leistungen !=undefined &&
               all_leistungen.map((item, index) => {
-                const rawValue = item.ueber_all_leistungen_counter;
+                const rawValue = item.ueber_all_leistungen_counter || "0";
                 const isThousand = rawValue.toLowerCase().includes('k');
                 let formattedValue;
 
                 if (index === 0) {
+                  console.log("counters" , counters)
+                  if(counters.length !=0){
                   // For the first counter, add "+" prefix
                   formattedValue = `+${counters[index]}`;
+                  }
                 } else if (isThousand) {
                   // For counters that need the "k" suffix (if the value is in thousands)
                   formattedValue = counters[index] >= 1000
