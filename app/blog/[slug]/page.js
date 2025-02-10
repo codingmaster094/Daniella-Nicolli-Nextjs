@@ -4,7 +4,6 @@ import Categories from "../../componants/Categories";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import dayjs from "dayjs";
-import Image from "next/image";
 
 const Page = () => {
   const [blogData, setBlogData] = useState([]);
@@ -44,20 +43,6 @@ const Page = () => {
               <div className="px-[15px] 2xl:ps-[148px]">
                 <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:max-w-[845px]">
                   <h1>{blogData?.title}</h1>
-                  {/* <ul className="menu">
-        <li>Die natur gibt uns das gesicht, das wir mit zwanzig haben.</li>
-        <li>Das laben formt das gesicht, das wir mit dreibig haben.</li>
-        <li>Aber das gesicht, das wir mit funfzig haben, mussen wir uns verdienen.</li>
-
-                  </ul> */}
-                  {/* <a
-                    target="_blank"
-                    className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in"
-                    aria-label="TERMIN BUCHEN"
-                    href="https://connect.shore.com/bookings/daniella-nicolli-heilpraktikerin/services?locale=de"
-                  >
-                    TERMIN BUCHEN
-                  </a> */}
                 </div>
               </div>
             </>

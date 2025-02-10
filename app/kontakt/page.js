@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import BannerCarousel from '../componants/Banner'
 import ContactAboutDetails from '../componants/ContactAboutDetails';
 import Contactform from '../componants/Contactform';
 import axios from "axios";
@@ -25,9 +24,6 @@ const page = () => {
 
   return (
     <>
-    {/* {ContactData && (
-        <BannerCarousel slidesData={ContactData?.hero_slider} />
-      )} */}
       {
       ContactData && 
       <section>

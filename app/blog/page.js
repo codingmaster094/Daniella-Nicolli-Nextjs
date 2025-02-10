@@ -38,7 +38,6 @@ const page = () => {
 
       return (
         <>
-         {/* {BlogData && (<BannerCarousel slidesData={BlogData?.hero_slider} />)} */}
          {
       BlogData && 
       <section>

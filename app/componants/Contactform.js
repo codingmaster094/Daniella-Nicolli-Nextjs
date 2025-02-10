@@ -97,7 +97,6 @@ const Contactform = ({
       });
 
       const result = await response.json();
-      console.log("response.ok", response);
       if (response.ok) {
         setSuccess("Nachricht erfolgreich gesendet");
         setFormData({

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import BannerCarousel from "../componants/Banner";
 import ClientCarousel from "../componants/client";
 import Aboutdetails from "../componants/Aboutdetails";
 import Categories from "../componants/Categories";
@@ -8,12 +7,10 @@ import AboutLambsheim from "../componants/AboutLambsheim";
 import Fermentum from "../componants/Fermentum";
 import Serviceslider from "../componants/Serviceslider";
 import Comment from "../componants/Comment";
-import Accordian from "../componants/Accordian";
 import Slidehover from "../componants/Slidehover";
 import axios from "axios";
 import Link from "next/link";
 
-let username = 'nicolli_praxis_fuer_aesthetik/'
 const page = () => {
   const [HomePageData, setHomePageData] = useState(null);
   
@@ -130,23 +127,12 @@ const page = () => {
         content={HomePageData?.bewertungen_content?.value}
       />
 
-      {/* <Categories
-        title={HomePageData?.home_anfrage_3_main_title.value}
-        description={HomePageData?.home_anfrage_3_content.value}
-        BTN={HomePageData?.home_anfrage_3_button.value}
-      /> */}
-
       {HomePageData && (
         <Slidehover
           main_title={HomePageData?.referenzen_main_title.value}
           all_referenzen={HomePageData?.all_referenzen}
         />
       )}
-
-      {/* <Accordian
-        main_title={HomePageData?.faq_main_title?.value}
-        all_faqs={HomePageData?.all_faqs?.value}
-      /> */}
     </>
   );
 };

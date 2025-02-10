@@ -57,9 +57,12 @@ const BannerCarousel = ({ slidesData, className }) => {
     <section>
       <div className={`Banner ${className || ""} `}>
         <div className="owl-carousel Banner-sliders relative" ref={carouselRef}>
-          {slidesData?.value &&
-            slidesData?.value.map((slide, index) => (
+          {slidesData &&
+            slidesData?.map((slide, index) => (
               <div className="item" key={index}>
+              {
+                console.log("slide" , slide)
+              }
                 <div
                   className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]"
                   style={{ backgroundImage: `url(${slide.hero_slider_image})` }}

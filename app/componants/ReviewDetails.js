@@ -10,7 +10,6 @@ const ReviewDetails = () => {
         "https://daniella.blog-s.de/wp-json/custom/v1/google-reviews/?id=520"
       );
       setReviweDetail(response.data);
-      console.log("response", response.data);
     } catch (error) {
       console.error("Error fetching content data", error);
     }

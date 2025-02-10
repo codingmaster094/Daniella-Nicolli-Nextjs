@@ -8,7 +8,6 @@ const Counter = ({ main_title, all_leistungen }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        console.log("Is section visible?", entry.isIntersecting);
         if (entry.isIntersecting) {
           setTimeout(() => setHasStarted(true), 500);
         } else {
@@ -77,9 +76,7 @@ const Counter = ({ main_title, all_leistungen }) => {
                 const rawValue = item.ueber_all_leistungen_counter || "0";
                 const isThousand = rawValue.toLowerCase().includes('k');
                 let formattedValue;
-
                 if (index === 0) {
-                  console.log("counters" , counters)
                   if(counters.length !=0){
                   // For the first counter, add "+" prefix
                   formattedValue = `+${counters[index]}`;

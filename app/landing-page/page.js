@@ -1,10 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import HeroImage from "../../public/images/leading-banner.png";
 import BannerCarousel from "../componants/Banner";
 import ClientCarousel from "../componants/client";
-import LeandingImageRight from "../../public/images/Leanding-right-image.jpg";
-import LeandingImageRight1 from "../../public/images/leanding-right-img1.png";
 import AboutDeatilsRight from "../componants/AboutDeatilsRight";
 import Comment from "../componants/Comment";
 import Categories from "../componants/Categories";
@@ -19,6 +16,7 @@ const page = () => {
       const response = await axios.get(
         "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/landing-page"
       );
+      console.log('response.data', response.data)
       setLendiangPageData(response.data);
     } catch (error) {
       console.error("Error fetching content data", error);
@@ -33,13 +31,16 @@ const page = () => {
     <>
       {LendiangPageData && (
         <BannerCarousel
-          slidesData={LendiangPageData?.hero_slider}
+          slidesData={LendiangPageData?.hero_slider?.value}
         />
       )}
+
       {LendiangPageData && (
         <ClientCarousel
           main_title={LendiangPageData?.partners_section_main_title?.value}
-          section_all_partners={LendiangPageData?.partners_section_all_partners}
+          section_all_partners={
+            LendiangPageData?.partners_section_all_partners
+          }
         />
       )}
 

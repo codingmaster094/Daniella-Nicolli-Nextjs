@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import BannerCarousel from '../componants/Banner'
 import ClientCarousel from '../componants/client'
 import Comment from '../componants/Comment'
 import Accordian from '../componants/Accordian'
@@ -29,8 +28,6 @@ const page = () => {
   }, []);
   return (
     <>
-    {/* {AesthetikData && (<BannerCarousel slidesData={AesthetikData?.hero_slider} />)} */}
-
     {
       AesthetikData && 
       <section>
