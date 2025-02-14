@@ -8,6 +8,7 @@ import Categories from "../componants/Categories";
 import Slidehover from "../componants/Slidehover";
 import Accordian from "../componants/Accordian";
 import axios from "axios";
+import Link from "next/link";
 
 const page = () => {
   const [LendiangPageData, setLendiangPageData] = useState(null);
@@ -16,7 +17,7 @@ const page = () => {
       const response = await axios.get(
         "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/landing-page"
       );
-      console.log('response.data', response.data)
+      console.log("response.data", response.data);
       setLendiangPageData(response.data);
     } catch (error) {
       console.error("Error fetching content data", error);
@@ -29,18 +30,62 @@ const page = () => {
 
   return (
     <>
+      {/* {LendiangPageData && (
+        <BannerCarousel slidesData={LendiangPageData?.hero_slider?.value} />
+      )} */}
+
       {LendiangPageData && (
-        <BannerCarousel
-          slidesData={LendiangPageData?.hero_slider?.value}
-        />
+        <section>
+          <div className={`Banner`}>
+            <div className="Banner-sliders relative">
+              <div className="item">
+                <div
+                  className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]"
+                  style={{
+                    backgroundImage: LendiangPageData?.hero_slider_image?.value
+                      ? `url(${LendiangPageData?.hero_slider_image?.value})`
+                      : "none",
+                  }}
+                >
+                  <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
+                    <h1>{LendiangPageData?.hero_slider_main_title?.value}</h1>
+                    <ul
+                      className="menu"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          LendiangPageData?.hero_slider_content?.value.replace(
+                            /<\/?ul[^>]*>/g,
+                            ""
+                          ),
+                      }}
+                    ></ul>
+                    {LendiangPageData?.hero_slider_button && (
+                      <Link
+                        href={LendiangPageData?.hero_slider_button?.value?.url}
+                        target={
+                          LendiangPageData?.hero_slider_button?.value?.target
+                        }
+                        className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in"
+                        aria-label={
+                          LendiangPageData?.hero_slider_button?.value?.title ||
+                          "button link"
+                        }
+                      >
+                        {LendiangPageData?.hero_slider_button?.value?.title}
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       )}
 
       {LendiangPageData && (
         <ClientCarousel
           main_title={LendiangPageData?.partners_section_main_title?.value}
-          section_all_partners={
-            LendiangPageData?.partners_section_all_partners
-          }
+          section_all_partners={LendiangPageData?.partners_section_all_partners}
         />
       )}
 
@@ -87,7 +132,6 @@ const page = () => {
         main_title={LendiangPageData?.faq_main_title?.value}
         all_faqs={LendiangPageData?.all_faqs?.value}
       />
-
     </>
   );
 };

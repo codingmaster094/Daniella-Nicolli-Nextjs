@@ -204,6 +204,9 @@ const Contactform = ({
                       value={formData.message}
                       onChange={handleInputChange}
                     ></textarea>
+                    {errors.message && (
+                      <p className="text-red-500 text-sm">{errors.message}</p>
+                    )}
                   </div>
                   <div className="input-box w-full">
                     <p>
