@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from 'next/image' 
-import LocationSvg from '../../public/images/location.svg'
-import PhoneSvg from '../../public/images/phone.svg'
-import FaxSvg from '../../public/images/fax.svg'
-import MailSvg from '../../public/images/mail.svg'
-import FacebookSvg from '../../public/images/face-book.svg'
-import InstagramSvg from '../../public/images/Whiteinstgram.svg'
-import Link from 'next/link'
+import Image from "next/image";
+import LocationSvg from "../../public/images/location.svg";
+import PhoneSvg from "../../public/images/phone.svg";
+import FaxSvg from "../../public/images/fax.svg";
+import MailSvg from "../../public/images/mail.svg";
+import FacebookSvg from "../../public/images/face-book.svg";
+import InstagramSvg from "../../public/images/Whiteinstgram.svg";
+import Link from "next/link";
 import axios from "axios";
 const Footer = () => {
   const [FooterData, setFooterData] = useState(null);
@@ -27,124 +27,201 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className='bg-salte w-full'>
-        <div className="container mx-auto px-[15px] ">
-                 <div className="flex gap-6 md:gap-[90px] flex-wrap   flex-col md:flex-row py-8 md:py-20">
-                      <div className="flex flex-col   2xl:w-[calc(25%-70px)] gap-5 ">
-                        <h4>{FooterData?.kontakt_label}</h4>
-                        <ul className='[&_li>img]:mt-4'>
-                          <li>
-                              <Image src={LocationSvg} alt="location-svg"/>
-                              <div dangerouslySetInnerHTML={{ __html: FooterData?.footer_address}} className="w-full "/>
-                          </li>
-                          <li>
-                            <span className="flex flex-shrink-0">
-                                <Image src={PhoneSvg} alt="phone-svg"/>
-                            </span>
-                            {
-                              FooterData?.footer_phone_number && 
-                                <Link href={FooterData?.footer_phone_number?.url} target={FooterData?.footer_phone_number?.target} 
-                                aria-label="phone-link" role="link"
-                                >{FooterData?.footer_phone_number?.title}</Link>
-                            }
-                          </li>
-                          <li>
-                            <span className="flex flex-shrink-0">
-                                <Image src={FaxSvg} alt="fax-svg"/>
-                            </span>
-                            {FooterData?.footer_fax_number?.title}
-                          </li>
-                          <li>
-                            <span className="flex flex-shrink-0">
-                                <Image src={MailSvg} alt="MailSvg"/>
-                            </span>
-                            {
-                              FooterData?.footer_email_address && 
-                                <Link href={FooterData?.footer_email_address?.url} target={FooterData?.footer_email_address?.target} aria-label="email-link" role="link">{FooterData?.footer_email_address.title}</Link>
-                            }
-                          </li>
-                        </ul>   
-                        <ul className="flex flex-row [&_li]:w-[38px] [&_li]:h-[38px] [&_li]:bg-Teal [&_li]:rounded-full [&_li]    :items-center [&_li]:justify-center [&_li]:p-2">
-                          <li className="flex items-center justify-center">
-                          {
-                            FooterData?.footer_facebook_link && 
-                            <Link href={FooterData?.footer_facebook_link?.url} target={FooterData?.footer_facebook_link?.target} aria-label="facebook-link" role="link" className="inline-block ">
-                                <Image src={FacebookSvg} alt='facebook-svg'></Image>
-                            </Link>
-                          }
-                          </li>
-                          <li className="flex items-center justify-center">
-                          {
-                            FooterData?.footer_instagram_link && 
-                            <Link href={FooterData?.footer_instagram_link?.url} target={FooterData?.footer_instagram_link?.target} aria-label="Instagram-link" role="link" className="inline-block ">
-                                <Image src={InstagramSvg} alt='instgram-svg'></Image>
-                            </Link>
-                          }
-                          </li>
-                        </ul>    
-                      </div>
-                       <div className="flex flex-col 2xl:w-[calc(20%-70px)] gap-5 sm:gap-[34px]">
-                        <h4>{FooterData?.footer_sprechzeiten_label}</h4>
-                        <ul className='time-menu '
-                            dangerouslySetInnerHTML={{ __html: FooterData?.footer_business_hours?.replace(/<\/?ul[^>]*>/g, '')}}
-                        >
-                        </ul>   
-                      </div>
-                      <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-5 sm:gap-[34px]">
-                        <h4>{FooterData?.footer_navigation_label}</h4>
-                        <ul>
-                          <li>
-                            <Link href="/" aria-label="footer-link" role="link">Start</Link>
-                          </li>
-                          <li>
-                            <Link href="/aesthetik" aria-label="footer-link" role="link">Ästhetik</Link>
-                          </li>
-                          <li>
-                          <Link href="/naturheilmedizin" aria-label="footer-link" role="link">Naturheilmedizin</Link>
-                          </li>
-                          <li>
-                          <Link href="/blog" aria-label="footer-link" role="link">Blog</Link>
-                          </li>
-                          <li>
-                          <Link href="/ueber-mich" aria-label="footer-link" role="link">Über mich</Link>
-                          </li>
-                          <li>
-                             <Link href="/kontakt" aria-label="footer-link" role="link">Kontakt</Link>
-                          </li>
-                        </ul>   
-                      </div>
-                      <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-5 sm:gap-[34px]">
-                        <h4>{FooterData?.footer_rechtliches_label}</h4>
-                        <ul>
-                          <li>
-                            <Link href="/impressum" aria-label="footer-link" role="link">Impressum </Link>
-                          </li>
-                          <li>
-                            <Link href="/datenschutzerklarung" aria-label="footer-link" role="link">Datenschutzerklärung</Link>
-                          </li>
-                        </ul>   
-                      </div>
-                      <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-4 flex-wrap">
-                      {
-                        FooterData && 
-                        FooterData?.footer_all_logos?.map((val,index) => (
-                         <div className="flex w-[150px] h-[150px] overflow-hidden" key={index}>
-                          {
-                            val.footer_all_logo_url && 
-                         <Link href={val.footer_all_logo_url?.url} target={val.footer_all_logo_url?.target} aria-label="image-link" role="link">
-                              <Image src={val.footer_all_logo} width={150} height={150} alt='GVPimg' className='object-cover rounded-[10px]'/>
-                         </Link>
-                          }
-                         </div>
-                        ))
-                      }
-                      </div>
-                 </div>
-            </div>
-            <div className="flex  justify-center bg-Teal p-[15px] text-white" dangerouslySetInnerHTML={{ __html: FooterData?.       footer_copyright_content}}>   
-            </div>
+    <footer className="bg-salte w-full">
+      <div className="container mx-auto px-[15px] ">
+        <div className="flex gap-6 md:gap-[90px] flex-wrap   flex-col md:flex-row py-8 md:py-20">
+          <div className="flex flex-col   2xl:w-[calc(25%-70px)] gap-5 ">
+            <h4>{FooterData?.kontakt_label}</h4>
+            <ul className="[&_li>img]:mt-4">
+              <li>
+                <Image src={LocationSvg} alt="location-svg" />
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: FooterData?.footer_address,
+                  }}
+                  className="w-full "
+                />
+              </li>
+              <li>
+                <span className="flex flex-shrink-0">
+                  <Image src={PhoneSvg} alt="phone-svg" />
+                </span>
+                {FooterData?.footer_phone_number && (
+                  <Link
+                    href={FooterData?.footer_phone_number?.url}
+                    target={FooterData?.footer_phone_number?.target}
+                    aria-label="phone-link"
+                    role="link"
+                  >
+                    {FooterData?.footer_phone_number?.title}
+                  </Link>
+                )}
+              </li>
+              <li>
+                <span className="flex flex-shrink-0">
+                  <Image src={FaxSvg} alt="fax-svg" />
+                </span>
+                {FooterData?.footer_fax_number?.title}
+              </li>
+              <li>
+                <span className="flex flex-shrink-0">
+                  <Image src={MailSvg} alt="MailSvg" />
+                </span>
+                {FooterData?.footer_email_address && (
+                  <Link
+                    href={FooterData?.footer_email_address?.url}
+                    target={FooterData?.footer_email_address?.target}
+                    aria-label="email-link"
+                    role="link"
+                  >
+                    {FooterData?.footer_email_address.title}
+                  </Link>
+                )}
+              </li>
+            </ul>
+            <ul className="flex flex-row [&_li]:w-[38px] [&_li]:h-[38px] [&_li]:bg-Teal [&_li]:rounded-full [&_li]    :items-center [&_li]:justify-center [&_li]:p-2">
+              <li className="flex items-center justify-center">
+                {FooterData?.footer_facebook_link && (
+                  <Link
+                    href={FooterData?.footer_facebook_link?.url}
+                    target={FooterData?.footer_facebook_link?.target}
+                    aria-label="facebook-link"
+                    role="link"
+                    className="inline-block "
+                  >
+                    <Image src={FacebookSvg} alt="facebook-svg"></Image>
+                  </Link>
+                )}
+              </li>
+              <li className="flex items-center justify-center">
+                {FooterData?.footer_instagram_link && (
+                  <Link
+                    href={FooterData?.footer_instagram_link?.url}
+                    target={FooterData?.footer_instagram_link?.target}
+                    aria-label="Instagram-link"
+                    role="link"
+                    className="inline-block "
+                  >
+                    <Image src={InstagramSvg} alt="instgram-svg"></Image>
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col 2xl:w-[calc(20%-70px)] gap-5 sm:gap-[34px]">
+            <h4>{FooterData?.footer_sprechzeiten_label}</h4>
+            <ul
+              className="time-menu "
+              dangerouslySetInnerHTML={{
+                __html: FooterData?.footer_business_hours?.replace(
+                  /<\/?ul[^>]*>/g,
+                  ""
+                ),
+              }}
+            ></ul>
+          </div>
+          <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-5 sm:gap-[34px]">
+            <h4>{FooterData?.footer_navigation_label}</h4>
+            <ul>
+              <li>
+                <Link href="/" aria-label="footer-link" role="link">
+                  Start
+                </Link>
+              </li>
+              <li>
+                <Link href="/aesthetik" aria-label="footer-link" role="link">
+                  Ästhetik
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/naturheilmedizin"
+                  aria-label="footer-link"
+                  role="link"
+                >
+                  Naturheilmedizin
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" aria-label="footer-link" role="link">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/ueber-mich" aria-label="footer-link" role="link">
+                  Über mich
+                </Link>
+              </li>
+              <li>
+                <Link href="/kontakt" aria-label="footer-link" role="link">
+                  Kontakt
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-5 sm:gap-[34px]">
+            <h4>{FooterData?.footer_rechtliches_label}</h4>
+            <ul>
+              <li>
+                <Link href="/impressum" aria-label="footer-link" role="link">
+                  Impressum{" "}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/datenschutzerklarung"
+                  aria-label="footer-link"
+                  role="link"
+                >
+                  Datenschutzerklärung
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-4 flex-wrap">
+            {FooterData &&
+              FooterData?.footer_all_logos?.map((val, index) => (
+                <div
+                  className="flex w-[150px] h-[150px] overflow-hidden"
+                  key={index}
+                >
+                  {val.footer_all_logo_url ? (
+                    <Link
+                      href={val.footer_all_logo_url?.url}
+                      target={val.footer_all_logo_url?.target}
+                      aria-label="image-link"
+                      role="link"
+                    >
+                      <Image
+                        src={val.footer_all_logo}
+                        width={150}
+                        height={150}
+                        alt="GVPimg"
+                        className="object-cover rounded-[10px]"
+                      />
+                    </Link>
+                  ) : (
+                    <Image
+                      src={val.footer_all_logo}
+                      width={150}
+                      height={150}
+                      alt="GVPimg"
+                      className="object-cover rounded-[10px]"
+                    />
+                  )}
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
+      <div
+        className="flex  justify-center bg-Teal p-[15px] text-white"
+        dangerouslySetInnerHTML={{
+          __html: FooterData?.footer_copyright_content,
+        }}
+      ></div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
