@@ -36,8 +36,8 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                       <div
                         className={
                           ind % 2 === 1
-                            ? "flex items-start flex-col text-black-800 w-full sm:w-[500px]  lg:w-1/2 2xl:w-[35%] lg:flex-row  ps-6 2xl:ps-16 pb-6 2xl:pb-16 relative after:absolute after:left-0  after:top-12 after:border after:border-Teal after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)] after:h-[calc(100%-48px)] after:-z-10"
-                            : "flex items-start flex-col w-full sm:w-[500px]  lg:w-1/2 2xl:w-[35%] lg:flex-row  pe-8 pb-8 2xl:pe-16 2xl:pb-16 relative  after:absolute after:right-0 after:top-12 after:border after:border-Teal after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)]  after:h-[calc(100%-48px)] after:-z-10 "
+                            ? "flex items-start flex-col text-black-800 w-full sm:w-[500px]  lg:w-1/2 2xl:w-[35%] lg:flex-row  ps-6 2xl:ps-16 pb-6 2xl:pb-16 relative after:absolute after:left-0  after:top-12 after:border after:border-Teal after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)] after:h-[calc(100%-48px)] after:z-0"
+                            : "flex items-start flex-col w-full sm:w-[500px]  lg:w-1/2 2xl:w-[35%] lg:flex-row  pe-8 pb-8 2xl:pe-16 2xl:pb-16 relative  after:absolute after:right-0 after:top-12 after:border after:border-Teal after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)]  after:h-[calc(100%-48px)] after:z-0"
                         }
                       >
                         <div className="w-full h-full">
@@ -47,7 +47,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                             }
                             alt="About-img"
                             objectFit="cover"
-                            className="w-full  object-cover  h-full"
+                            className="w-full  object-cover  h-full relative z-[1]"
                             width={578}
                             height={578}
                           />

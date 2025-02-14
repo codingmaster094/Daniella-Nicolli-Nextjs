@@ -232,34 +232,19 @@ const Contactform = ({
                     <label htmlFor="Contact_telefon">Telefon</label>
                   </div>
 
-                  <div className="text-a">
+                  <div className="text-a w-full">
                     <p className="Im-section">
-                      Ich stimme zu, dass meine Angaben aus dem Kontaktformular
-                      zur Beantwortung meiner Anfrage erhoben und verarbeitet
-                      werden. Die Daten werden nach abgeschlossener Bearbeitung
-                      Ihrer Anfrage gelöscht. Hinweis: Sie können Ihre
-                      Einwilligung jederzeit für die Zukunft per E-Mail an{" "}
-                      {ContactOptionData?.footer_email_address && (
-                        <Link
-                          href={ContactOptionData?.footer_email_address?.url}
-                          target={
-                            ContactOptionData?.footer_email_address?.target
-                          }
-                          role="link"
-                          aria-label="address-link"
-                        >
-                          info@heilpraktikerin-nicolli.de
+                      Informationen zum Datenschutz bzgl. Ihrer Anfrage finden
+                      Sie hier:
+                      <p>
+                        <Link href="/datenschutzerklarung">
+                          Datenschutzerklärung.
                         </Link>
-                      )}{" "}
-                      widerrufen. Detaillierte Informationen zum Umgang mit
-                      Nutzerdaten finden Sie in unserer{" "}
-                      <Link href="/datenschutzerklarung">
-                        Datenschutzerklärung.
-                      </Link>
+                      </p>
                     </p>
                   </div>
 
-                  <div className="input-box flex gap-2 w-full items-center">
+                  {/* <div className="input-box flex gap-2 w-full items-center">
                     <input
                       type="checkbox"
                       name="Contact_Datenschutz"
@@ -270,7 +255,7 @@ const Contactform = ({
                     <label htmlFor="Contact_Datenschutz">
                       Hiermit bestätige ich den Datenschutz gelesen zu haben.
                     </label>
-                  </div>
+                  </div> */}
                   <p>
                     Bitte beweise, dass du kein Spambot bist und wähle das
                     Symbol <strong>Fahne</strong> aus.
