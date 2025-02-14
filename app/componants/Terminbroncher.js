@@ -5,7 +5,7 @@ const Terminbroncher = (props) => {
   {
     const {title ,BTN , columns } = props
   return (
-    <section className="pb-10 md:pb-[70px] lg:pb-[100px]  w-full ">
+    <section className="py-[30px] md:py-[40px] lg:py-[100px]  w-full bg-Bgslate">
     <div className="w-full container mx-auto px-[15px]">
         <div className="flex flex-col border border-Teal gap-6 sm:gap-8 mx-auto text-center p-6 lg:p-[50px]">
           <h2 className='relative pb-4 lg:pb-[25px] after:absolute after:bottom-0 after:w-20 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:bg-Teal w-full max-w-[500px] mx-auto'>{title}</h2>

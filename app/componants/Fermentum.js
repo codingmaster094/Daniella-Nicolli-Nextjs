@@ -24,6 +24,9 @@ const Fermentum = ({main_title , all_vorteile}) => {
                   nav: true,
                   dots: true,
                   items: 4,
+                  autoplay:true,
+                  autoplayTimeout:4000,
+                  autoplayHoverPause:true,
                   navText: [
                             '<img src="/images/Vector(4).png" alt="Previous" />',
                             '<img src="/images/vector5.png" alt="Next" />'
@@ -67,7 +70,8 @@ const Fermentum = ({main_title , all_vorteile}) => {
         }, []);
   return (
      <>
-     <section className="py-10 pt-0 md:py-[70px] md:pt-0 lg:py-[100px]">
+     {/* <section className="py-10 pt-0 md:py-[70px] md:pt-0 lg:py-[100px]"> */}
+     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
          <div className="w-full max-w-[1550px] px-[15px] mx-auto">
            <div className="flex flex-col gap-6 md:gap-11 lg:gap-16 ">
              <div className="flex justify-center">

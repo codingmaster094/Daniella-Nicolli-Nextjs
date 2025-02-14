@@ -6,6 +6,7 @@ import Counter from "../componants/Counter";
 import UberAboutDeatilsleft from "../componants/UberAboutDeatilsleft";
 import Gallrey from "../componants/Gallrey";
 import axios from "axios";
+import Categories from "../componants/Categories";
 
 const page = () => {
   const [Ubermich, setUbermich] = useState(null);
@@ -96,6 +97,12 @@ const page = () => {
         main_title={Ubermich?.ueber_praxis_main_title?.value}
         content={Ubermich?.ueber_praxis_content?.value}
         image={Ubermich?.ueber_praxis_image?.value}
+      />
+
+      <Categories
+        title={Ubermich?.ueber_geschichte_anfrage_main_title?.value}
+        description={Ubermich?.ueber_geschichte_anfrage_1_content?.value}
+        BTN={Ubermich?.ueber_geschichte_anfrage_1_button.value}
       />
 
       {Ubermich && (

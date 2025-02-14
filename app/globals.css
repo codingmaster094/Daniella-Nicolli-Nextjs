@@ -96,6 +96,9 @@
    .Serviceslider .owl-nav button.owl-prev {
       @apply ms-[-15px] 4xl:-ms-16
    }
+   .Serviceslider .owl-item {
+      @apply flex justify-center items-center;
+  }
    .hover-sliders .owl-nav button.owl-next, .hover-sliders .owl-nav button.owl-prev{
        @apply !bg-Bgwhite10
    }

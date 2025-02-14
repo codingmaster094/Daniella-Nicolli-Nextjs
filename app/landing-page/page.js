@@ -77,11 +77,11 @@ const page = () => {
         />
       )}
 
-      <Categories
+      {/* <Categories
         title={LendiangPageData?.anfrage_2_main_title?.value}
         description={LendiangPageData?.anfrage_2_content?.value}
         BTN={LendiangPageData?.anfrage_2_button?.value}
-      />
+      /> */}
 
       <Accordian
         main_title={LendiangPageData?.faq_main_title?.value}

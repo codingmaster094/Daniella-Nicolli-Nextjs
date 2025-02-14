@@ -25,6 +25,9 @@ const Serviceslider = ({main_title , all_ablauf}) => {
                       dots: true,
                       autoHeight: true,
                       items: 4,
+                      autoplay:true,
+                      autoplayTimeout:4000,
+                      autoplayHoverPause:true,
                       navText: [
                         '<img src="/images/Vector(4).png" alt="Previous" />',
                         '<img src="/images/vector5.png" alt="Next" />'
@@ -69,7 +72,7 @@ const Serviceslider = ({main_title , all_ablauf}) => {
             }, []);
   return (
      <>
-    <section className="py-10  md:py-[70px] lg:py-[100px] ">
+    <section className="py-[30px] md:py-[40px] lg:py-[50px]">
          <div className="w-full max-w-[1470px] px-[15px] mx-auto">
            <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
              <div className="flex justify-center">

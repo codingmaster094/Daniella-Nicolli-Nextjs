@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 const Maps = ({main_title  , map_url , map_image}) => {
   return (
-      <section className="py-10 md:py-[70px] lg:py-[100px]">
+      <section className="py-[30px] md:py-[40px] lg:py-[50px]">
             <div className="flex  flex-col gap-6 md:gap-8  lg:gap-12  text-center ">
               <div className="flex flex-col gap-6">
                    <h2>{main_title}</h2>

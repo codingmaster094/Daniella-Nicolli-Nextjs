@@ -199,7 +199,7 @@ const Contactform = ({
                     <textarea
                       name="message"
                       id=""
-                      placeholder="Ihre Nachricht"
+                      placeholder="* Ihre Nachricht"
                       className="border placeholder:text-black-900 w-full border-Teal outline-none px-6 py-4 resize-none h-[110px]"
                       value={formData.message}
                       onChange={handleInputChange}

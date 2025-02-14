@@ -41,7 +41,9 @@ const Slidehover = ({ main_title, all_referenzen }) => {
           loop: true,
           nav: true,
           dots: false,
-          items: 4,
+          items: 4, autoplay:true,
+          autoplayTimeout:4000,
+          autoplayHoverPause:true,
            navText: [
              ReactDOMServer.renderToStaticMarkup(
                <Image src={PreviousBTN} alt="Previous" width={20} height={20} />
@@ -77,9 +79,9 @@ const Slidehover = ({ main_title, all_referenzen }) => {
   }, []);
   
   return (
-    <section className="pt-10 md:pt-[70px] lg:pt-[100px]">
+    <section className="pt-[30px] md:pt-[40px] lg:pt-[50px]">
       <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
-        <div className="flex justify-center">
+        <div className="flex justify-center px-4">
           <h2 className="sm:text-h3 lg:text-h2">{main_title}</h2>
         </div>
         <div
