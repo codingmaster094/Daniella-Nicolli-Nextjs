@@ -69,10 +69,10 @@ const Contactform = ({
     }
     if (!formData.message.trim())
       newErrors.message = "Nachricht ist erforderlich";
-    if (!formData.Contact_Datenschutz) {
-      newErrors.Contact_Datenschutz =
-        "Sie müssen der Datenschutzerklärung zustimmen.";
-    }
+    // if (!formData.Contact_Datenschutz) {
+    //   newErrors.Contact_Datenschutz =
+    //     "Sie müssen der Datenschutzerklärung zustimmen.";
+    // }
 
     // Add validation for bot-proof question
     if (formData.selectedIcon !== correctAnswer) {
