@@ -5,7 +5,7 @@ import CommitImage from "../../public/images/comment-img.png";
 
 const Comment = ({ main_title, content }) => {
   return (
-    <section className="py-10 md:py-[70px] lg:py-[100px]">
+    <section className="py-[30px] md:py-[40px] lg:py-[50px]">
       <div className="container mx-auto px-[15px]">
         <div className="flex w-full max-w-[1440px] flex-col gap-6 md:gap-8 lg:gap-12 mx-auto text-center">
           <div className="flex flex-col gap-6">

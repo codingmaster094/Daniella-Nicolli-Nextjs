@@ -21,9 +21,9 @@ const page = () => {
   return (
     <section className="section">
       <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">
-      <div className="container mx-auto px-[15px] ">
+        <div className="container mx-auto px-[15px] ">
           <h1 className="text-white">{datenschutzerklärung?.title}</h1>
-      </div>
+        </div>
       </div>
       <div className="container mx-auto px-[15px]">
         <div

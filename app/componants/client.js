@@ -67,7 +67,7 @@ const ClientCarousel = ({ main_title, section_all_partners }) => {
       <section className="py-[30px] md:py-[40px] lg:py-[50px]">
         <div className="container px-[15px] mx-auto">
           <div className="flex flex-col gap-6 md:gap-11 lg:gap-16 text-center">
-            <h2>{main_title}</h2>
+            {main_title && <h2>{main_title}</h2>}
             <div
               className="owl-carousel Client-sliders relative"
               ref={carouselRef}

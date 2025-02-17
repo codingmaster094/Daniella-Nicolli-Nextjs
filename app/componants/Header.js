@@ -106,7 +106,7 @@ const Header = () => {
 
   return (
     <header
-      className={`${
+      className={`  bg-white transition-all duration-300 ${
         scrolled ? "fixed top-0 w-full z-20 bg-white py-0" : "py-2"
       }  `}
     >

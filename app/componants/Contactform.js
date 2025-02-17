@@ -126,7 +126,7 @@ const Contactform = ({
   }, []);
 
   return (
-    <section className="pb-10 md:pb-[70px] lg:pb-[100px]  w-full">
+    <section className="pb-[30px] md:pb-[40px] lg:pb-[50px]  w-full">
       <div className="container mx-auto px-[15px]">
         <div className="flex flex-col gap-4 md:gap-6 lg:gap-8 mx-auto p-0 sm:p-4 md:p-6 lg:p-[50px]">
           <div className="flex flex-col gap-6 sm:gap-8">
