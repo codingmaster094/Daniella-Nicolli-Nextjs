@@ -55,14 +55,27 @@ const Fermentum = ({ main_title, all_vorteile }) => {
             1600: { items: 3 },
           },
           onInitialized: function () {
+            // Select all dots and navigation buttons
             const dots = document.querySelectorAll(".owl-dot");
-            dots.forEach((dot, ind) => {
+            const navPrevButtons = document.querySelectorAll(".owl-prev");
+            const navNextButtons = document.querySelectorAll(".owl-next");
+
+            // Set attributes for dots
+            dots.forEach((dot, index) => {
               dot.setAttribute("role", "button");
-              dot.setAttribute(
-                "aria-label",
-                ind === 0 ? "next" : "prev",
-                "button"
-              );
+              dot.setAttribute("aria-label", index === 0 ? "next" : "prev");
+            });
+
+            // Set attributes for previous navigation buttons
+            navPrevButtons.forEach((btn) => {
+              btn.setAttribute("role", "button");
+              btn.setAttribute("aria-label", "prev");
+            });
+
+            // Set attributes for next navigation buttons
+            navNextButtons.forEach((btn) => {
+              btn.setAttribute("role", "button");
+              btn.setAttribute("aria-label", "next");
             });
           },
         });
