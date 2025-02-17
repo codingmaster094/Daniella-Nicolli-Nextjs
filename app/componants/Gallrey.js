@@ -12,17 +12,14 @@ const Gallrey = ({ main_title, gallery_images }) => {
     if (typeof window !== "undefined") {
       const loadOwlCarousel = async () => {
         const jQueryScript = document.createElement("script");
-        jQueryScript.src =
-          "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+        jQueryScript.src = process.env.NEXT_PUBLIC_JQUERY_URL;
         jQueryScript.onload = () => {
           const owlCarouselCSS = document.createElement("link");
           owlCarouselCSS.rel = "stylesheet";
-          owlCarouselCSS.href =
-            "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css";
+          owlCarouselCSS.href = process.env.NEXT_PUBLIC_OWL_CAROUSEL_CSS;
           document.head.appendChild(owlCarouselCSS);
           const owlCarouselJS = document.createElement("script");
-          owlCarouselJS.src =
-            "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js";
+          owlCarouselJS.src = process.env.NEXT_PUBLIC_OWL_CAROUSEL_JS;
           owlCarouselJS.onload = () => {
             window.$ = window.jQuery;
             jQuery(".hover-sliders").owlCarousel({

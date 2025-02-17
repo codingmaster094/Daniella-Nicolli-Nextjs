@@ -10,24 +10,22 @@ const ClientCarousel = ({ main_title, section_all_partners }) => {
     if (typeof window !== "undefined") {
       const loadOwlCarousel = async () => {
         const jQueryScript = document.createElement("script");
-        jQueryScript.src =
-          "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+        jQueryScript.src = process.env.NEXT_PUBLIC_JQUERY_URL;
         jQueryScript.onload = () => {
           const owlCarouselCSS = document.createElement("link");
           owlCarouselCSS.rel = "stylesheet";
-          owlCarouselCSS.href =
-            "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css";
+          owlCarouselCSS.href = process.env.NEXT_PUBLIC_OWL_CAROUSEL_CSS;
           document.head.appendChild(owlCarouselCSS);
+
           const owlCarouselJS = document.createElement("script");
-          owlCarouselJS.src =
-            "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js";
+          owlCarouselJS.src = process.env.NEXT_PUBLIC_OWL_CAROUSEL_JS;
           owlCarouselJS.onload = () => {
             window.$ = window.jQuery;
 
             jQuery(".Client-sliders").owlCarousel({
               loop: true,
               margin: 12,
-              nav: true, // Enable navigation
+              nav: true,
               dots: true,
               items: 6,
               autoplay: true,
@@ -47,12 +45,10 @@ const ClientCarousel = ({ main_title, section_all_partners }) => {
             });
 
             // Set aria-labels for navigation buttons
-            const buttons1 = document.querySelectorAll(".owl-prev");
-            const buttons2 = document.querySelectorAll(".owl-next");
-            buttons1.forEach((button) => {
+            document.querySelectorAll(".owl-prev").forEach((button) => {
               button.setAttribute("aria-label", "Previous Slide");
             });
-            buttons2.forEach((button) => {
+            document.querySelectorAll(".owl-next").forEach((button) => {
               button.setAttribute("aria-label", "Next Slide");
             });
           };
