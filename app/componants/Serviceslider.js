@@ -6,78 +6,79 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
   const carouselRef = useRef();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const loadOwlCarousel = async () => {
-        const jQueryScript = document.createElement("script");
-        jQueryScript.src =
-          "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
-        jQueryScript.onload = () => {
-          const owlCarouselCSS = document.createElement("link");
-          owlCarouselCSS.rel = "stylesheet";
-          owlCarouselCSS.href =
-            "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css";
-          document.head.appendChild(owlCarouselCSS);
-          const owlCarouselJS = document.createElement("script");
-          owlCarouselJS.src =
-            "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js";
-          owlCarouselJS.onload = () => {
-            window.$ = window.jQuery;
-            jQuery(".Serviceslider").owlCarousel({
-              loop: true,
-              margin: 20,
-              nav: true,
-              dots: true,
-              autoHeight: true,
-              items: 4,
-              autoplay: true,
-              autoplayTimeout: 4000,
-              autoplayHoverPause: true,
-              navText: [
-                '<img src="/images/Vector(4).png" alt="Previous Slide" />',
-                '<img src="/images/vector5.png" alt="Next Slide" />',
-              ],
-              responsive: {
-                0: {
-                  items: 1,
-                },
-                570: {
-                  items: 2,
-                  nav: false,
-                },
-                800: {
-                  items: 2,
-                  nav: false,
-                },
-                1000: {
-                  items: 3,
-                  nav: false,
-                },
-                1600: {
-                  items: 4,
-                },
-              },
-            });
+    const loadOwlCarousel = async () => {
+      // Load jQuery dynamically
+      const jQueryScript = document.createElement("script");
+      jQueryScript.src =
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+      jQueryScript.defer = true; // Defer loading
+      jQueryScript.onload = () => {
+        // Load OwlCarousel CSS
+        const owlCarouselCSS = document.createElement("link");
+        owlCarouselCSS.rel = "stylesheet";
+        owlCarouselCSS.href =
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css";
+        document.head.appendChild(owlCarouselCSS);
 
-            // Set aria-labels for navigation buttons
-            const buttons1 = document.querySelectorAll(".owl-prev");
-            const buttons2 = document.querySelectorAll(".owl-next");
-            buttons1.forEach((button) => {
-              button.setAttribute("aria-label", "Previous Slide");
-            });
-            buttons2.forEach((button) => {
-              button.setAttribute("aria-label", "Next Slide");
-            });
-
-            // Set aria-labels for pagination dots
-            const dots = document.querySelectorAll(".owl-dot");
-            dots.forEach((dot, index) => {
-              dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
-            });
-          };
-          document.body.appendChild(owlCarouselJS);
+        // Load OwlCarousel JS
+        const owlCarouselJS = document.createElement("script");
+        owlCarouselJS.src =
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js";
+        owlCarouselJS.defer = true; // Defer loading
+        owlCarouselJS.onload = () => {
+          // Ensure jQuery is accessible globally
+          window.$ = window.jQuery;
+          initializeOwlCarousel();
         };
-        document.body.appendChild(jQueryScript);
+        document.body.appendChild(owlCarouselJS);
       };
+      document.body.appendChild(jQueryScript);
+    };
+
+    const initializeOwlCarousel = () => {
+      if (window.jQuery && jQuery(".Serviceslider").length) {
+        jQuery(".Serviceslider").owlCarousel({
+          loop: true,
+          margin: 20,
+          nav: true,
+          dots: true,
+          autoHeight: true,
+          items: 4,
+          autoplay: true,
+          autoplayTimeout: 4000,
+          autoplayHoverPause: true,
+          navText: [
+            '<img src="/images/Vector(4).png" alt="Previous Slide" />',
+            '<img src="/images/vector5.png" alt="Next Slide" />',
+          ],
+          responsive: {
+            0: { items: 1 },
+            570: { items: 2, nav: false },
+            800: { items: 2, nav: false },
+            1000: { items: 3, nav: false },
+            1600: { items: 4 },
+          },
+        });
+
+        // Set aria-labels for navigation buttons
+        const buttons1 = document.querySelectorAll(".owl-prev");
+        const buttons2 = document.querySelectorAll(".owl-next");
+        buttons1.forEach((button) => {
+          button.setAttribute("aria-label", "Previous Slide");
+        });
+        buttons2.forEach((button) => {
+          button.setAttribute("aria-label", "Next Slide");
+        });
+
+        // Set aria-labels for pagination dots
+        const dots = document.querySelectorAll(".owl-dot");
+        dots.forEach((dot, index) => {
+          dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+        });
+      }
+    };
+
+    if (typeof window !== "undefined") {
       loadOwlCarousel();
     }
   }, []);

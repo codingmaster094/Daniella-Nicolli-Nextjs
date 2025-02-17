@@ -1,6 +1,6 @@
 "use client";
-import Image from "next/image";
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import WhiteVellrySvg from "../../public/images/Whitevelly.svg";
 import PreviousBTN from "../../public/images/PreviousBTN.png";
 import NextBTN from "../../public/images/NextBTN.png";
@@ -15,6 +15,7 @@ const Slidehover = ({ main_title, all_referenzen }) => {
       const jQueryScript = document.createElement("script");
       jQueryScript.src =
         "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+      jQueryScript.defer = true; // Defer loading
       jQueryScript.onload = () => {
         // Load OwlCarousel CSS
         const owlCarouselCSS = document.createElement("link");
@@ -27,6 +28,7 @@ const Slidehover = ({ main_title, all_referenzen }) => {
         const owlCarouselJS = document.createElement("script");
         owlCarouselJS.src =
           "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js";
+        owlCarouselJS.defer = true; // Defer loading
         owlCarouselJS.onload = () => {
           // Ensure jQuery is accessible globally
           window.$ = window.jQuery;
