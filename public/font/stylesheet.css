@@ -62,6 +62,7 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Roboto';
     src: url('Roboto-Medium.eot');
@@ -217,5 +218,3 @@
     font-style: normal;
     font-display: swap;
 }
-
-

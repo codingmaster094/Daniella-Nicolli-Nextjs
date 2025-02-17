@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+
 const Serviceslider = ({ main_title, all_ablauf }) => {
   const carouselRef = useRef();
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const loadOwlCarousel = async () => {
@@ -32,8 +33,8 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
               autoplayTimeout: 4000,
               autoplayHoverPause: true,
               navText: [
-                '<img src="/images/Vector(4).png" alt="Previous" />',
-                '<img src="/images/vector5.png" alt="Next" />',
+                '<img src="/images/Vector(4).png" alt="Previous Slide" />',
+                '<img src="/images/vector5.png" alt="Next Slide" />',
               ],
               responsive: {
                 0: {
@@ -56,13 +57,21 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
                 },
               },
             });
+
+            // Set aria-labels for navigation buttons
             const buttons1 = document.querySelectorAll(".owl-prev");
             const buttons2 = document.querySelectorAll(".owl-next");
-            buttons1.forEach((button, index) => {
-              button.setAttribute("aria-label", `Slide ${index + 1}`);
+            buttons1.forEach((button) => {
+              button.setAttribute("aria-label", "Previous Slide");
             });
-            buttons2.forEach((button, index) => {
-              button.setAttribute("aria-label", `Slide ${index + 1}`);
+            buttons2.forEach((button) => {
+              button.setAttribute("aria-label", "Next Slide");
+            });
+
+            // Set aria-labels for pagination dots
+            const dots = document.querySelectorAll(".owl-dot");
+            dots.forEach((dot, index) => {
+              dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
             });
           };
           document.body.appendChild(owlCarouselJS);
@@ -72,51 +81,50 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
       loadOwlCarousel();
     }
   }, []);
+
   return (
-    <>
-      <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
-        <div className="w-full max-w-[1470px] px-[15px] mx-auto">
-          <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
-            <div className="flex justify-center">
-              <h2 className="sm:text-h3 lg:text-h2">{main_title}</h2>
-            </div>
-            <div className="owl-carousel Serviceslider" ref={carouselRef}>
-              {all_ablauf?.value?.map((val, index) => (
-                <div
-                  className="items flex justify-center gap-4 w-full sm:w-[250px] overflow:hidden items-center bg-Bgslate"
-                  key={index}
-                >
-                  <div className="item-box flex flex-col  justify-center items-center gap-4 bg-Bgslate">
-                    <div className="flex gap-6 sm:gap-8 border-[2px] border-Teal rounded-full flex-col p-2  w-[180px] h-[180px] xm:w-[250px] xm:h-[250px] items-center justify-center ">
-                      <Image
-                        src={val.home_all_ablauf_image}
-                        width={64}
-                        height={64}
-                        alt="ServiceImg1"
-                        className="!w-14 h-14 object-contain"
-                      />
-                      <h3 className="text-a md:text-h4 lg:text-h3">
-                        {val.home_all_ablauf_title}
-                      </h3>
-                    </div>
-                    <div className="flex text-center">
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: val.home_all_ablauf_content
-                            ?.replace(/<p>/g, "")
-                            .replace(/<\/p>/g, "")
-                            .replace(/&amp;/g, "&"),
-                        }}
-                      ></p>
-                    </div>
+    <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
+      <div className="w-full max-w-[1470px] px-[15px] mx-auto">
+        <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
+          <div className="flex justify-center">
+            <h2 className="sm:text-h3 lg:text-h2">{main_title}</h2>
+          </div>
+          <div className="owl-carousel Serviceslider" ref={carouselRef}>
+            {all_ablauf?.value?.map((val, index) => (
+              <div
+                className="items flex justify-center gap-4 w-full sm:w-[250px] overflow:hidden items-center bg-Bgslate"
+                key={index}
+              >
+                <div className="item-box flex flex-col justify-center items-center gap-4 bg-Bgslate">
+                  <div className="flex gap-6 sm:gap-8 border-[2px] border-Teal rounded-full flex-col p-2 w-[180px] h-[180px] xm:w-[250px] xm:h-[250px] items-center justify-center ">
+                    <Image
+                      src={val.home_all_ablauf_image}
+                      width={64}
+                      height={64}
+                      alt="ServiceImg1"
+                      className="!w-14 h-14 object-contain"
+                    />
+                    <h3 className="text-a md:text-h4 lg:text-h3">
+                      {val.home_all_ablauf_title}
+                    </h3>
+                  </div>
+                  <div className="flex text-center">
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: val.home_all_ablauf_content
+                          ?.replace(/<p>/g, "")
+                          .replace(/<\/p>/g, "")
+                          .replace(/&amp;/g, "&"),
+                      }}
+                    ></p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
