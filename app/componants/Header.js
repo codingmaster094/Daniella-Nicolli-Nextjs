@@ -199,11 +199,12 @@ const Header = () => {
 
                   {item.children.length > 0 && (
                     <ul
-                      className="lg:absolute left-0 bg-white z-10 shadow-md top-full  transition-all duration-300 ease-in-out w-full lg:w-[250px]"
+                      className={`lg:absolute left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
                       style={{
                         maxHeight: submenuOpen === index ? "500px" : "0px",
                         overflow: "hidden",
                         transition: "max-height 0.4s ease-in-out",
+                        minHeight: submenuOpen === index ? "50px" : "0px", // Reserve space
                       }}
                     >
                       {item.children.map((child) => (

@@ -13,7 +13,6 @@ import Link from "next/link";
 
 const page = () => {
   const [HomePageData, setHomePageData] = useState(null);
-  
 
   const fetchHomeData = async () => {
     try {
@@ -32,53 +31,56 @@ const page = () => {
 
   return (
     <>
-    {
-      HomePageData && 
-      <section>
-        <div className={`Banner`}>
-          <div className="Banner-sliders relative">
-                <div className="item">
-                  <div
-                    className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]"
-                    style={{
+      {HomePageData && (
+        <section>
+          <div className={`Banner`}>
+            <div className="Banner-sliders relative">
+              <div className="item">
+                <div
+                  className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]"
+                  style={{
                     backgroundImage: HomePageData?.hero_slider_image?.value
                       ? `url(${HomePageData?.hero_slider_image?.value})`
                       : "none",
                   }}
-                  >
-                    <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
-                      <h1>{HomePageData?.hero_slider_main_title?.value}</h1>
-                      <ul
-                        className="menu"
-                        dangerouslySetInnerHTML={{
-                          __html: HomePageData?.hero_slider_content?.value.replace(/<\/?ul[^>]*>/g, ""),
-                        }}
-                      ></ul>
-                      {HomePageData?.hero_slider_button && (
-                        <Link
-                          href={HomePageData?.hero_slider_button?.value?.url}
-                          target={HomePageData?.hero_slider_button?.value?.target}
-                          className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in"
-                          aria-label={HomePageData?.hero_slider_button?.value?.title || "button link"}
-                        >
-                          {HomePageData?.hero_slider_button?.value?.title}
-                        </Link>
-                      )}
-                    </div>
+                >
+                  <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
+                    <h1>{HomePageData?.hero_slider_main_title?.value}</h1>
+                    <ul
+                      className="menu"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          HomePageData?.hero_slider_content?.value.replace(
+                            /<\/?ul[^>]*>/g,
+                            ""
+                          ),
+                      }}
+                    ></ul>
+                    {HomePageData?.hero_slider_button && (
+                      <Link
+                        href={HomePageData?.hero_slider_button?.value?.url}
+                        target={HomePageData?.hero_slider_button?.value?.target}
+                        className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in"
+                        aria-label={
+                          HomePageData?.hero_slider_button?.value?.title ||
+                          "button link"
+                        }
+                      >
+                        {HomePageData?.hero_slider_button?.value?.title}
+                      </Link>
+                    )}
                   </div>
                 </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-    }
+        </section>
+      )}
 
-      
       {HomePageData && (
         <ClientCarousel
           main_title={HomePageData?.partners_section_main_title.value}
-          section_all_partners={
-            HomePageData?.partners_section_all_partners
-          }
+          section_all_partners={HomePageData?.partners_section_all_partners}
         />
       )}
 
