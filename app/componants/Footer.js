@@ -11,21 +11,35 @@ import Link from "next/link";
 import axios from "axios";
 const Footer = () => {
   const [FooterData, setFooterData] = useState(null);
-  const fetchFooterData = async () => {
-    try {
-      const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom/v1/acf-options"
-      );
-      setFooterData(response.data);
-    } catch (error) {
-      console.error("Error fetching content data", error);
-    }
-  };
+  const [FooterDatamenu, setFooterDatamenu] = useState(null);
 
   useEffect(() => {
+    const fetchFooterData = async () => {
+      try {
+        const response = await axios.get(
+          "https://daniella.blog-s.de/wp-json/custom/v1/acf-options"
+        );
+        setFooterData(response.data);
+      } catch (error) {
+        console.error("Error fetching content data", error);
+      }
+    };
+
+    const getMenu = async () => {
+      try {
+        const response = await axios.get(
+          "https://daniella.blog-s.de/wp-json/custom/v1/menus/menu-1"
+        );
+        setFooterDatamenu(response.data);
+      } catch (error) {
+        console.error("Error fetching menu data", error);
+      }
+    };
     fetchFooterData();
+    getMenu();
   }, []);
 
+  // console.log("FooterDatamenu", FooterDatamenu);
   return (
     <footer className="bg-salte w-full">
       <div className="container mx-auto px-[15px] ">
@@ -123,40 +137,20 @@ const Footer = () => {
           <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-5 sm:gap-[34px]">
             <h4>{FooterData?.footer_navigation_label}</h4>
             <ul>
-              <li>
-                <Link href="/" aria-label="footer-link" role="link">
-                  Start
-                </Link>
-              </li>
-              <li>
-                <Link href="/aesthetik" aria-label="footer-link" role="link">
-                  Ästhetik
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/naturheilmedizin"
-                  aria-label="footer-link"
-                  role="link"
-                >
-                  Naturheilmedizin
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" aria-label="footer-link" role="link">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/ueber-mich" aria-label="footer-link" role="link">
-                  Über mich
-                </Link>
-              </li>
-              <li>
-                <Link href="/kontakt" aria-label="footer-link" role="link">
-                  Kontakt
-                </Link>
-              </li>
+              {FooterDatamenu?.menu?.map((item, index) => {
+                item.slug = item.slug === "home" ? "/" : item.slug;
+                return (
+                  <li key={item.id}>
+                    <Link
+                      href={`/${item.slug}`}
+                      aria-label="footer-link"
+                      role="link"
+                    >
+                      {item.title == "Home" ? "start" : item.title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-5 sm:gap-[34px]">
