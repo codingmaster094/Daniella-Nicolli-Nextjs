@@ -42,14 +42,24 @@ const ClientCarousel = ({ main_title, section_all_partners }) => {
                 800: { items: 4 },
                 1350: { items: 6 },
               },
-            });
+              onInitialized: function () {
+                // Add role="button" to navigation and dots
+                document
+                  .querySelectorAll(".owl-prev, .owl-next")
+                  .forEach((button) => {
+                    button.setAttribute(
+                      "aria-label",
+                      button.classList.contains("owl-prev")
+                        ? "Previous Slide"
+                        : "Next Slide"
+                    );
+                    button.setAttribute("role", "button");
+                  });
 
-            // Set aria-labels for navigation buttons
-            document.querySelectorAll(".owl-prev").forEach((button) => {
-              button.setAttribute("aria-label", "Previous Slide");
-            });
-            document.querySelectorAll(".owl-next").forEach((button) => {
-              button.setAttribute("aria-label", "Next Slide");
+                document.querySelectorAll(".owl-dot").forEach((dot) => {
+                  dot.setAttribute("role", "button");
+                });
+              },
             });
           };
           document.body.appendChild(owlCarouselJS);
