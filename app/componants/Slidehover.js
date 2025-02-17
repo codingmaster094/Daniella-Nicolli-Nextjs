@@ -75,21 +75,14 @@ const Slidehover = ({ main_title, all_referenzen }) => {
             1280: { items: 4 },
           },
           onInitialized: function () {
-            // Add role="button" to navigation buttons
-            const buttons1 = document.querySelectorAll(".owl-prev");
-            const buttons2 = document.querySelectorAll(".owl-next");
-            buttons1.forEach((button) => {
-              button.setAttribute("role", "buttond");
-            });
-            buttons2.forEach((button) => {
-              button.setAttribute("role", "buttond");
-            });
-
-            // Add role="button" to pagination dots
             const dots = document.querySelectorAll(".owl-dot");
-            dots.forEach((dot) => {
+            dots.forEach((dot, ind) => {
               dot.setAttribute("role", "button");
-              dot.setAttribute("aria-label", "button");
+              dot.setAttribute(
+                "aria-label",
+                ind === 0 ? "next" : "prev",
+                "button"
+              );
             });
           },
         });
