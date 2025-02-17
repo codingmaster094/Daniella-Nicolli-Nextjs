@@ -1,13 +1,14 @@
-'use client';
-import React, { useEffect, useState } from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
 
 const TopButton = () => {
   const [visible, setVisible] = useState(false);
   const [borderProgress, setBorderProgress] = useState(0);
 
-  const toggleVisibility = () => {    
+  const toggleVisibility = () => {
     const scrollY = window.scrollY;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const maxScroll =
+      document.documentElement.scrollHeight - window.innerHeight;
 
     setVisible(scrollY > 100);
 
@@ -27,17 +28,17 @@ const TopButton = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
     return () => {
-      window.removeEventListener('scroll', toggleVisibility);
+      window.removeEventListener("scroll", toggleVisibility);
     };
   }, []);
 
   return (
     <button
       onClick={smoothScrollToTop}
-      className={`fixed bottom-4 right-4 w-12 h-12 flex items-center justify-center bg-white text-black shadow-lg rounded-full z-50 transition-all duration-300 border border-black ${
-        visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      className={`fixed bottom-4 right-4 w-12 h-12 flex items-center justify-center  bg-Bgslate text-black shadow-lg rounded-full z-50 transition-all duration-300 border border-black ${
+        visible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       aria-label="Scroll to top"
     >
@@ -59,7 +60,18 @@ const TopButton = () => {
       ></span>
 
       {/* Up Arrow Icon */}
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        color="teal"
+      >
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <path d="M12 5l0 14"></path>
         <path d="M16 9l-4 -4"></path>
