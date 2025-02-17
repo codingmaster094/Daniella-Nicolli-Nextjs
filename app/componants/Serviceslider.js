@@ -45,8 +45,8 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
           autoplayTimeout: 4000,
           autoplayHoverPause: true,
           navText: [
-            '<Image src="/images/Vector(4).png" width="20px" height="20px"  alt="Previous Slide" />',
-            '<Image src="/images/vector5.png"  width="20px" height="20px" alt="Next Slide" />',
+            '<img src="/images/Vector(4).png"  width="20px" height="20px" role="presentation" aria-label="Previous Slide" alt="Previous Slide" />',
+            '<img src="/images/vector5.png" width="20px" height="20px" role="presentation"  aria-label="Next Slide" alt="Next Slide" />',
           ],
           responsive: {
             0: { items: 1 },

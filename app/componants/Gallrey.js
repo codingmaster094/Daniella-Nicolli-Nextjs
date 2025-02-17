@@ -34,13 +34,20 @@ const Gallrey = ({ main_title, gallery_images }) => {
                 ReactDOMServer.renderToStaticMarkup(
                   <Image
                     src={PreviousBTN}
+                    aria-label="Previous Slide"
                     alt="Previous"
                     width={20}
                     height={20}
                   />
                 ),
                 ReactDOMServer.renderToStaticMarkup(
-                  <Image src={NextBTN} alt="Next" width={20} height={20} />
+                  <Image
+                    src={NextBTN}
+                    alt="Next"
+                    aria-label="Next Slide"
+                    width={20}
+                    height={20}
+                  />
                 ),
               ],
               responsive: {
