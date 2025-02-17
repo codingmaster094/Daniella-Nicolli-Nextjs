@@ -28,7 +28,7 @@ const Comment = ({ main_title, content }) => {
               sizes="(max-width: 768px) 100vw, 
                      (max-width: 1200px) 50vw, 
                      33vw"
-              priority={true}
+              // Remove priority to allow lazy loading
             />
           </div>
         </div>
