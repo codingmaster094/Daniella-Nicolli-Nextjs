@@ -54,16 +54,25 @@ const Fermentum = ({ main_title, all_vorteile }) => {
             1400: { items: 3, nav: false },
             1600: { items: 3 },
           },
-        });
 
-        // Set aria-labels for navigation buttons
-        const buttons1 = document.querySelectorAll(".owl-prev");
-        const buttons2 = document.querySelectorAll(".owl-next");
-        buttons1.forEach((button) => {
-          button.setAttribute("aria-label", "Previous Slide");
-        });
-        buttons2.forEach((button) => {
-          button.setAttribute("aria-label", "Next Slide");
+          onInitialized: function () {
+            // Add role="button" to navigation buttons
+            const buttons1 = document.querySelectorAll(".owl-prev");
+            const buttons2 = document.querySelectorAll(".owl-next");
+            buttons1.forEach((button) => {
+              button.setAttribute("role", "buttond");
+            });
+            buttons2.forEach((button) => {
+              button.setAttribute("role", "buttond");
+            });
+
+            // Add role="button" to pagination dots
+            const dots = document.querySelectorAll(".owl-dot");
+            dots.forEach((dot) => {
+              dot.setAttribute("role", "button");
+              dot.setAttribute("aria-label", "button");
+            });
+          },
         });
       }
     };

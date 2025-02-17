@@ -55,22 +55,24 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
             1000: { items: 3, nav: false },
             1600: { items: 4 },
           },
-        });
+          onInitialized: function () {
+            // Add role="button" to navigation buttons
+            const buttons1 = document.querySelectorAll(".owl-prev");
+            const buttons2 = document.querySelectorAll(".owl-next");
+            buttons1.forEach((button) => {
+              button.setAttribute("role", "buttond");
+            });
+            buttons2.forEach((button) => {
+              button.setAttribute("role", "buttond");
+            });
 
-        // Set aria-labels for navigation buttons
-        const buttons1 = document.querySelectorAll(".owl-prev");
-        const buttons2 = document.querySelectorAll(".owl-next");
-        buttons1.forEach((button) => {
-          button.setAttribute("aria-label", "Previous Slide");
-        });
-        buttons2.forEach((button) => {
-          button.setAttribute("aria-label", "Next Slide");
-        });
-
-        // Set aria-labels for pagination dots
-        const dots = document.querySelectorAll(".owl-dot");
-        dots.forEach((dot, index) => {
-          dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+            // Add role="button" to pagination dots
+            const dots = document.querySelectorAll(".owl-dot");
+            dots.forEach((dot) => {
+              dot.setAttribute("role", "button");
+              dot.setAttribute("aria-label", "button");
+            });
+          },
         });
       }
     };

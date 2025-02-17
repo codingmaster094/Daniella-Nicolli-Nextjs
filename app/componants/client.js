@@ -32,8 +32,8 @@ const ClientCarousel = ({ main_title, section_all_partners }) => {
               autoplaySpeed: 3000,
               autoplayHoverPause: false,
               navText: [
-                '<img src="/images/Vector(4).png"  width="20px" height="20px" role="presentation" aria-label="Previous Slide" alt="Previous Slide" />',
-                '<img src="/images/vector5.png" width="20px" height="20px" role="presentation"  aria-label="Next Slide" alt="Next Slide" />',
+                '<img src="/images/Vector(4).png" width="20px" height="20px" aria-label="Previous Slide" alt="Previous Slide" />',
+                '<img src="/images/vector5.png" width="20px" height="20px" aria-label="Next Slide" alt="Next Slide" />',
               ],
               responsive: {
                 0: { items: 1 },
@@ -43,21 +43,21 @@ const ClientCarousel = ({ main_title, section_all_partners }) => {
                 1350: { items: 6 },
               },
               onInitialized: function () {
-                // Add role="button" to navigation and dots
-                document
-                  .querySelectorAll(".owl-prev, .owl-next")
-                  .forEach((button) => {
-                    button.setAttribute(
-                      "aria-label",
-                      button.classList.contains("owl-prev")
-                        ? "Previous Slide"
-                        : "Next Slide"
-                    );
-                    button.setAttribute("role", "button");
-                  });
+                // Add role="button" to navigation buttons
+                const buttons1 = document.querySelectorAll(".owl-prev");
+                const buttons2 = document.querySelectorAll(".owl-next");
+                buttons1.forEach((button) => {
+                  button.setAttribute("role", "buttond");
+                });
+                buttons2.forEach((button) => {
+                  button.setAttribute("role", "buttond");
+                });
 
-                document.querySelectorAll(".owl-dot").forEach((dot) => {
+                // Add role="button" to pagination dots
+                const dots = document.querySelectorAll(".owl-dot");
+                dots.forEach((dot) => {
                   dot.setAttribute("role", "button");
+                  dot.setAttribute("aria-label", "button");
                 });
               },
             });
