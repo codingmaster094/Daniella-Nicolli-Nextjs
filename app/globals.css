@@ -131,30 +131,22 @@
       @apply !bg-BgTeal !text-white;
    }
 
-
+   .Client-sliders button.owl-dot,
    .slider button.owl-dot,
    .Serviceslider button.owl-dot {
-      @apply !inline mt-4 !w-[14px] !h-[14px] rounded-full ms-3 !bg-black-600;
+      @apply !inline mt-4 !w-[14px] !h-[14px] rounded-full ms-3 !bg-black-600
    }
 
-   .Client-sliders .swiper-pagination-bullet {
-      @apply !w-[14px] !h-[14px] rounded-full ms-3;
-   }
-
-   .Client-sliders .swiper-pagination-bullet-active,
+   .Client-sliders button.owl-dot.active,
    .slider button.owl-dot.active,
    .Serviceslider button.owl-dot.active {
       @apply !bg-black-800
    }
 
-   .Client-sliders .swiper-pagination,
+   .Client-sliders .owl-dots,
    .slider .owl-dots,
    .Serviceslider .owl-dots {
       @apply text-center !mt-6
-   }
-
-   .Client-sliders .swiper-pagination {
-      @apply mt-[2.5rem] relative;
    }
 
    .custom-class-name a {
@@ -324,9 +316,5 @@
 
    input[type="radio"] {
       @apply hidden;
-   }
-
-   .Client-sliders {
-      @apply max-w-full w-full;
    }
 }
