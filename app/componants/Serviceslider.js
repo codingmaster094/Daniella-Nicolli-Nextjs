@@ -11,6 +11,8 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
       const jQueryScript = document.createElement("script");
       jQueryScript.src = process.env.NEXT_PUBLIC_JQUERY_URL;
       jQueryScript.defer = true; // Defer loading
+      document.body.appendChild(jQueryScript);
+
       jQueryScript.onload = () => {
         // Load OwlCarousel CSS
         const owlCarouselCSS = document.createElement("link");
@@ -22,14 +24,14 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
         const owlCarouselJS = document.createElement("script");
         owlCarouselJS.src = process.env.NEXT_PUBLIC_OWL_CAROUSEL_JS;
         owlCarouselJS.defer = true; // Defer loading
+        document.body.appendChild(owlCarouselJS);
+
         owlCarouselJS.onload = () => {
           // Ensure jQuery is accessible globally
           window.$ = window.jQuery;
           initializeOwlCarousel();
         };
-        document.body.appendChild(owlCarouselJS);
       };
-      document.body.appendChild(jQueryScript);
     };
 
     const initializeOwlCarousel = () => {
@@ -45,8 +47,8 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
           autoplayTimeout: 4000,
           autoplayHoverPause: true,
           navText: [
-            '<img src="/images/Vector(4).png"  width="20px" height="20px"  alt="Previous Slide" />',
-            '<img src="/images/vector5.png" width="20px" height="20px"   alt="Next Slide" />',
+            '<img src="/images/Vector(4).png" width="20px" height="20px" alt="Previous Slide" />',
+            '<img src="/images/vector5.png" width="20px" height="20px" alt="Next Slide" />',
           ],
           responsive: {
             0: { items: 1 },
@@ -64,19 +66,19 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
             // Set attributes for dots
             dots.forEach((dot, index) => {
               dot.setAttribute("role", "button");
-              dot.setAttribute("aria-label", index === 0 ? "next" : "prev");
+              dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
             });
 
             // Set attributes for previous navigation buttons
             navPrevButtons.forEach((btn) => {
               btn.setAttribute("role", "button");
-              btn.setAttribute("aria-label", "prev");
+              btn.setAttribute("aria-label", "Previous Slide");
             });
 
             // Set attributes for next navigation buttons
             navNextButtons.forEach((btn) => {
               btn.setAttribute("role", "button");
-              btn.setAttribute("aria-label", "next");
+              btn.setAttribute("aria-label", "Next Slide");
             });
           },
         });
@@ -86,6 +88,14 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
     if (typeof window !== "undefined") {
       loadOwlCarousel();
     }
+
+    // Cleanup function to remove scripts if needed
+    return () => {
+      const scripts = document.querySelectorAll(
+        'script[src*="jquery"], script[src*="owl.carousel"]'
+      );
+      scripts.forEach((script) => script.remove());
+    };
   }, []);
 
   return (
