@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
-import DOMPurify from "dompurify";
 const ContactAboutDetails = ({
   main_title,
   content,
@@ -40,7 +39,7 @@ const ContactAboutDetails = ({
           {content && (
             <p
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(content)
+                __html: content
                   ?.replace(/<p>/g, "")
                   .replace(/<\/p>/g, "")
                   .replace(/&amp;/g, "&"),

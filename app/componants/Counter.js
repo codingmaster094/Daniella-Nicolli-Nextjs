@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import DOMPurify from "dompurify";
+
 const Counter = ({ main_title, all_leistungen }) => {
   const [counters, setCounters] = useState([]);
   const [hasStarted, setHasStarted] = useState(false);
@@ -117,9 +117,7 @@ const Counter = ({ main_title, all_leistungen }) => {
                     <p
                       className="mt-2 text-a"
                       dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(
-                          item.ueber_all_leistungen_content
-                        )
+                        __html: item.ueber_all_leistungen_content
                           ?.replace(/<p>/g, "")
                           .replace(/<\/p>/g, "")
                           .replace(/&amp;/g, "&"),

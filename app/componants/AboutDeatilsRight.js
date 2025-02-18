@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import DOMPurify from "dompurify";
 const AboutDeatilsRight = ({ title, description, Images }) => {
   return (
     <section className="py-[30px] md:py-[40px]  lg:py-[50px] bg-Bgslate">
@@ -27,7 +26,7 @@ const AboutDeatilsRight = ({ title, description, Images }) => {
             <div className="flex flex-col gap-6">
               <p
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(description)
+                  __html: description
                     ?.replace(/<p>/g, "")
                     .replace(/<\/p>/g, "")
                     .replace(/&amp;/g, "&"),

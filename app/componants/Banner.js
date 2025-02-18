@@ -1,9 +1,60 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import DOMPurify from "dompurify";
+
 const BannerCarousel = ({ slidesData, className }) => {
   const carouselRef = useRef();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const loadOwlCarousel = async () => {
+        const jQueryScript = document.createElement("script");
+        jQueryScript.src =
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+        jQueryScript.onload = () => {
+          const owlCarouselCSS = document.createElement("link");
+          owlCarouselCSS.rel = "stylesheet";
+          owlCarouselCSS.href =
+            "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css";
+          document.head.appendChild(owlCarouselCSS);
+
+          const owlCarouselJS = document.createElement("script");
+          owlCarouselJS.src =
+            "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js";
+          owlCarouselJS.onload = () => {
+            window.$ = window.jQuery;
+            jQuery(".Banner-sliders").owlCarousel({
+              loop: true,
+              items: 1,
+              lazyLoad: true,
+              autoplay: false,
+              nav: true,
+              dots: false,
+              autoHeight: true,
+              navText: [
+                '<img src="/images/Vector(4).png" alt="Previous" />',
+                '<img src="/images/vector5.png" alt="Next" />',
+              ],
+            });
+
+            // Add aria-label to the buttons
+            const buttons1 = document.querySelectorAll(".owl-prev");
+            const buttons2 = document.querySelectorAll(".owl-next");
+            buttons1.forEach((button, index) => {
+              button.setAttribute("aria-label", `Slide ${index + 1}`);
+            });
+            buttons2.forEach((button, index) => {
+              button.setAttribute("aria-label", `Slide ${index + 1}`);
+            });
+          };
+          document.body.appendChild(owlCarouselJS);
+        };
+        document.body.appendChild(jQueryScript);
+      };
+
+      loadOwlCarousel();
+    }
+  }, []);
 
   return (
     <section>
@@ -22,9 +73,10 @@ const BannerCarousel = ({ slidesData, className }) => {
                     <ul
                       className="menu"
                       dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(
-                          slide.hero_slider_content
-                        ).replace(/<\/?ul[^>]*>/g, ""),
+                        __html: slide.hero_slider_content.replace(
+                          /<\/?ul[^>]*>/g,
+                          ""
+                        ),
                       }}
                     ></ul>
                     {slide?.hero_slider_button && (

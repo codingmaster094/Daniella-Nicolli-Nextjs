@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import DOMPurify from "dompurify";
+
 const ReviewDetails = () => {
   const [ReviweDetail, setReviweDetail] = useState(null);
   const fetchReviweDetail = async () => {
@@ -19,13 +19,7 @@ const ReviewDetails = () => {
     fetchReviweDetail();
   }, []);
 
-  return (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: DOMPurify.sanitize(ReviweDetail?.html),
-      }}
-    />
-  );
+  return <div dangerouslySetInnerHTML={{ __html: ReviweDetail?.html }} />;
 };
 
 export default ReviewDetails;

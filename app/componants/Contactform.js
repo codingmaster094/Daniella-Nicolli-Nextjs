@@ -10,7 +10,6 @@ import Instagram from "../../public/images/instagram.svg";
 import Chat from "../../public/images/message.svg";
 import axios from "axios";
 import Link from "next/link";
-import DOMPurify from "dompurify";
 const Contactform = ({
   main_title,
   content,
@@ -134,7 +133,7 @@ const Contactform = ({
             <h2>{main_title}</h2>
             <p
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(content)
+                __html: content
                   ?.replace(/<p>/g, "")
                   .replace(/<\/p>/g, "")
                   .replace(/&amp;/g, "&"),

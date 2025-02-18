@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Categories from "./Categories";
-import DOMPurify from "dompurify";
+
 const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
   return (
     <>
@@ -64,17 +64,15 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                           <div
                             className="flex flex-col gap-6"
                             dangerouslySetInnerHTML={{
-                              __html: DOMPurify.sanitize(
-                                valData?.aesthetik_all_faltenunterspritzung_content
-                              ),
+                              __html:
+                                valData?.aesthetik_all_faltenunterspritzung_content,
                             }}
                           ></div>
                           <div
                             className=" flex flex-col text-black-800 gap-5 p-4 border border-Teal"
                             dangerouslySetInnerHTML={{
-                              __html: DOMPurify.sanitize(
-                                valData?.aesthetik_all_faltenunterspritzung_note
-                              ),
+                              __html:
+                                valData?.aesthetik_all_faltenunterspritzung_note,
                             }}
                           ></div>
                         </div>

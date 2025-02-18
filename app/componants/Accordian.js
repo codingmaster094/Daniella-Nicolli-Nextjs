@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Chevronsvg from "../../public/images/chevron.svg";
-import DOMPurify from "dompurify";
+
 const Accordian = ({ main_title, all_faqs }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const contentRefs = useRef([]);
@@ -57,7 +57,7 @@ const Accordian = ({ main_title, all_faqs }) => {
                     >
                       <p
                         dangerouslySetInnerHTML={{
-                          __html: DOMPurify.sanitize(item.all_faqs_answers)
+                          __html: item.all_faqs_answers
                             ?.replace(/<p>/g, "")
                             .replace(/<\/p>/g, "")
                             .replace(/&amp;/g, "&"),

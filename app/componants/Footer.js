@@ -9,7 +9,7 @@ import FacebookSvg from "../../public/images/face-book.svg";
 import InstagramSvg from "../../public/images/Whiteinstgram.svg";
 import Link from "next/link";
 import axios from "axios";
-import DOMPurify from "dompurify";
+
 const Footer = () => {
   const [FooterData, setFooterData] = useState(null);
   const [FooterDatamenu, setFooterDatamenu] = useState(null);
@@ -52,7 +52,7 @@ const Footer = () => {
                 <Image src={LocationSvg} alt="location-svg" />
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(FooterData?.footer_address),
+                    __html: FooterData?.footer_address,
                   }}
                   className="w-full "
                 />

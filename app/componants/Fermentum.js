@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import DOMPurify from "dompurify";
+
 const Fermentum = ({ main_title, all_vorteile }) => {
   const carouselRef = useRef();
 
@@ -113,9 +113,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
                   <div className="flex">
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(
-                          service.home_all_vorteile_content
-                        )
+                        __html: service.home_all_vorteile_content
                           ?.replace(/<p>/g, "")
                           .replace(/<\/p>/g, "")
                           .replace(/&amp;/g, "&"),
