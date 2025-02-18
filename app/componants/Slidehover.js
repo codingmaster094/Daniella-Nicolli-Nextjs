@@ -51,19 +51,12 @@ const Slidehover = ({ main_title, all_referenzen }) => {
               <Image
                 src={PreviousBTN}
                 alt="Previous Slide"
-                aria-label="Previous Slide"
                 width={20}
                 height={20}
               />
             ),
             ReactDOMServer.renderToStaticMarkup(
-              <Image
-                src={NextBTN}
-                alt="Next Slide"
-                aria-label="Next Slide"
-                width={20}
-                height={20}
-              />
+              <Image src={NextBTN} alt="Next Slide" width={20} height={20} />
             ),
           ],
           responsive: {

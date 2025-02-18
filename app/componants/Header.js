@@ -140,7 +140,6 @@ const Header = () => {
               item.slug = item.slug === "home" ? "/" : item.slug;
               const isActive =
                 pathname === (item.slug === "/" ? "/" : `/${item.slug}`);
-              const isSubmenuOpen = submenuOpen === index;
 
               return (
                 <li
@@ -204,7 +203,7 @@ const Header = () => {
                         maxHeight: submenuOpen === index ? "500px" : "0px",
                         overflow: "hidden",
                         transition: "max-height 0.4s ease-in-out",
-                        minHeight: submenuOpen === index ? "50px" : "0px", // Reserve space
+                        minHeight: submenuOpen === index ? "50px" : "0px",
                       }}
                     >
                       {item.children.map((child) => (
