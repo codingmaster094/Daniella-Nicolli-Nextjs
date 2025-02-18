@@ -2,9 +2,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import DOMPurify from "dompurify";
 const Aboutdetails = (props) => {
   const { main_title, section_image, section_content, section_sub_content } =
     props;
+
   return (
     <section className="pb-10 py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
       <div className="w-full max-w-[1780px] px-[15px] pe-[15px]">
@@ -15,8 +17,9 @@ const Aboutdetails = (props) => {
                 src={section_image?.url}
                 width={section_image?.width || 908} // Ensure width is defined
                 height={section_image?.height || 744} // Ensure height is defined
-                alt="about-left.png"
+                alt="About Section Image"
                 className="w-full object-cover h-full relative z-[1] py-0 lg:py-[30px] bg-Bgslate"
+                priority // Optional: Use priority loading for important images
               />
             )}
           </div>
@@ -26,7 +29,7 @@ const Aboutdetails = (props) => {
             </div>
             <p
               dangerouslySetInnerHTML={{
-                __html: section_content
+                __html: DOMPurify.sanitize(section_content)
                   ?.replace(/<p>/g, "")
                   .replace(/<\/p>/g, "")
                   .replace(/&amp;/g, "&"),
@@ -46,8 +49,9 @@ const Aboutdetails = (props) => {
                       <div
                         className="flex flex-col gap-4 text-body 2xl:text-a [&_ul>li]:font-medium"
                         dangerouslySetInnerHTML={{
-                          __html:
-                            item.home_leistungen_section_sub_content_content,
+                          __html: DOMPurify.sanitize(
+                            item.home_leistungen_section_sub_content_content
+                          ),
                         }}
                       ></div>
                     </div>
@@ -76,4 +80,5 @@ const Aboutdetails = (props) => {
     </section>
   );
 };
+
 export default Aboutdetails;

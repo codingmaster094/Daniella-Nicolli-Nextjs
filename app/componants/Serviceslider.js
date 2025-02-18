@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-
+import DOMPurify from "dompurify";
 const Serviceslider = ({ main_title, all_ablauf }) => {
   const carouselRef = useRef();
 
@@ -127,7 +127,7 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
                   <div className="flex text-center">
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: val.home_all_ablauf_content
+                        __html: DOMPurify.sanitize(val.home_all_ablauf_content)
                           ?.replace(/<p>/g, "")
                           .replace(/<\/p>/g, "")
                           .replace(/&amp;/g, "&"),

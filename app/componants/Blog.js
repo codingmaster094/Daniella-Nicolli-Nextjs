@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Arrowbtn from "../../public/images/arrow-btn.svg";
 import Link from "next/link";
-
+import DOMPurify from "dompurify";
 const Blog = ({ blogsData }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBlogs, setFilteredBlogs] = useState(blogsData || []);
@@ -109,7 +109,7 @@ const Blog = ({ blogsData }) => {
                     </div>
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: val?.excerpt?.rendered
+                        __html: DOMPurify.sanitize(val?.excerpt?.rendered)
                           .replace(/<p>/g, "")
                           .replace(/<\/p>/g, "")
                           .replace(/&amp;/g, "&"),

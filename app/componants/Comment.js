@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import CommitImage from "../../public/images/comment-img.png";
-
+import DOMPurify from "dompurify";
 const Comment = ({ main_title, content }) => {
   return (
     <section className="py-[30px] md:py-[40px] lg:py-[50px]">
@@ -12,7 +12,7 @@ const Comment = ({ main_title, content }) => {
             <h2>{main_title}</h2>
             <p
               dangerouslySetInnerHTML={{
-                __html: content
+                __html: DOMPurify.sanitize(content)
                   ?.replace(/<p>/g, "")
                   .replace(/<\/p>/g, "")
                   .replace(/&amp;/g, "&"),

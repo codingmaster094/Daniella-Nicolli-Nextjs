@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-
+import DOMPurify from "dompurify";
 const BannerCarousel = ({ slidesData, className }) => {
   const carouselRef = useRef();
 
@@ -22,10 +22,9 @@ const BannerCarousel = ({ slidesData, className }) => {
                     <ul
                       className="menu"
                       dangerouslySetInnerHTML={{
-                        __html: slide.hero_slider_content.replace(
-                          /<\/?ul[^>]*>/g,
-                          ""
-                        ),
+                        __html: DOMPurify.sanitize(
+                          slide.hero_slider_content
+                        ).replace(/<\/?ul[^>]*>/g, ""),
                       }}
                     ></ul>
                     {slide?.hero_slider_button && (

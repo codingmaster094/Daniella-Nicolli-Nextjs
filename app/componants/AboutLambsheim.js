@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import DOMPurify from "dompurify";
 const AboutLambsheim = ({
   main_title,
   standorte_content,
@@ -19,7 +19,9 @@ const AboutLambsheim = ({
             </div>
             <div
               className="flex flex-col gap-4 md:gap-6"
-              dangerouslySetInnerHTML={{ __html: standorte_content }}
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(standorte_content),
+              }}
             ></div>
             {BTN && (
               <Link

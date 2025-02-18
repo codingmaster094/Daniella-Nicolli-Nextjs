@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
+import DOMPurify from "dompurify";
 const Categories = (props) => {
   const { title, description, BTN } = props;
   return (
@@ -13,7 +13,7 @@ const Categories = (props) => {
             <h2 className="text-white">{title}</h2>
             <p
               dangerouslySetInnerHTML={{
-                __html: description
+                __html: DOMPurify.sanitize(description)
                   ?.replace(/<p>/g, "")
                   .replace(/<\/p>/g, "")
                   .replace(/&amp;/g, "&"),
