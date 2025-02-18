@@ -18,10 +18,6 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
             )}
             {val?.aesthetik_all_faltenunterspritzung &&
               val?.aesthetik_all_faltenunterspritzung?.map((valData, ind) => {
-                console.log(
-                  "valData?.aesthetik_anfrage_id",
-                  valData?.aesthetik_anfrage_id
-                );
                 return (
                   <section
                     // className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate"
