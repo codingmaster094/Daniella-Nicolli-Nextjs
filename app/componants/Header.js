@@ -86,10 +86,6 @@ const Header = () => {
     getMenu();
   }, []);
 
-  const handleMouseEnter = (index) => {
-    setSubmenuOpen(index);
-  };
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
