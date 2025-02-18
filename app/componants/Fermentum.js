@@ -101,8 +101,8 @@ const Fermentum = ({ main_title, all_vorteile }) => {
                   <div className="flex gap-6 items-center">
                     <Image
                       src={service.home_all_vorteile_icon}
-                      width={56}
-                      height={56}
+                      width={48}
+                      height={48}
                       alt="ServiceSvg1"
                       className="!w-12 h-12"
                     />
