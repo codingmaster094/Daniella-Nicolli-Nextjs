@@ -106,7 +106,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
                       alt="ServiceSvg1"
                       className="!w-12 h-12"
                     />
-                    <h3 className="text-black md:text-h4 text-Teal">
+                    <h3 className="text-black md:text-h4 text-teal-700">
                       {service.home_all_vorteile_title}
                     </h3>
                   </div>
