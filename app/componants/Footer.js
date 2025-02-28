@@ -121,10 +121,11 @@ const Footer = () => {
                   </Link>
                 )}
               </li>
-
+            </ul>
+            <ul className="flex flex-row">
             {FooterData &&
               FooterData?.footer_all_logos?.map((val, index) => (
-                <span
+                <li
                   className="flex w-[100px] h-[100px] overflow-hidden"
                   key={index}
                 >
@@ -152,7 +153,7 @@ const Footer = () => {
                       className="object-cover rounded-[10px]"
                     />
                   )}
-                </span>
+                </li>
               ))}
             </ul>
           </div>
