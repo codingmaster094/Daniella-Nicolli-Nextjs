@@ -5,7 +5,7 @@ const UberAboutDeatils = ({ main_title, content, image }) => {
     //  <section className="pb-10 md:py-[70px] md:pt-0 lg:py-[100px]">
     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
       <div className="w-full max-w-[1780px] px-[15px] lg:px-0">
-        <div className="flex flex-col lg:flex-row gap-4 md:gap-8 py-0 lg:py-[30px] relative after:none lg:after:absolute lg:after:right-0 lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[60%] lg:after:h-full lg:after:z-0">
+        <div className="flex z-10 flex-col lg:flex-row gap-4 md:gap-8 py-0 lg:py-[30px] relative after:none lg:after:absolute lg:after:right-0 lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[60%] lg:after:h-full lg:after:z-0">
           <div className="flex items-center flex-col w-full lg:w-[50%] md:flex-row">
             {image && (
               <Image
@@ -17,8 +17,8 @@ const UberAboutDeatils = ({ main_title, content, image }) => {
               />
             )}
           </div>
-          <div className="flex gap-5 pe-15 flex-col w-full justify-center lg:w-[50%] px-0  lg:px-4  lg:gap-8 2xl:px-[100px]">
-            <div className="flex relative pb-4 lg:pb-[25px] after:absolute after:bottom-0 after:w-20 after:left-0 after:h-[2px] after:bg-Teal">
+          <div className="flex gap-5 pe-15 flex-col w-full justify-center lg:w-[50%] px-0  lg:px-4  lg:gap-8 2xl:px-[100px] relative z-10">
+            <div className="flex relative">
               <h2>{main_title}</h2>
             </div>
             <div

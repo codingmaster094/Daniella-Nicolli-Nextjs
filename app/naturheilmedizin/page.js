@@ -76,6 +76,7 @@ const page = () => {
         <ClientCarousel
           main_title={Naturheilmedizin?.partners_section_main_title.value}
           section_all_partners={Naturheilmedizin?.partners_section_all_partners}
+          activate_deactivate={Naturheilmedizin?.enabledisable_partners_logos?.value}
         />
       )}
       <Terminbroncher
@@ -99,6 +100,7 @@ const page = () => {
         <Slidehover
           main_title={Naturheilmedizin?.referenzen_main_title.value}
           all_referenzen={Naturheilmedizin?.all_referenzen}
+          enabledisable_referenz={Naturheilmedizin?.enabledisable_referenz?.value}
         />
       )}
   

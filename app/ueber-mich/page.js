@@ -77,6 +77,7 @@ const page = () => {
         <ClientCarousel
           main_title={Ubermich?.partners_section_main_title.value}
           section_all_partners={Ubermich?.partners_section_all_partners}
+          activate_deactivate={Ubermich?.enabledisable_partners_logos?.value}
         />
       )}
 

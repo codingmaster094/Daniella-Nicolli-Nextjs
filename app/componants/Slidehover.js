@@ -6,7 +6,8 @@ import PreviousBTN from "../../public/images/PreviousBTN.png";
 import NextBTN from "../../public/images/NextBTN.png";
 import ReactDOMServer from "react-dom/server";
 
-const Slidehover = ({ main_title, all_referenzen }) => {
+const Slidehover = ({ main_title, all_referenzen , enabledisable_referenz }) => {
+  console.log('enabledisable_referenz', typeof enabledisable_referenz)
   const carouselRef = useRef();
 
   useEffect(() => {
@@ -103,6 +104,7 @@ const Slidehover = ({ main_title, all_referenzen }) => {
   }, []);
 
   return (
+    enabledisable_referenz === true && (
     <section className="pt-[30px] md:pt-[40px] lg:pt-[50px]">
       <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
         <div className="flex justify-center px-4">
@@ -143,6 +145,7 @@ const Slidehover = ({ main_title, all_referenzen }) => {
         </div>
       </div>
     </section>
+    )
   );
 };
 

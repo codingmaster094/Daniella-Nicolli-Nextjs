@@ -11,6 +11,7 @@ import Slidehover from "../componants/Slidehover";
 import axios from "axios";
 import Link from "next/link";
 
+
 const page = () => {
   const [HomePageData, setHomePageData] = useState(null);
 
@@ -81,6 +82,7 @@ const page = () => {
         <ClientCarousel
           main_title={HomePageData?.partners_section_main_title.value}
           section_all_partners={HomePageData?.partners_section_all_partners}
+          activate_deactivate={HomePageData?.enabledisable_partner_logos?.value}
         />
       )}
 
@@ -121,6 +123,7 @@ const page = () => {
         <Serviceslider
           main_title={HomePageData?.home_ablauf_main_title.value}
           all_ablauf={HomePageData?.home_all_ablauf}
+          enabledisable_referenz={HomePageData?.enabledisable_referenz?.value}
         />
       )}
 
@@ -133,6 +136,7 @@ const page = () => {
         <Slidehover
           main_title={HomePageData?.referenzen_main_title.value}
           all_referenzen={HomePageData?.all_referenzen}
+          enabledisable_referenz={HomePageData?.enabledisable_referenz?.value}
         />
       )}
     </>

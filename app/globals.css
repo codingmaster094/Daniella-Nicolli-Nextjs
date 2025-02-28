@@ -72,6 +72,9 @@
       @apply absolute -translate-y-1/2 z-10 top-1/2 w-full !block
    }
 
+.owl-carousel .owl-stage{
+   @apply flex items-center
+}
    .owl-carousel .owl-nav button.owl-next,
    .owl-carousel .owl-nav button.owl-prev {
       @apply inline-flex justify-center items-center w-[30px] h-[30px] md:w-[50px] md:h-[50px] !bg-Bgwhite !p-6
@@ -156,10 +159,10 @@
    .time-menu li>span:nth-of-type(1) {
       @apply flex w-[100px];
    }
-
+/* 
    .time-menu li>span:nth-of-type(2) {
       @apply flex w-[97px];
-   }
+   } */
 
    .Dash-menu li {
       @apply inline-flex flex-col relative ps-8 after:absolute after:top-2 after:left-0 after:w-[24px] after:h-[2px] after:bg-Teal
@@ -217,13 +220,13 @@
       @apply text-black-900 text-xl font-medium
    }
 
-   .Serviceslider .owl-item .items {
+   /* .Serviceslider .owl-item .items {
       @apply bg-white relative after:absolute after:left-[80%] after:w-[231px] after:h-[32px] after:-z-10 after:top-1/4 after:translate-y-1/2 after:bg-Line-up after:bg-no-repeat after:bg-contain
-   }
+   } */
 
-   .Serviceslider .owl-item:nth-of-type(even) .items {
+   /* .Serviceslider .owl-item:nth-of-type(even) .items {
       @apply after:bg-Line-down after:bg-no-repeat after:bg-contain
-   }
+   } */
 
    .service-slider .owl-item.active:last-of-type .items {
       @apply after:hidden
@@ -317,4 +320,10 @@
    input[type="radio"] {
       @apply hidden;
    }
+   .link--block .menu p {
+    @apply  hidden;
+  }
+  .link--block .menu1{
+   @apply !text-[18px] !gap-[.5rem];
+  }
 }

@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
         <main>
           {children}
           <SpeedInsights />
+          <TopButton />
         </main>
         <Footer />
-        <TopButton />
       </body>
     </html>
   );

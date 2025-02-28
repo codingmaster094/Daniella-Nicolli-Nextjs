@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const ClientCarousel = ({ main_title, section_all_partners }) => {
+const ClientCarousel = ({ main_title, section_all_partners , activate_deactivate}) => {
   const carouselRef = useRef();
 
   useEffect(() => {
@@ -78,6 +78,8 @@ const ClientCarousel = ({ main_title, section_all_partners }) => {
   }, []);
 
   return (
+    
+    activate_deactivate && ( 
     <section className="py-[30px] md:py-[40px] lg:py-[50px]">
       <div className="container px-[15px] mx-auto">
         <div className="flex flex-col gap-6 md:gap-11 lg:gap-16 text-center">
@@ -130,7 +132,8 @@ const ClientCarousel = ({ main_title, section_all_partners }) => {
           </div>
         </div>
       </div>
-    </section>
+    </section>)
+    
   );
 };
 

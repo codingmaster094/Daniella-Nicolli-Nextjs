@@ -44,8 +44,8 @@ const Footer = () => {
   return (
     <footer className="bg-salte w-full">
       <div className="container mx-auto px-[15px] ">
-        <div className="flex gap-6 md:gap-[90px] flex-wrap   flex-col md:flex-row py-8 md:py-20">
-          <div className="flex flex-col   2xl:w-[calc(25%-70px)] gap-5 ">
+        <div className="flex gap-6 lg:gap-8 2xl:gap-[90px] flex-wrap py-8 md:py-20">
+          <div className="flex flex-col  2xl:w-[calc(30%-70px)] lg:w-[calc(30%-24px)] md:w-[calc(50%-12px)] w-full gap-5 ">
             <h4>{FooterData?.kontakt_label}</h4>
             <ul className="[&_li>img]:mt-4">
               <li>
@@ -94,7 +94,7 @@ const Footer = () => {
                 )}
               </li>
             </ul>
-            <ul className="flex flex-row [&_li]:w-[38px] [&_li]:h-[38px] [&_li]:bg-Teal [&_li]:rounded-full [&_li]    :items-center [&_li]:justify-center [&_li]:p-2">
+            <ul className="flex flex-row [&_li]:w-[38px] [&_li]:h-[38px] [&_li]:bg-Teal [&_li]:rounded-full [&_li] :items-center [&_li]:justify-center [&_li]:p-2">
               <li className="flex items-center justify-center">
                 {FooterData?.footer_facebook_link && (
                   <Link
@@ -121,63 +121,11 @@ const Footer = () => {
                   </Link>
                 )}
               </li>
-            </ul>
-          </div>
-          <div className="flex flex-col 2xl:w-[calc(20%-70px)] gap-5 sm:gap-[34px]">
-            <h4>{FooterData?.footer_sprechzeiten_label}</h4>
-            <ul
-              className="time-menu "
-              dangerouslySetInnerHTML={{
-                __html: FooterData?.footer_business_hours?.replace(
-                  /<\/?ul[^>]*>/g,
-                  ""
-                ),
-              }}
-            ></ul>
-          </div>
-          <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-5 sm:gap-[34px]">
-            <h4>{FooterData?.footer_navigation_label}</h4>
-            <ul>
-              {FooterDatamenu?.menu?.map((item, index) => {
-                item.slug = item.slug === "home" ? "/" : item.slug;
-                return (
-                  <li key={item.id}>
-                    <Link
-                      href={`/${item.slug}`}
-                      aria-label="footer-link"
-                      role="link"
-                    >
-                      {item.title == "Home" ? "start" : item.title}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-5 sm:gap-[34px]">
-            <h4>{FooterData?.footer_rechtliches_label}</h4>
-            <ul>
-              <li>
-                <Link href="/impressum" aria-label="footer-link" role="link">
-                  Impressum{" "}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/datenschutzerklarung"
-                  aria-label="footer-link"
-                  role="link"
-                >
-                  Datenschutzerklärung
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="flex flex-col 2xl:w-[calc(18%-70px)] gap-4 flex-wrap">
+
             {FooterData &&
               FooterData?.footer_all_logos?.map((val, index) => (
-                <div
-                  className="flex w-[150px] h-[150px] overflow-hidden"
+                <span
+                  className="flex w-[100px] h-[100px] overflow-hidden"
                   key={index}
                 >
                   {val.footer_all_logo_url ? (
@@ -204,8 +152,59 @@ const Footer = () => {
                       className="object-cover rounded-[10px]"
                     />
                   )}
-                </div>
+                </span>
               ))}
+            </ul>
+          </div>
+          <div className="flex flex-col 2xl:w-[calc(25%-70px)] lg:w-[calc(30%-24px)] md:w-[calc(50%-12px)] w-full gap-5 sm:gap-[34px]">
+            <h4>{FooterData?.footer_sprechzeiten_label}</h4>
+            <ul
+              className="time-menu "
+              dangerouslySetInnerHTML={{
+                __html: FooterData?.footer_business_hours?.replace(
+                  /<\/?ul[^>]*>/g,
+                  ""
+                ),
+              }}
+            ></ul>
+          </div>
+          <div className="flex flex-col 2xl:w-[calc(25%-70px)] lg:w-[calc(20%-24px)] md:w-[calc(50%-12px)] w-full gap-5 sm:gap-[34px]">
+            <h4>{FooterData?.footer_navigation_label}</h4>
+            <ul>
+              {FooterDatamenu?.menu?.map((item, index) => {
+                item.slug = item.slug === "home" ? "/" : item.slug;
+                return (
+                  <li key={item.id}>
+                    <Link
+                      href={`/${item.slug}`}
+                      aria-label="footer-link"
+                      role="link"
+                    >
+                      {item.title == "Home" ? "start" : item.title}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="flex flex-col 2xl:w-[calc(20%-70px)] lg:w-[calc(20%-24px)] md:w-[calc(50%-12px)] w-full gap-5 sm:gap-[34px]">
+            <h4>{FooterData?.footer_rechtliches_label}</h4>
+            <ul>
+              <li>
+                <Link href="/impressum" aria-label="footer-link" role="link">
+                  Impressum{" "}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/datenschutzerklarung"
+                  aria-label="footer-link"
+                  role="link"
+                >
+                  Datenschutzerklärung
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

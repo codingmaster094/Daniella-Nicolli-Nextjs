@@ -20,7 +20,7 @@ const AboutDeatilsRight = ({ title, description, Images }) => {
             </div>
           </div>
           <div className="flex gap-5 flex-col w-full  justify-center lg:w-[60%]  ps-0  lg:px-4  lg:gap-[25px]">
-            <div className="flex relative pb-4 lg:pb-[25px]  after:absolute after:bottom-0 after:w-20 after:left-0 after:h-[2px] after:bg-Teal">
+            <div className="flex relative">
               <h2>{title}</h2>
             </div>
             <div className="flex flex-col gap-6">

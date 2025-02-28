@@ -86,6 +86,7 @@ const page = () => {
         <ClientCarousel
           main_title={LendiangPageData?.partners_section_main_title?.value}
           section_all_partners={LendiangPageData?.partners_section_all_partners}
+          activate_deactivate={LendiangPageData?.enabledisable_partner_logos?.value}
         />
       )}
 

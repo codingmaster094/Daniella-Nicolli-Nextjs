@@ -70,8 +70,8 @@ export default {
           'left-arow':"url('/images/Vector(4).png')",
           'right-arow':"url('/images/vector5.png')",
           'background-svg':"url('/images/roundservicebg.svg')",
-          'Line-up':"url('/images/Line2.png')",
-          'Line-down':"url('/images/Line3.png')"
+          // 'Line-up':"url('/images/Line2.png')",
+          // 'Line-down':"url('/images/Line3.png')"
       },
       boxShadow:{
          "shadow":'0px 0px 16px 0px #54615426'

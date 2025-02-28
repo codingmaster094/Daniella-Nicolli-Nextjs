@@ -74,6 +74,7 @@ const page = () => {
           section_all_partners={
             AesthetikData?.partners_section_all_partners
           }
+          activate_deactivate={AesthetikData?.enabledisable_partners_logos?.value}
         />
       )}
      <Terminbroncher 
@@ -93,6 +94,7 @@ const page = () => {
         <Slidehover
           main_title={AesthetikData?.referenzen_main_title?.value}
           all_referenzen={AesthetikData?.all_referenzen}
+          enabledisable_referenz={AesthetikData?.enabledisable_referenz?.value}
         />
       )}
       <Accordian
