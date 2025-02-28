@@ -30,12 +30,15 @@ export default {
           lg: "100%",
           xl: "100%",
           
-          '2xl': "1670px"
+          '2xl': "1670px",
+          
         }
       },
       screens: {
         'xm':"540px",
-        '4xl':"1680px"
+        'xlg':'1350px',
+        '4xl':"1680px",
+        '3xl': "1770px"
       },
       fontFamily: {
         'primary-font': ['Roboto', 'sans-serif']

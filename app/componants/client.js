@@ -31,6 +31,7 @@ const ClientCarousel = ({ main_title, section_all_partners , activate_deactivate
               autoplay: true,
               autoplaySpeed: 3000,
               autoplayHoverPause: false,
+              
               navText: [
                 '<img src="/images/Vector(4).png" width="20px" height="20px"  alt="Previous Slide" />',
                 '<img src="/images/vector5.png" width="20px" height="20px"  alt="Next Slide" />',
