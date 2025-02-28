@@ -118,11 +118,12 @@ const Footer = () => {
                     className="inline-block "
                   >
                     <Image src={InstagramSvg} alt="instgram-svg"></Image>
+                    
                   </Link>
                 )}
               </li>
             </ul>
-            <ul className="flex flex-row">
+            <ul className="flex flex-row ">
             {FooterData &&
               FooterData?.footer_all_logos?.map((val, index) => (
                 <li
