@@ -72,6 +72,9 @@
       @apply absolute -translate-y-1/2 z-10 top-1/2 w-full !block
    }
 
+   .owl-carousel.Serviceslider .owl-nav, .owl-carousel.slider .owl-nav{
+      @apply absolute -translate-y-1/2 z-10 top-[41%] w-full !block
+   }
 .owl-carousel .owl-stage{
    @apply flex items-center
 }

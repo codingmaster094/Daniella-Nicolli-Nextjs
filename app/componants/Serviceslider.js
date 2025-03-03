@@ -112,7 +112,7 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
                 key={index}
               >
                 <div className="item-box flex flex-col justify-center items-center gap-4 bg-Bgslate">
-                  <div className="flex gap-6 sm:gap-8 rounded-full flex-col p-2 w-[180px] h-[180px] xm:w-[250px] xm:h-[250px] items-center justify-center ">
+                  <div className="flex gap-6 sm:gap-8 rounded-full flex-col p-2 w-[180px] xm:w-[250px] items-center justify-center ">
                     <Image
                       src={val.home_all_ablauf_image}
                       width={64}

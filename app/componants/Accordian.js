@@ -5,23 +5,32 @@ import Image from "next/image";
 import Chevronsvg from "../../public/images/chevron.svg";
 
 const Accordian = ({ main_title, all_faqs }) => {
-  const [selected, setSelected] = useState(0); // Start with nothing selected
+  const [selected, setSelected] = useState(0); // Open first item by default
+  const [height, setHeight] = useState("0px"); // State for height
   const contentRefs = useRef(new Map());
 
   useEffect(() => {
-    contentRefs.current.forEach((content, index) => {
-      if (content) {
-        if (selected === index) {
-          content.style.maxHeight = `${content.scrollHeight}px`;
-        } else {
-          content.style.maxHeight = "0px";
-        }
-      }
-    });
+    // Set the height based on the selected index
+    if (selected !== null && contentRefs.current.get(selected)) {
+      setHeight(`${contentRefs.current.get(selected).scrollHeight}px`);
+    } else {
+      setHeight("0px");
+    }
   }, [selected]);
 
+  useEffect(() => {
+    // Set initial height for the first item
+    if (all_faqs && all_faqs.length > 0) {
+      setHeight(`${contentRefs.current.get(0)?.scrollHeight}px`);
+    }
+  }, [all_faqs]);
+
   const handleClick = (index) => {
-    setSelected(selected === index ? null : index);
+    if (selected === index) {
+      setSelected(null); // Close if already open
+    } else {
+      setSelected(index); // Open the clicked item
+    }
   };
 
   return (
@@ -59,7 +68,7 @@ const Accordian = ({ main_title, all_faqs }) => {
                     className="accordion-content overflow-hidden transition-all duration-300 ease-in-out"
                     ref={(el) => el && contentRefs.current.set(index, el)}
                     style={{
-                      maxHeight: selected === index ? `${contentRefs.current.get(index)?.scrollHeight}px` : "0px",
+                      maxHeight: selected === index ? height : "0px",
                     }}
                   >
                     <p
