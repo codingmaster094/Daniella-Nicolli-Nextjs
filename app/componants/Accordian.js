@@ -5,20 +5,25 @@ import Image from "next/image";
 import Chevronsvg from "../../public/images/chevron.svg";
 
 const Accordian = ({ main_title, all_faqs }) => {
-  const [activeIndex, setActiveIndex] = useState(0); // First item open by default
-  const contentRefs = useRef([]);
-
-  const handleClick = (index) => {
-    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
-  };
+  const [selected, setSelected] = useState(0);
+  const contentRefs = useRef(new Map());
 
   useEffect(() => {
-    contentRefs.current.forEach((content, index) => {
+    if (selected !== null && contentRefs.current.has(selected)) {
+      // Force reflow to apply transition smoothly on first click
+      const content = contentRefs.current.get(selected);
       if (content) {
-        content.style.height = activeIndex === index ? content.scrollHeight + "px" : "0px";
+        content.style.maxHeight = "0px";
+        setTimeout(() => {
+          content.style.maxHeight = `${content.scrollHeight}px`;
+        }, 10);
       }
-    });
-  }, [activeIndex]);
+    }
+  }, [selected]);
+
+  const handleClick = (index) => {
+    setSelected(selected !== index ? index : null);
+  };
 
   return (
     <section className="py-[30px] md:py-[40px] lg:py-[50px]">
@@ -32,7 +37,7 @@ const Accordian = ({ main_title, all_faqs }) => {
                   <div
                     key={index}
                     className={`accordian flex flex-col gap-4 p-4 lg:p-8 transition-all duration-300 ${
-                      activeIndex === index
+                      selected === index
                         ? "active border-[1.5px] shadow-[0px_4px_13px_-2px_#1310220f,0px_4.8px_24.4px_-6px_#1310221a]"
                         : "border border-transparent"
                     }`}
@@ -46,7 +51,7 @@ const Accordian = ({ main_title, all_faqs }) => {
                       </h3>
                       <span
                         className={`arrow w-[28px] h-[28px] inline-block flex-shrink-0 transition-transform rounded-full ${
-                          activeIndex === index ? "rotate-180" : ""
+                          selected === index ? "rotate-180" : ""
                         }`}
                       >
                         <Image src={Chevronsvg} alt="Chevron-svg" />
@@ -56,7 +61,7 @@ const Accordian = ({ main_title, all_faqs }) => {
                       className="accordion-content overflow-hidden transition-all duration-300 ease-in-out"
                       ref={(el) => (contentRefs.current[index] = el)}
                       style={{
-                        height: activeIndex === index ? `${contentRefs.current[index]?.scrollHeight}px` : "0px",
+                        height: selected === index ? `${contentRefs.current[index]?.scrollHeight}px` : "0px",
                       }}
                     >
                       <p

@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 
-const Serviceslider = ({ main_title, all_ablauf , enabledisable_referenz}) => {
+const Serviceslider = ({ main_title, all_ablauf }) => {
   const carouselRef = useRef();
 
   useEffect(() => {
@@ -99,7 +99,6 @@ const Serviceslider = ({ main_title, all_ablauf , enabledisable_referenz}) => {
   }, []);
 
   return (
-    enabledisable_referenz  && (
     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
       <div className="w-full max-w-[1470px] px-[15px] mx-auto">
         <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
@@ -142,7 +141,6 @@ const Serviceslider = ({ main_title, all_ablauf , enabledisable_referenz}) => {
         </div>
       </div>
     </section>
-    )
   );
 };
 
