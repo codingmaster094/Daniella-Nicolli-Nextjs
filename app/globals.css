@@ -332,4 +332,7 @@
   .link--block .menu1{
    @apply !text-[18px] !gap-[.5rem];
   }
+  .owl-carousel .owl-stage-outer{
+   @apply z-20;
+  }
 }
