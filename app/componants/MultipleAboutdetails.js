@@ -24,7 +24,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                   <section
                     key={ind}
                     className={`pb-10 py-[30px] md:py-[40px] lg:py-[50px] ${
-                      isEven ? "bg-Bgslate" : "bg-white"
+                      isEven ? "bg-Bgslate" : "bg-white  flex justify-end items-end"
                     }`}
                     id={valData.aesthetik_anfrage_id}
                   >
@@ -38,7 +38,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                         }`}
                       >
                         {/* Image Section */}
-                        <div className="flex justify-center lg:justify-end items-center flex-col w-full lg:w-[55%] h-full">
+                        <div className="flex justify-center lg:justify-end items-start lg:items-center flex-col w-full lg:w-[55%] h-full">
                           <Image
                             src={
                               valData.aesthetik_all_faltenunterspritzung_image
@@ -52,7 +52,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                             height={578}
                           />
                         </div>
-                        <div className="flex gap-5 flex-col w-full justify-center lg:w-[50%] px-0 lg:px-4 lg:gap-8 2xl:px-[100px] relative z-10">
+                        <div className={`flex gap-5 flex-col w-full justify-center lg:gap-8 lg:w-[50%] ${isEven ? 'pl-0 lg:pl-4 pr-0 lg:pr-4  2xl:pr-[100px]' : 'pr-0 lg:pr-4 pl-0 lg:pl-4 2xl:pl-[100px]' }  relative z-10`}>
                           <div className="flex flex-col gap-5 2xl:gap-6 lg:flex-[50%] flex-shrink-0 justify-center">
                             <div className="flex flex-col gap-4">
                               <div className="flex relative">
