@@ -45,8 +45,8 @@ const Accordian = ({ main_title, all_faqs }) => {
                   key={index}
                   className={`accordian flex flex-col gap-4 p-4 lg:p-8 transition-all duration-300 ${
                     selected === index
-                      ? "active border-[1.5px] shadow-[0px_4px_13px_-2px_#1310220f,0px_4.8px_24.4px_-6px_#1310221a]"
-                      : "border border-transparent"
+                      ? "active shadow-[0px_4px_13px_-2px_#1310220f,0px_4.8px_24.4px_-6px_#1310221a]"
+                      : "border-transparent"
                   }`}
                 >
                   <div
