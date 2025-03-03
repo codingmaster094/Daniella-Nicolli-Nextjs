@@ -28,7 +28,7 @@ const ClientCarousel = ({ main_title, section_all_partners , activate_deactivate
               nav: true,
               dots: true,
               items: 6,
-              // autoplay: true,
+              autoplay: true,
               autoplaySpeed: 3000,
               autoplayHoverPause: false,
               

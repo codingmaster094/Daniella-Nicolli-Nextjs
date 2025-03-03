@@ -104,7 +104,7 @@ const Slidehover = ({ main_title, all_referenzen , enabledisable_referenz }) => 
   }, []);
 
   return (
-    enabledisable_referenz === true && (
+    enabledisable_referenz && (
     <section className="pt-[30px] md:pt-[40px] lg:pt-[50px]">
       <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
         <div className="flex justify-center px-4">

@@ -43,7 +43,7 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
           dots: true,
           autoHeight: true,
           items: 4,
-          autoplay: true,
+          // autoplay: true,
           autoplayTimeout: 4000,
           autoplayHoverPause: true,
           navText: [
