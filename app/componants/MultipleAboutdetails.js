@@ -18,6 +18,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
 
             {val?.aesthetik_all_faltenunterspritzung &&
               val?.aesthetik_all_faltenunterspritzung?.map((valData, ind) => {
+                console.log('valData' , ) 
                 const isEven = ind % 2 === 0;
                 return (
                   <section
@@ -25,6 +26,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                     className={`pb-10 py-[30px] md:py-[40px] lg:py-[50px] ${
                       isEven ? "bg-Bgslate" : "bg-white"
                     }`}
+                    id={valData.aesthetik_anfrage_id}
                   >
                     <div className="w-full max-w-[1780px] px-[15px] pe-[15px]">
                       <div
