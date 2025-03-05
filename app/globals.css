@@ -3,339 +3,365 @@
 @tailwind utilities;
 
 @layer base {
-   html.lenis {
-      @apply h-auto;
-   }
-
-   .lenis.lenis-smooth {
-      @apply scroll-auto;
-   }
-
-   .lenis.lenis-smooth [data-lenis-prevent] {
-      @apply overscroll-contain;
-   }
-
-   .lenis.lenis-stopped {
-      @apply overflow-hidden;
-   }
-
-   body {
-      @apply font-primary-font text-body text-black-900
-   }
-
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   h6 {
-      @apply text-black-800
-   }
-
-   h1 {
-      @apply text-h2 lg:text-h1 leading-[1.1]
-   }
-
-   h2 {
-      @apply text-h4 sm:text-h3 md:text-h2 leading-normal md:leading-[47px]
-   }
-
-   h3 {
-      @apply text-xl sm:text-h4 lg:text-h3 font-semibold leading-normal 2xl:leading-[35px]
-   }
-
-   h4 {
-      @apply text-a lg:text-h4 font-semibold leading-normal md:leading-[33px]
-   }
-
-   p {
-      @apply text-body sm:text-a leading-[24px] sm:leading-[28px]
-   }
-
-   .bg-banner {
-      @apply relative h-full py-10 sm:py-0 sm:h-[600px] 2xl:h-[850px] bg-cover bg-no-repeat bg-center px-10 md:px-[140px] flex items-center
-   }
-
-   .menu {
-      @apply flex flex-col gap-3
-   }
-
-   .menu li, .blogtemplate .wp-block-list li {
-      @apply relative text-black-900 after:absolute after:left-0 after:top-0 after:mt-1 after:bg-velly-svg after:bg-contain after:w-5 after:h-5 ps-6 xm:ps-10 font-primary-font font-normal after:bg-no-repeat
-   }
-
-   .Banner ul li {
-      @apply text-a sm:text-h4 !font-normal
-   }
-
-   .owl-carousel .owl-nav {
-      @apply absolute -translate-y-1/2 z-10 top-1/2 w-full !block
-   }
-
-   .owl-carousel.Serviceslider .owl-nav, .owl-carousel.slider .owl-nav{
-      @apply absolute -translate-y-1/2 z-10 top-[41%] w-full !block
-   }
-.owl-carousel .owl-stage{
-   @apply flex items-center
-}
-   .owl-carousel .owl-nav button.owl-next,
-   .owl-carousel .owl-nav button.owl-prev {
-      @apply inline-flex justify-center items-center w-[30px] h-[30px] md:w-[50px] md:h-[50px] !bg-Bgwhite !p-6
-   }
-
-   .owl-carousel .owl-nav button.owl-next img,
-   .owl-carousel .owl-nav button.owl-prev img {
-      @apply w-1/2 h-1/2 object-contain object-center
-   }
-
-   .owl-carousel .owl-nav button.owl-next {
-      @apply float-right
-   }
-
-   .Banner-sliders .owl-nav button.owl-next {
-      @apply me-0 lg:me-6
-   }
-
-   .owl-carousel .owl-nav button.owl-prev {
-      @apply float-left
-   }
-
-   .Banner-sliders .owl-nav button.owl-prev {
-      @apply me-0 lg:ms-6
-   }
-
-   .owl-carousel button.owl-prev span, .owl-carousel button.owl-next span {
-      @apply !text-[32px]
-   }
-
-   .slider .owl-nav button.owl-prev,
-   .slider .owl-nav button.owl-next {
-      @apply !rounded-full !border !border-solid !border-Teal
-   }
-
-   .slider .owl-nav button.owl-next,
-   .Serviceslider .owl-nav button.owl-next {
-      @apply -me-[15px] 4xl:-me-16
-   }
-
-   .slider .owl-nav button.owl-prev,
-   .Serviceslider .owl-nav button.owl-prev {
-      @apply ms-[-15px] 4xl:-ms-16
-   }
-
-   .Serviceslider .owl-item {
-      @apply flex justify-center items-center;
-   }
-
-   .hover-sliders .owl-nav button.owl-next,
-   .hover-sliders .owl-nav button.owl-prev {
-      @apply !bg-Bgwhite10
-   }
-
-   .gallrey .owl-nav button.owl-next,
-   .gallrey .owl-nav button.owl-prev {
-      @apply !bg-BgTeal !text-white;
-   }
-
-   .Client-sliders button.owl-dot,
-   .slider button.owl-dot,
-   .Serviceslider button.owl-dot {
-      @apply !inline mt-4 !w-[14px] !h-[14px] rounded-full ms-3 !bg-black-600
-   }
-
-   .Client-sliders button.owl-dot.active,
-   .slider button.owl-dot.active,
-   .Serviceslider button.owl-dot.active {
-      @apply !bg-black-800
-   }
-
-   .Client-sliders .owl-dots,
-   .slider .owl-dots,
-   .Serviceslider .owl-dots {
-      @apply text-center !mt-6
-   }
-
-   .custom-class-name a {
-      @apply hidden;
-   }
-
-   .time-menu li>span:nth-of-type(1) {
-      @apply flex w-[100px];
-   }
-/* 
-   .time-menu li>span:nth-of-type(2) {
-      @apply flex w-[97px];
-   } */
-
-   .Dash-menu li {
-      @apply inline-flex flex-col relative ps-8 after:absolute after:top-2 after:left-0 after:w-[24px] after:h-[2px] after:bg-Teal
-   }
-
-   footer h4 {
-      @apply text-a font-medium text-black-800
-   }
-
-   footer ul {
-      @apply flex flex-col gap-4 sm:gap-5 [&_li>a]:text-black-800 font-normal transition-all duration-300 ease-in text-body xm:text-a flex-1
-   }
-
-   footer ul li {
-      @apply flex [&_a]:hover:text-Teal gap-2 xm:gap-4 items-baseline
-   }
-
-   .Im-section b {
-      @apply mt-4 mb-4 inline-block text-h4 md:text-2xl
-   }
-
-   .Im-section p, .section p {
-      @apply break-words
-   }
-
-   .Im-section strong {
-      @apply mb-4 inline-block text-h4 md:text-xl
-   }
-
-   .Im-section a, .section a {
-      @apply text-Teal break-words
-   }
-
-   .Im-section h1, .section h1 {
-      @apply text-h3 md:text-h2 lg:text-h1
-   }
-
-   .section .p>br {
-      display: none;
-   }
-
-   .section .wp-block-list li {
-      @apply list-disc mb-2 ms-4 marker:text-Teal
-   }
-
-   .section h2 {
-      @apply text-Teal text-a md:text-h3 lg:text-h2
-   }
-
-   .section h3 {
-      @apply text-Teal text-body sm:text-a md:text-h3
-   }
-
-   .section h5 {
-      @apply text-black-900 text-xl font-medium
-   }
-
-   /* .Serviceslider .owl-item .items {
-      @apply bg-white relative after:absolute after:left-[80%] after:w-[231px] after:h-[32px] after:-z-10 after:top-1/4 after:translate-y-1/2 after:bg-Line-up after:bg-no-repeat after:bg-contain
-   } */
-
-   /* .Serviceslider .owl-item:nth-of-type(even) .items {
-      @apply after:bg-Line-down after:bg-no-repeat after:bg-contain
-   } */
-
-   .service-slider .owl-item.active:last-of-type .items {
-      @apply after:hidden
-   }
-
-
-   .blogtemplate h2.wp-block-heading {
-      @apply pb-4 lg:pb-[25px]
-   }
-
-   .blogtemplate .wp-block-separator {
-      @apply mb-8 w-[80px] !bg-Teal h-[2px] !border-Teal
-   }
-
-   .blogtemplate p {
-      @apply mb-4 lg:mb-5 break-words
-   }
-
-   .blogtemplate .wp-container-core-columns-is-layout-2, .blogtemplate .wp-container-core-columns-is-layout-3 {
-      @apply flex gap-2 flex-wrap flex-col sm:flex-row sm:gap-4 mb-4 lg:mb-8
-   }
-
-   .blogtemplate .wp-container-core-columns-is-layout-2 .wp-block-column-is-layout-flow, .blogtemplate .wp-container-core-columns-is-layout-3 .wp-block-column-is-layout-flow {
-      @apply flex flex-col w-full md:w-[47%] 2xl:w-[33%] border border-Teal p-5 md:p-6 lg:p-8
-   }
-
-   .blogtemplate h2:not(:first-of-type) {
-      @apply lg:pt-4
-   }
-
-   .blogtemplate h3.wp-block-heading {
-      @apply my-4
-   }
-
-   .wp-container-core-columns-is-layout-2 .wp-block-heading, .wp-container-core-columns-is-layout-3 .wp-block-heading {
-      @apply !mt-0 !mb-32
-   }
-
-   .wp-container-core-columns-is-layout-2 p, .wp-container-core-columns-is-layout-3 p {
-      @apply !p-0
-   }
-
-   .blogtemplate .wp-block-list {
-      @apply flex flex-col gap-3 text-a mb-8
-   }
-
-   .blogtemplate h4.wp-block-heading {
-      @apply font-normal mb-4
-   }
-
-   .blogtemplate table {
-      @apply border border-Teal w-full 2xl:w-[1080px] my-8
-   }
-
-   table td, th {
-      @apply text-body border border-Teal px-2 py-2 sm:py-4 text-center sm:text-a
-   }
-
-   table tr:first-of-type td {
-      @apply text-body sm:text-a lg:text-h4 !font-normal text-black-800
-   }
-
-   .blogtemplate .wp-block-table {
-      @apply overflow-auto
-   }
-
-   .blogtemplate .wp-block-button a {
-      @apply inline-flex text-center bg-Teal text-white hover:bg-teal-600 mb-4 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in
-   }
-
-   .blogtemplate .rank-math-list-item {
-      @apply border border-solid border-Teal mb-4 sm:mt-8 p-4 sm:p-8
-   }
-
-   .blogtemplate h3.rank-math-question {
-      @apply mb-4
-   }
-
-   /* .Client-sliders .owl-nav {
-      @apply !hidden
-   } */
-   .Client-sliders .owl-prev{
-      @apply relative !justify-center !items-center 3xl:left-[-65px] left-0 !border !border-solid !border-Teal rounded-full xlg:!flex !hidden ;
-   }
-   .Client-sliders .owl-next{
-      @apply relative !justify-center !items-center 3xl:right-[-65px] right-0 !border !border-solid !border-Teal rounded-full xlg:!flex
-      !hidden;
-   }
-   .blogtemplate .wp-container-core-columns-is-layout-2 .wp-block-column.is-layout-flow.wp-block-column-is-layout-flow h3.wp-block-heading, .blogtemplate .wp-container-core-columns-is-layout-3 .wp-block-column.is-layout-flow.wp-block-column-is-layout-flow h3.wp-block-heading {
-      @apply !m-0 !mb-4
-   }
-
-   .blogtemplate .wp-container-core-columns-is-layout-2 .wp-block-column.is-layout-flow.wp-block-column-is-layout-flow .wp-block-list, .blogtemplate .wp-container-core-columns-is-layout-3 .wp-block-column.is-layout-flow.wp-block-column-is-layout-flow .wp-block-list {
-      @apply !m-0
-   }
-
-   input[type="radio"] {
-      @apply hidden;
-   }
-   .link--block .menu p, .menu1 p {
-    @apply  !hidden;
+  html.lenis {
+    @apply h-auto;
   }
-  .link--block .menu1{
-   @apply !text-[18px] !gap-[.5rem];
+
+  .lenis.lenis-smooth {
+    @apply scroll-auto;
   }
-  .owl-carousel .owl-stage-outer{
-   @apply z-20;
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    @apply overscroll-contain;
+  }
+
+  .lenis.lenis-stopped {
+    @apply overflow-hidden;
+  }
+
+  body {
+    @apply font-primary-font text-body text-black-900;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-black-800;
+  }
+
+  h1 {
+    @apply text-h2 lg:text-h1 leading-[1.1];
+  }
+
+  h2 {
+    @apply text-h4 sm:text-h3 md:text-h2 leading-normal md:leading-[47px];
+  }
+
+  h3 {
+    @apply text-xl sm:text-h4 lg:text-h3 font-semibold leading-normal 2xl:leading-[35px];
+  }
+
+  h4 {
+    @apply text-a lg:text-h4 font-semibold leading-normal md:leading-[33px];
+  }
+
+  p {
+    @apply text-body sm:text-a leading-[24px] sm:leading-[28px];
+  }
+
+  .bg-banner {
+    @apply relative h-full py-10 sm:py-0 sm:h-[600px] 2xl:h-[850px] bg-cover bg-no-repeat bg-center px-10 md:px-[140px] flex items-center;
+  }
+
+  .menu {
+    @apply flex flex-col gap-3;
+  }
+
+  .menu li,
+  .blogtemplate .wp-block-list li {
+    @apply relative text-black-900 after:absolute after:left-0 after:top-0 after:mt-1 after:bg-velly-svg after:bg-contain after:w-5 after:h-5 ps-6 xm:ps-10 font-primary-font font-normal after:bg-no-repeat;
+  }
+
+  .Banner ul li {
+    @apply text-a sm:text-h4 !font-normal;
+  }
+
+  .owl-carousel .owl-nav {
+    @apply absolute -translate-y-1/2 z-10 top-1/2 w-full !block;
+  }
+
+  .owl-carousel.Serviceslider .owl-nav,
+  .owl-carousel.slider .owl-nav {
+    @apply absolute -translate-y-1/2 z-10 top-[41%] w-full !block;
+  }
+
+  .owl-carousel .owl-stage {
+    @apply flex items-center;
+  }
+
+  .owl-carousel .owl-nav button.owl-next,
+  .owl-carousel .owl-nav button.owl-prev {
+    @apply inline-flex justify-center items-center w-[30px] h-[30px] md:w-[50px] md:h-[50px] !bg-Bgwhite !p-6;
+  }
+
+  .owl-carousel .owl-nav button.owl-next img,
+  .owl-carousel .owl-nav button.owl-prev img {
+    @apply w-1/2 h-1/2 object-contain object-center;
+  }
+
+  .owl-carousel .owl-nav button.owl-next {
+    @apply float-right;
+  }
+
+  .Banner-sliders .owl-nav button.owl-next {
+    @apply me-0 lg:me-6;
+  }
+
+  .owl-carousel .owl-nav button.owl-prev {
+    @apply float-left;
+  }
+
+  .Banner-sliders .owl-nav button.owl-prev {
+    @apply me-0 lg:ms-6;
+  }
+
+  .owl-carousel button.owl-prev span,
+  .owl-carousel button.owl-next span {
+    @apply !text-[32px];
+  }
+
+  .slider .owl-nav button.owl-prev,
+  .slider .owl-nav button.owl-next {
+    @apply !rounded-full !border !border-solid !border-Teal;
+  }
+
+  .slider .owl-nav button.owl-next,
+  .Serviceslider .owl-nav button.owl-next {
+    @apply -me-[15px] 4xl:-me-16;
+  }
+
+  .slider .owl-nav button.owl-prev,
+  .Serviceslider .owl-nav button.owl-prev {
+    @apply ms-[-15px] 4xl:-ms-16;
+  }
+
+  .Serviceslider .owl-item {
+    @apply flex justify-center items-center;
+  }
+
+  .hover-sliders .owl-nav button.owl-next,
+  .hover-sliders .owl-nav button.owl-prev {
+    @apply !bg-Bgwhite10;
+  }
+
+  .gallrey .owl-nav button.owl-next,
+  .gallrey .owl-nav button.owl-prev {
+    @apply !bg-BgTeal !text-white;
+  }
+
+  .Client-sliders button.owl-dot,
+  .slider button.owl-dot,
+  .Serviceslider button.owl-dot {
+    @apply !inline mt-4 !w-[14px] !h-[14px] rounded-full ms-3 !bg-black-600;
+  }
+
+  .Client-sliders button.owl-dot.active,
+  .slider button.owl-dot.active,
+  .Serviceslider button.owl-dot.active {
+    @apply !bg-black-800;
+  }
+
+  .Client-sliders .owl-dots,
+  .slider .owl-dots,
+  .Serviceslider .owl-dots {
+    @apply text-center !mt-6;
+  }
+
+  .custom-class-name a {
+    @apply hidden;
+  }
+
+  .time-menu li > span:nth-of-type(1) {
+    @apply flex w-[100px];
+  }
+
+  .Dash-menu li {
+    @apply inline-flex flex-col relative ps-8 after:absolute after:top-2 after:left-0 after:w-[24px] after:h-[2px] after:bg-Teal;
+  }
+
+  footer h4 {
+    @apply text-a font-medium text-black-800;
+  }
+
+  footer ul {
+    @apply flex flex-col gap-4 sm:gap-5 [&_li>a]:text-black-800 font-normal transition-all duration-300 ease-in text-body xm:text-a flex-1;
+  }
+
+  footer ul li {
+    @apply flex [&_a]:hover:text-Teal gap-2 xm:gap-4 items-baseline;
+  }
+
+  .Im-section b {
+    @apply mt-4 mb-4 inline-block text-h4 md:text-2xl;
+  }
+
+  .Im-section p,
+  .section p {
+    @apply break-words;
+  }
+
+  .Im-section strong {
+    @apply mb-4 inline-block text-h4 md:text-xl;
+  }
+
+  .Im-section a,
+  .section a {
+    @apply text-Teal break-words;
+  }
+
+  .Im-section h1,
+  .section h1 {
+    @apply text-h3 md:text-h2 lg:text-h1;
+  }
+
+  .section .p > br {
+    display: none;
+  }
+
+  .section .wp-block-list li {
+    @apply list-disc mb-2 ms-4 marker:text-Teal;
+  }
+
+  .section h2 {
+    @apply text-Teal text-a md:text-h3 lg:text-h2;
+  }
+
+  .section h3 {
+    @apply text-Teal text-body sm:text-a md:text-h3;
+  }
+
+  .section h5 {
+    @apply text-black-900 text-xl font-medium;
+  }
+
+  .service-slider .owl-item.active:last-of-type .items {
+    @apply after:hidden;
+  }
+
+  .blogtemplate h2.wp-block-heading {
+    @apply pb-4 lg:pb-[25px];
+  }
+
+  .blogtemplate .wp-block-separator {
+    @apply mb-8 w-[80px] !bg-Teal h-[2px] !border-Teal;
+  }
+
+  .blogtemplate p {
+    @apply mb-4 lg:mb-5 break-words;
+  }
+
+  .blogtemplate .wp-container-core-columns-is-layout-2,
+  .blogtemplate .wp-container-core-columns-is-layout-3 {
+    @apply flex gap-2 flex-wrap flex-col sm:flex-row sm:gap-4 mb-4 lg:mb-8;
+  }
+
+  .blogtemplate
+    .wp-container-core-columns-is-layout-2
+    .wp-block-column-is-layout-flow,
+  .blogtemplate
+    .wp-container-core-columns-is-layout-3
+    .wp-block-column-is-layout-flow {
+    @apply flex flex-col w-full md:w-[47%] 2xl:w-[33%] border border-Teal p-5 md:p-6 lg:p-8;
+  }
+
+  .blogtemplate h2:not(:first-of-type) {
+    @apply lg:pt-4;
+  }
+
+  .blogtemplate h3.wp-block-heading {
+    @apply my-4;
+  }
+
+  .wp-container-core-columns-is-layout-2 .wp-block-heading,
+  .wp-container-core-columns-is-layout-3 .wp-block-heading {
+    @apply !mt-0 !mb-32;
+  }
+
+  .wp-container-core-columns-is-layout-2 p,
+  .wp-container-core-columns-is-layout-3 p {
+    @apply !p-0;
+  }
+
+  .blogtemplate .wp-block-list {
+    @apply flex flex-col gap-3 text-a mb-8;
+  }
+
+  .blogtemplate h4.wp-block-heading {
+    @apply font-normal mb-4;
+  }
+
+  .blogtemplate table {
+    @apply border border-Teal w-full 2xl:w-[1080px] my-8;
+  }
+
+  table td,
+  th {
+    @apply text-body border border-Teal px-2 py-2 sm:py-4 text-center sm:text-a;
+  }
+
+  table tr:first-of-type td {
+    @apply text-body sm:text-a lg:text-h4 !font-normal text-black-800;
+  }
+
+  .blogtemplate .wp-block-table {
+    @apply overflow-auto;
+  }
+
+  .blogtemplate .wp-block-button a {
+    @apply inline-flex text-center bg-Teal text-white hover:bg-teal-600 mb-4 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in;
+  }
+
+  .blogtemplate .rank-math-list-item {
+    @apply border border-solid border-Teal mb-4 sm:mt-8 p-4 sm:p-8;
+  }
+
+  .blogtemplate h3.rank-math-question {
+    @apply mb-4;
+  }
+
+  .Client-sliders .owl-prev {
+    @apply relative !justify-center !items-center 3xl:left-[-65px] left-0 !border !border-solid !border-Teal rounded-full xlg:!flex !hidden;
+  }
+
+  .Client-sliders .owl-next {
+    @apply relative !justify-center !items-center 3xl:right-[-65px] right-0 !border !border-solid !border-Teal rounded-full xlg:!flex !hidden;
+  }
+
+  .blogtemplate
+    .wp-container-core-columns-is-layout-2
+    .wp-block-column.is-layout-flow.wp-block-column-is-layout-flow
+    h3.wp-block-heading,
+  .blogtemplate
+    .wp-container-core-columns-is-layout-3
+    .wp-block-column.is-layout-flow.wp-block-column-is-layout-flow
+    h3.wp-block-heading {
+    @apply !m-0 !mb-4;
+  }
+
+  .blogtemplate
+    .wp-container-core-columns-is-layout-2
+    .wp-block-column.is-layout-flow.wp-block-column-is-layout-flow
+    .wp-block-list,
+  .blogtemplate
+    .wp-container-core-columns-is-layout-3
+    .wp-block-column.is-layout-flow.wp-block-column-is-layout-flow
+    .wp-block-list {
+    @apply !m-0;
+  }
+
+  input[type="radio"] {
+    @apply hidden;
+  }
+
+  .link--block .menu p,
+  .menu1 p {
+    @apply !hidden;
+  }
+
+  .link--block .menu1 {
+    @apply !text-[18px] !gap-[.5rem];
+  }
+
+  .owl-carousel .owl-stage-outer {
+    @apply z-20;
+  }
+  .list-g-disc li:after {
+    @apply h-2.5 w-2.5 bg-none bg-[#1a8281] rounded-[50%];
+  }
+  .list-g-disc li {
+    @apply pl-[25px];
   }
 }

@@ -11,7 +11,6 @@ import Slidehover from "../componants/Slidehover";
 import axios from "axios";
 import Link from "next/link";
 
-
 const page = () => {
   const [HomePageData, setHomePageData] = useState(null);
 
@@ -97,6 +96,7 @@ const page = () => {
         title={HomePageData?.home_anfrage_1_main_title.value}
         description={HomePageData?.home_anfrage_1_content.value}
         BTN={HomePageData?.home_anfrage_1_button.value}
+        bg_img={HomePageData?.home_anfrage_1_image?.value}
       />
 
       <AboutLambsheim

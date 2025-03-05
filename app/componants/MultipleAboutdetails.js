@@ -18,13 +18,15 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
 
             {val?.aesthetik_all_faltenunterspritzung &&
               val?.aesthetik_all_faltenunterspritzung?.map((valData, ind) => {
-                console.log('valData' , ) 
+                console.log("valData");
                 const isEven = ind % 2 === 0;
                 return (
                   <section
                     key={ind}
                     className={`pb-10 py-[30px] md:py-[40px] lg:py-[50px] ${
-                      isEven ? "bg-Bgslate" : "bg-white  flex justify-end items-end"
+                      isEven
+                        ? "bg-Bgslate"
+                        : "bg-white  flex justify-end items-end"
                     }`}
                     id={valData.aesthetik_anfrage_id}
                   >
@@ -52,7 +54,13 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                             height={578}
                           />
                         </div>
-                        <div className={`flex gap-5 flex-col w-full justify-center lg:gap-8 lg:w-[50%] ${isEven ? 'pl-0 lg:pl-4 pr-0 lg:pr-4  2xl:pr-[100px]' : 'pr-0 lg:pr-4 pl-0 lg:pl-4 2xl:pl-[100px]' }  relative z-10`}>
+                        <div
+                          className={`flex gap-5 flex-col w-full justify-center lg:gap-8 lg:w-[50%] ${
+                            isEven
+                              ? "pl-0 lg:pl-4 pr-0 lg:pr-4  2xl:pr-[100px]"
+                              : "pr-0 lg:pr-4 pl-0 lg:pl-4 2xl:pl-[100px]"
+                          }  relative z-10`}
+                        >
                           <div className="flex flex-col gap-5 2xl:gap-6 lg:flex-[50%] flex-shrink-0 justify-center">
                             <div className="flex flex-col gap-4">
                               <div className="flex relative">
@@ -74,13 +82,15 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                 className="flex flex-col gap-5 2xl:gap-6 flex-1 lg:flex-[50%] flex-shrink-0"
                               >
                                 <div className="flex flex-col gap-4 flex-1">
-                                  <h3 className="text-h4 2xl:text-h3">
-                                    {
-                                      ind.home_leistungen_section_sub_content_title
-                                    }
-                                  </h3>
+                                  {ind.home_leistungen_section_sub_content_title && (
+                                    <h3 className="text-h4 2xl:text-h3">
+                                      {
+                                        ind.home_leistungen_section_sub_content_title
+                                      }
+                                    </h3>
+                                  )}
                                   <div
-                                    className="grid xl:grid-cols-2 gap-4 text-body 2xl:text-a [&_ul>li]:font-medium *:bg-salte *:p-4"
+                                    className="flex gap-4 text-body 2xl:text-a [&_ul>li]:font-medium *:bg-salte *:p-4 sm:*:w-[calc(50%-8px)] justify-center flex-wrap *:gap-1 *:grid list-g-disc"
                                     dangerouslySetInnerHTML={{
                                       __html:
                                         valData?.aesthetik_all_faltenunterspritzung_note,

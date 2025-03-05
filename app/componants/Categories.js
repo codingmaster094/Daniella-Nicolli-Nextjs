@@ -2,10 +2,11 @@ import Link from "next/link";
 import React from "react";
 
 const Categories = (props) => {
-  const { title, description, BTN } = props;
+  const { title, description, BTN, bg_img } = props;
   return (
     <section
-      className={` py-10 md:py-[70px] lg:py-[100px] bg-Category-bg bg-cover  bg-bottom`}
+      className="py-10 md:py-[70px] lg:py-[100px] bg-Category-bg bg-cover  bg-bottom"
+      style={{ backgroundImage: `url(${bg_img})` }}
     >
       <div className="w-full container mx-auto px-[15px]">
         <div className="flex w-full max-w-[922px] flex-col text-white gap-8 mx-auto text-center">
