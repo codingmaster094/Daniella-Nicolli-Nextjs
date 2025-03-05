@@ -5,8 +5,12 @@ const Categories = (props) => {
   const { title, description, BTN, bg_img } = props;
   return (
     <section
-      className="py-10 md:py-[70px] lg:py-[100px] bg-Category-bg bg-cover  bg-bottom"
-      style={{ backgroundImage: `url(${bg_img})` }}
+      className="py-10 md:py-[70px] lg:py-[100px] bg-cover bg-bottom"
+      style={{
+        backgroundImage: bg_img
+          ? `url(${bg_img})`
+          : `url('/images/bg-flower.webp')`,
+      }}
     >
       <div className="w-full container mx-auto px-[15px]">
         <div className="flex w-full max-w-[922px] flex-col text-white gap-8 mx-auto text-center">
