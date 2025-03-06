@@ -52,9 +52,9 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
           ],
           responsive: {
             0: { items: 1 },
-            570: { items: 2, nav: false },
-            800: { items: 2, nav: false },
-            1000: { items: 3, nav: false },
+            570: { items: 2 },
+            800: { items: 2 },
+            1000: { items: 3 },
             1600: { items: 4 },
           },
           onInitialized: function () {

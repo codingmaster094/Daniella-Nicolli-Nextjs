@@ -78,10 +78,12 @@
     @apply absolute -translate-y-1/2 z-10 top-[41%] w-full !block;
   }
 
-  .owl-carousel .owl-stage {
-    @apply flex items-center;
+  .owl-carousel.Client-sliders .owl-stage {
+    @apply flex items-center pl-0 ml-0;
   }
-
+  .owl-carousel.slider .owl-stage {
+    @apply pl-0 ml-0;
+  }
   .owl-carousel .owl-nav button.owl-next,
   .owl-carousel .owl-nav button.owl-prev {
     @apply inline-flex justify-center items-center w-[30px] h-[30px] md:w-[50px] md:h-[50px] !bg-Bgwhite !p-6;

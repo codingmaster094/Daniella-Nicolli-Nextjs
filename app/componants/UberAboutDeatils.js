@@ -32,11 +32,14 @@ const UberAboutDeatils = ({ main_title, content, image, sub_content }) => {
             ></div>
 
             <div className="flex flex-wrap gap-4">
-              <div className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(90%-8px)]">
+              <div className="flex flex-col gap-4 bg-salte p-4">
                 <ul
-                  className="menu menu1 list-g-disc"
+                  className="menu menu1 list-g-disc text-[18px]"
                   dangerouslySetInnerHTML={{
-                    __html: sub_content,
+                    __html: sub_content
+                      ?.replace(/<ul>/g, "")
+                      .replace(/<\/ul>/g, "")
+                      .replace(/&amp;/g, "&"),
                   }}
                 ></ul>
               </div>

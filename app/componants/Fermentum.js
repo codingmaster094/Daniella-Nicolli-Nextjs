@@ -39,6 +39,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
           margin: 30,
           nav: true,
           dots: true,
+          stagePadding: 0,
           items: 4,
           autoplay: true,
           autoplayTimeout: 4000,
@@ -50,8 +51,8 @@ const Fermentum = ({ main_title, all_vorteile }) => {
           responsive: {
             0: { items: 1 },
             400: { items: 1 },
-            800: { items: 2, nav: false },
-            1400: { items: 3, nav: false },
+            800: { items: 2 },
+            1400: { items: 3 },
             1600: { items: 3 },
           },
           onInitialized: function () {

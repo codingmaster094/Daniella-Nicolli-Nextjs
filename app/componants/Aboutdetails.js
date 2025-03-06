@@ -49,7 +49,7 @@ const Aboutdetails = (props) => {
             <div className="flex flex-wrap xlg:justify-center gap-4 ">
               {section_sub_content?.map((item, i) => (
                 <div
-                  className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(50%-8px)]"
+                  className="flex flex-col gap-4 bg-salte p-4 xlg:w-[calc(50%-8px)]"
                   key={i}
                 >
                   {item?.home_leistungen_section_sub_contents?.home_leistungen_section_sub_contents_item?.map(
@@ -74,7 +74,7 @@ const Aboutdetails = (props) => {
                           ></p>
                         )}
                         <ul
-                          className="menu menu1 list-g-disc"
+                          className="menu menu1 list-g-disc text-[18px]"
                           dangerouslySetInnerHTML={{
                             __html:
                               subitem.home_leistungen_section_sub_contents_item_content

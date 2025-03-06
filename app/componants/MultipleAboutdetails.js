@@ -94,7 +94,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                     (items, i) => {
                                       return (
                                         <div
-                                          className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(50%-8px)]"
+                                          className="flex flex-col gap-4 bg-salte p-4 xlg:w-[calc(50%-8px)]"
                                           key={i}
                                         >
                                           {items.aesthetik_all_faltenunterspritzung_content_items_title && (
@@ -107,10 +107,13 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                             ></h3>
                                           )}
                                           <ul
-                                            className="menu menu1 list-g-disc"
+                                            className="menu menu1 list-g-disc text-[18px]"
                                             dangerouslySetInnerHTML={{
                                               __html:
-                                                items?.aesthetik_all_faltenunterspritzung_content_items,
+                                                items?.aesthetik_all_faltenunterspritzung_content_items
+                                                  ?.replace(/<ul>/g, "")
+                                                  .replace(/<\/ul>/g, "")
+                                                  .replace(/&amp;/g, "&"),
                                             }}
                                           ></ul>
                                         </div>
