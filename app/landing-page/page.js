@@ -81,6 +81,7 @@ const page = () => {
         <Slidehover
           main_title={LendiangPageData?.referenzen_main_title?.value}
           all_referenzen={LendiangPageData?.all_referenzen}
+          enabledisable_referenz={HomePageData?.enabledisable_referenz?.value}
         />
       )}
 
