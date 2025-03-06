@@ -82,6 +82,7 @@ const ClientCarousel = ({
     }
   }, []);
 
+  console.log("activate_deactivate", activate_deactivate);
   return (
     activate_deactivate && (
       <section className="py-[30px] md:py-[40px] lg:py-[50px]">
