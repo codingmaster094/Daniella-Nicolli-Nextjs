@@ -177,7 +177,7 @@
   }
 
   footer ul {
-    @apply flex flex-col gap-4 sm:gap-5 [&_li>a]:text-black-800 font-normal transition-all duration-300 ease-in text-body xm:text-a flex-1;
+    @apply flex flex-col gap-2 sm:gap-3 [&_li>a]:text-black-800 font-normal transition-all duration-300 ease-in text-body xm:text-a flex-1;
   }
 
   footer ul li {
