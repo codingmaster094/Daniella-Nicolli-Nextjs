@@ -35,7 +35,11 @@ const ContactAboutDetails = ({
     <section className="pt-[30px] md:pt-[40px] pb-0 lg:pt-[50px]">
       <div className=" flex flex-col gap-8">
         <div className="flex relative w-full max-w-[1578px] px-[15px] gap-4 sm:gap-8 flex-col mx-auto text-center justify-center ">
-          <h2>{main_title}</h2>
+          <h2
+            dangerouslySetInnerHTML={{
+              __html: main_title,
+            }}
+          ></h2>
           {content && (
             <p
               dangerouslySetInnerHTML={{

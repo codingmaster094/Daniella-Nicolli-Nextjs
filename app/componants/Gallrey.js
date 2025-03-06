@@ -94,7 +94,12 @@ const Gallrey = ({ main_title, gallery_images }) => {
     <section className="pt-[30px] md:pt-[40px] lg:pt-[50px]">
       <div className="flex flex-col gap-6 md:gap-11">
         <div className="flex justify-center px-4">
-          <h2 className="text-h3 lg:text-h2">{main_title}</h2>
+          <h2
+            className="text-h3 lg:text-h2"
+            dangerouslySetInnerHTML={{
+              __html: main_title,
+            }}
+          ></h2>
         </div>
         <div
           className="owl-carousel hover-sliders gallrey relative"

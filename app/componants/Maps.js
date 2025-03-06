@@ -6,7 +6,11 @@ const Maps = ({ main_title, map_url, map_image }) => {
     <section className="py-[30px] md:py-[40px] lg:py-[50px]">
       <div className="flex  flex-col gap-6 md:gap-8  lg:gap-12  text-center ">
         <div className="flex flex-col gap-6">
-          <h2>{main_title}</h2>
+          <h2
+            dangerouslySetInnerHTML={{
+              __html: main_title,
+            }}
+          ></h2>
         </div>
         <div className="flex w-full">
           {map_url ? (

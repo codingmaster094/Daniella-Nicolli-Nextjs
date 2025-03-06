@@ -77,9 +77,12 @@ const Page = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-5 md:gap-6 lg:gap-8">
-                <h2 className="text-a  sm:text-h3">
-                  {blogData?.ratgeber_single_wichtigste_main_title}
-                </h2>
+                <h2
+                  className="text-a  sm:text-h3"
+                  dangerouslySetInnerHTML={{
+                    __html: blogData?.ratgeber_single_wichtigste_main_title,
+                  }}
+                ></h2>
                 <ul
                   dangerouslySetInnerHTML={{
                     __html:
@@ -109,7 +112,11 @@ const Page = () => {
           <div className="container px-[15px] mx-auto">
             <div className="flex flex-col gap-6 ">
               <div className="flex relative pb-6 lg:pb-[25px] after:absolute after:bottom-0 after:w-20 after:left-0 after:h-[1px] after:bg-black-800">
-                <h2>{blogData?.ratgeber_single_wichtigste_2_main_title}</h2>
+                <h2
+                  dangerouslySetInnerHTML={{
+                    __html: blogData?.ratgeber_single_wichtigste_2_main_title,
+                  }}
+                ></h2>
               </div>
               <ul
                 className="flex flex-col gap-3 text-a font-medium [ul&_li]:list-disc [ul&_li]:marker:text-Teal ps-4"
