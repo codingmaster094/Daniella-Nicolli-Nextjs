@@ -55,7 +55,9 @@ const page = () => {
         main_title={HomePageData?.home_leistungen_section_main_title?.value}
         section_image={HomePageData?.home_leistungen_section_image?.value}
         section_content={HomePageData?.home_leistungen_section_content?.value}
-        section_sub_content={HomePageData?.home_leistungen_section_sub_content}
+        section_sub_content={
+          HomePageData?.home_leistungen_section_sub_content?.value
+        }
       />
 
       <Categories

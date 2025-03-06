@@ -46,54 +46,60 @@ const Aboutdetails = (props) => {
               }}
             ></p>
 
-            <div className="flex flex-wrap xlg:justify-center gap-4 mt-4">
-              {section_sub_content &&
-                section_sub_content?.value?.map((items, i) => {
-                  console.log("items", items);
-                  return (
-                    <div
-                      className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(50%-8px)]"
-                      key={i}
-                    >
-                      {items.home_leistungen_section_sub_content_title && (
-                        <h3
-                          className="text-h4 2xl:text-h3"
+            <div className="flex flex-wrap xlg:justify-center gap-4 ">
+              {section_sub_content?.map((item, i) => (
+                <div
+                  className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(50%-8px)]"
+                  key={i}
+                >
+                  {item?.home_leistungen_section_sub_contents?.home_leistungen_section_sub_contents_item?.map(
+                    (subitem, j) => (
+                      <div key={j}>
+                        {item.home_leistungen_section_sub_content_title && (
+                          <h3
+                            className="text-h4 2xl:text-h3"
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                item.home_leistungen_section_sub_content_title,
+                            }}
+                          ></h3>
+                        )}
+                        {subitem.home_leistungen_section_sub_contents_item_title && (
+                          <p
+                            className=""
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                subitem.home_leistungen_section_sub_contents_item_title,
+                            }}
+                          ></p>
+                        )}
+                        <ul
+                          className="menu menu1 list-g-disc"
                           dangerouslySetInnerHTML={{
                             __html:
-                              items.home_leistungen_section_sub_content_title,
+                              subitem.home_leistungen_section_sub_contents_item_content,
                           }}
-                        ></h3>
-                      )}
-                      <ul
-                        className="menu menu1 list-g-disc"
-                        dangerouslySetInnerHTML={{
-                          __html:
-                            items?.home_leistungen_section_sub_content_content,
-                        }}
-                      ></ul>
-                      {items.home_leistungen_section_sub_content_button && (
-                        <Link
-                          href={
-                            items?.home_leistungen_section_sub_content_button
-                              ?.url
-                          }
-                          target={
-                            items?.home_leistungen_section_sub_content_button
-                              ?.target
-                          }
-                          className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 2xl:px-9 2xl:py-4 transition-all duration-700 ease-in"
-                          aria-label="link-button"
-                          role="link"
-                        >
-                          {
-                            items.home_leistungen_section_sub_content_button
-                              .title
-                          }
-                        </Link>
-                      )}
-                    </div>
-                  );
-                })}
+                        ></ul>
+                      </div>
+                    )
+                  )}
+                  {item.home_leistungen_section_sub_content_button && (
+                    <Link
+                      href={
+                        item.home_leistungen_section_sub_content_button?.url
+                      }
+                      target={
+                        item.home_leistungen_section_sub_content_button?.target
+                      }
+                      className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 2xl:px-9 2xl:py-4 transition-all duration-700 ease-in"
+                      aria-label="link-button"
+                      role="link"
+                    >
+                      {item.home_leistungen_section_sub_content_button?.title}
+                    </Link>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>

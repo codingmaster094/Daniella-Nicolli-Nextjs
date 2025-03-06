@@ -51,6 +51,7 @@ const page = () => {
         main_title={Ubermich?.ueber_geschichte_main_title?.value}
         content={Ubermich?.ueber_geschichte_content?.value}
         image={Ubermich?.ueber_geschichte_image?.value}
+        sub_content={Ubermich?.experience_year?.value}
       />
 
       {Ubermich && (

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-const UberAboutDeatils = ({ main_title, content, image }) => {
+const UberAboutDeatils = ({ main_title, content, image, sub_content }) => {
+  console.log("sub_content", sub_content);
   return (
     //  <section className="pb-10 md:py-[70px] md:pt-0 lg:py-[100px]">
     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
@@ -19,12 +20,27 @@ const UberAboutDeatils = ({ main_title, content, image }) => {
           </div>
           <div className="flex gap-5 pe-15 flex-col w-full justify-center lg:w-[50%] px-0  lg:px-4  lg:gap-8 2xl:px-[100px] relative z-10">
             <div className="flex relative">
-              <h2>{main_title}</h2>
+              <h2
+                dangerouslySetInnerHTML={{
+                  __html: main_title,
+                }}
+              ></h2>
             </div>
             <div
               className="flex flex-col gap-6 sm:gap-[25px] "
               dangerouslySetInnerHTML={{ __html: content }}
             ></div>
+
+            <div className="flex flex-wrap xlg:justify-center gap-4">
+              <div className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(50%-8px)]">
+                <ul
+                  className="menu menu1 list-g-disc"
+                  dangerouslySetInnerHTML={{
+                    __html: sub_content,
+                  }}
+                ></ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

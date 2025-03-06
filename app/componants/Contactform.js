@@ -85,10 +85,47 @@ const Contactform = ({
 
   const endpoint =
     process.env.NEXT_PUBLIC_SENDER_MAIL || "https://formspree.io/f/mnnjpeda";
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (validateForm()) {
+  //     const response = await fetch(endpoint, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     const result = await response.json();
+  //     if (response.ok) {
+  //       setSuccess("Nachricht erfolgreich gesendet");
+  //       setFormData({
+  //         // Reset the form fields after successful submission
+  //         name: "",
+  //         email: "",
+  //         telephone: "",
+  //         message: "",
+  //         Contact_email: false,
+  //         Contact_telefon: false,
+  //         Contact_Datenschutz: false,
+  //         selectedIcon: "",
+  //       });
+  //       setErrors({}); // Clear validation errors
+  //     } else {
+  //       setErrorMessage(
+  //         `Nachricht konnte nicht gesendet werden: ${result.message}`
+  //       );
+  //     }
+  //   } else {
+  //     console.log("Validation failed");
+  //   }
+
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const response = await fetch(endpoint, {
+      const response = await fetch("/api/emaildata", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -99,8 +136,8 @@ const Contactform = ({
       const result = await response.json();
       if (response.ok) {
         setSuccess("Nachricht erfolgreich gesendet");
+        // Reset form data
         setFormData({
-          // Reset the form fields after successful submission
           name: "",
           email: "",
           telephone: "",
@@ -110,7 +147,7 @@ const Contactform = ({
           Contact_Datenschutz: false,
           selectedIcon: "",
         });
-        setErrors({}); // Clear validation errors
+        setErrors({});
       } else {
         setErrorMessage(
           `Nachricht konnte nicht gesendet werden: ${result.message}`
@@ -120,7 +157,6 @@ const Contactform = ({
       console.log("Validation failed");
     }
   };
-
   useEffect(() => {
     fetchContactOptionData();
   }, []);
