@@ -54,7 +54,7 @@ const Aboutdetails = (props) => {
                 >
                   {item?.home_leistungen_section_sub_contents?.home_leistungen_section_sub_contents_item?.map(
                     (subitem, j) => (
-                      <div key={j}>
+                      <div className="space-y-2" key={j}>
                         {item.home_leistungen_section_sub_content_title && (
                           <h3
                             className="text-h4 2xl:text-h3"
@@ -77,7 +77,9 @@ const Aboutdetails = (props) => {
                           className="menu menu1 list-g-disc"
                           dangerouslySetInnerHTML={{
                             __html:
-                              subitem.home_leistungen_section_sub_contents_item_content,
+                              subitem.home_leistungen_section_sub_contents_item_content
+                                ?.replace(/<ul>/g, "")
+                                .replace(/<\/ul>/g, ""),
                           }}
                         ></ul>
                       </div>

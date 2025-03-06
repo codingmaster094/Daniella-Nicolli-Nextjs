@@ -31,8 +31,8 @@ const UberAboutDeatils = ({ main_title, content, image, sub_content }) => {
               dangerouslySetInnerHTML={{ __html: content }}
             ></div>
 
-            <div className="flex flex-wrap xlg:justify-center gap-4">
-              <div className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(50%-8px)]">
+            <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(90%-8px)]">
                 <ul
                   className="menu menu1 list-g-disc"
                   dangerouslySetInnerHTML={{

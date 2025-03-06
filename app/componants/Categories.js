@@ -5,12 +5,12 @@ const Categories = (props) => {
   const { title, description, BTN, bg_img } = props;
   return (
     <section
-      className="py-10 md:py-[70px] lg:py-[100px] bg-cover bg-bottom relative"
-      style={{
-        backgroundImage: bg_img
-          ? `url(${bg_img})`
-          : `url('/images/bg-flower.webp')`,
-      }}
+      className="py-10 md:py-[70px] lg:py-[100px] bg-cover bg-bottom relative bg-Teal"
+      // style={{
+      //   backgroundImage: bg_img
+      //     ? `url(${bg_img})`
+      //     : `url('/images/bg-flower.webp')`,
+      // }}
     >
       <div className="overlay-1 absolute w-full h-full top-0 left-0 z-0 bg-[rgba(0,0,0,0.3)]"></div>
       <div className="w-full container mx-auto px-[15px]">
@@ -35,7 +35,7 @@ const Categories = (props) => {
             <Link
               href={BTN?.url}
               target={BTN?.target}
-              className="flex self-center text-center bg-white text-Teal hover:bg-teal-600 hover:text-white font-normal  px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in"
+              className="flex self-center text-center border-[1.5px] border-solid border-transparent bg-white text-Teal hover:bg-teal-600 hover:text-white font-normal  px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in hover:bg-transparent hover:border-white"
               aria-label="link-button"
               role="link"
             >
