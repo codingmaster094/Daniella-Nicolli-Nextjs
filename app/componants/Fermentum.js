@@ -92,7 +92,12 @@ const Fermentum = ({ main_title, all_vorteile }) => {
       <div className="w-full max-w-[1550px] px-[15px] mx-auto">
         <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
           <div className="flex justify-center">
-            <h2 className="sm:text-h3 lg:text-h2">{main_title}</h2>
+            <h2
+              className="sm:text-h3 lg:text-h2"
+              dangerouslySetInnerHTML={{
+                __html: main_title,
+              }}
+            ></h2>
           </div>
           <div className="owl-carousel slider relative" ref={carouselRef}>
             {all_vorteile?.value?.map((service, index) => (
@@ -106,9 +111,12 @@ const Fermentum = ({ main_title, all_vorteile }) => {
                       alt="ServiceSvg1"
                       className="!w-12 h-12"
                     />
-                    <h3 className="text-black md:text-h4 text-teal-700">
-                      {service.home_all_vorteile_title}
-                    </h3>
+                    <h3
+                      className="text-black md:text-h4 text-teal-700"
+                      dangerouslySetInnerHTML={{
+                        __html: service.home_all_vorteile_title,
+                      }}
+                    ></h3>
                   </div>
                   <div className="flex">
                     <p

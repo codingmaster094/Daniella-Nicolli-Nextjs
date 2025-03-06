@@ -6,8 +6,8 @@ import PreviousBTN from "../../public/images/PreviousBTN.png";
 import NextBTN from "../../public/images/NextBTN.png";
 import ReactDOMServer from "react-dom/server";
 
-const Slidehover = ({ main_title, all_referenzen , enabledisable_referenz }) => {
-  console.log('enabledisable_referenz', typeof enabledisable_referenz)
+const Slidehover = ({ main_title, all_referenzen, enabledisable_referenz }) => {
+  console.log("enabledisable_referenz", typeof enabledisable_referenz);
   const carouselRef = useRef();
 
   useEffect(() => {
@@ -105,46 +105,54 @@ const Slidehover = ({ main_title, all_referenzen , enabledisable_referenz }) => 
 
   return (
     enabledisable_referenz && (
-    <section className="pt-[30px] md:pt-[40px] lg:pt-[50px]">
-      <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
-        <div className="flex justify-center px-4">
-          <h2 className="sm:text-h3 lg:text-h2">{main_title}</h2>
-        </div>
-        <div
-          className="owl-carousel hover-sliders relative bg-slider-image bg-cover bg-center bg-no-repeat"
-          ref={carouselRef}
-        >
-          {all_referenzen &&
-            all_referenzen.value?.map((item, index) => (
-              <div
-                key={index}
-                className="items h-[550px] lg:h-[700px] border-r border-Border flex items-end py-12 px-6 group relative after:absolute after:top-0 after:left-0 after:bg-slider-bg after:w-full after:h-full after:opacity-0 hover:after:opacity-100 transition-all ease-in duration-700"
-              >
-                <div className="flex flex-col *:text-white h-[295px] md:h-[355px] 2xl:h-[320px] justify-end z-10 transition-all ease-in duration-700">
-                  <div className="flex flex-col gap-4 h-[40px] sm:h-[80px] group-hover:h-full transition-all ease-in duration-700">
-                    <div className="flex gap-4 items-center *:text-white">
-                      <span className="flex flex-shrink-0">
-                        <Image src={WhiteVellrySvg} alt="WhiteVellySvg" />
-                      </span>
-                      {item.all_referenzen_title && (
-                        <h3 className="text-[23px] 4xl:text-h3">
-                          {item.all_referenzen_title}
-                        </h3>
-                      )}
+      <section className="pt-[30px] md:pt-[40px] lg:pt-[50px]">
+        <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
+          <div className="flex justify-center px-4">
+            <h2
+              className="sm:text-h3 lg:text-h2"
+              dangerouslySetInnerHTML={{
+                __html: main_title,
+              }}
+            ></h2>
+          </div>
+          <div
+            className="owl-carousel hover-sliders relative bg-slider-image bg-cover bg-center bg-no-repeat"
+            ref={carouselRef}
+          >
+            {all_referenzen &&
+              all_referenzen.value?.map((item, index) => (
+                <div
+                  key={index}
+                  className="items h-[550px] lg:h-[700px] border-r border-Border flex items-end py-12 px-6 group relative after:absolute after:top-0 after:left-0 after:bg-slider-bg after:w-full after:h-full after:opacity-0 hover:after:opacity-100 transition-all ease-in duration-700"
+                >
+                  <div className="flex flex-col *:text-white h-[295px] md:h-[355px] 2xl:h-[320px] justify-end z-10 transition-all ease-in duration-700">
+                    <div className="flex flex-col gap-4 h-[40px] sm:h-[80px] group-hover:h-full transition-all ease-in duration-700">
+                      <div className="flex gap-4 items-center *:text-white">
+                        <span className="flex flex-shrink-0">
+                          <Image src={WhiteVellrySvg} alt="WhiteVellySvg" />
+                        </span>
+                        {item.all_referenzen_title && (
+                          <h3
+                            className="text-[23px] 4xl:text-h3"
+                            dangerouslySetInnerHTML={{
+                              __html: item.all_referenzen_title,
+                            }}
+                          ></h3>
+                        )}
+                      </div>
+                      <div
+                        className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all ease-in duration-500"
+                        dangerouslySetInnerHTML={{
+                          __html: item.all_referenzen_content,
+                        }}
+                      ></div>
                     </div>
-                    <div
-                      className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all ease-in duration-500"
-                      dangerouslySetInnerHTML={{
-                        __html: item.all_referenzen_content,
-                      }}
-                    ></div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     )
   );
 };

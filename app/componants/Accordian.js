@@ -37,7 +37,12 @@ const Accordian = ({ main_title, all_faqs }) => {
     <section className="py-[30px] md:py-[40px] lg:py-[50px]">
       <div className="container mx-auto px-[15px]">
         <div className="flex w-full max-w-[1440px] flex-col gap-6 md:gap-8 lg:gap-12 mx-auto text-center">
-          <h2 className="sm:text-h3 lg:text-h2">{main_title}</h2>
+          <h2
+            className="sm:text-h3 lg:text-h2"
+            dangerouslySetInnerHTML={{
+              __html: main_title,
+            }}
+          ></h2>
           <div className="flex w-full">
             <div className="accordian-inner flex flex-col w-full text-left gap-0 sm:gap-5">
               {all_faqs?.map((item, index) => (
@@ -53,9 +58,12 @@ const Accordian = ({ main_title, all_faqs }) => {
                     className="accordian-header flex justify-between gap-2 cursor-pointer"
                     onClick={() => handleClick(index)}
                   >
-                    <h3 className="text-a sm:text-xl md:text-h4 !font-medium">
-                      {item.all_faqs_question}
-                    </h3>
+                    <h3
+                      className="text-a sm:text-xl md:text-h4 !font-medium"
+                      dangerouslySetInnerHTML={{
+                        __html: item.all_faqs_question,
+                      }}
+                    ></h3>
                     <span
                       className={`arrow w-[28px] h-[28px] inline-block flex-shrink-0 transition-transform rounded-full ${
                         selected === index ? "rotate-180" : ""

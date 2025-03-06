@@ -3,7 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const ClientCarousel = ({ main_title, section_all_partners , activate_deactivate}) => {
+const ClientCarousel = ({
+  main_title,
+  section_all_partners,
+  activate_deactivate,
+}) => {
   const carouselRef = useRef();
 
   useEffect(() => {
@@ -31,7 +35,7 @@ const ClientCarousel = ({ main_title, section_all_partners , activate_deactivate
               autoplay: true,
               autoplaySpeed: 3000,
               autoplayHoverPause: false,
-              
+
               navText: [
                 '<img src="/images/Vector(4).png" width="20px" height="20px"  alt="Previous Slide" />',
                 '<img src="/images/vector5.png" width="20px" height="20px"  alt="Next Slide" />',
@@ -79,62 +83,68 @@ const ClientCarousel = ({ main_title, section_all_partners , activate_deactivate
   }, []);
 
   return (
-    
-    activate_deactivate && ( 
-    <section className="py-[30px] md:py-[40px] lg:py-[50px]">
-      <div className="container px-[15px] mx-auto">
-        <div className="flex flex-col gap-6 md:gap-11 lg:gap-16 text-center">
-          {main_title && <h2>{main_title}</h2>}
-          <div
-            className="owl-carousel Client-sliders relative"
-            ref={carouselRef}
-          >
-            {section_all_partners?.value &&
-              section_all_partners?.value.map((val, index) => {
-                return (
-                  <div className="item" key={index}>
-                    <div className="client-logo text-center flex items-center justify-center">
-                      {val.partners_section_all_partners_website_link ? (
-                        <Link
-                          href={
-                            val.partners_section_all_partners_website_link?.url
-                          }
-                          target={
-                            val.partners_section_all_partners_website_link
-                              ?.target
-                          }
-                          aria-label={
-                            val.partners_section_all_partners_website_link
-                              ?.title
-                          }
-                          className="block"
-                        >
+    activate_deactivate && (
+      <section className="py-[30px] md:py-[40px] lg:py-[50px]">
+        <div className="container px-[15px] mx-auto">
+          <div className="flex flex-col gap-6 md:gap-11 lg:gap-16 text-center">
+            {main_title && (
+              <h2
+                dangerouslySetInnerHTML={{
+                  __html: main_title,
+                }}
+              ></h2>
+            )}
+            <div
+              className="owl-carousel Client-sliders relative"
+              ref={carouselRef}
+            >
+              {section_all_partners?.value &&
+                section_all_partners?.value.map((val, index) => {
+                  return (
+                    <div className="item" key={index}>
+                      <div className="client-logo text-center flex items-center justify-center">
+                        {val.partners_section_all_partners_website_link ? (
+                          <Link
+                            href={
+                              val.partners_section_all_partners_website_link
+                                ?.url
+                            }
+                            target={
+                              val.partners_section_all_partners_website_link
+                                ?.target
+                            }
+                            aria-label={
+                              val.partners_section_all_partners_website_link
+                                ?.title
+                            }
+                            className="block"
+                          >
+                            <Image
+                              src={val.partners_section_all_partners_logos}
+                              alt={`Client logo for ${val.partners_section_all_partners_website_link?.title}`}
+                              className="!w-auto"
+                              height={85}
+                              width={157}
+                            />
+                          </Link>
+                        ) : (
                           <Image
                             src={val.partners_section_all_partners_logos}
-                            alt={`Client logo for ${val.partners_section_all_partners_website_link?.title}`}
+                            alt={`Client logo ${index + 1}`}
                             className="!w-auto"
                             height={85}
                             width={157}
                           />
-                        </Link>
-                      ) : (
-                        <Image
-                          src={val.partners_section_all_partners_logos}
-                          alt={`Client logo ${index + 1}`}
-                          className="!w-auto"
-                          height={85}
-                          width={157}
-                        />
-                      )}
+                        )}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+            </div>
           </div>
         </div>
-      </div>
-    </section>)
-    
+      </section>
+    )
   );
 };
 

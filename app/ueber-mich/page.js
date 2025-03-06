@@ -7,6 +7,7 @@ import UberAboutDeatilsleft from "../componants/UberAboutDeatilsleft";
 import Gallrey from "../componants/Gallrey";
 import axios from "axios";
 import Categories from "../componants/Categories";
+import BannerCarousel from "../componants/Banner";
 
 const page = () => {
   const [Ubermich, setUbermich] = useState(null);
@@ -28,50 +29,15 @@ const page = () => {
 
   return (
     <>
-      {Ubermich && (
-        <section>
-          <div className={`Banner`}>
-            <div className="Banner-sliders relative">
-              <div className="item">
-                <div
-                  className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]"
-                  style={{
-                    backgroundImage: Ubermich?.hero_slider_image?.value
-                      ? `url(${Ubermich?.hero_slider_image?.value})`
-                      : "none",
-                  }}
-                >
-                  <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
-                    <h1>{Ubermich?.hero_slider_main_title?.value}</h1>
-                    <ul
-                      className="menu"
-                      dangerouslySetInnerHTML={{
-                        __html: Ubermich?.hero_slider_content?.value.replace(
-                          /<\/?ul[^>]*>/g,
-                          ""
-                        ),
-                      }}
-                    ></ul>
-                    {Ubermich?.hero_slider_button && (
-                      <Link
-                        href={Ubermich?.hero_slider_button?.value?.url}
-                        target={Ubermich?.hero_slider_button?.value?.target}
-                        className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in"
-                        aria-label={
-                          Ubermich?.hero_slider_button?.value?.title ||
-                          "button link"
-                        }
-                      >
-                        {Ubermich?.hero_slider_button?.value?.title}
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+      <BannerCarousel
+        title={Ubermich?.hero_slider_main_title?.value}
+        img={Ubermich?.hero_slider_image?.value}
+        content={Ubermich?.hero_slider_content?.value.replace(
+          /<\/?ul[^>]*>/g,
+          ""
+        )}
+        BTN={Ubermich?.hero_slider_button?.value}
+      />
 
       {Ubermich && (
         <ClientCarousel

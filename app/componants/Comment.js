@@ -9,7 +9,11 @@ const Comment = ({ main_title, content }) => {
       <div className="container mx-auto px-[15px]">
         <div className="flex w-full max-w-[1440px] flex-col gap-6 md:gap-8 lg:gap-12 mx-auto text-center">
           <div className="flex flex-col gap-6">
-            <h2>{main_title}</h2>
+            <h2
+              dangerouslySetInnerHTML={{
+                __html: main_title,
+              }}
+            ></h2>
             <p
               dangerouslySetInnerHTML={{
                 __html: content

@@ -13,12 +13,12 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                 title={val?.aesthetik_anfrage_1_main_title}
                 description={val?.aesthetik_anfrage_1_content}
                 BTN={val?.aesthetik_anfrage_1_button}
+                bg_img={val?.aesthetik_anfrage_1_image}
               />
             )}
 
             {val?.aesthetik_all_faltenunterspritzung &&
               val?.aesthetik_all_faltenunterspritzung?.map((valData, ind) => {
-                console.log("valData");
                 const isEven = ind % 2 === 0;
                 return (
                   <section
@@ -26,7 +26,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                     className={`pb-10 py-[30px] md:py-[40px] lg:py-[50px] ${
                       isEven
                         ? "bg-Bgslate"
-                        : "bg-white  flex justify-end items-end"
+                        : "bg-white flex justify-end items-end"
                     }`}
                     id={valData.aesthetik_anfrage_id}
                   >
@@ -57,18 +57,19 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                         <div
                           className={`flex gap-5 flex-col w-full justify-center lg:gap-8 lg:w-[50%] ${
                             isEven
-                              ? "pl-0 lg:pl-4 pr-0 lg:pr-4  2xl:pr-[100px]"
+                              ? "pl-0 lg:pl-4 pr-0 lg:pr-4 2xl:pr-[100px]"
                               : "pr-0 lg:pr-4 pl-0 lg:pl-4 2xl:pl-[100px]"
-                          }  relative z-10`}
+                          } relative z-10`}
                         >
                           <div className="flex flex-col gap-5 2xl:gap-6 lg:flex-[50%] flex-shrink-0 justify-center">
                             <div className="flex flex-col gap-4">
                               <div className="flex relative">
-                                <h2>
-                                  {
-                                    valData.aesthetik_all_faltenunterspritzung_title
-                                  }
-                                </h2>
+                                <h2
+                                  dangerouslySetInnerHTML={{
+                                    __html:
+                                      valData.aesthetik_all_faltenunterspritzung_title,
+                                  }}
+                                ></h2>
                               </div>
                               <div
                                 className="flex flex-col gap-4 text-body 2xl:text-a [&_ul>li]:font-medium"
@@ -79,24 +80,43 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                               ></div>
                               <div
                                 key={ind.id}
-                                className="flex flex-col gap-5 2xl:gap-6 flex-1 lg:flex-[50%] flex-shrink-0"
+                                className="flex flex-wrap xlg:justify-center gap-4 mt-4"
                               >
-                                <div className="flex flex-col gap-4 flex-1">
-                                  {ind.home_leistungen_section_sub_content_title && (
-                                    <h3 className="text-h4 2xl:text-h3">
-                                      {
-                                        ind.home_leistungen_section_sub_content_title
-                                      }
-                                    </h3>
+                                {valData
+                                  ?.aesthetik_all_faltenunterspritzung_contents
+                                  ?.aesthetik_all_faltenunterspritzung_content_items &&
+                                  Array.isArray(
+                                    valData
+                                      .aesthetik_all_faltenunterspritzung_contents
+                                      .aesthetik_all_faltenunterspritzung_content_items
+                                  ) &&
+                                  valData.aesthetik_all_faltenunterspritzung_contents.aesthetik_all_faltenunterspritzung_content_items.map(
+                                    (items, i) => {
+                                      return (
+                                        <div
+                                          className="flex flex-col gap-4 bg-salte p-5 xlg:w-[calc(50%-8px)]"
+                                          key={i}
+                                        >
+                                          {items.aesthetik_all_faltenunterspritzung_content_items_title && (
+                                            <h3
+                                              className="text-h4 2xl:text-h3"
+                                              dangerouslySetInnerHTML={{
+                                                __html:
+                                                  items.aesthetik_all_faltenunterspritzung_content_items_title,
+                                              }}
+                                            ></h3>
+                                          )}
+                                          <ul
+                                            className="menu menu1 list-g-disc"
+                                            dangerouslySetInnerHTML={{
+                                              __html:
+                                                items?.aesthetik_all_faltenunterspritzung_content_items,
+                                            }}
+                                          ></ul>
+                                        </div>
+                                      );
+                                    }
                                   )}
-                                  <div
-                                    className="flex gap-4 text-body 2xl:text-a [&_ul>li]:font-medium *:bg-salte *:p-4 sm:*:w-[calc(50%-8px)] justify-center flex-wrap *:gap-1 *:grid list-g-disc"
-                                    dangerouslySetInnerHTML={{
-                                      __html:
-                                        valData?.aesthetik_all_faltenunterspritzung_note,
-                                    }}
-                                  ></div>
-                                </div>
                               </div>
                             </div>
                           </div>
@@ -113,65 +133,3 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
 };
 
 export default AsehetikAboutpage;
-
-{
-  /* <section
-                    className={`py-[30px] md:py-[40px] lg:py-[50px] ${
-                      ind % 2 === 0 ? "bg-Bgslate" : "bg-white"
-                    }`}
-                    key={ind}
-                    id={valData?.aesthetik_anfrage_id}
-                  >
-                    <div className="container px-[15px] mx-auto">
-                      <div
-                        className={`flex flex-col ${
-                          ind % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
-                        } gap-4 md:gap-10 2xl:gap-[100px] items-start`}
-                      >
-           
-                        <div
-                          className={
-                            ind % 2 === 1
-                              ? "flex items-start flex-col text-black-800 w-full sm:w-[500px]  lg:w-1/2 2xl:w-[35%] lg:flex-row  ps-6 2xl:ps-16 pb-6 2xl:pb-16 relative after:absolute after:left-0  after:top-12 after:border after:border-Teal after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)] after:h-[calc(100%-48px)] after:z-0"
-                              : "flex items-start flex-col w-full sm:w-[500px]  lg:w-1/2 2xl:w-[35%] lg:flex-row  pe-8 pb-8 2xl:pe-16 2xl:pb-16 relative  after:absolute after:right-0 after:top-12 after:border after:border-Teal after:w-[calc(100%-24px)] 2xl:after:w-[calc(100%-48px)]  after:h-[calc(100%-48px)] after:z-0"
-                          }
-                        >
-                          <div className="w-full h-full">
-                            <Image
-                              src={
-                                valData.aesthetik_all_faltenunterspritzung_image
-                              }
-                              alt="About-img"
-                              objectFit="cover"
-                              className="w-full  object-cover  h-full relative z-[1]"
-                              width={578}
-                              height={578}
-                            />
-                          </div>
-                        </div>
-                    
-                        <div className="flex gap-5 flex-col w-full justify-center lg:w-1/2  2xl:w-[60%] ps-0 lg:px-4 lg:gap-[25px]">
-                          <div className="flex relative">
-                            <h2>
-                              {valData.aesthetik_all_faltenunterspritzung_title}
-                            </h2>
-                          </div>
-                          <div
-                            className="flex flex-col gap-6"
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                valData?.aesthetik_all_faltenunterspritzung_content,
-                            }}
-                          ></div>
-                          <div
-                            className="link--block flex flex-col text-black-800 gap-5 p-4 border border-Teal"
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                valData?.aesthetik_all_faltenunterspritzung_note,
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  </section> */
-}

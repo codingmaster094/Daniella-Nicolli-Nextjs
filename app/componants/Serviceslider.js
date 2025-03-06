@@ -103,7 +103,12 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
       <div className="w-full max-w-[1470px] px-[15px] mx-auto">
         <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
           <div className="flex justify-center">
-            <h2 className="sm:text-h3 lg:text-h2">{main_title}</h2>
+            <h2
+              className="sm:text-h3 lg:text-h2"
+              dangerouslySetInnerHTML={{
+                __html: main_title,
+              }}
+            ></h2>
           </div>
           <div className="owl-carousel Serviceslider" ref={carouselRef}>
             {all_ablauf?.value?.map((val, index) => (
