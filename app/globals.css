@@ -75,15 +75,17 @@
 
   .owl-carousel.Serviceslider .owl-nav,
   .owl-carousel.slider .owl-nav {
-    @apply absolute -translate-y-1/2 z-10 top-[41%] w-full !block;
+    @apply absolute -translate-y-1/2 z-[22] top-[41%] w-full !block;
   }
 
   .owl-carousel.Client-sliders .owl-stage {
     @apply flex items-center pl-0 ml-0;
   }
+
   .owl-carousel.slider .owl-stage {
     @apply pl-0 ml-0;
   }
+
   .owl-carousel .owl-nav button.owl-next,
   .owl-carousel .owl-nav button.owl-prev {
     @apply inline-flex justify-center items-center w-[30px] h-[30px] md:w-[50px] md:h-[50px] !bg-Bgwhite !p-6;
@@ -117,14 +119,17 @@
 
   .slider .owl-nav button.owl-prev,
   .slider .owl-nav button.owl-next {
-    @apply !rounded-full !border !border-solid !border-Teal;
+    @apply !rounded-full !border !border-solid !border-Teal !hidden md:!flex;
   }
 
   .slider .owl-nav button.owl-next,
   .Serviceslider .owl-nav button.owl-next {
     @apply -me-[15px] 4xl:-me-16;
   }
-
+  .Serviceslider .owl-nav button.owl-next,
+  .Serviceslider .owl-nav button.owl-prev {
+    @apply !hidden md:!flex;
+  }
   .slider .owl-nav button.owl-prev,
   .Serviceslider .owl-nav button.owl-prev {
     @apply ms-[-15px] 4xl:-ms-16;

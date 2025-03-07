@@ -50,7 +50,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
           ],
           responsive: {
             0: { items: 1 },
-            400: { items: 1 },
+            400: { items: 1, nav: false },
             800: { items: 2 },
             1400: { items: 3 },
             1600: { items: 3 },
