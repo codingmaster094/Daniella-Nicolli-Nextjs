@@ -17,7 +17,7 @@ const Aboutdetails = (props) => {
   return (
     <section className="pb-10 py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
       <div className="w-full max-w-[1780px] px-[15px] pe-[15px]">
-        <div className="flex z-10 flex-col lg:flex-row gap-4 md:gap-8 lg:gap-0 py-0 lg:py-[64px] relative after:none lg:after:absolute lg:after:right-0 lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[60%] lg:after:h-full lg:after:z-0">
+        <div className="flex justify-center items-center z-10 flex-col lg:flex-row gap-4 md:gap-8 lg:gap-0 py-0 lg:py-[64px] relative after:none lg:after:absolute lg:after:right-0 lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[60%] lg:after:h-full lg:after:z-0">
           <div className="flex items-start lg:items-center flex-col w-full lg:w-[55%] h-full xm:h-[550px] object-top 2xl:h-auto md:flex-row">
             {section_image?.url ? (
               <Image

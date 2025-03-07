@@ -70,7 +70,7 @@
   }
 
   .owl-carousel .owl-nav {
-    @apply absolute -translate-y-1/2 z-10 top-1/2 w-full !block;
+    @apply absolute -translate-y-1/2 z-[99] top-1/2 w-full !block;
   }
 
   .owl-carousel.Serviceslider .owl-nav,
@@ -126,10 +126,12 @@
   .Serviceslider .owl-nav button.owl-next {
     @apply -me-[15px] 4xl:-me-16;
   }
+
   .Serviceslider .owl-nav button.owl-next,
   .Serviceslider .owl-nav button.owl-prev {
     @apply !hidden md:!flex;
   }
+
   .slider .owl-nav button.owl-prev,
   .Serviceslider .owl-nav button.owl-prev {
     @apply ms-[-15px] 4xl:-ms-16;
