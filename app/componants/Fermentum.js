@@ -92,7 +92,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
       <div className="w-full max-w-[1550px] px-[15px] mx-auto">
         <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
-          <div className="flex justify-center">
+          <div className="flex justify-center text-center">
             <h2
               className="sm:text-h3 lg:text-h2"
               dangerouslySetInnerHTML={{
