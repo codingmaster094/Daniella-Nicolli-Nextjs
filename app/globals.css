@@ -70,7 +70,7 @@
   }
 
   .owl-carousel .owl-nav {
-    @apply absolute -translate-y-1/2 z-[99] top-1/2 w-full !block;
+    @apply absolute -translate-y-1/2 z-10 top-1/2 w-full !block;
   }
 
   .owl-carousel.Serviceslider .owl-nav,
@@ -322,11 +322,11 @@
   }
 
   .Client-sliders .owl-prev {
-    @apply relative !justify-center !items-center 3xl:left-[-65px] left-0 !border !border-solid !border-Teal rounded-full xlg:!flex !hidden;
+    @apply relative !justify-center !items-center 3xl:left-[-65px] left-0 !border !border-solid !border-Teal rounded-full 3xl:!flex !hidden;
   }
 
   .Client-sliders .owl-next {
-    @apply relative !justify-center !items-center 3xl:right-[-65px] right-0 !border !border-solid !border-Teal rounded-full xlg:!flex !hidden;
+    @apply relative !justify-center !items-center 3xl:right-[-65px] right-0 !border !border-solid !border-Teal rounded-full 3xl:!flex !hidden;
   }
 
   .blogtemplate

@@ -101,10 +101,14 @@ const ClientCarousel = ({
             >
               {section_all_partners?.value &&
                 section_all_partners?.value.map((val, index) => {
+                  console.log(
+                    "val.partners_section_all_partners_website_link",
+                    val.partners_section_all_partners_website_link?.url
+                  );
                   return (
                     <div className="item" key={index}>
                       <div className="client-logo text-center flex items-center justify-center">
-                        {val.partners_section_all_partners_website_link ? (
+                        {val.partners_section_all_partners_website_link.url ? (
                           <Link
                             href={
                               val.partners_section_all_partners_website_link
