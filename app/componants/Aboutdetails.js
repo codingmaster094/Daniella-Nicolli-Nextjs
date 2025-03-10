@@ -12,8 +12,6 @@ const Aboutdetails = (props) => {
     .replace(/<\/p>/g, "")
     .replace(/&amp;/g, "&");
 
-  console.log("section_sub_content", section_sub_content);
-
   return (
     <section className="pb-10 py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
       <div className="w-full max-w-[1780px] px-[15px] pe-[15px]">

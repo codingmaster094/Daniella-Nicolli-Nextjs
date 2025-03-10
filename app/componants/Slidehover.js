@@ -7,7 +7,6 @@ import NextBTN from "../../public/images/NextBTN.png";
 import ReactDOMServer from "react-dom/server";
 
 const Slidehover = ({ main_title, all_referenzen, enabledisable_referenz }) => {
-  console.log("enabledisable_referenz", typeof enabledisable_referenz);
   const carouselRef = useRef();
 
   useEffect(() => {

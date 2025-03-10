@@ -17,7 +17,6 @@ const page = () => {
       const response = await axios.get(
         "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/landing-page"
       );
-      console.log("response.data", response.data);
       setLendiangPageData(response.data);
     } catch (error) {
       console.error("Error fetching content data", error);

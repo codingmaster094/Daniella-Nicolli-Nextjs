@@ -5,12 +5,10 @@ const Categories = (props) => {
   const { title, description, BTN, bg_img } = props;
   return (
     <section
-      className="py-10 md:py-[70px] lg:py-[100px] bg-cover bg-bottom relative bg-Teal"
-      // style={{
-      //   backgroundImage: bg_img
-      //     ? `url(${bg_img})`
-      //     : `url('/images/bg-flower.webp')`,
-      // }}
+      className={`py-10 md:py-[70px] lg:py-[100px] bg-cover bg-bottom relative ${
+        bg_img ? "" : "bg-Teal"
+      }`}
+      style={bg_img ? { backgroundImage: `url(${bg_img})` } : {}}
     >
       <div className="overlay-1 absolute w-full h-full top-0 left-0 z-0 bg-[rgba(0,0,0,0.3)]"></div>
       <div className="w-full container mx-auto px-[15px]">

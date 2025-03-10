@@ -40,7 +40,6 @@ const Footer = () => {
     getMenu();
   }, []);
 
-  // console.log("FooterDatamenu", FooterDatamenu);
   return (
     <footer className="bg-salte w-full">
       <div className="container mx-auto px-[15px] ">

@@ -20,7 +20,6 @@ const page = () => {
       const response = await axios.get(
         "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/home"
       );
-      console.log("response.data", response.data);
       setHomePageData(response.data); // The result is in response.data with Axios
     } catch (error) {
       console.error("Error fetching content data", error);

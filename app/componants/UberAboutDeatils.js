@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 const UberAboutDeatils = ({ main_title, content, image, sub_content }) => {
-  console.log("sub_content", sub_content);
   return (
     //  <section className="pb-10 md:py-[70px] md:pt-0 lg:py-[100px]">
     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">

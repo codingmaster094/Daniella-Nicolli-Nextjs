@@ -59,7 +59,6 @@ const Blog = ({ blogsData }) => {
           </div>
           <div className="flex gap-4 sm:gap-8 lg:gap-8 2xl:gap-16 flex-wrap">
             {filteredBlogs?.slice(0, displayedBlogsCount)?.map((val, index) => {
-              console.log("nnn", val.slug);
               return (
                 <div
                   key={index}
