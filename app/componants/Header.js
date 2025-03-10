@@ -111,7 +111,7 @@ const Header = () => {
           {HeaderDatamenu && (
             <Link href="/" aria-label="Home">
               <Image
-                src={HeaderDatamenu.site_logo}
+                src={HeaderDatamenu?.site_logo}
                 width={249}
                 height={82}
                 alt="Logo"

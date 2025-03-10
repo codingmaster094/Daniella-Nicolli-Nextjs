@@ -4,7 +4,7 @@ import Image from "next/image";
 import Arrowbtn from "../../public/images/arrow-btn.svg";
 import Link from "next/link";
 
-const Blog = ({ blogsData }) => {
+const Blog = ({ title, BTN, blogsData }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBlogs, setFilteredBlogs] = useState(blogsData || []);
   const [displayedBlogsCount, setDisplayedBlogsCount] = useState(3);
@@ -25,7 +25,6 @@ const Blog = ({ blogsData }) => {
     }
   };
 
-  // Trigger search on pressing Enter key
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSearch();
@@ -37,7 +36,12 @@ const Blog = ({ blogsData }) => {
       <div className="w-full max-w-[1550px] px-[15px] mx-auto">
         <div className="flex flex-col gap-4 sm:gap-6 md:gap-10 lg:gap-16">
           <div className="flex justify-between gap-4 flex-wrap items-center">
-            <h2 className="text-h3 lg:text-h2">Die Artikel</h2>
+            <h2
+              className="text-h3 lg:text-h2"
+              dangerouslySetInnerHTML={{
+                __html: title,
+              }}
+            ></h2>
             <div className="flex border border-Border w-auto lg:w-[35%] justify-between items-center">
               <input
                 type="search"
@@ -127,7 +131,7 @@ const Blog = ({ blogsData }) => {
               aria-label="load-more-button"
               role="button"
             >
-              MEHR ERFAHREN
+              {BTN.title}
             </button>
           )}
         </div>
