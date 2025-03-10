@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 const TopButton = () => {
   const [visible, setVisible] = useState(false);
   const [borderProgress, setBorderProgress] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const toggleVisibility = () => {
     const scrollY = window.scrollY;
@@ -17,7 +18,7 @@ const TopButton = () => {
   };
 
   const smoothScrollToTop = () => {
-    const scrollStep = -window.scrollY / 50; // Adjust '50' to control speed (higher = slower)
+    const scrollStep = -window.scrollY / 50;
     const scrollAnimation = () => {
       if (window.scrollY !== 0) {
         window.scrollBy(0, scrollStep);
@@ -37,45 +38,38 @@ const TopButton = () => {
   return (
     <button
       onClick={smoothScrollToTop}
-      className={`fixed bottom-4 right-4 w-12 h-12 flex items-center justify-center  bg-Bgslate text-black shadow-lg rounded-full z-50 transition-all duration-300 border border-black ${
-        visible ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       aria-label="Scroll to top"
+      style={{
+        backgroundColor: isHovered
+          ? "rgb(26 130 129 / var(--tw-bg-opacity, 1))"
+          : "#b9b3a0",
+        cursor: "pointer",
+        width: "50px",
+        height: "50px",
+        zIndex: "999",
+        position: "fixed",
+        right: "32px",
+        bottom: "32px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: "100%",
+        boxShadow: "0 4px 16px 0 rgba(0, 0, 0, 0.4)",
+        transition: "background-color 0.3s ease",
+      }}
     >
-      <span
-        className="absolute inset-0 rounded-full"
-        style={{
-          content: "''",
-          position: "absolute",
-          top: "-3px",
-          left: "-3px",
-          right: "-3px",
-          bottom: "-3px",
-          borderRadius: "50%",
-          background: `conic-gradient(teal ${borderProgress}%, transparent ${borderProgress}%)`,
-          mask: "radial-gradient(circle, transparent 55%, black 55%)",
-          WebkitMask: "radial-gradient(circle, transparent 62%, black 55%)",
-          zIndex: "-1",
-        }}
-      ></span>
-
       {/* Up Arrow Icon */}
       <svg
-        xmlns="http://www.w3.org/2000/svg"
+        className="icon__arrow-up"
+        viewBox="0 0 24 24"
         width="24"
         height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        color="teal"
+        fill="#ffffff"
       >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-        <path d="M12 5l0 14"></path>
-        <path d="M16 9l-4 -4"></path>
-        <path d="M8 9l4 -4"></path>
+        <title>Back to top</title>
+        <path d="M18.71,11.71a1,1,0,0,1-1.42,0L13,7.41V19a1,1,0,0,1-2,0V7.41l-4.29,4.3a1,1,0,0,1-1.42-1.42l6-6a1,1,0,0,1,1.42,0l6,6A1,1,0,0,1,18.71,11.71Z"></path>
       </svg>
     </button>
   );
