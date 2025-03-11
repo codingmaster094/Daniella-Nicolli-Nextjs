@@ -44,10 +44,10 @@ const Aboutdetails = (props) => {
               }}
             ></p>
 
-            <div className="flex flex-wrap xlg:justify-center gap-4 ">
+            <div className="flex flex-wrap sm:flex-nowrap xlg:justify-center gap-4 ">
               {section_sub_content?.map((item, i) => (
                 <div
-                  className="flex flex-col gap-4 bg-salte p-4 xlg:w-[calc(50%-8px)]"
+                  className="flex flex-col gap-4 bg-salte p-4 w-full sm:w-[calc(50%-8px)]"
                   key={i}
                 >
                   {item?.home_leistungen_section_sub_contents?.home_leistungen_section_sub_contents_item?.map(
