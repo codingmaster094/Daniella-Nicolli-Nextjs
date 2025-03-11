@@ -369,10 +369,10 @@
   }
 
   .list-g-disc li:after {
-    @apply h-2.5 w-2.5 bg-none bg-[#000] rounded-[50%] top-1/2 -translate-y-1/2 m-0;
+    @apply h-[7px] w-[7px] bg-none bg-[#000] rounded-[50%] top-[12px] -translate-y-1/2 m-0;
   }
 
   .list-g-disc li {
-    @apply pl-[25px] flex items-center;
+    @apply pl-[20px] flex items-center;
   }
 }

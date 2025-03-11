@@ -8,9 +8,6 @@ const Aboutdetails = (props) => {
     props;
 
   const sanitizedContent = section_content
-    ?.replace(/<p>/g, "")
-    .replace(/<\/p>/g, "")
-    .replace(/&amp;/g, "&");
 
   return (
     <section className="pb-10 py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
@@ -38,16 +35,16 @@ const Aboutdetails = (props) => {
                 ></h2>
               )}
             </div>
-            <p
+            <div
               dangerouslySetInnerHTML={{
                 __html: sanitizedContent,
               }}
-            ></p>
+            ></div>
 
-            <div className="flex flex-wrap sm:flex-nowrap xlg:justify-center gap-4 ">
+            <div className="flex flex-wrap sm:flex-nowrap xlg:justify-start gap-4 ">
               {section_sub_content?.map((item, i) => (
                 <div
-                  className="flex flex-col gap-4 bg-salte p-4 w-full sm:w-[calc(50%-8px)]"
+                  className="flex flex-col gap-4 bg-salte p-4 w-full sm:w-[calc(50%-8px)] lg:w-full xlg:w-[calc(50%-8px)]"
                   key={i}
                 >
                   {item?.home_leistungen_section_sub_contents?.home_leistungen_section_sub_contents_item?.map(

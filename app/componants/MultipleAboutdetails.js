@@ -40,7 +40,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                         }`}
                       >
                         {/* Image Section */}
-                        <div className="flex justify-center lg:justify-end items-start lg:items-center flex-col w-full lg:w-[55%] h-full">
+                        <div className="flex justify-center lg:justify-end items-start lg:items-center flex-col w-full lg:w-[50%] h-full">
                           <Image
                             src={
                               valData.aesthetik_all_faltenunterspritzung_image
@@ -80,7 +80,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                               ></div>
                               <div
                                 key={ind.id}
-                                className="flex flex-wrap xlg:justify-center gap-4 mt-4"
+                                className="flex flex-wrap xlg:justify-start gap-4 mt-4"
                               >
                                 {valData
                                   ?.aesthetik_all_faltenunterspritzung_contents
@@ -94,7 +94,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                     (items, i) => {
                                       return (
                                         <div
-                                          className="flex flex-col gap-4 bg-salte p-4 xlg:w-[calc(50%-8px)]"
+                                          className="flex flex-col gap-4 bg-salte p-4 w-full sm:w-[calc(50%-8px)] lg:w-full xlg:w-[calc(50%-8px)]"
                                           key={i}
                                         >
                                           {items.aesthetik_all_faltenunterspritzung_content_items_title && (

@@ -36,6 +36,7 @@ export default {
       },
       screens: {
         'xm':"540px",
+        'md':"768px",
         'xlg':'1350px',
         '4xl':"1680px",
         '3xl': "1770px"
