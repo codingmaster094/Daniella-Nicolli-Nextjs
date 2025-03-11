@@ -10,6 +10,7 @@ import MultipleAboutdetails from "../componants/MultipleAboutdetails";
 import Link from "next/link";
 import BannerCarousel from "../componants/Banner";
 
+
 const page = () => {
   const [AesthetikData, setAesthetikData] = useState(null);
   const fetchAesthetikData = async () => {
