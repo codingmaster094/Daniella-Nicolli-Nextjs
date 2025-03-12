@@ -205,7 +205,7 @@ const Header = () => {
                   </div>
 
                   {item.children.length > 0 && (
-                    <div className={`lg:absolute transition-all duration-1000 ${submenuOpen === index ? 'pt-0 lg:pt-[50px]':"pt-0"}`}>
+                    <div className={`lg:absolute transition-all duration-1000 ${submenuOpen === index ? 'pt-0 lg:pt-[50px] bg-white':"pt-0 bg-white"}`}>
                     <ul
                       className={` left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
                       style={{
