@@ -14,7 +14,7 @@ const UberAboutDeatilsleft = ({ main_title, content, image }) => {
               ></h2>
             </div>
             <div
-              className="flex flex-col gap-4 md:gap-6"
+              className="flex flex-col gap-4"
               dangerouslySetInnerHTML={{ __html: content }}
             ></div>
           </div>

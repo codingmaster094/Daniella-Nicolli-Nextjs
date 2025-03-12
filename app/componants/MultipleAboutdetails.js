@@ -25,8 +25,8 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                     key={ind}
                     className={`pb-10 py-[30px] md:py-[40px] lg:py-[50px] ${
                       isEven
-                        ? "bg-Bgslate"
-                        : "bg-white flex justify-end items-end"
+                        ? "bg-white"
+                        : "bg-Bgslate flex justify-end items-end"
                     }`}
                     id={valData.aesthetik_anfrage_id}
                   >
@@ -48,7 +48,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                             alt="About-img"
                             objectFit="cover"
                             className={`relative z-[1] py-0 lg:py-[30px] ${
-                              isEven ? "bg-Bgslate" : "bg-white"
+                              isEven ? "bg-white" : "bg-Bgslate"
                             }`}
                             width={578}
                             height={578}

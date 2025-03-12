@@ -133,7 +133,7 @@ const Header = () => {
           >
             <Image src={CloseBtn} alt="Close menu button" />
           </span>
-          <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
+          <ul className="flex gap-4 text-a 2xl:gap-8 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
             {HeaderDatamenu?.menu?.map((item, index) => {
               item.slug = item.slug === "home" ? "/" : item.slug;
               const isActive =

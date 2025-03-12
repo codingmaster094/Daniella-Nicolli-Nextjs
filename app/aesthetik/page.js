@@ -53,10 +53,6 @@ const page = () => {
         BTN={AesthetikData?.aesthetik_grundsätze_button.value}
         columns={AesthetikData?.aesthetik_grundsätze_all_contents?.value}
       />
-      <Comment
-        main_title={AesthetikData?.bewertungen_main_title?.value}
-        content={AesthetikData?.bewertungen_content?.value}
-      />
 
       <MultipleAboutdetails
         MultipleAboutdeta={
@@ -65,14 +61,19 @@ const page = () => {
       />
       {AesthetikData && (
         <Slidehover
-          main_title={AesthetikData?.referenzen_main_title?.value}
-          all_referenzen={AesthetikData?.all_referenzen}
-          enabledisable_referenz={AesthetikData?.enabledisable_referenz?.value}
+        main_title={AesthetikData?.referenzen_main_title?.value}
+        all_referenzen={AesthetikData?.all_referenzen}
+        enabledisable_referenz={AesthetikData?.enabledisable_referenz?.value}
         />
       )}
       <Accordian
         main_title={AesthetikData?.faq_main_title?.value}
         all_faqs={AesthetikData?.all_faqs?.value}
+      />
+
+      <Comment
+        main_title={AesthetikData?.bewertungen_main_title?.value}
+        content={AesthetikData?.bewertungen_content?.value}
       />
     </>
   );

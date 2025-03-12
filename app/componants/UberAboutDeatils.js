@@ -26,7 +26,7 @@ const UberAboutDeatils = ({ main_title, content, image, sub_content }) => {
               ></h2>
             </div>
             <div
-              className="flex flex-col gap-6 sm:gap-[25px] "
+              className="flex flex-col gap-4"
               dangerouslySetInnerHTML={{ __html: content }}
             ></div>
 

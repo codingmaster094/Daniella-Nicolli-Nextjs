@@ -34,7 +34,7 @@ const Accordian = ({ main_title, all_faqs }) => {
   };
 
   return (
-    <section className="py-[30px] md:py-[40px] lg:py-[50px]">
+    <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
       <div className="container mx-auto px-[15px]">
         <div className="flex w-full max-w-[1140px] flex-col gap-6 md:gap-8 lg:gap-12 mx-auto text-center">
           <h2

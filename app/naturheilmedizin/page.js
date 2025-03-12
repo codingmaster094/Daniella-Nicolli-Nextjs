@@ -53,11 +53,6 @@ const page = () => {
         columns={Naturheilmedizin?.aesthetik_grundsätze_all_contents.value}
       />
 
-      <Comment
-        main_title={Naturheilmedizin?.bewertungen_main_title?.value}
-        content={Naturheilmedizin?.bewertungen_content?.value}
-      />
-
       <MultipleAboutdetails
         MultipleAboutdeta={
           Naturheilmedizin?.aesthetik_all_anfrage_faltenunterspritzung
@@ -77,6 +72,11 @@ const page = () => {
       <Accordian
         main_title={Naturheilmedizin?.faq_main_title?.value}
         all_faqs={Naturheilmedizin?.all_faqs?.value}
+      />
+
+      <Comment
+        main_title={Naturheilmedizin?.bewertungen_main_title?.value}
+        content={Naturheilmedizin?.bewertungen_content?.value}
       />
     </>
   );
