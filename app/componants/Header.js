@@ -14,6 +14,7 @@ const Header = () => {
   const dropdownRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(null);
+  const [activeSubmenu, setActiveSubmenu] = useState(null);
   const pathname = usePathname();
   const [HeaderData, setHeaderData] = useState(null);
   const [HeaderDatamenu, setHeaderDatamenu] = useState(null);
@@ -37,12 +38,13 @@ const Header = () => {
     };
   }, []);
 
-  const handleSubmenuClick = (e, targetId, slug) => {
-    setMenuOpen(false);
-    router.push(targetId !== "/" ? `/${slug}${targetId}` : "/");
+  const handleSubmenuClick = (e, targetId, slug, submenuId) => {
     e.preventDefault();
-    const targetElement = document.querySelector(targetId);
+    setMenuOpen(false);
+    setActiveSubmenu(submenuId); // Set active submenu
+    router.push(targetId !== "/" ? `/${slug}${targetId}` : "/");
 
+    const targetElement = document.querySelector(targetId);
     if (targetElement) {
       lenisRef.current.scrollTo(targetElement, { duration: 1.5 });
     } else {
@@ -137,6 +139,7 @@ const Header = () => {
               const isActive =
                 pathname === (item.slug === "/" ? "/" : `/${item.slug}`);
 
+              console.log("isActive", isActive);
               return (
                 <li
                   key={item.id}
@@ -202,17 +205,28 @@ const Header = () => {
                         minHeight: submenuOpen === index ? "50px" : "0px",
                       }}
                     >
-                      {item.children.map((child) => (
-                        <li
-                          key={child.id}
-                          onClick={(e) =>
-                            handleSubmenuClick(e, child.url, item.slug)
-                          }
-                          className="cursor-pointer block w-full px-4 py-2 hover:bg-gray-200 text-Teal font-bold"
-                        >
-                          {child.title}
-                        </li>
-                      ))}
+                      {item.children.map((child) => {
+                        const isSubmenuActive = activeSubmenu === child.id;
+
+                        return (
+                          <li
+                            key={child.id}
+                            onClick={(e) =>
+                              handleSubmenuClick(
+                                e,
+                                child.url,
+                                item.slug,
+                                child.id
+                              )
+                            }
+                            className={`cursor-pointer block w-full px-4 py-2 hover:bg-gray-200 font-bold ${
+                              isSubmenuActive ? "text-Teal bg-gray-100" : ""
+                            }`}
+                          >
+                            {child.title}
+                          </li>
+                        );
+                      })}
                     </ul>
                   )}
                 </li>
