@@ -14,7 +14,7 @@ const Terminbroncher = (props) => {
                 __html: title,
               }}
             ></h2>
-            <div className="flex gap-6 lg:gap-12 flex-col lg:flex-row text-left">
+            <div className="flex gap-6 lg:gap-12 flex-col lg:flex-row text-left *:w-full *:lg:w-1/2">
               {columns &&
                 columns?.map((val, index) => (
                   <p

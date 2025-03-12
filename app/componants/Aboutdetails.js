@@ -35,7 +35,7 @@ const Aboutdetails = (props) => {
                 ></h2>
               )}
             </div>
-            <div
+            <div className="space-y-4"
               dangerouslySetInnerHTML={{
                 __html: sanitizedContent,
               }}

@@ -88,7 +88,7 @@
 
   .owl-carousel .owl-nav button.owl-next,
   .owl-carousel .owl-nav button.owl-prev {
-    @apply inline-flex justify-center items-center w-[30px] h-[30px] md:w-[50px] md:h-[50px] !bg-Bgwhite !p-6;
+    @apply inline-flex justify-center items-center w-[30px] h-[30px] xlg:w-[50px] xlg:h-[50px] !bg-Bgwhite !p-6;
   }
 
   .owl-carousel .owl-nav button.owl-next img,
@@ -369,7 +369,7 @@
   }
 
   .list-g-disc li:after {
-    @apply h-[7px] w-[7px] bg-none bg-[#000] rounded-[50%] top-[12px] -translate-y-1/2 m-0;
+    @apply h-[7px] w-[7px] bg-none bg-[#000] rounded-[50%] top-1/2 -translate-y-1/2 m-0;
   }
 
   .list-g-disc li {
