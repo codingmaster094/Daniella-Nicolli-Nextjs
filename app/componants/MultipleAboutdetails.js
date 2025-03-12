@@ -23,65 +23,56 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                 return (
                   <section
                     key={ind}
-                    className={`pb-10 py-[30px] md:py-[40px] lg:py-[50px] ${
+                    className={`p-1 group bg-Bgslate ${
                       isEven
-                        ? "bg-white"
-                        : "bg-Bgslate flex justify-end items-end"
+                        ? "bg-white "
+                        : "bg-Bgslate reverse"
                     }`}
                     id={valData.aesthetik_anfrage_id}
                   >
-                    <div className="w-full max-w-[1780px] px-[15px] pe-[15px]">
-                      <div
-                        className={`flex justify-center items-center z-10 flex-col lg:flex-row gap-4 md:gap-8 lg:gap-0 py-0 lg:py-[64px] relative 
-                        lg:after:absolute lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[60%] lg:after:h-full lg:after:z-0 ${
-                          isEven
-                            ? "lg:flex-row lg:after:right-0"
-                            : "lg:flex-row-reverse lg:after:left-0"
-                        }`}
-                      >
-                        {/* Image Section */}
-                        <div className="flex justify-center lg:justify-end items-start lg:items-center flex-col w-full lg:w-[50%] h-full">
-                          <Image
-                            src={
-                              valData.aesthetik_all_faltenunterspritzung_image
-                            }
-                            alt="About-img"
-                            objectFit="cover"
-                            className={`relative z-[1] py-0 lg:py-[30px] ${
-                              isEven ? "bg-white" : "bg-Bgslate"
-                            }`}
-                            width={578}
-                            height={578}
-                          />
-                        </div>
-                        <div
-                          className={`flex gap-5 flex-col w-full justify-center lg:gap-8 lg:w-[50%] ${
-                            isEven
-                              ? "pl-0 lg:pl-4 pr-0 lg:pr-4 2xl:pr-[100px]"
-                              : "pr-0 lg:pr-4 pl-0 lg:pl-4 2xl:pl-[100px]"
-                          } relative z-10`}
-                        >
-                          <div className="flex flex-col gap-5 2xl:gap-6 lg:flex-[50%] flex-shrink-0 justify-center">
-                            <div className="flex flex-col gap-4">
-                              <div className="flex relative">
+                    <div
+                      className={`px-4 sm:px-[50px] 3xl:px-0 py-0 3xl:py-[100px] my-[40px] md:my-[70px] xlg:my-[100px] 3xl:mr-[100px] relative z-10 group-[.reverse]:3xl:mr-[0] group-[.reverse]:3xl:ml-[100px] ${isEven ? '3xl:mr-[100px]' : '3xl:ml-[100px]'}  relative z-10`}
+                    >
+                      <div className="container max-w-3xl lg:max-w-full 3xl:p-0 relative z-10 3xl:static p-4 sm:p-10 mx-auto">
+                        <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 3xl:gap-[100px] group-[.reverse]:lg:flex-row-reverse">
+                          <div className="lg:w-1/2">
+                            <div className="sticky top-40">
+                              <div className="aspect-square bg-white">
+                                {valData.aesthetik_all_faltenunterspritzung_image && (
+                                  <Image
+                                    src={
+                                      valData.aesthetik_all_faltenunterspritzung_image
+                                    }
+                                    alt="about-right.png"
+                                    className={`w-auto object-contain lg:object-cover h-full py-0 lg:py-[30px] ${
+                                      isEven ? "bg-white" : "bg-Bgslate"
+                                    }`}
+                                    layout="fill"
+                                    objectFit="cover"
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="lg:w-1/2 flex justify-center items-center">
+                            <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
+                              {valData.aesthetik_all_faltenunterspritzung_title && (
                                 <h2
+                                  className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
                                   dangerouslySetInnerHTML={{
                                     __html:
                                       valData.aesthetik_all_faltenunterspritzung_title,
                                   }}
-                                ></h2>
-                              </div>
+                                />
+                              )}
                               <div
-                                className="flex flex-col gap-4 text-body 2xl:text-a [&_ul>li]:font-medium"
+                                className="space-y-2"
                                 dangerouslySetInnerHTML={{
                                   __html:
                                     valData?.aesthetik_all_faltenunterspritzung_content,
                                 }}
-                              ></div>
-                              <div
-                                key={ind.id}
-                                className="flex flex-wrap xlg:justify-start gap-4 mt-4"
-                              >
+                              />
+                              <div className="flex gap-2 flex-wrap">
                                 {valData
                                   ?.aesthetik_all_faltenunterspritzung_contents
                                   ?.aesthetik_all_faltenunterspritzung_content_items &&
@@ -90,40 +81,40 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                       .aesthetik_all_faltenunterspritzung_contents
                                       .aesthetik_all_faltenunterspritzung_content_items
                                   ) &&
-                                  valData.aesthetik_all_faltenunterspritzung_contents.aesthetik_all_faltenunterspritzung_content_items.map(
-                                    (items, i) => {
-                                      return (
-                                        <div
-                                          className="flex flex-col gap-4 bg-salte p-4 w-full sm:w-[calc(50%-8px)] lg:w-full xlg:w-[calc(50%-8px)]"
-                                          key={i}
-                                        >
-                                          {items.aesthetik_all_faltenunterspritzung_content_items_title && (
-                                            <h3
-                                              className="text-h4 2xl:text-h3"
-                                              dangerouslySetInnerHTML={{
-                                                __html:
-                                                  items.aesthetik_all_faltenunterspritzung_content_items_title,
-                                              }}
-                                            ></h3>
+                                  valData.aesthetik_all_faltenunterspritzung_contents.aesthetik_all_faltenunterspritzung_content_items?.map(
+                                    (item, i) => (
+                                      <div
+                                        key={i}
+                                        className="bg-[#FDF6EE] p-4 sm:p-8 space-y-4 2xl:w-[calc(50%-4px)] grow"
+                                      >
+                                        <div className="link-blocks space-y-2">
+                                          {item.aesthetik_all_faltenunterspritzung_content_items_title && (
+                                            <h3 className="text-xl lg:text-2xl xl:text-[28px] xl:font-semibold">
+                                              {
+                                                item.aesthetik_all_faltenunterspritzung_content_items_title
+                                              }
+                                            </h3>
                                           )}
+
                                           <ul
                                             className="menu menu1 list-g-disc text-[18px]"
                                             dangerouslySetInnerHTML={{
                                               __html:
-                                                items?.aesthetik_all_faltenunterspritzung_content_items
+                                                item?.aesthetik_all_faltenunterspritzung_content_items
                                                   ?.replace(/<ul>/g, "")
                                                   .replace(/<\/ul>/g, "")
                                                   .replace(/&amp;/g, "&"),
                                             }}
-                                          ></ul>
+                                          />
                                         </div>
-                                      );
-                                    }
+                                      </div>
+                                    )
                                   )}
                               </div>
                             </div>
                           </div>
                         </div>
+                        <div className="absolute border border-[#1A8281] inset-0 lg:left-1/3 -z-10 group-[.reverse]:lg:right-1/3 group-[.reverse]:lg:left-0"></div>
                       </div>
                     </div>
                   </section>

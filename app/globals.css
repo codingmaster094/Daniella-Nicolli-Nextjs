@@ -62,7 +62,8 @@
 
   .menu li,
   .blogtemplate .wp-block-list li {
-    @apply relative text-black-900 after:absolute after:left-0 after:top-0 after:mt-1 after:bg-velly-svg after:bg-contain after:w-5 after:h-5 ps-6 xm:ps-10 font-primary-font font-normal after:bg-no-repeat;
+    @apply list-disc;
+    /* @apply relative text-black-900 after:absolute after:left-0 after:top-0 after:mt-1 after:bg-velly-svg after:bg-contain after:w-5 after:h-5 ps-6 xm:ps-10 font-primary-font font-normal after:bg-no-repeat; */
   }
 
   .Banner ul li {
@@ -368,11 +369,17 @@
     @apply z-20;
   }
 
-  .list-g-disc li:after {
+  /* .list-g-disc li:after {
     @apply h-[7px] w-[7px] bg-none bg-[#000] rounded-[50%] top-1/2 -translate-y-1/2 m-0;
-  }
+  } */
 
   .list-g-disc li {
-    @apply pl-[20px] flex items-center;
+    @apply  list-disc;
+  }
+  .menu{
+    @apply pl-[20px];
+  }
+  .link-blocks ul{
+    @apply !mt-4;
   }
 }

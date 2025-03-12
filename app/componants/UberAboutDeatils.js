@@ -2,48 +2,58 @@ import React from "react";
 import Image from "next/image";
 const UberAboutDeatils = ({ main_title, content, image, sub_content }) => {
   return (
-    //  <section className="pb-10 md:py-[70px] md:pt-0 lg:py-[100px]">
-    <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
-      <div className="w-full max-w-[1780px] px-[15px] lg:px-0">
-        <div className="flex z-10 flex-col lg:flex-row gap-4 md:gap-8 py-0 lg:py-[30px] relative after:none lg:after:absolute lg:after:right-0 lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[60%] lg:after:h-full lg:after:z-0">
-          <div className="flex items-center flex-col w-full lg:w-[50%] md:flex-row">
-            {image && (
-              <Image
-                src={image}
-                width={908}
-                height={804}
-                alt="about-left.png"
-                className="w-full object-contain lg:object-cover h-full relative z-[1] py-0 lg:py-[30px] bg-Bgslate"
-              />
-            )}
-          </div>
-          <div className="flex gap-5 pe-15 flex-col w-full justify-center lg:w-[50%] px-0  lg:px-4  lg:gap-8 2xl:px-[100px] relative z-10">
-            <div className="flex relative">
-              <h2
-                dangerouslySetInnerHTML={{
-                  __html: main_title,
-                }}
-              ></h2>
+    <section className="p-1 group bg-Bgslate">
+      <div className="px-4 sm:px-[50px] 3xl:px-0 py-0 3xl:py-[100px] my-[40px] md:my-[70px] xlg:my-[100px] 3xl:mr-[100px] relative z-10 group-[.reverse]:3xl:mr-[0] group-[.reverse]:3xl:ml-[100px]">
+        <div className="container max-w-3xl lg:max-w-full 3xl:p-0 relative z-10 3xl:static p-4 sm:p-10 mx-auto">
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 3xl:gap-[100px] group-[.reverse]:lg:flex-row-reverse">
+            <div className="lg:w-1/2">
+              <div className="sticky top-40">
+                <div className="aspect-square bg-Bgslate">
+                  {image && (
+                    <Image
+                      src={image}
+                      width={908}
+                      height={804}
+                      alt="about-left.png"
+                      className="w-full object-cover h-full relative z-[1] py-0 lg:py-[30px] bg-Bgslate"
+                    />
+                  )}
+                </div>
+              </div>
             </div>
-            <div
-              className="flex flex-col gap-4"
-              dangerouslySetInnerHTML={{ __html: content }}
-            ></div>
-
-            <div className="flex flex-wrap gap-4">
-              <div className="flex flex-col gap-4 bg-salte p-4">
-                <ul
-                  className="menu menu1 list-g-disc text-[18px]"
-                  dangerouslySetInnerHTML={{
-                    __html: sub_content
-                      ?.replace(/<ul>/g, "")
-                      .replace(/<\/ul>/g, "")
-                      .replace(/&amp;/g, "&"),
-                  }}
-                ></ul>
+            <div className="lg:w-1/2">
+              <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
+                {main_title && (
+                  <h2
+                    className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
+                    dangerouslySetInnerHTML={{
+                      __html: main_title,
+                    }}
+                  />
+                )}
+                <div
+                  className="space-y-2"
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+                <div className="flex gap-2 flex-wrap">
+                  <div className="bg-[#FDF6EE] p-4 sm:p-8 space-y-4 2xl:w-[calc(50%-4px)] grow">
+                    <div className="link-blocks space-y-2">
+                      <ul
+                        className="menu menu1 list-g-disc text-[18px]"
+                        dangerouslySetInnerHTML={{
+                          __html: sub_content
+                            ?.replace(/<ul>/g, "")
+                            .replace(/<\/ul>/g, "")
+                            .replace(/&amp;/g, "&"),
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <div className="absolute border border-[#1A8281] inset-0 lg:left-1/3 -z-10 group-[.reverse]:lg:right-1/3 group-[.reverse]:lg:left-0"></div>
         </div>
       </div>
     </section>

@@ -41,7 +41,10 @@ const Header = () => {
   const handleSubmenuClick = (e, targetId, slug, submenuId) => {
     e.preventDefault();
     setMenuOpen(false);
-    setActiveSubmenu(submenuId); // Set active submenu
+
+    // Toggle submenu active state
+    setActiveSubmenu((prev) => (prev === submenuId ? null : submenuId));
+
     router.push(targetId !== "/" ? `/${slug}${targetId}` : "/");
 
     const targetElement = document.querySelector(targetId);
@@ -50,6 +53,11 @@ const Header = () => {
     } else {
       console.warn(`Target section with id #${targetId} not found.`);
     }
+  };
+
+  // Main menu par click kariye to active submenu remove kari devu
+  const handleMainMenuClick = () => {
+    setActiveSubmenu(null);
   };
 
   useEffect(() => {
@@ -108,7 +116,7 @@ const Header = () => {
         scrolled ? "fixed top-0 w-full z-20 bg-white py-0" : "py-2"
       }  `}
     >
-      <nav className="flex w-full px-[15px] 2xl:px-[calc(9rem-4px)] justify-between py-2 lg:py-0">
+      <nav className="flex w-full px-[15px] 2xl:px-[calc(9rem-4px)] justify-between py-2 lg:py-0 items-center">
         <div className="logo flex items-center justify-center w-[150px] 2xl:w-[230px]">
           {HeaderDatamenu && (
             <Link href="/" aria-label="Home">
@@ -122,7 +130,7 @@ const Header = () => {
           )}
         </div>
         <div
-          className={`side-menu fixed opacity-0 z-20 px-5 lg:px-0 w-72 -left-full top-0 bg-Teal h-full pt-7 pb-7 border-r-4 border-gray-light gap-4 xl:gap-8 lg:flex-1 lg:border-none lg:bg-transparent lg:opacity-100 lg:w-auto lg:static lg:flex lg:items-center transition-all duration-700 ease-in lg:transition-none lg:py-6 lg:justify-end lg:overflow-y-visible overflow-y-auto max-h-full ${
+          className={`side-menu fixed py-6 opacity-0 z-20 px-5 lg:px-0 w-72 -left-full top-0 bg-Teal h-full pt-7 pb-7 border-r-4 border-gray-light gap-4 xl:gap-8 lg:flex-1 lg:border-none lg:bg-transparent lg:opacity-100 lg:w-auto lg:static lg:flex lg:items-center transition-all duration-700 ease-in lg:transition-none lg:py-8 lg:justify-end lg:overflow-y-visible overflow-y-auto max-h-full ${
             menuOpen ? "left-0 opacity-100" : ""
           }`}
         >
@@ -133,7 +141,7 @@ const Header = () => {
           >
             <Image src={CloseBtn} alt="Close menu button" />
           </span>
-          <ul className="flex gap-4 text-a 2xl:gap-8 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
+          <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
             {HeaderDatamenu?.menu?.map((item, index) => {
               item.slug = item.slug === "home" ? "/" : item.slug;
               const isActive =
@@ -171,6 +179,7 @@ const Header = () => {
                   >
                     <Link
                       href={`/${item.slug}`}
+                      onClick={handleMainMenuClick}
                       className="flex items-center w-full lg:w-auto justify-between lg:justify-start gap-2"
                     >
                       <span
@@ -196,8 +205,9 @@ const Header = () => {
                   </div>
 
                   {item.children.length > 0 && (
+                    <div className={`lg:absolute transition-all duration-1000 ${submenuOpen === index ? 'pt-0 lg:pt-[50px]':"pt-0"}`}>
                     <ul
-                      className={`lg:absolute left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
+                      className={` left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
                       style={{
                         maxHeight: submenuOpen === index ? "500px" : "0px",
                         overflow: "hidden",
@@ -219,15 +229,17 @@ const Header = () => {
                                 child.id
                               )
                             }
-                            className={`cursor-pointer block w-full px-4 py-2 hover:bg-gray-200 font-bold ${
-                              isSubmenuActive ? "text-Teal bg-gray-100" : ""
-                            }`}
+                            className={`cursor-pointer block w-full px-4 py-2  hover:bg-gray-100
+                              
+                        
+                            `}
                           >
                             {child.title}
                           </li>
                         );
                       })}
                     </ul>
+                    </div>
                   )}
                 </li>
               );
@@ -238,7 +250,7 @@ const Header = () => {
             <Link
               href={HeaderData.header_button.url}
               target={HeaderData.header_button.target}
-              className="flex self-start items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"
+              className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"
             >
               TERMIN BUCHEN
             </Link>

@@ -7,101 +7,99 @@ const Aboutdetails = (props) => {
   const { main_title, section_image, section_content, section_sub_content } =
     props;
 
-  const sanitizedContent = section_content
+  const sanitizedContent = section_content;
+
+  console.log("images",section_image);
+  
 
   return (
-    <section className="pb-10 py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
-      <div className="w-full max-w-[1780px] px-[15px] pe-[15px]">
-        <div className="flex justify-center items-center z-10 flex-col lg:flex-row gap-4 md:gap-8 lg:gap-0 py-0 lg:py-[64px] relative after:none lg:after:absolute lg:after:right-0 lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[60%] lg:after:h-full lg:after:z-0">
-          <div className="flex items-start lg:items-center flex-col w-full lg:w-[55%] h-full xm:h-[550px] object-top 2xl:h-auto md:flex-row">
-            {section_image?.url ? (
-              <Image
-                src={section_image?.url}
-                width={section_image?.width || 908}
-                height={section_image?.height || 744}
-                alt="About Section Image"
-                className="w-full object-cover h-full relative z-[1] py-0 lg:py-[30px] bg-Bgslate"
-                priority
-              />
-            ) : null}
+    <section className="p-1 group bg-Bgslate">
+    <div className="px-4 sm:px-[50px] 3xl:px-0 py-0 3xl:py-[100px] my-[40px] md:my-[70px] xlg:my-[100px] 3xl:mr-[100px] relative z-10 group-[.reverse]:3xl:mr-[0] group-[.reverse]:3xl:ml-[100px]">
+      <div className="container max-w-3xl lg:max-w-full 3xl:p-0 relative z-10 3xl:static p-4 sm:p-10 mx-auto">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 3xl:gap-[100px] group-[.reverse]:lg:flex-row-reverse">
+          <div className="lg:w-1/2">
+            <div className="sticky top-40">
+              <div className="aspect-square bg-Bgslate">
+                {section_image?.url && (
+                  <Image
+                    src={section_image?.url}
+                    width={section_image?.width || 908}
+                    height={section_image?.height || 744}
+                    alt="About Section Image"
+                    className="w-full object-cover h-full relative z-[1] py-0 lg:py-[30px] bg-Bgslate"
+                    priority
+                  />
+                )}
+              </div>
+            </div>
           </div>
-          <div className="flex gap-5 flex-col w-full justify-center lg:w-[50%] px-0 lg:px-4 lg:gap-8 2xl:px-[100px] relative z-10">
-            <div className="flex relative">
+          <div className="lg:w-1/2">
+            <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
               {main_title && (
                 <h2
-                  dangerouslySetInnerHTML={{
-                    __html: main_title,
-                  }}
-                ></h2>
+                  className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
+                  dangerouslySetInnerHTML={{ __html: main_title }}
+                />
               )}
-            </div>
-            <div className="space-y-4"
-              dangerouslySetInnerHTML={{
-                __html: sanitizedContent,
-              }}
-            ></div>
-
-            <div className="flex flex-wrap sm:flex-nowrap xlg:justify-start gap-4 ">
-              {section_sub_content?.map((item, i) => (
-                <div
-                  className="flex flex-col gap-4 bg-salte p-4 w-full sm:w-[calc(50%-8px)] lg:w-full xlg:w-[calc(50%-8px)]"
-                  key={i}
-                >
-                  {item?.home_leistungen_section_sub_contents?.home_leistungen_section_sub_contents_item?.map(
-                    (subitem, j) => (
-                      <div className="space-y-2" key={j}>
-                        {item.home_leistungen_section_sub_content_title && (
-                          <h3
-                            className="text-h4 2xl:text-h3"
+              <div
+                className="space-y-2"
+                dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+              />
+              <div className="flex gap-2 flex-wrap">
+                {section_sub_content?.map((item, i) => (
+                  <div
+                    key={i}
+                    className="bg-[#FDF6EE] p-4 sm:p-8 space-y-4 2xl:w-[calc(50%-4px)] grow"
+                  >
+                    {item?.home_leistungen_section_sub_contents?.home_leistungen_section_sub_contents_item?.map(
+                      (subitem, j) => (
+                        <div className="link-blocks space-y-2" key={j}>
+                          {item.home_leistungen_section_sub_content_title && (
+                            <h3 className="text-xl lg:text-2xl xl:text-[28px] xl:font-semibold">
+                              {item.home_leistungen_section_sub_content_title}
+                            </h3>
+                          )}
+  
+                          {subitem.home_leistungen_section_sub_contents_item_title && (
+                            <p>
+                              {subitem.home_leistungen_section_sub_contents_item_title}
+                            </p>
+                          )}
+  
+                          <ul
+                            className="menu menu1 list-g-disc text-[18px]"
                             dangerouslySetInnerHTML={{
-                              __html:
-                                item.home_leistungen_section_sub_content_title,
-                            }}
-                          ></h3>
-                        )}
-                        {subitem.home_leistungen_section_sub_contents_item_title && (
-                          <p
-                            className=""
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                subitem.home_leistungen_section_sub_contents_item_title,
-                            }}
-                          ></p>
-                        )}
-                        <ul
-                          className="menu menu1 list-g-disc text-[18px]"
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              subitem.home_leistungen_section_sub_contents_item_content
+                              __html: subitem.home_leistungen_section_sub_contents_item_content
                                 ?.replace(/<ul>/g, "")
                                 .replace(/<\/ul>/g, ""),
-                          }}
-                        ></ul>
+                            }}
+                          />
+                        </div>
+                      )
+                    )}
+                    {item.home_leistungen_section_sub_content_button && (
+                      <div>
+                        <Link
+                          href={item.home_leistungen_section_sub_content_button?.url || "#"}
+                          target={item.home_leistungen_section_sub_content_button?.target || "_self"}
+                          className="uppercase bg-[#1A8281] py-4 px-9 text-white inline-block"
+                        >
+                          {item.home_leistungen_section_sub_content_button?.title}
+                        </Link>
                       </div>
-                    )
-                  )}
-                  {item.home_leistungen_section_sub_content_button && (
-                    <Link
-                      href={
-                        item.home_leistungen_section_sub_content_button?.url
-                      }
-                      target={
-                        item.home_leistungen_section_sub_content_button?.target
-                      }
-                      className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 2xl:px-9 2xl:py-4 transition-all duration-700 ease-in"
-                      aria-label="link-button"
-                      role="link"
-                    >
-                      {item.home_leistungen_section_sub_content_button?.title}
-                    </Link>
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+        <div className="absolute border border-[#1A8281] inset-0 lg:left-1/3 -z-10 group-[.reverse]:lg:right-1/3 group-[.reverse]:lg:left-0"></div>
       </div>
-    </section>
+    </div>
+  </section>
+
+   
   );
 };
 
