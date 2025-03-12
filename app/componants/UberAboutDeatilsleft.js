@@ -21,7 +21,7 @@ const UberAboutDeatilsleft = ({ main_title, content, image }) => {
                     </div>
                   </div>
                 </div>
-                <div className="lg:w-1/2">
+                <div className="lg:w-1/2 flex items-center">
                   <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
                     {main_title && (
                       <h2
