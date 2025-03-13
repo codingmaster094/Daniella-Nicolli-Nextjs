@@ -195,7 +195,7 @@ const Header = () => {
                       {item.children.length > 0 && (
                         <span
                           className={`text-sm lg:hidden transition-transform duration-300 ${
-                            submenuOpen === index ? "rotate-180" : "rotate-0"
+                            submenuOpen === index ? "rotate-180 text-black-900" : "rotate-0"
                           }`}
                         >
                           ▼
@@ -229,7 +229,7 @@ const Header = () => {
                                 child.id
                               )
                             }
-                            className={`cursor-pointer block w-full px-4 py-2  hover:bg-gray-100
+                            className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100
                               
                         
                             `}
