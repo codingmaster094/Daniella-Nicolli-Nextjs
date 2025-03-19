@@ -77,6 +77,11 @@ const page = () => {
         main_title={Naturheilmedizin?.faq_main_title?.value}
         all_faqs={Naturheilmedizin?.all_faqs?.value}
       />
+
+      <Comment
+        main_title={Naturheilmedizin?.bewertungen_main_title?.value}
+        content={Naturheilmedizin?.bewertungen_content?.value}
+      />
     </>
   );
 };

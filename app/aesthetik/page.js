@@ -10,6 +10,7 @@ import MultipleAboutdetails from "../componants/MultipleAboutdetails";
 import Link from "next/link";
 import BannerCarousel from "../componants/Banner";
 
+
 const page = () => {
   const [AesthetikData, setAesthetikData] = useState(null);
   const fetchAesthetikData = async () => {
@@ -60,9 +61,9 @@ const page = () => {
       />
       {AesthetikData && (
         <Slidehover
-          main_title={AesthetikData?.referenzen_main_title?.value}
-          all_referenzen={AesthetikData?.all_referenzen}
-          enabledisable_referenz={AesthetikData?.enabledisable_referenz?.value}
+        main_title={AesthetikData?.referenzen_main_title?.value}
+        all_referenzen={AesthetikData?.all_referenzen}
+        enabledisable_referenz={AesthetikData?.enabledisable_referenz?.value}
         />
       )}
 
@@ -73,6 +74,11 @@ const page = () => {
       <Accordian
         main_title={AesthetikData?.faq_main_title?.value}
         all_faqs={AesthetikData?.all_faqs?.value}
+      />
+
+      <Comment
+        main_title={AesthetikData?.bewertungen_main_title?.value}
+        content={AesthetikData?.bewertungen_content?.value}
       />
     </>
   );
