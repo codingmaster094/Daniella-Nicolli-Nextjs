@@ -6,8 +6,8 @@ const Categories = (props) => {
   console.log("bg_img", bg_img);
   return (
     <section
-      className={`py-10 md:py-[70px] lg:py-[100px] bg-cover bg-bottom relative ${
-        bg_img ? "" : "bg-Teal"
+      className={`py-10 md:py-[70px] lg:py-[100px] bg-cover bg-center bg-no-repeat relative ${
+        bg_img ? "min-h-[400px]" : "bg-Teal h-auto"
       }`}
       style={bg_img ? { backgroundImage: `url(${bg_img})` } : {}}
     >
