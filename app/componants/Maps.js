@@ -21,6 +21,7 @@ const Maps = ({ main_title, map_url, map_image }) => {
               aria-label="map-image"
               role="link"
             >
+        
               <Image
                 src={map_image?.url}
                 alt="map_image"

@@ -66,9 +66,9 @@ const ContactAboutDetails = ({
           <div className="flex gap-5  flex-col w-full justify-center lg:w:1/2 2xl:w-[60%]    lg:gap-8 ">
             <div className="flex flex-col sm:flex-row flex-wrap px-4   2xl:px-8 gap-2">
               <div className="flex flex-col active w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4   *hover:text-white transition-all duration-500 ease-in-out">
-                {/* <h3 className="text-h4 2xl:text-h3">{telefonnummer_label}</h3> */}
+                {/* {<h3 className="text-h4 2xl:text-h3">{telefonnummer_label}</h3>} */}
                 <h3 className="text-h4">{telefonnummer_label}</h3>
-                <div className="block *:text-sm *:2xl:text-base *:4xl:text-a *:break-words">
+                <div className="block :text-sm :2xl:text-base :4xl:text-a :break-words">
                   <p>{ContactOptionData?.footer_phone_number.title}</p>
                 </div>
                 {ContactOptionData?.footer_phone_number && (
@@ -85,7 +85,7 @@ const ContactAboutDetails = ({
               </div>
               <div className="flex flex-col active w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4   *hover:text-white transition-all duration-500 ease-in-out">
                 <h3 className=" text-h4">{email_label}</h3>
-                <div className="block  *:text-sm *:2xl:text-base *:4xl:text-a *:break-words">
+                <div className="block  :text-sm :2xl:text-base :4xl:text-a :break-words">
                   <p>{ContactOptionData?.footer_email_address.title}</p>
                 </div>
 
@@ -103,7 +103,7 @@ const ContactAboutDetails = ({
               </div>
               <div className="flex flex-col active w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4  *hover:text-white transition-all duration-500 ease-in-out">
                 <h3 className=" text-h4">{terminbuchung_label}</h3>
-                <div className="block *:text-sm *:2xl:text-base *:4xl:text-a *:break-words">
+                <div className="block :text-sm :2xl:text-base :4xl:text-a :break-words">
                   <p>{terminbuchung_text}</p>
                 </div>
                 {terminbuchung_button && (

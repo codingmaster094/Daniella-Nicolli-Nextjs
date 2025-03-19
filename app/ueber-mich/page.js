@@ -71,6 +71,7 @@ const page = () => {
         title={Ubermich?.ueber_geschichte_anfrage_main_title?.value}
         description={Ubermich?.ueber_geschichte_anfrage_1_content?.value}
         BTN={Ubermich?.ueber_geschichte_anfrage_1_button.value}
+        bg_img={Ubermich?.ueber_geschichte_anfrage_1_image?.value}
       />
 
       {Ubermich && (

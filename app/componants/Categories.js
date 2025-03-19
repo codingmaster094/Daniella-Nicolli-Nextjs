@@ -3,6 +3,7 @@ import React from "react";
 
 const Categories = (props) => {
   const { title, description, BTN, bg_img } = props;
+  console.log("bg_img", bg_img);
   return (
     <section
       className={`py-10 md:py-[70px] lg:py-[100px] bg-cover bg-bottom relative ${

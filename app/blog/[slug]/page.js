@@ -104,6 +104,7 @@ const Page = () => {
           title={blogData?.home_anfrage_main_title}
           description={blogData?.home_anfrage_content}
           BTN={blogData?.home_anfrage_button}
+          bg_img={blogData?.home_anfrage_image}
         />
       )}
 
