@@ -374,12 +374,18 @@
   } */
 
   .list-g-disc li {
-    @apply  list-disc;
+    @apply list-disc;
   }
-  .menu{
+
+  .menu {
     @apply pl-[20px];
   }
-  .link-blocks ul{
+
+  .link-blocks ul {
     @apply !mt-4;
+  }
+
+  .map-block {
+    @apply !max-h-[650px];
   }
 }
