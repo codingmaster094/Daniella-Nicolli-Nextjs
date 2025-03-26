@@ -2,8 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const LendingAbout = ({ title, content, allData, BTN, section_show }) => {
-  console.log("title", title);
+const LendingAbout = ({ title, content, allData, section_show }) => {
   return (
     section_show && (
       <section className="py-[30px] group bg-Bgslate px-4 3xl:py-[100px]">
@@ -61,7 +60,7 @@ const LendingAbout = ({ title, content, allData, BTN, section_show }) => {
                   </div>
                 </div>
               ))}
-            {BTN && (
+            {/* {BTN && (
               <div className="text-center">
                 <Link
                   href={BTN.url || "#"}
@@ -71,7 +70,7 @@ const LendingAbout = ({ title, content, allData, BTN, section_show }) => {
                   {BTN?.title}
                 </Link>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </section>

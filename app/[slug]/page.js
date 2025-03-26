@@ -53,7 +53,7 @@ const page = () => {
         section_sub_content={
           LendiangPageData?.home_leistungen_section_sub_content
         }
-        BTN={LendiangPageData?.landing_page_1_termin_buchen}
+        // BTN={LendiangPageData?.landing_page_1_termin_buchen}
         section_show={LendiangPageData.landing_ubersicht_1_section_show}
         Small_image_show={LendiangPageData.landing_ubersicht_image_show}
       />
@@ -62,7 +62,7 @@ const page = () => {
         title={LendiangPageData.landing_aesthetic_treatments_title}
         content={LendiangPageData.landing_aesthetic_treatments_content}
         allData={LendiangPageData.landing_aesthetic_treatments_details}
-        BTN={LendiangPageData.landing_aesthetic_treatments_button}
+        // BTN={LendiangPageData.landing_aesthetic_treatments_button}
         section_show={LendiangPageData.landing_aesthetic_section_show}
       />
 
