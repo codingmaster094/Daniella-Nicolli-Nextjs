@@ -402,6 +402,6 @@
 .ulDiv > div > div > ul {
   @apply list-g-disc text-[18px] mb-4 px-5;
 }
-.ulDiv > div > div > ul > a {
+.ulDiv > a {
   @apply text-[#1A8281];
 }
