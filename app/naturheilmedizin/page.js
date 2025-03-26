@@ -76,6 +76,7 @@ const page = () => {
       <Accordian
         main_title={Naturheilmedizin?.faq_main_title?.value}
         all_faqs={Naturheilmedizin?.all_faqs?.value}
+        show_section={Naturheilmedizin?.faq_main_faq_show.value}
       />
     </>
   );

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["daniella.blog-s.de"], // Add Instagram CDN here
+    domains: ["daniella.blog-s.de"],
     formats: ["image/webp"],
   },
   async redirects() {

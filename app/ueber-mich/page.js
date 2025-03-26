@@ -52,6 +52,7 @@ const page = () => {
         content={Ubermich?.ueber_geschichte_content?.value}
         image={Ubermich?.ueber_geschichte_image?.value}
         sub_content={Ubermich?.experience_year?.value}
+        Small_image_show={Ubermich?.ueber_geschichte_image_show}
       />
 
       {Ubermich && (
@@ -65,6 +66,7 @@ const page = () => {
         main_title={Ubermich?.ueber_praxis_main_title?.value}
         content={Ubermich?.ueber_praxis_content?.value}
         image={Ubermich?.ueber_praxis_image?.value}
+        Small_image_show={Ubermich?.ueber_praxis_image_show?.value}
       />
 
       <Categories

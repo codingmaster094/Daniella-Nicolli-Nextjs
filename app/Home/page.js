@@ -11,6 +11,7 @@ import Slidehover from "../componants/Slidehover";
 import axios from "axios";
 import Link from "next/link";
 import BannerCarousel from "../componants/Banner";
+import Accordian from "../componants/Accordian";
 
 const page = () => {
   const [HomePageData, setHomePageData] = useState(null);
@@ -57,6 +58,7 @@ const page = () => {
         section_sub_content={
           HomePageData?.home_leistungen_section_sub_content.value
         }
+        Small_image_show={HomePageData?.home_leistungen_image_show?.value}
       />
 
       <Categories
@@ -107,6 +109,12 @@ const page = () => {
           enabledisable_referenz={HomePageData?.enabledisable_referenz?.value}
         />
       )}
+
+      <Accordian
+        main_title={HomePageData?.faq_main_title?.value}
+        all_faqs={HomePageData?.all_faqs?.value}
+        show_section={HomePageData?.faq_main_faq_show.value}
+      />
     </>
   );
 };

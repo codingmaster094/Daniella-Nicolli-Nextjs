@@ -9,7 +9,7 @@ const LandingAboutSection = (props) => {
     section_image,
     section_content,
     section_sub_content,
-    // BTN,
+    BTN,
     section_show,
     Small_image_show,
   } = props;
@@ -113,7 +113,7 @@ const LandingAboutSection = (props) => {
                         </div>
                       ))}
                   </div>
-                  {/* <div className="flex justify-center items-center">
+                  <div className="flex justify-center items-center">
                     {BTN && (
                       <Link
                         href={BTN.url}
@@ -123,7 +123,7 @@ const LandingAboutSection = (props) => {
                         {BTN.title}
                       </Link>
                     )}
-                  </div> */}
+                  </div>
                 </div>
               </div>
             </div>

@@ -9,12 +9,11 @@ const Aboutdetails = (props) => {
     section_image,
     section_content,
     section_sub_content,
+    Small_image_show,
     BTN,
   } = props;
 
   const sanitizedContent = section_content;
-
-  const Small_image_show = false;
 
   return (
     <section className="py-[20px] group bg-Bgslate">

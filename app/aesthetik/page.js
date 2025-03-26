@@ -73,6 +73,7 @@ const page = () => {
       <Accordian
         main_title={AesthetikData?.faq_main_title?.value}
         all_faqs={AesthetikData?.all_faqs?.value}
+        show_section={AesthetikData?.faq_main_faq_show.value}
       />
     </>
   );
