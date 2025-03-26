@@ -9,9 +9,10 @@ const LendingAbout = ({ title, content, allData, BTN, section_show }) => {
       <section className="py-[30px] group bg-Bgslate px-4 3xl:py-[100px]">
         <div className="container max-w-full lg:max-w-[1440px] mx-auto">
           <div className="flex flex-col  gap-6 md:gap-11 lg:gap-16">
-            <h2 className="text-xl text-center lg:text-2xl xl:text-[33px] font-bold xl:leading-snug">
-              {title}
-            </h2>
+            <h2
+              className="text-xl text-center lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
+              dangerouslySetInnerHTML={{ __html: title }}
+            ></h2>
             {content && (
               <div
                 className="space-y-2"
