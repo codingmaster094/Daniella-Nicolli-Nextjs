@@ -59,9 +59,13 @@ const LandingAboutSection = (props) => {
                         >
                           <div className="link-blocks space-y-2">
                             {item.home_leistungen_section_sub_content_title && (
-                              <h3 className="text-xl lg:text-2xl xl:text-[28px] xl:font-semibold">
-                                {item.home_leistungen_section_sub_content_title}
-                              </h3>
+                              <h3
+                                className="text-xl lg:text-2xl xl:text-[28px] xl:font-semibold"
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    item.home_leistungen_section_sub_content_title,
+                                }}
+                              ></h3>
                             )}
 
                             {item.home_leistungen_section_sub_contents_item_title && (
