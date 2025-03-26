@@ -55,7 +55,7 @@ const page = () => {
         section_image={HomePageData?.home_leistungen_section_image?.value}
         section_content={HomePageData?.home_leistungen_section_content?.value}
         section_sub_content={
-          HomePageData?.home_leistungen_section_sub_content?.value
+          HomePageData?.home_leistungen_section_sub_content.value
         }
       />
 

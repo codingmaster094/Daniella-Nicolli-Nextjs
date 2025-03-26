@@ -41,10 +41,10 @@ const Counter = ({ main_title, all_leistungen }) => {
         const isThousand = rawValue.toLowerCase().includes("k");
         const target = isThousand
           ? parseInt(rawValue.replace(/[^0-9]/g, ""), 10) * 1000
-          : parseInt(rawValue, 10);
+          : parseFloat(rawValue);
 
         let start = 0;
-        const increment = Math.ceil(target / 250); // Slow down by increasing divisor
+        const increment = Math.ceil(target / 250);
         const interval = setInterval(() => {
           start += increment;
           if (start >= target) {
@@ -56,10 +56,25 @@ const Counter = ({ main_title, all_leistungen }) => {
             updated[index] = start;
             return updated;
           });
-        }, 50); // Increased interval time to slow down
+        }, 50);
       });
     }
   }, [hasStarted, all_leistungen]);
+
+  const formatNumber = (num, index) => {
+    if (index === 0) {
+      return `+${Number(num).toLocaleString("en-US", {
+        minimumFractionDigits: num % 1 !== 0 ? 3 : 0,
+        maximumFractionDigits: num % 1 !== 0 ? 3 : 0,
+      })}`;
+    } else if (num >= 1000) {
+      return `${Math.floor(num / 1000)}k`;
+    }
+    return Number(num).toLocaleString("en-US", {
+      minimumFractionDigits: num % 1 !== 0 ? 3 : 0,
+      maximumFractionDigits: num % 1 !== 0 ? 3 : 0,
+    });
+  };
 
   return (
     <section
@@ -78,57 +93,27 @@ const Counter = ({ main_title, all_leistungen }) => {
           </div>
           <div className="flex justify-between flex-col md:flex-row gap-8">
             {all_leistungen &&
-              all_leistungen != undefined &&
-              all_leistungen.map((item, index) => {
-                const rawValue = item.ueber_all_leistungen_counter || "0";
-                const isThousand = rawValue.toLowerCase().includes("k");
-                let formattedValue;
-                if (index === 0) {
-                  if (counters.length != 0) {
-                    // For the first counter, add "+" prefix
-                    formattedValue = `+${counters[index]}`;
-                  } else {
-                    formattedValue = `+0`;
-                  }
-                } else if (isThousand) {
-                  if (counters.length != 0) {
-                    // For counters that need the "k" suffix (if the value is in thousands)
-                    formattedValue =
-                      counters[index] >= 1000
-                        ? `${Math.floor(counters[index] / 1000)}k` // Use Math.floor to avoid decimals
-                        : counters[index];
-                  } else {
-                    formattedValue = `0k`;
-                  }
-                } else {
-                  if (counters.length != 0) {
-                    // Default case for other counters
-                    formattedValue = counters[index];
-                  } else {
-                    formattedValue = `0`;
-                  }
-                }
-
-                return (
-                  <div
-                    key={index}
-                    className="text-center gap-6 flex flex-col font-primry-font"
-                  >
-                    <span className="text-5xl font-bold counter">
-                      {formattedValue}
-                    </span>
-                    <p
-                      className="mt-2 text-a"
-                      dangerouslySetInnerHTML={{
-                        __html: item.ueber_all_leistungen_content
-                          ?.replace(/<p>/g, "")
-                          .replace(/<\/p>/g, "")
-                          .replace(/&amp;/g, "&"),
-                      }}
-                    ></p>
-                  </div>
-                );
-              })}
+              all_leistungen.map((item, index) => (
+                <div
+                  key={index}
+                  className="text-center gap-6 flex flex-col font-primry-font"
+                >
+                  <span className="text-5xl font-bold counter">
+                    {counters.length > 0
+                      ? formatNumber(counters[index], index)
+                      : "+0"}
+                  </span>
+                  <p
+                    className="mt-2 text-a"
+                    dangerouslySetInnerHTML={{
+                      __html: item.ueber_all_leistungen_content
+                        ?.replace(/<p>/g, "")
+                        .replace(/<\/p>/g, "")
+                        .replace(/&amp;/g, "&"),
+                    }}
+                  ></p>
+                </div>
+              ))}
           </div>
         </div>
       </div>

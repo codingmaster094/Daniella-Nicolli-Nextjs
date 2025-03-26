@@ -146,8 +146,6 @@ const Header = () => {
               item.slug = item.slug === "home" ? "/" : item.slug;
               const isActive =
                 pathname === (item.slug === "/" ? "/" : `/${item.slug}`);
-
-              console.log("isActive", isActive);
               return (
                 <li
                   key={item.id}
@@ -195,7 +193,9 @@ const Header = () => {
                       {item.children.length > 0 && (
                         <span
                           className={`text-sm lg:hidden transition-transform duration-300 ${
-                            submenuOpen === index ? "rotate-180 text-black-900" : "rotate-0"
+                            submenuOpen === index
+                              ? "rotate-180 text-black-900"
+                              : "rotate-0"
                           }`}
                         >
                           ▼
@@ -205,40 +205,46 @@ const Header = () => {
                   </div>
 
                   {item.children.length > 0 && (
-                    <div className={`lg:absolute transition-all duration-1000 ${submenuOpen === index ? 'pt-0 lg:pt-[50px] bg-white':"pt-0 bg-white"}`}>
-                    <ul
-                      className={` left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
-                      style={{
-                        maxHeight: submenuOpen === index ? "500px" : "0px",
-                        overflow: "hidden",
-                        transition: "max-height 0.4s ease-in-out",
-                        minHeight: submenuOpen === index ? "50px" : "0px",
-                      }}
+                    <div
+                      className={`lg:absolute transition-all duration-1000 ${
+                        submenuOpen === index
+                          ? "pt-0 lg:pt-[50px] bg-white"
+                          : "pt-0 bg-white"
+                      }`}
                     >
-                      {item.children.map((child) => {
-                        const isSubmenuActive = activeSubmenu === child.id;
+                      <ul
+                        className={` left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
+                        style={{
+                          maxHeight: submenuOpen === index ? "500px" : "0px",
+                          overflow: "hidden",
+                          transition: "max-height 0.4s ease-in-out",
+                          minHeight: submenuOpen === index ? "50px" : "0px",
+                        }}
+                      >
+                        {item.children.map((child) => {
+                          const isSubmenuActive = activeSubmenu === child.id;
 
-                        return (
-                          <li
-                            key={child.id}
-                            onClick={(e) =>
-                              handleSubmenuClick(
-                                e,
-                                child.url,
-                                item.slug,
-                                child.id
-                              )
-                            }
-                            className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100
+                          return (
+                            <li
+                              key={child.id}
+                              onClick={(e) =>
+                                handleSubmenuClick(
+                                  e,
+                                  child.url,
+                                  item.slug,
+                                  child.id
+                                )
+                              }
+                              className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100
                               
                         
                             `}
-                          >
-                            {child.title}
-                          </li>
-                        );
-                      })}
-                    </ul>
+                            >
+                              {child.title}
+                            </li>
+                          );
+                        })}
+                      </ul>
                     </div>
                   )}
                 </li>

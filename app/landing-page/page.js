@@ -90,6 +90,7 @@ const page = () => {
         title={LendiangPageData?.anfrage_2_main_title?.value}
         description={LendiangPageData?.anfrage_2_content?.value}
         BTN={LendiangPageData?.anfrage_2_button?.value}
+        bg_img={LendiangPageData?.anfrage_2_image?.value}
       /> */}
 
       <Accordian
