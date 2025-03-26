@@ -44,7 +44,6 @@ const page = () => {
           ""
         )}
         BTN={LendiangPageData?.hero_slider_button}
-        section_show={LendiangPageData.landing_hero_section_show}
       />
 
       <LandingAboutSection
