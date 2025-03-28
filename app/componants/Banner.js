@@ -9,12 +9,7 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
       <div className={`Banner`}>
         <div className="Banner-sliders relative overflow-hidden">
           <div className="item">
-            <div
-              className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]"
-              // style={{
-              //   backgroundImage: img ? `url(${img})` : "none",
-              // }}
-            >
+            <div className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]">
               <Image
                 src={img}
                 className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
