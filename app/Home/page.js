@@ -12,9 +12,9 @@ import axios from "axios";
 import Link from "next/link";
 import BannerCarousel from "../componants/Banner";
 import Accordian from "../componants/Accordian";
-
-const page = () => {
+const Home = () => {
   const [HomePageData, setHomePageData] = useState(null);
+  const [error, setError] = useState(null);
 
   const fetchHomeData = async () => {
     try {
@@ -23,7 +23,7 @@ const page = () => {
       );
       setHomePageData(response.data); // The result is in response.data with Axios
     } catch (error) {
-      console.error("Error fetching content data", error);
+      setError("Failed to load data");
     }
   };
 
@@ -119,4 +119,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Home;

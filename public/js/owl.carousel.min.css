@@ -1,8 +1,3 @@
-/**
- * Owl Carousel v2.3.4
- * Copyright 2013-2018 David Deutsch
- * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
- */
 .owl-carousel,
 .owl-carousel .owl-item {
     -webkit-tap-highlight-color: transparent;
@@ -60,7 +55,9 @@
 }
 
 .owl-carousel .owl-dots.disabled,
-.owl-carousel .owl-nav.disabled {
+.owl-carousel .owl-nav.disabled,
+.owl-carousel .owl-video-playing .owl-video-play-icon,
+.owl-carousel .owl-video-playing .owl-video-tn {
     display: none
 }
 
@@ -158,7 +155,7 @@
 
 .owl-carousel .owl-item .owl-lazy {
     opacity: 0;
-    transition: opacity .4s ease
+    transition: opacity .4s
 }
 
 .owl-carousel .owl-item .owl-lazy:not([src]),
@@ -184,21 +181,15 @@
     top: 50%;
     margin-left: -40px;
     margin-top: -40px;
-    /* background: url(owl.video.play.png) no-repeat; */
     cursor: pointer;
     z-index: 1;
     -webkit-backface-visibility: hidden;
-    transition: transform .1s ease
+    transition: transform .1s
 }
 
 .owl-carousel .owl-video-play-icon:hover {
     -ms-transform: scale(1.3, 1.3);
     transform: scale(1.3, 1.3)
-}
-
-.owl-carousel .owl-video-playing .owl-video-play-icon,
-.owl-carousel .owl-video-playing .owl-video-tn {
-    display: none
 }
 
 .owl-carousel .owl-video-tn {
@@ -207,7 +198,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
-    transition: opacity .4s ease
+    transition: opacity .4s
 }
 
 .owl-carousel .owl-video-frame {
