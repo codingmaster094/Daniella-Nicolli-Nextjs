@@ -17,6 +17,8 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
               <img
                 src={img}
                 className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+                alt="hero banner image"
+                role="img"
               ></img>
               <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
                 <h1
