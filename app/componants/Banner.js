@@ -6,14 +6,18 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
   return (
     <section>
       <div className={`Banner`}>
-        <div className="Banner-sliders relative">
+        <div className="Banner-sliders relative overflow-hidden">
           <div className="item">
             <div
               className="bg-banner bg-banner-img bg-cover px-[15px]  2xl:ps-[148px]"
-              style={{
-                backgroundImage: img ? `url(${img})` : "none",
-              }}
+              // style={{
+              //   backgroundImage: img ? `url(${img})` : "none",
+              // }}
             >
+              <img
+                src={img}
+                className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+              ></img>
               <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
                 <h1
                   dangerouslySetInnerHTML={{

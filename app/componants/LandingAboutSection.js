@@ -15,6 +15,7 @@ const LandingAboutSection = (props) => {
   } = props;
 
   const sanitizedContent = section_content;
+  console.log("BTN", BTN);
 
   return (
     section_show && (
