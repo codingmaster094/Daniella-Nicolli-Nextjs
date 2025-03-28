@@ -21,6 +21,7 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
                 alt="hero banner image"
                 role="img"
                 fill
+                priority
               />
               <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
                 <h1
