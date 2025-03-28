@@ -14,15 +14,15 @@ const ClientCarousel = ({
     if (typeof window !== "undefined") {
       const loadOwlCarousel = async () => {
         const jQueryScript = document.createElement("script");
-        jQueryScript.src = process.env.NEXT_PUBLIC_JQUERY_URL;
+        jQueryScript.src = "/js/jquery.min.js";
         jQueryScript.onload = () => {
           const owlCarouselCSS = document.createElement("link");
           owlCarouselCSS.rel = "stylesheet";
-          owlCarouselCSS.href = process.env.NEXT_PUBLIC_OWL_CAROUSEL_CSS;
+          owlCarouselCSS.href = "/js/owl.carousel.min.css";
           document.head.appendChild(owlCarouselCSS);
 
           const owlCarouselJS = document.createElement("script");
-          owlCarouselJS.src = process.env.NEXT_PUBLIC_OWL_CAROUSEL_JS;
+          owlCarouselJS.src = "/js/owl.carousel.min.js";
           owlCarouselJS.onload = () => {
             window.$ = window.jQuery;
 

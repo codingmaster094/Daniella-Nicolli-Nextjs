@@ -73,7 +73,9 @@
   .owl-carousel .owl-nav {
     @apply absolute -translate-y-1/2 z-10 top-1/2 w-full !block;
   }
-
+  .hover-sliders .owl-nav {
+    @apply z-[99];
+  }
   .owl-carousel.Serviceslider .owl-nav,
   .owl-carousel.slider .owl-nav {
     @apply absolute -translate-y-1/2 z-[22] top-[41%] w-full !block;

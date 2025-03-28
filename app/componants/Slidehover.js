@@ -13,18 +13,18 @@ const Slidehover = ({ main_title, all_referenzen, enabledisable_referenz }) => {
     const loadOwlCarousel = async () => {
       // Load jQuery dynamically
       const jQueryScript = document.createElement("script");
-      jQueryScript.src = process.env.NEXT_PUBLIC_JQUERY_URL;
+      jQueryScript.src = "/js/jquery.min.js";
       jQueryScript.defer = true; // Defer loading
       jQueryScript.onload = () => {
         // Load OwlCarousel CSS
         const owlCarouselCSS = document.createElement("link");
         owlCarouselCSS.rel = "stylesheet";
-        owlCarouselCSS.href = process.env.NEXT_PUBLIC_OWL_CAROUSEL_CSS;
+        owlCarouselCSS.href = "/js/owl.carousel.min.css";
         document.head.appendChild(owlCarouselCSS);
 
         // Load OwlCarousel JS
         const owlCarouselJS = document.createElement("script");
-        owlCarouselJS.src = process.env.NEXT_PUBLIC_OWL_CAROUSEL_JS;
+        owlCarouselJS.src = "/js/owl.carousel.min.js";
         owlCarouselJS.defer = true; // Defer loading
         owlCarouselJS.onload = () => {
           // Ensure jQuery is accessible globally
