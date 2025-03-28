@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -14,12 +15,13 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
               //   backgroundImage: img ? `url(${img})` : "none",
               // }}
             >
-              <img
+              <Image
                 src={img}
                 className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
                 alt="hero banner image"
                 role="img"
-              ></img>
+                fill
+              />
               <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] ">
                 <h1
                   dangerouslySetInnerHTML={{

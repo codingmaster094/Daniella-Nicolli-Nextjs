@@ -26,8 +26,7 @@ const Aboutdetails = (props) => {
                   {section_image?.url && (
                     <Image
                       src={section_image?.url}
-                      width={section_image?.width || 908}
-                      height={section_image?.height || 744}
+                      fill
                       alt="About Section Image"
                       className="w-full object-cover h-full relative z-[1] py-0 lg:py-[30px] bg-Bgslate"
                       priority
