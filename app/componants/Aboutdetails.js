@@ -25,13 +25,14 @@ const Aboutdetails = (props) => {
                 <div className="aspect-square bg-Bgslate relative w-full">
                   {section_image?.url && (
                     <Image
-                      src={section_image?.url}
-                      fill
-                      alt="About Section Image"
-                      className="w-full object-cover h-full  bg-Bgslate"
-                      priority
-                      placeholder="empty"
-                    />
+                  src={section_image?.url}
+                  width={500}
+                  height={500}
+                  alt="About Section Image"
+                  className="w-full object-cover h-full bg-Bgslate"
+                  priority
+                />
+
                   )}
                 </div>
               </div>

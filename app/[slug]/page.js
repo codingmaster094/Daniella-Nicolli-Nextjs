@@ -1,18 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import BannerCarousel from "../componants/Banner";
-import ClientCarousel from "../componants/client";
-import AboutDeatilsRight from "../componants/AboutDeatilsRight";
-import Comment from "../componants/Comment";
-import Categories from "../componants/Categories";
-import Slidehover from "../componants/Slidehover";
-import Accordian from "../componants/Accordian";
 import axios from "axios";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import LandingAboutSection from "../componants/LandingAboutSection";
 import AboutLambsheim from "../componants/AboutLambsheim";
 import LendingAbout from "../componants/LendingAbout";
+import LeandingCategories from "../componants/LeandingCategories";
 
 const page = () => {
   const [LendiangPageData, setLendiangPageData] = useState([]);
@@ -75,7 +69,7 @@ const page = () => {
         Small_image_show={LendiangPageData.landing_standorte_image_show}
       />
 
-      <Categories
+      <LeandingCategories
         title={LendiangPageData?.home_anfrage_1_main_title}
         description={LendiangPageData?.home_anfrage_1_content}
         BTN={LendiangPageData?.home_anfrage_1_button}
