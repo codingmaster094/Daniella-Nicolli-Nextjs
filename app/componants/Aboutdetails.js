@@ -22,13 +22,13 @@ const Aboutdetails = (props) => {
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 3xl:gap-[100px] group-[.reverse]:lg:flex-row-reverse">
             <div className={Small_image_show ? "lg:w-1/3" : "lg:w-1/2"}>
               <div className="sticky top-40">
-                <div className="aspect-square bg-Bgslate relative w-full h-[500px]  ">
+                <div className="aspect-square bg-Bgslate relative w-full">
                   {section_image?.url && (
                     <Image
                       src={section_image?.url}
                       fill
                       alt="About Section Image"
-                      className="w-full object-unset h-full  bg-Bgslate"
+                      className="w-full object-cover h-full  bg-Bgslate"
                       priority
                       placeholder="empty"
                     />
