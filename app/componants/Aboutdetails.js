@@ -36,7 +36,7 @@ const Aboutdetails = (props) => {
               </div>
             </div>
             <div className={Small_image_show ? "lg:w-2/3" : "lg:w-1/2"}>
-              <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
+              <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20 max-h-[500px] overflow-y-scroll">
                 {main_title && (
                   <h2
                     className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"

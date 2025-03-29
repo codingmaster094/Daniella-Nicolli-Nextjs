@@ -21,7 +21,7 @@ const Home = () => {
       const response = await axios.get(
         "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/home"
       );
-      setHomePageData(response.data); // The result is in response.data with Axios
+      setHomePageData(response.data);
     } catch (error) {
       setError("Failed to load data");
     }
