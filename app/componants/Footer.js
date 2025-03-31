@@ -45,7 +45,7 @@ const Footer = () => {
       <div className="container mx-auto px-[15px] ">
         <div className="flex gap-6 lg:gap-8 2xl:gap-[90px] justify-between lg:flex-nowrap flex-wrap py-8 md:py-20">
           <div className="flex flex-col md:w-auto w-full gap-4">
-            <h4>{FooterData?.kontakt_label}</h4>
+            <h3>{FooterData?.kontakt_label}</h3>
             <ul className="[&_li>img]:mt-4">
               <li>
                 <Image src={LocationSvg} alt="location-svg" />
