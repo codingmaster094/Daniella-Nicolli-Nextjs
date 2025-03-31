@@ -3,7 +3,6 @@ import "../public/font/stylesheet.css";
 import Header from "../app/componants/Header";
 import Footer from "../app/componants/Footer";
 import TopButton from "../app/componants/Top-Button";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "Daniella Nicolli",
@@ -17,7 +16,6 @@ export default function RootLayout({ children }) {
         <Header />
         <main>
           {children}
-          <SpeedInsights />
           <TopButton />
         </main>
         <Footer />
