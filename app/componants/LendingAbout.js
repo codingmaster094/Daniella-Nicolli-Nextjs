@@ -38,6 +38,7 @@ const LendingAbout = ({ title, content, allData, section_show, BTN }) => {
                       }}
                     />
                   </div>
+                  {treatment.landing_aesthetic_treatments_details_images.url &&
                   <div className="mb-4">
                     <Image
                       src={
@@ -52,6 +53,7 @@ const LendingAbout = ({ title, content, allData, section_show, BTN }) => {
                       height={165}
                     />
                   </div>
+                  }
                 </div>
               ))}
             {BTN && (

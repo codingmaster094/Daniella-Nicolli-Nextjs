@@ -66,7 +66,7 @@ const page = () => {
         standorte_content={LendiangPageData?.home_standorte_content}
         BTN={LendiangPageData?.home_standorte_button}
         standorte_image={LendiangPageData?.home_standorte_image?.url}
-        section_show={LendiangPageData.landing_anfrage_1_section_show}
+        section_show={LendiangPageData.landing_standorte_section_show}
         Small_image_show={LendiangPageData.landing_standorte_image_show}
       />
 
@@ -75,7 +75,7 @@ const page = () => {
         description={LendiangPageData?.home_anfrage_1_content}
         BTN={LendiangPageData?.home_anfrage_1_button}
         bg_img={LendiangPageData?.home_anfrage_1_image?.url}
-        section_show={LendiangPageData.landing_standorte_section_show}
+        section_show={LendiangPageData.landing_anfrage_1_section_show}
       />
     </>
   );
