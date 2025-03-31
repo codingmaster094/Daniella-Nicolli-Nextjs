@@ -83,6 +83,7 @@ const page = () => {
           enabledisable_referenz={
             LendiangPageData?.enabledisable_referenz?.value
           }
+          bg_image={LendiangPageData?.referenzen_background_image?.value}
         />
       )}
 

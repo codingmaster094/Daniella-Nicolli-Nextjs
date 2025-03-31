@@ -7,6 +7,7 @@ import LandingAboutSection from "../componants/LandingAboutSection";
 import AboutLambsheim from "../componants/AboutLambsheim";
 import LendingAbout from "../componants/LendingAbout";
 import LeandingCategories from "../componants/LeandingCategories";
+import Leanding_AboutLambsheim from "../componants/Leanding_AboutLambsheim";
 
 const page = () => {
   const [LendiangPageData, setLendiangPageData] = useState([]);
@@ -60,7 +61,7 @@ const page = () => {
         section_show={LendiangPageData.landing_aesthetic_section_show}
       />
 
-      <AboutLambsheim
+      <Leanding_AboutLambsheim
         main_title={LendiangPageData?.home_anfrage_1_main_title}
         standorte_content={LendiangPageData?.home_standorte_content}
         BTN={LendiangPageData?.home_standorte_button}

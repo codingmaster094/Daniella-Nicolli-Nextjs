@@ -3,15 +3,16 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const AboutLambsheim = ({
+const Leanding_AboutLambsheim = ({
   main_title,
   standorte_content,
   BTN,
   standorte_image,
+  section_show,
   Small_image_show,
 }) => {
-  console.log('Small_image_show', Small_image_show)
   return (
+    section_show && (
       <section className="py-[20px] group reverse">
         <div className="px-4 sm:px-[50px] 3xl:px-0 py-0 3xl:py-[100px] my-[10px] md:my-[30px] 3xl:mr-[100px] relative z-10 group-[.reverse]:3xl:mr-[0] group-[.reverse]:3xl:ml-[100px]">
           <div className="container max-w-3xl lg:max-w-full 3xl:p-0 relative z-10 3xl:static p-4 sm:p-10 mx-auto">
@@ -24,8 +25,8 @@ const AboutLambsheim = ({
                         src={standorte_image}
                         alt="about-right.png"
                         className="w-auto object-contain lg:object-cover h-full py-0 lg:py-[30px]"
-                        width={683}
-                        height={560}
+                        width={853}
+                        height={793}
                         objectFit="cover"
                       />
                     )}
@@ -76,6 +77,7 @@ const AboutLambsheim = ({
         </div>
       </section>
     )
+  );
 };
 
-export default AboutLambsheim;
+export default Leanding_AboutLambsheim;

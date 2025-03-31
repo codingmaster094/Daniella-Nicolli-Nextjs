@@ -9,7 +9,6 @@ import Serviceslider from "../componants/Serviceslider";
 import Comment from "../componants/Comment";
 import Slidehover from "../componants/Slidehover";
 import axios from "axios";
-import Link from "next/link";
 import BannerCarousel from "../componants/Banner";
 import Accordian from "../componants/Accordian";
 const Home = () => {
@@ -73,6 +72,7 @@ const Home = () => {
         standorte_content={HomePageData?.home_standorte_content?.value}
         BTN={HomePageData?.home_standorte_button?.value}
         standorte_image={HomePageData?.home_standorte_image?.value}
+        Small_image_show={HomePageData?.display_small_image?.value}
       />
 
       {HomePageData && (
@@ -107,6 +107,7 @@ const Home = () => {
           main_title={HomePageData?.referenzen_main_title.value}
           all_referenzen={HomePageData?.all_referenzen}
           enabledisable_referenz={HomePageData?.enabledisable_referenz?.value}
+          bg_image={HomePageData?.referenzen_background_image?.value}
         />
       )}
 
@@ -115,6 +116,7 @@ const Home = () => {
         all_faqs={HomePageData?.all_faqs?.value}
         show_section={HomePageData?.faq_main_faq_show.value}
       />
+
     </>
   );
 };

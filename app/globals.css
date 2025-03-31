@@ -411,3 +411,33 @@
 .ulDiv.link-blocks.space-y-4 a {
   @apply text-[#1A8281] mb-1 underline;
 }
+
+
+.slider-wrapper .swiper-pagination-bullet {
+  @apply bg-[#111a24];
+}
+
+@media (min-width: 1200px) {
+  .slider-wrapper .swiper-pagination-bullet {
+    @apply w-3.5 h-3.5;
+  }
+}
+
+.clientSwiper > div{
+  align-items: center;
+}
+
+.serviceSwiper .swiper-pagination,
+.prosSwiper .swiper-pagination{
+position: static;
+}
+
+        .blc-gradient {
+          background: rgba(0, 0, 0, .7);
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.85) 100%);
+        }
+    
+        .teal-gradient {
+          background: rgb(12, 65, 88);
+          background: linear-gradient(180deg, rgba(12, 65, 88, 0) 0%, rgba(26, 130, 129, 0.35) 35%, rgba(26, 130, 129, 1) 100%);
+        }

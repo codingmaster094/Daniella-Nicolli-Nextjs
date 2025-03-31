@@ -15,7 +15,8 @@ const Categories = (props) => {
         className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
         alt="category image"
         role="img"
-        fill
+        width={1920}
+        height={420}
         priority
       />
       <div className="overlay-1 absolute w-full h-full top-0 left-0 z-0 bg-[rgba(0,0,0,0.3)]"></div>

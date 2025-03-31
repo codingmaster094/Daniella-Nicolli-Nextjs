@@ -48,14 +48,8 @@ const LendingAbout = ({ title, content, allData, section_show, BTN }) => {
                         treatment.landing_aesthetic_treatments_details_images
                           .alt
                       }
-                      width={
-                        treatment.landing_aesthetic_treatments_details_images
-                          .width
-                      }
-                      height={
-                        treatment.landing_aesthetic_treatments_details_images
-                          .height
-                      }
+                      width={958}
+                      height={165}
                     />
                   </div>
                 </div>

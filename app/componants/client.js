@@ -1,86 +1,37 @@
-"use client";
+"use client"; // Ensure this file is a client component in Next.js 14
+
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+import equalSlides from "../until/equalSlides";
 
 const ClientCarousel = ({
   main_title,
   section_all_partners,
   activate_deactivate,
 }) => {
-  const carouselRef = useRef();
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const loadOwlCarousel = async () => {
-        const jQueryScript = document.createElement("script");
-        jQueryScript.src = "/js/jquery.min.js";
-        jQueryScript.onload = () => {
-          const owlCarouselCSS = document.createElement("link");
-          owlCarouselCSS.rel = "stylesheet";
-          owlCarouselCSS.href = "/js/owl.carousel.min.css";
-          document.head.appendChild(owlCarouselCSS);
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
-          const owlCarouselJS = document.createElement("script");
-          owlCarouselJS.src = "/js/owl.carousel.min.js";
-          owlCarouselJS.onload = () => {
-            window.$ = window.jQuery;
+  const nextSlide = () => {
+    if (swiperInstance) swiperInstance.slideNext();
+  };
 
-            jQuery(".Client-sliders").owlCarousel({
-              loop: true,
-              margin: 12,
-              nav: true,
-              dots: true,
-              items: 6,
-              autoplay: true,
-              autoplaySpeed: 3000,
-              autoplayHoverPause: false,
+  const prevSlide = () => {
+    if (swiperInstance) swiperInstance.slidePrev();
+  };
+  console.log("section_all_partners?.value", section_all_partners?.value);
+  const duplicatedSlides = section_all_partners?.value?.concat(
+    section_all_partners?.value
+  );
 
-              navText: [
-                '<img src="/images/Vector(4).png" width="20px" height="20px"  alt="Previous Slide" />',
-                '<img src="/images/vector5.png" width="20px" height="20px"  alt="Next Slide" />',
-              ],
-              responsive: {
-                0: { items: 1 },
-                400: { items: 2 },
-                600: { items: 3 },
-                800: { items: 4 },
-                1350: { items: 6 },
-              },
-
-              onInitialized: function () {
-                // Select all dots and navigation buttons
-                const dots = document.querySelectorAll(".owl-dot");
-                const navPrevButtons = document.querySelectorAll(".owl-prev");
-                const navNextButtons = document.querySelectorAll(".owl-next");
-
-                // Set attributes for dots
-                dots.forEach((dot, index) => {
-                  dot.setAttribute("role", "button");
-                  dot.setAttribute("aria-label", index === 0 ? "next" : "prev");
-                });
-
-                // Set attributes for previous navigation buttons
-                navPrevButtons.forEach((btn) => {
-                  btn.setAttribute("role", "button");
-                  btn.setAttribute("aria-label", "prev");
-                });
-
-                // Set attributes for next navigation buttons
-                navNextButtons.forEach((btn) => {
-                  btn.setAttribute("role", "button");
-                  btn.setAttribute("aria-label", "next");
-                });
-              },
-            });
-          };
-          document.body.appendChild(owlCarouselJS);
-        };
-        document.body.appendChild(jQueryScript);
-      };
-      loadOwlCarousel();
-    }
-  }, []);
+  equalSlides();
 
   return (
     activate_deactivate && (
@@ -88,58 +39,120 @@ const ClientCarousel = ({
         <div className="container px-[15px] mx-auto">
           <div className="flex flex-col gap-6 md:gap-11 lg:gap-16 text-center">
             {main_title && (
-              <h2
-                dangerouslySetInnerHTML={{
-                  __html: main_title,
-                }}
-              ></h2>
+              <h2 dangerouslySetInnerHTML={{ __html: main_title }} />
             )}
-            <div
-              className="owl-carousel Client-sliders relative"
-              ref={carouselRef}
-            >
-              {section_all_partners?.value &&
-                section_all_partners?.value.map((val, index) => {
-                  return (
-                    <div className="item" key={index}>
-                      <div className="client-logo text-center flex items-center justify-center">
-                        {val.partners_section_all_partners_website_link.url ? (
-                          <Link
-                            href={
-                              val.partners_section_all_partners_website_link
-                                ?.url
-                            }
-                            target={
-                              val.partners_section_all_partners_website_link
-                                ?.target
-                            }
-                            aria-label={
-                              val.partners_section_all_partners_website_link
-                                ?.title
-                            }
-                            className="block"
-                          >
-                            <Image
-                              src={val.partners_section_all_partners_logos}
-                              alt={`Client logo for ${val.partners_section_all_partners_website_link?.title}`}
-                              className="!w-auto"
-                              height={85}
-                              width={157}
-                            />
-                          </Link>
-                        ) : (
-                          <Image
-                            src={val.partners_section_all_partners_logos}
-                            alt={`Client logo ${index + 1}`}
-                            className="!w-auto"
-                            height={85}
-                            width={157}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
+            <div className="slider-wrapper flex gap-3 sm:gap-10 items-center">
+              <button
+                className="clientSwiper-prev border rounded-full border-teal p-1 sm:p-2 hidden xl:!block"
+                onClick={prevSlide}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="icon icon-tabler icon-tabler-chevron-left"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M15 6l-6 6l6 6" />
+                </svg>
+              </button>
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                className="clientSwiper select-none"
+                spaceBetween={16}
+                autoplay={{ delay: 2500 }}
+                loop={true}
+                pagination={{ el: ".swiper-pagination" }}
+                onSwiper={setSwiperInstance}
+                breakpoints={{
+                  576: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 28,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                  },
+                  1400: {
+                    slidesPerView: 5,
+                    spaceBetween: 30,
+                  },
+                  1600: {
+                    slidesPerView: 6,
+                    spaceBetween: 30,
+                  },
+                }}
+              >
+                {duplicatedSlides.map((val, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className="grid place-content-center place-items-center"
+                  >
+                    {val.partners_section_all_partners_website_link.url ? (
+                      <Link
+                        href={
+                          val.partners_section_all_partners_website_link.url
+                        }
+                        target={
+                          val.partners_section_all_partners_website_link.target
+                        }
+                        aria-label={
+                          val.partners_section_all_partners_website_link.title
+                        }
+                        className="block"
+                      >
+                        <Image
+                          src={val.partners_section_all_partners_logos}
+                          alt={`Client logo for ${val.partners_section_all_partners_website_link.title}`}
+                          className="!w-auto"
+                          height={85}
+                          width={157}
+                          priority
+                        />
+                      </Link>
+                    ) : (
+                      <Image
+                        src={val.partners_section_all_partners_logos}
+                        alt={`Client logo ${index + 1}`}
+                        className="!w-auto"
+                        height={85}
+                        width={157}
+                        priority
+                      />
+                    )}
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <button
+                className="clientSwiper-next border rounded-full border-teal p-1 sm:p-2 hidden xl:!block"
+                onClick={nextSlide}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="icon icon-tabler icon-tabler-chevron-right"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M9 6l6 6l-6 6" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>

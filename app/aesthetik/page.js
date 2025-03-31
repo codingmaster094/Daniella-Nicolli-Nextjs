@@ -63,6 +63,7 @@ const page = () => {
           main_title={AesthetikData?.referenzen_main_title?.value}
           all_referenzen={AesthetikData?.all_referenzen}
           enabledisable_referenz={AesthetikData?.enabledisable_referenz?.value}
+          bg_image={AesthetikData?.referenzen_background_image?.value}
         />
       )}
 

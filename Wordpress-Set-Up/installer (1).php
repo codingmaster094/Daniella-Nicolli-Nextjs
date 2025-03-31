@@ -217,7 +217,7 @@ namespace {
                     if ($candidate_count >= 1) {
                         $candidate_html = "<ol>";
                         foreach ($archive_candidates as $archive_candidate) {
-                            $candidate_html .= '<li class="diff-list"> ' . $this->compareStrings($archive_filename, $archive_candidate) . '</li>';
+                            $candidate_html .= '<li className="diff-list"> ' . $this->compareStrings($archive_filename, $archive_candidate) . '</li>';
                         }
                         $candidate_html .= "</ol>";
                     }
@@ -266,8 +266,8 @@ namespace {
                     $this->log("ERROR: The archive file may not have fully been downloaded to the server");
                     $percent = round($this->archiveRatio);
                     $autochecked = isset($_POST['auto-fresh']) ? "checked='true'" : '';
-                    $error       = "<b>Archive file size warning.</b><br/> The expected archive size is <b class='pass'>[{$archiveExpectedEasy}]</b>. "
-                        . "Currently the archive size is <b class='fail'>[{$archiveActualEasy}]</b>. <br/>"
+                    $error       = "<b>Archive file size warning.</b><br/> The expected archive size is <b className='pass'>[{$archiveExpectedEasy}]</b>. "
+                        . "Currently the archive size is <b className='fail'>[{$archiveActualEasy}]</b>. <br/>"
                         . "The archive file may have <b>not fully been uploaded to the server.</b>"
                         . "<ul>"
                         . "<li>Download the whole archive from the source website (open WordPress Admin &gt; Duplicator &gt; Packages) "
@@ -1367,10 +1367,10 @@ namespace {
         </head>
         <body>
             <div id="content">
-                <table cellspacing="0" class="header-wizard">
+                <table cellspacing="0" className="header-wizard">
                     <tr>
-                        <td class="header"> &nbsp; Duplicator - Bootloader</div</td>
-                        <td class="dupx-version">
+                        <td className="header"> &nbsp; Duplicator - Bootloader</div</td>
+                        <td className="dupx-version">
                             version: <?php echo htmlentities(DUPX_Bootstrap::VERSION); ?> <br/>
                             &raquo; 
                             <a target='_blank' href='dup-installer-bootlog__<?php echo DUPX_Bootstrap::SECONDARY_PACKAGE_HASH; ?>.txt'>
@@ -1382,22 +1382,22 @@ namespace {
                 <form id="error-form" method="post">
                     <div id="content-inner">
                         <h2 style="color:maroon">Setup Notice</h2>
-                        <div class="errror-notice">
+                        <div className="errror-notice">
                             An error has occurred. In order to load the full installer please resolve the issue below.
                         </div>
-                        <div class="errror-msg">
+                        <div className="errror-msg">
                             <?php echo $boot_error ?>
                         </div>
                         <br/><br/>
                         <h2>Server Settings</h2>
-                        <table class='settings'>
+                        <table className='settings'>
                             <tr>
                                 <td>ZipArchive:</td>
-                                <td><?php echo $boot->hasZipArchive ? '<i class="pass">Enabled</i>' : '<i class="fail">Disabled</i>'; ?> </td>
+                                <td><?php echo $boot->hasZipArchive ? '<i className="pass">Enabled</i>' : '<i className="fail">Disabled</i>'; ?> </td>
                             </tr>
                             <tr>
                                 <td>Shell Unzip:</td>
-                                <td><?php echo $boot->hasShellExecUnzip ? '<i class="pass">Enabled</i>' : '<i class="fail">Disabled</i>'; ?> </td>
+                                <td><?php echo $boot->hasShellExecUnzip ? '<i className="pass">Enabled</i>' : '<i className="fail">Disabled</i>'; ?> </td>
                             </tr>
                             <tr>
                                 <td>Extraction Path:</td>

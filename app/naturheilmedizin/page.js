@@ -66,6 +66,7 @@ const page = () => {
           enabledisable_referenz={
             Naturheilmedizin?.enabledisable_referenz?.value
           }
+          bg_image={Naturheilmedizin?.referenzen_background_image?.value}
         />
       )}
 

@@ -112,8 +112,8 @@ const Gallrey = ({ main_title, gallery_images }) => {
                   <Image
                     src={image.url}
                     alt={image.title}
-                    width={image.width}
-                    height={image.height}
+                    width={340}
+                    height={497}
                     className="object-cover c  w-full h-full"
                   />
                 </div>
