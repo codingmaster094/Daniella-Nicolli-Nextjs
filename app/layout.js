@@ -13,9 +13,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="stylesheet" href="/owl.carousel.min.css" />
-      </head>
       <body>
         <Header />
         <main>
@@ -24,8 +21,6 @@ export default function RootLayout({ children }) {
           <TopButton />
         </main>
         <Footer />
-        <script src="/jquery.min.js"></script>
-        <script src="/owl.carousel.min.js"></script>
       </body>
     </html>
   );

@@ -1,124 +1,107 @@
 "use client";
-import { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
-import React from "react";
-import PreviousBTN from "../../public/images/PreviousBTN.png";
-import NextBTN from "../../public/images/NextBTN.png";
-import ReactDOMServer from "react-dom/server";
+import WhiteVellrySvg from "../../public/images/Whitevelly.svg";
 
 const Gallrey = ({ main_title, gallery_images }) => {
-  const carouselRef = useRef();
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const loadOwlCarousel = async () => {
-        const jQueryScript = document.createElement("script");
-        jQueryScript.src = process.env.NEXT_PUBLIC_JQUERY_URL;
-        jQueryScript.onload = () => {
-          const owlCarouselCSS = document.createElement("link");
-          owlCarouselCSS.rel = "stylesheet";
-          owlCarouselCSS.href = process.env.NEXT_PUBLIC_OWL_CAROUSEL_CSS;
-          document.head.appendChild(owlCarouselCSS);
-          const owlCarouselJS = document.createElement("script");
-          owlCarouselJS.src = process.env.NEXT_PUBLIC_OWL_CAROUSEL_JS;
-          owlCarouselJS.onload = () => {
-            window.$ = window.jQuery;
-            jQuery(".hover-sliders").owlCarousel({
-              loop: true,
-              nav: true,
-              dots: false,
-              items: 4,
-              autoplay: true,
-              autoplayTimeout: 4000,
-              autoplayHoverPause: true,
-              navText: [
-                ReactDOMServer.renderToStaticMarkup(
-                  <Image
-                    src={PreviousBTN}
-                    alt="Previous"
-                    width={20}
-                    height={20}
-                  />
-                ),
-                ReactDOMServer.renderToStaticMarkup(
-                  <Image src={NextBTN} alt="Next" width={20} height={20} />
-                ),
-              ],
-              responsive: {
-                0: {
-                  items: 1,
-                },
-                520: {
-                  items: 2,
-                },
-                991: {
-                  items: 3,
-                },
-                1280: {
-                  items: 4,
-                },
-              },
-              onInitialized: function () {
-                // Select all dots and navigation buttons
-                const dots = document.querySelectorAll(".owl-dot");
-                const navPrevButtons = document.querySelectorAll(".owl-prev");
-                const navNextButtons = document.querySelectorAll(".owl-next");
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
-                // Set attributes for dots
-                dots.forEach((dot, index) => {
-                  dot.setAttribute("role", "button");
-                  dot.setAttribute("aria-label", index === 0 ? "next" : "prev");
-                });
+  const nextSlide = () => {
+    if (swiperInstance) swiperInstance.slideNext();
+  };
 
-                // Set attributes for previous navigation buttons
-                navPrevButtons.forEach((btn) => {
-                  btn.setAttribute("role", "button");
-                  btn.setAttribute("aria-label", "prev");
-                });
+  const prevSlide = () => {
+    if (swiperInstance) swiperInstance.slidePrev();
+  };
 
-                // Set attributes for next navigation buttons
-                navNextButtons.forEach((btn) => {
-                  btn.setAttribute("role", "button");
-                  btn.setAttribute("aria-label", "next");
-                });
-              },
-            });
-          };
-          document.body.appendChild(owlCarouselJS);
-        };
-        document.body.appendChild(jQueryScript);
-      };
-      loadOwlCarousel();
-    }
-  }, []);
+  const duplicatedSlides = gallery_images?.concat(gallery_images);
+
   return (
     <section className="pt-[30px] md:pt-[40px] lg:pt-[50px]">
-      <div className="flex flex-col gap-6 md:gap-11">
-        <div className="flex justify-center px-4">
+      <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
+        <div className="flex justify-center px-4 text-center">
           <h2
-            className="text-h3 lg:text-h2"
-            dangerouslySetInnerHTML={{
-              __html: main_title,
-            }}
-          ></h2>
+            className="sm:text-h3 lg:text-h2"
+            dangerouslySetInnerHTML={{ __html: main_title }}
+          >
+          </h2>
         </div>
-        <div
-          className="owl-carousel hover-sliders gallrey relative"
-          ref={carouselRef}
-        >
-          {gallery_images &&
-            gallery_images?.map((image, index) => (
-              <div key={index} className="items">
-                <div className="flex h-[500px]  lg:h-[700px]">
-                  <Image
-                    src={image.url}
-                    alt={image.title}
-                    width={340}
-                    height={497}
-                    className="object-cover c  w-full h-full"
-                  />
-                </div>
-              </div>
-            ))}
+        <div className="slider-wrapper relative z-10">
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            slidesPerView={1}
+            breakpoints={{
+              700: { slidesPerView: 2 },
+              1200: { slidesPerView: 3 },
+              1400: { slidesPerView: 4 },
+            }}
+            navigation={{
+              nextEl: ".referanceSwiper-next",
+              prevEl: ".referanceSwiper-prev",
+            }}
+            onSwiper={setSwiperInstance}
+            className="swiper referanceSwiper"
+          >
+            {duplicatedSlides &&
+              duplicatedSlides?.map((item, i) => (
+                <SwiperSlide>
+                  <div className="relative min-h-[500px] xl:min-h-[600px]">
+                    <div className="absolute inset-0">
+                      <Image
+                        src={item.url}
+                        width={470}
+                        height={600}
+                        className="size-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 -translate-y-1/2 bg-Teal bg-opacity-10 rounded-r-sm left-0 text-white p-1 sm:p-2 hidden xl:block z-30"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M15 6l-6 6l6 6" />
+            </svg>
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 -translate-y-1/2 bg-Teal bg-opacity-10 rounded-l-sm right-0 text-white p-1 sm:p-2 hidden xl:block z-30"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left rotate-180"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M15 6l-6 6l6 6" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
