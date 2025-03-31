@@ -5,7 +5,7 @@ import Link from "next/link";
 const LendingAbout = ({ title, content, allData, section_show, BTN }) => {
   return (
     section_show && (
-      <section className="py-[30px] group bg-Bgslate px-4 3xl:py-[100px]">
+      <section className="py-[30px] group bg-Bgslate px-4 3xl:py-[100px] LendingAbout">
         <div className="container max-w-full lg:max-w-[1440px] mx-auto">
           <div className="flex flex-col  gap-6 md:gap-11 lg:gap-16">
             <h2
@@ -14,7 +14,7 @@ const LendingAbout = ({ title, content, allData, section_show, BTN }) => {
             ></h2>
             {content && (
               <div
-                className="space-y-2"
+                className="space-y-2 LendingAbout"
                 dangerouslySetInnerHTML={{ __html: content }}
               ></div>
             )}
@@ -23,7 +23,7 @@ const LendingAbout = ({ title, content, allData, section_show, BTN }) => {
               allData?.map((treatment) => (
                 <div
                   key={treatment.landing_aesthetic_treatments_details_title}
-                  className="flex flex-col border border-Teal text-left p-4 sm:p-8 gap-8"
+                  className="flex flex-col border border-Teal text-left p-4 sm:p-8 gap-8 "
                 >
                   <div className="space-y-4 ">
                     <h3 className="text-xl lg:text-2xl xl:text-[28px] !font-normal">
@@ -38,22 +38,23 @@ const LendingAbout = ({ title, content, allData, section_show, BTN }) => {
                       }}
                     />
                   </div>
-                  {treatment.landing_aesthetic_treatments_details_images.url &&
-                  <div className="mb-4">
-                    <Image
-                      src={
-                        treatment.landing_aesthetic_treatments_details_images
-                          .url
-                      }
-                      alt={
-                        treatment.landing_aesthetic_treatments_details_images
-                          .alt
-                      }
-                      width={958}
-                      height={165}
-                    />
-                  </div>
-                  }
+                  {treatment.landing_aesthetic_treatments_details_images
+                    .url && (
+                    <div className="mb-4">
+                      <Image
+                        src={
+                          treatment.landing_aesthetic_treatments_details_images
+                            .url
+                        }
+                        alt={
+                          treatment.landing_aesthetic_treatments_details_images
+                            .alt
+                        }
+                        width={958}
+                        height={165}
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             {BTN && (

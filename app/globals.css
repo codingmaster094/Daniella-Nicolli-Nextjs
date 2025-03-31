@@ -432,12 +432,15 @@
 position: static;
 }
 
-        .blc-gradient {
-          background: rgba(0, 0, 0, .7);
-          background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.85) 100%);
-        }
-    
-        .teal-gradient {
-          background: rgb(12, 65, 88);
-          background: linear-gradient(180deg, rgba(12, 65, 88, 0) 0%, rgba(26, 130, 129, 0.35) 35%, rgba(26, 130, 129, 1) 100%);
-        }
+.LendingAbout a{
+  @apply !text-[#1A8281]
+}
+.blc-gradient {
+background: rgba(0, 0, 0, .7);
+background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.teal-gradient {
+background: rgb(12, 65, 88);
+background: linear-gradient(180deg, rgba(12, 65, 88, 0) 0%, rgba(26, 130, 129, 0.35) 35%, rgba(26, 130, 129, 1) 100%);
+}
