@@ -19,7 +19,7 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
                 priority={true}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1920px"
               />
-              <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[848px]">
+              <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px]">
                 <h1
                   dangerouslySetInnerHTML={{
                     __html: title,
