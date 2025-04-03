@@ -1,12 +1,12 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import Categories from "./Categories";
 
 const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
   return (
     <>
       {MultipleAboutdeta &&
-        MultipleAboutdeta?.value?.map((val, index) => (
+        MultipleAboutdeta?.value?.map((val, index) => ( 
           <React.Fragment key={index}>
             {val?.aesthetik_anfrage_1_main_title && (
               <Categories
@@ -24,8 +24,9 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                   <section
                     key={ind}
                     className={`py-[20px] group ${
-                      isEven ? "bg-white " : "bg-Bgslate reverse"
+                      isEven ? "bg-white " : "bg-white reverse"
                     }`}
+                  
                     id={valData.aesthetik_anfrage_id}
                   >
                     <div
@@ -51,7 +52,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                     }
                                     alt="about-right.png"
                                     className={`w-auto object-contain lg:object-cover h-full py-0 lg:py-[30px] ${
-                                      isEven ? "bg-white" : "bg-Bgslate"
+                                      isEven ? "bg-white" : "bg-white"
                                     }`}
                                     layout="fill"
                                     objectFit="cover"
@@ -101,7 +102,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                       >
                                         <div className="link-blocks space-y-2">
                                           {item.aesthetik_all_faltenunterspritzung_content_items_title && (
-                                            <h3 className="text-xl lg:text-2xl xl:text-[28px] xl:font-semibold">
+                                            <h3 className="text-5 lg:text-[24px]  xl:font-semibold">
                                               {
                                                 item.aesthetik_all_faltenunterspritzung_content_items_title
                                               }

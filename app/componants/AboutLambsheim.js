@@ -10,7 +10,6 @@ const AboutLambsheim = ({
   standorte_image,
   Small_image_show,
 }) => {
-  console.log('Small_image_show', Small_image_show)
   return (
       <section className="py-[20px] group reverse">
         <div className="px-4 sm:px-[50px] 3xl:px-0 py-0 3xl:py-[100px] my-[10px] md:my-[30px] 3xl:mr-[100px] relative z-10 group-[.reverse]:3xl:mr-[0] group-[.reverse]:3xl:ml-[100px]">

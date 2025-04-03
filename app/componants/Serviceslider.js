@@ -14,7 +14,7 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
   equalSlides();
 
   return (
-    <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
+    <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-white">
       <div className="w-full max-w-[1470px] px-[15px] mx-auto">
         <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
           <div className="flex justify-center">

@@ -16,23 +16,22 @@ const Aboutdetails = (props) => {
   const sanitizedContent = section_content;
 
   return (
-    <section className="py-[20px] group bg-Bgslate">
+    <section className="py-[20px] group bg-white">
       <div className="px-4 sm:px-[50px] 3xl:px-0 py-0 3xl:py-[100px] my-[10px] md:my-[30px] 3xl:mr-[100px] relative z-10 group-[.reverse]:3xl:mr-[0] group-[.reverse]:3xl:ml-[100px]">
         <div className="container max-w-3xl lg:max-w-full 3xl:p-0 relative z-10 3xl:static p-4 sm:p-10 mx-auto">
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 3xl:gap-[100px] group-[.reverse]:lg:flex-row-reverse">
             <div className={Small_image_show ? "lg:w-1/3" : "lg:w-1/2"}>
               <div className="sticky top-40">
-                <div className="aspect-square bg-Bgslate relative w-full">
+                <div className="aspect-square bg-white relative w-full">
                   {section_image?.url && (
                     <Image
-                  src={section_image?.url}
-                  width={500}
-                  height={500}
-                  alt="About Section Image"
-                  className="w-full object-cover h-full bg-Bgslate"
-                  priority
-                />
-
+                      src={section_image?.url}
+                      width={500}
+                      height={500}
+                      alt="About Section Image"
+                      className="w-full object-cover h-full bg-white"
+                      priority
+                    />
                   )}
                 </div>
               </div>
@@ -59,7 +58,7 @@ const Aboutdetails = (props) => {
                         (subitem, j) => (
                           <div className="link-blocks space-y-2" key={j}>
                             {item.home_leistungen_section_sub_content_title && (
-                              <h3 className="text-xl lg:text-2xl xl:text-[28px] xl:font-semibold">
+                              <h3 className="text-5 lg:text-[24px] xl:font-semibold">
                                 {item.home_leistungen_section_sub_content_title}
                               </h3>
                             )}

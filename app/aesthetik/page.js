@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import ClientCarousel from "../componants/client";
 import Comment from "../componants/Comment";
 import Accordian from "../componants/Accordian";
@@ -7,25 +8,38 @@ import Slidehover from "../componants/Slidehover";
 import Terminbroncher from "../componants/Terminbroncher";
 import axios from "axios";
 import MultipleAboutdetails from "../componants/MultipleAboutdetails";
-import Link from "next/link";
 import BannerCarousel from "../componants/Banner";
 
-const page = () => {
+const Page = () => {
   const [AesthetikData, setAesthetikData] = useState(null);
-  const fetchAesthetikData = async () => {
-    try {
-      const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/aesthetik"
-      );
-      setAesthetikData(response.data);
-    } catch (error) {
-      console.error("Error fetching content data", error);
-    }
-  };
+  const pathname = usePathname();
+  const [fullUrl, setFullUrl] = useState("");
 
   useEffect(() => {
+    const fetchAesthetikData = async () => {
+      try {
+        const response = await axios.get(
+          "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/aesthetik"
+        );
+        setAesthetikData(response.data);
+      } catch (error) {
+        console.error("Error fetching content data", error);
+      }
+    };
+
     fetchAesthetikData();
   }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const currentFullUrl = `${pathname}${window.location.hash}`;
+      setFullUrl(currentFullUrl);
+
+      // Update browser URL without reloading
+      window.history.pushState(null, "", currentFullUrl);
+    }
+  }, [fullUrl]);
+
   return (
     <>
       <BannerCarousel
@@ -80,4 +94,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

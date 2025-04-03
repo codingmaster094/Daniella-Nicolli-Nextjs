@@ -35,7 +35,7 @@ const Accordian = ({ main_title, all_faqs, show_section }) => {
 
   return (
     show_section && (
-      <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-Bgslate">
+      <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-white">
         <div className="container mx-auto px-[15px]">
           <div className="flex w-full max-w-[1140px] flex-col gap-6 md:gap-8 lg:gap-12 mx-auto text-center">
             <h2
@@ -49,10 +49,8 @@ const Accordian = ({ main_title, all_faqs, show_section }) => {
                 {all_faqs?.map((item, index) => (
                   <div
                     key={index}
-                    className={`accordian flex flex-col p-4 lg:p-8 transition-all duration-300 ${
-                      selected === index
-                        ? "active shadow-[0px_4px_13px_-2px_#1310220f,0px_4.8px_24.4px_-6px_#1310221a]"
-                        : "border-transparent"
+                    className={`accordian flex flex-col p-4  transition-all shadow-[0px_4px_13px_-2px_#1310220f,0px_4.8px_24.4px_-6px_#1310221a] duration-300 ${
+                      selected === index ? "active" : "border-transparent"
                     }`}
                   >
                     <div
@@ -60,7 +58,7 @@ const Accordian = ({ main_title, all_faqs, show_section }) => {
                       onClick={() => handleClick(index)}
                     >
                       <h3
-                        className="text-a sm:text-xl md:text-h4 !font-medium"
+                        className="text-a sm:text-xl !font-medium"
                         dangerouslySetInnerHTML={{
                           __html: item.all_faqs_question,
                         }}

@@ -26,7 +26,6 @@ const ClientCarousel = ({
   const prevSlide = () => {
     if (swiperInstance) swiperInstance.slidePrev();
   };
-  console.log("section_all_partners?.value", section_all_partners?.value);
   const duplicatedSlides = section_all_partners?.value?.concat(
     section_all_partners?.value
   );
