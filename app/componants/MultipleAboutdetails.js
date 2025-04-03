@@ -8,18 +8,25 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
       const handleHashChange = () => {
         const hash = window.location.hash;
         if (hash) {
-          const targetElement = document.querySelector(hash);
+          const cleanedHash = decodeURIComponent(hash.replace("#", ""));
+          const targetElement = document.getElementById(cleanedHash);
+
           if (targetElement) {
             targetElement.scrollIntoView({ behavior: "smooth" });
+          } else {
+            console.warn(`Target section with id "${cleanedHash}" not found.`);
           }
         }
       };
+
       window.addEventListener("hashchange", handleHashChange);
-      handleHashChange();
+      handleHashChange(); // Call initially to handle direct link navigation
+
       return () => {
         window.removeEventListener("hashchange", handleHashChange);
       };
     }, [MultipleAboutdeta]);
+
   return (
     <>
       {MultipleAboutdeta &&
