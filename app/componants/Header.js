@@ -38,22 +38,23 @@ const Header = () => {
     };
   }, []);
 
-  const handleSubmenuClick = (e, targetId, slug, submenuId) => {
-    e.preventDefault();
-    setMenuOpen(false);
-
-    // Toggle submenu active state
-    setActiveSubmenu((prev) => (prev === submenuId ? null : submenuId));
-
-    router.push(targetId !== "/" ? `/${slug}${targetId}` : "/");
-
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      lenisRef.current.scrollTo(targetElement, { duration: 1.5 });
-    } else {
-      console.warn(`Target section with id #${targetId} not found.`);
-    }
-  };
+ const handleSubmenuClick = (e, targetId, slug, submenuId) => {
+   e.preventDefault();
+   setMenuOpen(false);
+   setActiveSubmenu((prev) => (prev === submenuId ? null : submenuId));
+   const fullPath = targetId !== "/" ? `/${slug}` : "/";
+   const currentHash = window.location.hash;
+   const newHash = targetId; 
+   if (currentHash !== newHash) {
+     router.push(fullPath + newHash); 
+   }
+   const targetElement = document.querySelector(targetId);
+   if (targetElement) {
+     lenisRef.current.scrollTo(targetElement, { duration: 1.5 });
+   } else {
+     console.warn(`Target section with id #${targetId} not found.`);
+   }
+ };
 
   // Main menu par click kariye to active submenu remove kari devu
   const handleMainMenuClick = () => {
@@ -223,7 +224,6 @@ const Header = () => {
                       >
                         {item.children.map((child) => {
                           const isSubmenuActive = activeSubmenu === child.id;
-
                           return (
                             <Link href={`${item.slug}${child.url}`}>
                               <li
@@ -236,10 +236,7 @@ const Header = () => {
                                     child.id
                                   )
                                 }
-                                className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100
-                              
-                        
-                            `}
+                                className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100`}
                               >
                                 {child.title}
                               </li>

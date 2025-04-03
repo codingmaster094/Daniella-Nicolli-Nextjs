@@ -45,7 +45,7 @@ export default {
       },
       fontSize: {
         h1: [
-          "46px",
+          "40px",
           {
             fontWeight: "700",
           },

@@ -1,8 +1,25 @@
+'use client'
 import Image from "next/image";
 import React, { useEffect } from "react";
 import Categories from "./Categories";
 
 const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
+    useEffect(() => {
+      const handleHashChange = () => {
+        const hash = window.location.hash;
+        if (hash) {
+          const targetElement = document.querySelector(hash);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      };
+      window.addEventListener("hashchange", handleHashChange);
+      handleHashChange();
+      return () => {
+        window.removeEventListener("hashchange", handleHashChange);
+      };
+    }, [MultipleAboutdeta]);
   return (
     <>
       {MultipleAboutdeta &&

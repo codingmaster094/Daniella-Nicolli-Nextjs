@@ -67,7 +67,7 @@
   }
 
   .Banner ul li {
-    @apply text-a sm:text-h4 !font-normal;
+    @apply text-a sm:text-[20px] !font-normal;
   }
 
   .owl-carousel .owl-nav {
