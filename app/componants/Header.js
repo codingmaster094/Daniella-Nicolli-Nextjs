@@ -48,7 +48,7 @@ const Header = () => {
    if (currentHash !== newHash) {
      router.push(fullPath + newHash); 
    }
-   const targetElement = document.getElementById(targetId);
+   const targetElement = document.querySelector(targetId);
    if (targetElement) {
      lenisRef.current.scrollTo(targetElement, { duration: 1.5 });
    } else {
