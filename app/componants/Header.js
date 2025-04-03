@@ -15,11 +15,11 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(null);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const pathname = usePathname();
   const [HeaderData, setHeaderData] = useState(null);
   const [HeaderDatamenu, setHeaderDatamenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const lenisRef = useRef(null);
-  const pathname = usePathname();
 
   useEffect(() => {
     const scroller = new Lenis();
@@ -38,22 +38,22 @@ const Header = () => {
     };
   }, []);
 
-  // const handleSubmenuClick = (e, targetId, slug, submenuId) => {
-  //   e.preventDefault();
-  //   setMenuOpen(false);
+  const handleSubmenuClick = (e, targetId, slug, submenuId) => {
+    e.preventDefault();
+    setMenuOpen(false);
 
-  //   // Toggle submenu active state
-  //   setActiveSubmenu((prev) => (prev === submenuId ? null : submenuId));
+    // Toggle submenu active state
+    setActiveSubmenu((prev) => (prev === submenuId ? null : submenuId));
 
-  //   router.push(targetId !== "/" ? `/${slug}${targetId}` : "/");
+    router.push(targetId !== "/" ? `/${slug}${targetId}` : "/");
 
-  //   const targetElement = document.querySelector(targetId);
-  //   if (targetElement) {
-  //     lenisRef.current.scrollTo(targetElement, { duration: 1.5 });
-  //   } else {
-  //     console.warn(`Target section with id #${targetId} not found.`);
-  //   }
-  // };
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      lenisRef.current.scrollTo(targetElement, { duration: 1.5 });
+    } else {
+      console.warn(`Target section with id #${targetId} not found.`);
+    }
+  };
 
   // Main menu par click kariye to active submenu remove kari devu
   const handleMainMenuClick = () => {
@@ -223,26 +223,24 @@ const Header = () => {
                       >
                         {item.children.map((child) => {
                           const isSubmenuActive = activeSubmenu === child.id;
+
                           return (
-                            <Link
-                              key={child.id}
-                              href={`/${item.slug}${child.url}`}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                router.push(`/${item.slug}${child.url}`);
-                                setTimeout(() => {
-                                  const targetElement = document.querySelector(
-                                    child.url
-                                  );
-                                  if (targetElement) {
-                                    lenisRef.current.scrollTo(targetElement, {
-                                      duration: 1.5,
-                                    });
-                                  }
-                                }, 300); // Small delay to ensure the page has loaded
-                              }}
-                            >
-                              <li className="cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100">
+                            <Link href={`${item.slug}${child.url}`}>
+                              <li
+                                key={child.id}
+                                onClick={(e) =>
+                                  handleSubmenuClick(
+                                    e,
+                                    child.url,
+                                    item.slug,
+                                    child.id
+                                  )
+                                }
+                                className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100
+                              
+                        
+                            `}
+                              >
                                 {child.title}
                               </li>
                             </Link>
