@@ -1,8 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Blog from "../componants/Blog";
 import axios from "axios";
-import BannerCarousel from "../componants/Banner";
+import dynamic from "next/dynamic";
+const Blog = dynamic(() => import("../componants/Blog"), { ssr: false });
+const BannerCarousel = dynamic(() => import("../componants/Banner"), {
+  ssr: false,
+});
 
 const page = () => {
   const [BlogData, setBlogData] = useState(null);
@@ -24,7 +27,6 @@ const page = () => {
       const response = await axios.get(
         "https://daniella.blog-s.de/wp-json/wp/v2/posts"
       );
-      console.log("response", response.data);
       setRatgeberData(response.data);
     } catch (error) {
       console.error("Error fetching content data", error);

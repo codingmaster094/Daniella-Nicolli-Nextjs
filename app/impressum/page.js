@@ -4,20 +4,23 @@ import axios from "axios";
 
 const page = () => {
   const [ImpressumData, setImpressumData] = useState(null);
-  const fetchImpressumData = async () => {
-    try {
-      const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom/v1/page-data/impressum"
-      );
-      setImpressumData(response.data);
-    } catch (error) {
-      console.error("Error fetching content data", error);
-    }
-  };
+  const [error, setError] = useState(null);
+  const slug = "impressum"; 
 
   useEffect(() => {
-    fetchImpressumData();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/documentAPI?slug=${slug}`);
+    
+        setImpressumData(response.data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchData();
+  }, [slug]);
+
   return (
     <section className="Im-section section">
       <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">

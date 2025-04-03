@@ -1,16 +1,37 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ClientCarousel from "../componants/client";
-import Aboutdetails from "../componants/Aboutdetails";
-import Categories from "../componants/Categories";
-import AboutLambsheim from "../componants/AboutLambsheim";
-import Fermentum from "../componants/Fermentum";
-import Serviceslider from "../componants/Serviceslider";
-import Comment from "../componants/Comment";
-import Slidehover from "../componants/Slidehover";
+import dynamic from "next/dynamic";
 import axios from "axios";
-import BannerCarousel from "../componants/Banner";
-import Accordian from "../componants/Accordian";
+
+const ClientCarousel = dynamic(() => import("../componants/client"), {
+  ssr: false,
+});
+const Aboutdetails = dynamic(() => import("../componants/Aboutdetails"), {
+  ssr: false,
+});
+const Categories = dynamic(() => import("../componants/Categories"), {
+  ssr: false,
+});
+const AboutLambsheim = dynamic(() => import("../componants/AboutLambsheim"), {
+  ssr: false,
+});
+const Fermentum = dynamic(() => import("../componants/Fermentum"), {
+  ssr: false,
+});
+const Serviceslider = dynamic(() => import("../componants/Serviceslider"), {
+  ssr: false,
+});
+const Comment = dynamic(() => import("../componants/Comment"), { ssr: false });
+const Slidehover = dynamic(() => import("../componants/Slidehover"), {
+  ssr: false,
+});
+const BannerCarousel = dynamic(() => import("../componants/Banner"), {
+  ssr: false,
+});
+const Accordian = dynamic(() => import("../componants/Accordian"), {
+  ssr: false,
+});
+
 const Home = () => {
   const [HomePageData, setHomePageData] = useState(null);
   const [error, setError] = useState(null);
@@ -116,7 +137,6 @@ const Home = () => {
         all_faqs={HomePageData?.all_faqs?.value}
         show_section={HomePageData?.faq_main_faq_show.value}
       />
-
     </>
   );
 };

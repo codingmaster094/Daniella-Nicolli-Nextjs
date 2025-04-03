@@ -4,20 +4,24 @@ import axios from "axios";
 
 const page = () => {
   const [datenschutzerklärung, setdatenschutzerklärung] = useState(null);
-  const fetchdatenschutzerklärung = async () => {
-    try {
-      const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom/v1/page-data/datenschutzerklarung"
-      );
-      setdatenschutzerklärung(response.data);
-    } catch (error) {
-      console.error("Error fetching content data", error);
-    }
-  };
+  const [error, setError] = useState(null);
+  const slug = "datenschutzerklarung"; // You can make this dynamic based on routing
 
   useEffect(() => {
-    fetchdatenschutzerklärung();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/documentAPI?slug=${slug}`);
+      
+        setdatenschutzerklärung(response.data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchData();
+  }, [slug]);
+
+
   return (
     <section className="section">
       <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">

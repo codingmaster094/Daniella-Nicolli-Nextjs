@@ -236,7 +236,7 @@ const Header = () => {
                                     child.id
                                   )
                                 }
-                                className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100`}
+                                className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100y`}
                               >
                                 {child.title}
                               </li>

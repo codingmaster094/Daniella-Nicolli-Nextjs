@@ -1,20 +1,30 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
-import ClientCarousel from "../componants/client";
-import Comment from "../componants/Comment";
-import Accordian from "../componants/Accordian";
-import Slidehover from "../componants/Slidehover";
-import Terminbroncher from "../componants/Terminbroncher";
 import axios from "axios";
-import MultipleAboutdetails from "../componants/MultipleAboutdetails";
-import BannerCarousel from "../componants/Banner";
+import dynamic from "next/dynamic";
 
+const ClientCarousel = dynamic(() => import("../componants/client"), {
+  ssr: false,
+});
+const Comment = dynamic(() => import("../componants/Comment"), { ssr: false });
+const Accordian = dynamic(() => import("../componants/Accordian"), {
+  ssr: false,
+});
+const Slidehover = dynamic(() => import("../componants/Slidehover"), {
+  ssr: false,
+});
+const Terminbroncher = dynamic(() => import("../componants/Terminbroncher"), {
+  ssr: false,
+});
+const MultipleAboutdetails = dynamic(
+  () => import("../componants/MultipleAboutdetails"),
+  { ssr: false }
+);
+const BannerCarousel = dynamic(() => import("../componants/Banner"), {
+  ssr: false,
+});
 const Page = () => {
   const [AesthetikData, setAesthetikData] = useState(null);
-  const pathname = usePathname();
-  const [fullUrl, setFullUrl] = useState("");
-
   useEffect(() => {
     const fetchAesthetikData = async () => {
       try {
@@ -30,15 +40,6 @@ const Page = () => {
     fetchAesthetikData();
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const currentFullUrl = `${pathname}${window.location.hash}`;
-      setFullUrl(currentFullUrl);
-
-      // Update browser URL without reloading
-      window.history.pushState(null, "", currentFullUrl);
-    }
-  }, [fullUrl]);
 
   return (
     <>

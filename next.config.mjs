@@ -66,6 +66,25 @@ const nextConfig = {
       },
     ];
   },
+  experimental: {
+    scrollRestoration: true, 
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.alias["lodash"] = "lodash-es";
+    }
+
+    config.optimization.splitChunks = {
+      chunks: "all", 
+      minSize: 20 * 1024, 
+      maxSize: 200 * 1024, 
+    };
+
+    return config;
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production", 
+  },
 };
 
 export default nextConfig;

@@ -5,27 +5,27 @@ import Categories from "./Categories";
 
 const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
     useEffect(() => {
-      const handleHashChange = () => {
-        const hash = window.location.hash;
-        if (hash) {
-          const cleanedHash = decodeURIComponent(hash.replace("#", ""));
-          const targetElement = document.getElementById(cleanedHash);
+  const handleHashChange = () => {
+    const hash = window.location.hash;
+    if (hash) {
+      const cleanedHash = decodeURIComponent(hash.replace("#", ""));
+      const targetElement = document.getElementById(cleanedHash);
 
-          if (targetElement) {
-            targetElement.scrollIntoView({ behavior: "smooth" });
-          } else {
-            console.warn(`Target section with id "${cleanedHash}" not found.`);
-          }
-        }
-      };
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      } else {
+        console.warn(`Target section with id "${cleanedHash}" not found.`);
+      }
+    }
+  };
 
-      window.addEventListener("hashchange", handleHashChange);
-      handleHashChange(); // Call initially to handle direct link navigation
+  window.addEventListener("hashchange", handleHashChange);
+  handleHashChange(); // Call initially to handle direct link navigation
 
-      return () => {
-        window.removeEventListener("hashchange", handleHashChange);
-      };
-    }, [MultipleAboutdeta]);
+  return () => {
+    window.removeEventListener("hashchange", handleHashChange);
+  };
+}, [MultipleAboutdeta]);
 
   return (
     <>

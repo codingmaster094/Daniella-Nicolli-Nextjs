@@ -1,24 +1,23 @@
-// app/api/emaildata/route.js
+
 import nodemailer from "nodemailer";
 
 export async function POST(req) {
   const { name, email, telephone, message } = await req.json();
 
-  // Create a transporter
+
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
-    secure: false, // true for 465, false for other ports
+    secure: false,
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
     tls: {
-      rejectUnauthorized: false, // This will ignore self-signed certificates
+      rejectUnauthorized: false, 
     },
   });
 
-  // Set up email data
   const mailOptions = {
     from: email,
     to: process.env.RECEIVER_EMAIL,

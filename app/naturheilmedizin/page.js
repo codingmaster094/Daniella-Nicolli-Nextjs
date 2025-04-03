@@ -1,14 +1,29 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import BannerCarousel from "../componants/Banner";
-import Comment from "../componants/Comment";
-import ClientCarousel from "../componants/client";
-import Terminbroncher from "../componants/Terminbroncher";
-import Slidehover from "../componants/Slidehover";
-import Accordian from "../componants/Accordian";
-import MultipleAboutdetails from "../componants/MultipleAboutdetails";
+import React, { useEffect, useState } from "react"; 
 import axios from "axios";
-import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const BannerCarousel = dynamic(() => import("../componants/Banner"), {
+  ssr: false,
+});
+const Comment = dynamic(() => import("../componants/Comment"), { ssr: false });
+const ClientCarousel = dynamic(() => import("../componants/client"), {
+  ssr: false,
+});
+const Terminbroncher = dynamic(() => import("../componants/Terminbroncher"), {
+  ssr: false,
+});
+const Slidehover = dynamic(() => import("../componants/Slidehover"), {
+  ssr: false,
+});
+const Accordian = dynamic(() => import("../componants/Accordian"), {
+  ssr: false,
+});
+const MultipleAboutdetails = dynamic(
+  () => import("../componants/MultipleAboutdetails"),
+  { ssr: false }
+);
+
 
 const page = () => {
   const [Naturheilmedizin, setNaturheilmedizin] = useState(null);

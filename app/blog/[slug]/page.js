@@ -1,9 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Categories from "../../componants/Categories";
+import dynamic from "next/dynamic";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import dayjs from "dayjs";
+
+const Categories = dynamic(() => import("../../componants/Categories"), {
+  ssr: false,
+});
 
 const Page = () => {
   const [blogData, setBlogData] = useState([]);

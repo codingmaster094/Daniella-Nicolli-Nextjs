@@ -1,13 +1,28 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ClientCarousel from "../componants/client";
-import UberAboutDeatils from "../componants/UberAboutDeatils";
-import Counter from "../componants/Counter";
-import UberAboutDeatilsleft from "../componants/UberAboutDeatilsleft";
-import Gallrey from "../componants/Gallrey";
+import dynamic from "next/dynamic";
 import axios from "axios";
-import Categories from "../componants/Categories";
-import BannerCarousel from "../componants/Banner";
+
+
+const ClientCarousel = dynamic(() => import("../componants/client"), {
+  ssr: false,
+});
+const UberAboutDeatils = dynamic(
+  () => import("../componants/UberAboutDeatils"),
+  { ssr: false }
+);
+const Counter = dynamic(() => import("../componants/Counter"), { ssr: false });
+const UberAboutDeatilsleft = dynamic(
+  () => import("../componants/UberAboutDeatilsleft"),
+  { ssr: false }
+);
+const Gallrey = dynamic(() => import("../componants/Gallrey"), { ssr: false });
+const Categories = dynamic(() => import("../componants/Categories"), {
+  ssr: false,
+});
+const BannerCarousel = dynamic(() => import("../componants/Banner"), {
+  ssr: false,
+});
 
 const page = () => {
   const [Ubermich, setUbermich] = useState(null);

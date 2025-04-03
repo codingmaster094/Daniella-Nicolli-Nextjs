@@ -1,11 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ContactAboutDetails from "../componants/ContactAboutDetails";
-import Contactform from "../componants/Contactform";
+import dynamic from "next/dynamic";
 import axios from "axios";
-import Maps from "../componants/Maps";
-import BannerCarousel from "../componants/Banner";
 
+
+const ContactAboutDetails = dynamic(
+  () => import("../componants/ContactAboutDetails"),
+  { ssr: false }
+);
+const Contactform = dynamic(() => import("../componants/Contactform"), {
+  ssr: false,
+});
+const Maps = dynamic(() => import("../componants/Maps"), { ssr: false });
+const BannerCarousel = dynamic(() => import("../componants/Banner"), {
+  ssr: false,
+});
 const page = () => {
   const [ContactData, setContactData] = useState(null);
   const fetchContactData = async () => {

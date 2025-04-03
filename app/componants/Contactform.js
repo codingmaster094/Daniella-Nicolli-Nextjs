@@ -197,7 +197,7 @@ const Contactform = ({
                       onChange={handleInputChange}
                     />
                     {errors.name && (
-                      <p className="text-red-500 text-sm">{errors.name}</p>
+                      <p className="text-red-500 text-sm mt-2">{errors.name}</p>
                     )}
                   </div>
                   <div className="input-box flex-auto sm:flex-1">
@@ -213,7 +213,9 @@ const Contactform = ({
                       onChange={handleInputChange}
                     />
                     {errors.email && (
-                      <p className="text-red-500 text-sm">{errors.email}</p>
+                      <p className="text-red-500 text-sm mt-2">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
                   <div className="input-box flex-auto sm:flex-1">
@@ -229,7 +231,9 @@ const Contactform = ({
                       onChange={handleInputChange}
                     />
                     {errors.telephone && (
-                      <p className="text-red-500 text-sm">{errors.telephone}</p>
+                      <p className="text-red-500 text-sm mt-2">
+                        {errors.telephone}
+                      </p>
                     )}
                   </div>
                   <div className="input-box w-full">
@@ -305,7 +309,7 @@ const Contactform = ({
                   </p>
                 </div>
                 {errors.Contact_Datenschutz && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-red-500 text-sm mt-2">
                     {errors.Contact_Datenschutz}
                   </p>
                 )}
@@ -359,7 +363,7 @@ const Contactform = ({
                         onChange={handleInputChange}
                         className="hidden peer"
                       />
-                      <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500">
+                      <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500 mt-2">
                         <Image
                           src="/images/Tree.png"
                           alt="Kreis"
@@ -371,7 +375,7 @@ const Contactform = ({
                   </div>
 
                   {errors.selectedIcon && (
-                    <p className="text-red-500 text-sm">
+                    <p className="text-red-500 text-sm mt-2 ">
                       {errors.selectedIcon}
                     </p>
                   )}
