@@ -36,29 +36,40 @@ const Footer = () => {
         console.error("Error fetching menu data", error);
       }
     };
+
     fetchFooterData();
     getMenu();
   }, []);
 
   return (
     <footer className="bg-salte w-full">
-      <div className="container mx-auto px-[15px] ">
+      <div className="container mx-auto px-[15px]">
         <div className="flex gap-6 lg:gap-8 2xl:gap-[90px] justify-between lg:flex-nowrap flex-wrap py-8 md:py-20">
           <div className="flex flex-col md:w-auto w-full gap-4">
             <h3>{FooterData?.kontakt_label}</h3>
             <ul className="[&_li>img]:mt-4">
               <li>
-                <Image src={LocationSvg} alt="location-svg" />
+                <Image
+                  src={LocationSvg}
+                  alt="location-svg"
+                  width={24}
+                  height={24}
+                />
                 <div
                   dangerouslySetInnerHTML={{
                     __html: FooterData?.footer_address,
                   }}
-                  className="w-full "
+                  className="w-full"
                 />
               </li>
               <li>
                 <span className="flex flex-shrink-0">
-                  <Image src={PhoneSvg} alt="phone-svg" />
+                  <Image
+                    src={PhoneSvg}
+                    alt="phone-svg"
+                    width={24}
+                    height={24}
+                  />
                 </span>
                 {FooterData?.footer_phone_number && (
                   <Link
@@ -73,13 +84,13 @@ const Footer = () => {
               </li>
               <li>
                 <span className="flex flex-shrink-0">
-                  <Image src={FaxSvg} alt="fax-svg" />
+                  <Image src={FaxSvg} alt="fax-svg" width={24} height={24} />
                 </span>
                 {FooterData?.footer_fax_number?.title}
               </li>
               <li>
                 <span className="flex flex-shrink-0">
-                  <Image src={MailSvg} alt="MailSvg" />
+                  <Image src={MailSvg} alt="MailSvg" width={24} height={24} />
                 </span>
                 {FooterData?.footer_email_address && (
                   <Link
@@ -93,73 +104,11 @@ const Footer = () => {
                 )}
               </li>
             </ul>
-            <ul className="flex flex-row [&_li]:w-[38px] [&_li]:h-[38px] [&_li]:bg-Teal [&_li]:rounded-full [&_li] :items-center [&_li]:justify-center [&_li]:p-2">
-              <li className="flex items-center justify-center">
-                {FooterData?.footer_facebook_link && (
-                  <Link
-                    href={FooterData?.footer_facebook_link?.url}
-                    target={FooterData?.footer_facebook_link?.target}
-                    aria-label="facebook-link"
-                    role="link"
-                    className="inline-block "
-                  >
-                    <Image src={FacebookSvg} alt="facebook-svg"></Image>
-                  </Link>
-                )}
-              </li>
-              <li className="flex items-center justify-center">
-                {FooterData?.footer_instagram_link && (
-                  <Link
-                    href={FooterData?.footer_instagram_link?.url}
-                    target={FooterData?.footer_instagram_link?.target}
-                    aria-label="Instagram-link"
-                    role="link"
-                    className="inline-block "
-                  >
-                    <Image src={InstagramSvg} alt="instgram-svg"></Image>
-                  </Link>
-                )}
-              </li>
-            </ul>
-            <ul className="flex flex-row ">
-              {FooterData &&
-                FooterData?.footer_all_logos?.map((val, index) => (
-                  <li
-                    className="flex w-[100px] h-[100px] overflow-hidden"
-                    key={index}
-                  >
-                    {val.footer_all_logo_url ? (
-                      <Link
-                        href={val.footer_all_logo_url?.url}
-                        target={val.footer_all_logo_url?.target}
-                        aria-label="image-link"
-                        role="link"
-                      >
-                        <Image
-                          src={val.footer_all_logo}
-                          width={150}
-                          height={150}
-                          alt="GVPimg"
-                          className="object-cover rounded-[10px]"
-                        />
-                      </Link>
-                    ) : (
-                      <Image
-                        src={val.footer_all_logo}
-                        width={150}
-                        height={150}
-                        alt="GVPimg"
-                        className="object-cover rounded-[10px]"
-                      />
-                    )}
-                  </li>
-                ))}
-            </ul>
           </div>
           <div className="flex flex-col md:w-auto w-full gap-4 sm:gap-6">
             <h4>{FooterData?.footer_sprechzeiten_label}</h4>
             <ul
-              className="time-menu "
+              className="time-menu"
               dangerouslySetInnerHTML={{
                 __html: FooterData?.footer_business_hours?.replace(
                   /<\/?ul[^>]*>/g,
@@ -171,16 +120,16 @@ const Footer = () => {
           <div className="flex flex-col gap-4 md:w-auto w-full sm:gap-6">
             <h4>{FooterData?.footer_navigation_label}</h4>
             <ul>
-              {FooterDatamenu?.menu?.map((item, index) => {
-                item.slug = item.slug === "home" ? "/" : item.slug;
+              {FooterDatamenu?.menu?.map((item) => {
+                const slug = item.slug === "home" ? "/" : item.slug;
                 return (
                   <li key={item.id}>
                     <Link
-                      href={`/${item.slug}`}
+                      href={`/${slug}`}
                       aria-label="footer-link"
                       role="link"
                     >
-                      {item.title == "Home" ? "start" : item.title}
+                      {item.title === "Home" ? "start" : item.title}
                     </Link>
                   </li>
                 );
@@ -192,7 +141,7 @@ const Footer = () => {
             <ul>
               <li>
                 <Link href="/impressum" aria-label="footer-link" role="link">
-                  Impressum{" "}
+                  Impressum
                 </Link>
               </li>
               <li>
@@ -205,11 +154,82 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
+            <ul className="flex flex-row [&_li]:w-[38px] [&_li]:h-[38px] [&_li]:bg-Teal [&_li]:rounded-full [&_li]:items-center [&_li]:justify-center [&_li]:p-2">
+              <li className="flex items-center justify-center">
+                {FooterData?.footer_facebook_link && (
+                  <Link
+                    href={FooterData?.footer_facebook_link?.url}
+                    target={FooterData?.footer_facebook_link?.target}
+                    aria-label="facebook-link"
+                    role="link"
+                    className="inline-block"
+                  >
+                    <Image
+                      src={FacebookSvg}
+                      alt="facebook-svg"
+                      width={24}
+                      height={24}
+                    />
+                  </Link>
+                )}
+              </li>
+              <li className="flex items-center justify-center">
+                {FooterData?.footer_instagram_link && (
+                  <Link
+                    href={FooterData?.footer_instagram_link?.url}
+                    target={FooterData?.footer_instagram_link?.target}
+                    aria-label="Instagram-link"
+                    role="link"
+                    className="inline-block"
+                  >
+                    <Image
+                      src={InstagramSvg}
+                      alt="instagram-svg"
+                      width={24}
+                      height={24}
+                    />
+                  </Link>
+                )}
+              </li>
+            </ul>
+            <ul className="flex flex-row">
+              {FooterData?.footer_all_logos?.map((val, index) => (
+                <li
+                  className="flex w-[100px] h-[100px] overflow-hidden"
+                  key={index}
+                >
+                  {val.footer_all_logo_url ? (
+                    <Link
+                      href={val.footer_all_logo_url?.url}
+                      target={val.footer_all_logo_url?.target}
+                      aria-label="image-link"
+                      role="link"
+                    >
+                      <Image
+                        src={val.footer_all_logo}
+                        width={150}
+                        height={150}
+                        alt="Logo"
+                        className="object-cover rounded-[10px]"
+                      />
+                    </Link>
+                  ) : (
+                    <Image
+                      src={val.footer_all_logo}
+                      width={150}
+                      height={150}
+                      alt="Logo"
+                      className="object-cover rounded-[10px]"
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
       <div
-        className="flex  justify-center bg-Teal p-[15px] text-white"
+        className="flex justify-center bg-Teal p-[15px] text-white"
         dangerouslySetInnerHTML={{
           __html: FooterData?.footer_copyright_content,
         }}
