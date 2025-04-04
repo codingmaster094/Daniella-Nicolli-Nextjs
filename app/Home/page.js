@@ -65,7 +65,7 @@ const page = () => {
           ""
         )}
         BTN={HomePageData?.hero_slider_button?.value}
-        // loading={loading}
+        loading={loading}
       />
 
       {HomePageData && (

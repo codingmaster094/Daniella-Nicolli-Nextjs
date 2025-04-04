@@ -2,13 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const BannerCarousel = ({ 
-  title, 
-  img, 
-  content,
-   BTN, 
-   loading
-   }) => {
+const BannerCarousel = ({ title, img, content, BTN, loading }) => {
+  console.log('loading', loading)
   return (
     <section className="relative w-screen h-screen">
       <div className="Banner relative w-full h-full">
