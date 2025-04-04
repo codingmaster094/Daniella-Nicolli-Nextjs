@@ -64,23 +64,21 @@ const Aboutdetails = (props) => {
                 <div className="flex gap-2 flex-wrap">
                   {section_sub_content?.map((item, i) => {
                     return (
-                      <div
+   
+                        <div
                         key={i}
                         className="bg-[#FDF6EE] p-4 sm:p-8 space-y-4 2xl:w-[calc(50%-4px)] grow"
                       >
                         {item?.home_leistungen_section_sub_contents?.home_leistungen_section_sub_contents_item?.map(
                           (subitem, j) => (
                             <div className="link-blocks space-y-2" key={j}>
-                              {item.home_leistungen_section_sub_content_title &&
-                                (loading ? (
-                                  <div className="ph-title w-full h-full"></div>
-                                ) : (
-                                  <h3 className="text-5 lg:text-[24px] xl:font-semibold">
-                                    {
-                                      item.home_leistungen_section_sub_content_title
-                                    }
-                                  </h3>
-                                ))}
+                              {item.home_leistungen_section_sub_content_title && (
+                                <h3 className="text-5 lg:text-[24px] xl:font-semibold">
+                                  {
+                                    item.home_leistungen_section_sub_content_title
+                                  }
+                                </h3>
+                              )}
 
                               {subitem.home_leistungen_section_sub_contents_item_title && (
                                 <p>
@@ -123,6 +121,7 @@ const Aboutdetails = (props) => {
                           </div>
                         )}
                       </div>
+                      
                     );
                   })}
                 </div>

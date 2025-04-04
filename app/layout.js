@@ -14,10 +14,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Header />
-        <main>
-          {children}
-          <TopButton />
+        <main className="content">
+         {children}
         </main>
+          <TopButton />
         <Footer />
       </body>
     </html>

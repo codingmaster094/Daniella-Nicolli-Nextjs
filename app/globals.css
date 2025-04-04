@@ -22,6 +22,12 @@
   body {
     @apply overflow-x-hidden font-primary-font text-body text-black-900;
   }
+    .content {
+      min-height: calc(100vh - 200px);
+      /* Adjust karine Footer header vachhe space manage kari shako */
+      padding: 20px 0;
+      /* Upar ane niche spacing */
+    }
 
   h1,
   h2,
