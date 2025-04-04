@@ -22,7 +22,7 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
               <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px]">
                 <h1
                   dangerouslySetInnerHTML={{
-                    __html: title,
+                    __html: title ,
                   }}
                 ></h1>
                 <ul

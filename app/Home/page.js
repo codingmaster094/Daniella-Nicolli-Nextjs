@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
+import Loader from "../componants/Loader";
 
 const ClientCarousel = dynamic(() => import("../componants/client"), {
   ssr: false,
@@ -35,21 +36,29 @@ const Accordian = dynamic(() => import("../componants/Accordian"), {
 const Home = () => {
   const [HomePageData, setHomePageData] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const fetchHomeData = async () => {
-    try {
-      const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/home"
-      );
-      setHomePageData(response.data);
-    } catch (error) {
-      setError("Failed to load data");
-    }
-  };
+    const fetchHomeData = async () => {
+      try {
+        const response = await axios.get(
+          "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/home"
+        );
+        setHomePageData(response.data);
+      } catch (error) {
+        setError("Failed to load data");
+      } finally {
+        setLoading(false); // Hide loader when data is fetched
+      }
+    };
 
-  useEffect(() => {
-    fetchHomeData();
-  }, []);
+    useEffect(() => {
+      fetchHomeData();
+    }, []);
+
+   if (loading) {
+     return <Loader />; // Show loader while fetching data
+   }
+
 
   return (
     <>
