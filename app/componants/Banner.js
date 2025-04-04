@@ -15,7 +15,7 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
                 <>
                   <Image
                     src={img}
-                    className="absolute top-0 left-0 w-screen object-cover"
+                    className="absolute top-0 left-0 w-screen h-[845px] object-cover"
                     alt="hero banner image"
                     role="img"
                     width={1920}
