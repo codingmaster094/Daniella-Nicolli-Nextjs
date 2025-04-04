@@ -44,10 +44,6 @@ const Page = () => {
     fetchAesthetikData();
   }, []);
 
-    if (loading) {
-      return <Loader />; // Show loader while fetching data
-    }
-
   return (
     <>
       <BannerCarousel
@@ -58,6 +54,7 @@ const Page = () => {
           ""
         )}
         BTN={AesthetikData?.hero_slider_button?.value}
+        loading={loading}
       />
 
       {AesthetikData && (

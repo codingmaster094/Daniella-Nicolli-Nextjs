@@ -1,8 +1,23 @@
 /** @type {import('next').NextConfig} */
+import WithPlaiceholder from "@plaiceholder/next"
 const nextConfig = {
   images: {
     domains: ["daniella.blog-s.de"],
     formats: ["image/webp"],
+  },
+  // remove
+  experimental: {
+    // Disable Turbopack if causing issues
+    turbopack: false,
+  },
+  webpack: (config) => {
+    config.resolve.fallback = {
+      fs: false,
+      child_process: false,
+      net: false,
+      tls: false,
+    };
+    return config;
   },
   async redirects() {
     return [
@@ -67,7 +82,7 @@ const nextConfig = {
     ];
   },
   experimental: {
-    scrollRestoration: true, 
+    scrollRestoration: true,
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -75,16 +90,16 @@ const nextConfig = {
     }
 
     config.optimization.splitChunks = {
-      chunks: "all", 
-      minSize: 20 * 1024, 
-      maxSize: 200 * 1024, 
+      chunks: "all",
+      minSize: 20 * 1024,
+      maxSize: 200 * 1024,
     };
 
     return config;
   },
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production", 
+    removeConsole: process.env.NODE_ENV === "production",
   },
 };
 
-export default nextConfig;
+export default WithPlaiceholder(nextConfig)

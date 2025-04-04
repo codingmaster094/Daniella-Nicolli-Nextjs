@@ -48,9 +48,7 @@ const page = () => {
     fetchBlog();
   }, [slug]);
 
-    if (loading) {
-      return <Loader />; // Show loader while fetching data
-    }
+
   return (
     <>
       <BannerCarousel
@@ -61,6 +59,7 @@ const page = () => {
           ""
         )}
         BTN={LendiangPageData?.hero_slider_button}
+        loading={loading}
       />
 
       <LandingAboutSection

@@ -45,9 +45,6 @@ const page = () => {
     fetchNaturheilmedizin();
   }, []);
 
-    if (loading) {
-      return <Loader />; // Show loader while fetching data
-    }
 
   return (
     <>
@@ -59,6 +56,7 @@ const page = () => {
           ""
         )}
         BTN={Naturheilmedizin?.hero_slider_button?.value}
+        loading={loading}
       />
 
       {Naturheilmedizin && (

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import Loader from "../componants/Loader";
+// const imageSrc = defaultImage;
 
 const ClientCarousel = dynamic(() => import("../componants/client"), {
   ssr: false,
@@ -33,32 +33,26 @@ const Accordian = dynamic(() => import("../componants/Accordian"), {
   ssr: false,
 });
 
-const Home = () => {
+const page = () => {
   const [HomePageData, setHomePageData] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+  const fetchHomeData = async () => {
+    try {
+      const response = await axios.get(
+        "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/home"
+      );
+      setHomePageData(response.data);
+    } catch (error) {
+      setError("Failed to load data");
+    }finally{
+      setLoading(false);
+    }
+  };
 
-    const fetchHomeData = async () => {
-      try {
-        const response = await axios.get(
-          "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/home"
-        );
-        setHomePageData(response.data);
-      } catch (error) {
-        setError("Failed to load data");
-      } finally {
-        setLoading(false); // Hide loader when data is fetched
-      }
-    };
-
-    useEffect(() => {
-      fetchHomeData();
-    }, []);
-
-   if (loading) {
-     return <Loader />; // Show loader while fetching data
-   }
-
+  useEffect(() => {
+    fetchHomeData();
+  }, []);
 
   return (
     <>
@@ -70,6 +64,7 @@ const Home = () => {
           ""
         )}
         BTN={HomePageData?.hero_slider_button?.value}
+        loading={loading}
       />
 
       {HomePageData && (
@@ -88,6 +83,7 @@ const Home = () => {
           HomePageData?.home_leistungen_section_sub_content.value
         }
         Small_image_show={HomePageData?.home_leistungen_image_show?.value}
+        loading={loading}
       />
 
       <Categories
@@ -103,6 +99,7 @@ const Home = () => {
         BTN={HomePageData?.home_standorte_button?.value}
         standorte_image={HomePageData?.home_standorte_image?.value}
         Small_image_show={HomePageData?.display_small_image?.value}
+        loading={loading}
       />
 
       {HomePageData && (
@@ -150,4 +147,5 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default page;
+

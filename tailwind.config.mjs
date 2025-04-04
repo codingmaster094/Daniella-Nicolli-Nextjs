@@ -41,7 +41,7 @@ export default {
         "3xl": "1770px",
       },
       fontFamily: {
-        "primary-font": ["Roboto", "sans-serif"],
+        "primary-font": ["Opensans", "sans-serif"],
       },
       fontSize: {
         h1: [
