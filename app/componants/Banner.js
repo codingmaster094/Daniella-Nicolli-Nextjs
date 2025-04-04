@@ -9,13 +9,13 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
         <div className="Banner-sliders relative overflow-hidden w-full h-full">
           <div className="item relative w-full h-full">
               {loading ? (
-                <div className="ph-item"></div>
+                <div className="ph-item w-full h-full"></div>
               ) : (
             <div className="bg-banner bg-banner-img bg-cover w-full h-full">
                 <>
                   <Image
                     src={img}
-                    className="absolute top-0 left-0 w-screen h-screen object-cover"
+                    className="absolute top-0 left-0 w-screen object-cover"
                     alt="hero banner image"
                     role="img"
                     width={1920}
