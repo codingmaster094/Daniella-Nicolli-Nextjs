@@ -45,7 +45,8 @@ const page = () => {
       setHomePageData(response.data);
     } catch (error) {
       setError("Failed to load data");
-    }finally{
+    }
+    finally{
       setLoading(false);
     }
   };
@@ -64,7 +65,7 @@ const page = () => {
           ""
         )}
         BTN={HomePageData?.hero_slider_button?.value}
-        loading={loading}
+        // loading={loading}
       />
 
       {HomePageData && (

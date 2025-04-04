@@ -2,16 +2,21 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const BannerCarousel = ({ title, img, content, BTN, loading }) => {
-  console.log('loading', loading)
+const BannerCarousel = ({ 
+  title, 
+  img, 
+  content,
+   BTN, 
+  //  loading
+   }) => {
   return (
     <section className="relative w-screen h-screen">
       <div className="Banner relative w-full h-full">
         <div className="Banner-sliders relative overflow-hidden w-full h-full">
           <div className="item relative w-full h-full">
-              {loading ? (
+              {/* {loading ? (
                 <div className="ph-item w-full h-full"></div>
-              ) : (
+              ) : ( */}
             <div className="bg-banner bg-banner-img bg-cover w-full h-full">
                 <>
                   <Image
@@ -43,7 +48,7 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
                   </div>
                 </>
             </div>
-              )}
+              {/* )} */}
           </div>
         </div>
       </div>
