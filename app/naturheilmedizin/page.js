@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react"; 
 import axios from "axios";
 import dynamic from "next/dynamic";
-
+import Loader from "../componants/Loader";
 const BannerCarousel = dynamic(() => import("../componants/Banner"), {
   ssr: false,
 });
@@ -27,6 +27,7 @@ const MultipleAboutdetails = dynamic(
 
 const page = () => {
   const [Naturheilmedizin, setNaturheilmedizin] = useState(null);
+  const [loading, setLoading] = useState(true);
   const fetchNaturheilmedizin = async () => {
     try {
       const response = await axios.get(
@@ -35,12 +36,19 @@ const page = () => {
       setNaturheilmedizin(response.data);
     } catch (error) {
       console.error("Error fetching content data", error);
+    } finally {
+      setLoading(false); // Hide loader when data is fetched
     }
   };
 
   useEffect(() => {
     fetchNaturheilmedizin();
   }, []);
+
+    if (loading) {
+      return <Loader />; // Show loader while fetching data
+    }
+
   return (
     <>
       <BannerCarousel

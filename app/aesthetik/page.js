@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import dynamic from "next/dynamic";
+import Loader from "../componants/Loader";
 
 const ClientCarousel = dynamic(() => import("../componants/client"), {
   ssr: false,
@@ -25,6 +26,7 @@ const BannerCarousel = dynamic(() => import("../componants/Banner"), {
 });
 const Page = () => {
   const [AesthetikData, setAesthetikData] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchAesthetikData = async () => {
       try {
@@ -33,13 +35,18 @@ const Page = () => {
         );
         setAesthetikData(response.data);
       } catch (error) {
-        console.error("Error fetching content data", error);
+        setError("Failed to load data");
+      } finally {
+        setLoading(false); // Hide loader when data is fetched
       }
     };
 
     fetchAesthetikData();
   }, []);
 
+    if (loading) {
+      return <Loader />; // Show loader while fetching data
+    }
 
   return (
     <>

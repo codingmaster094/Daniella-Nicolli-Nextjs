@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
-
+import Loader from "../componants/Loader";
 
 const ClientCarousel = dynamic(() => import("../componants/client"), {
   ssr: false,
@@ -26,7 +26,7 @@ const BannerCarousel = dynamic(() => import("../componants/Banner"), {
 
 const page = () => {
   const [Ubermich, setUbermich] = useState(null);
-
+const [loading, setLoading] = useState(true);
   const fetchUbermich = async () => {
     try {
       const response = await axios.get(
@@ -35,13 +35,18 @@ const page = () => {
       setUbermich(response.data); // The result is in response.data with Axios
     } catch (error) {
       console.error("Error fetching content data", error);
+    } finally {
+      setLoading(false); // Hide loader when data is fetched
     }
   };
 
   useEffect(() => {
     fetchUbermich();
   }, []);
-
+  
+  if (loading) {
+    return <Loader />; // Show loader while fetching data
+  }
   return (
     <>
       <BannerCarousel

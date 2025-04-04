@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
-
+import Loader from "../componants/Loader";
 
 const ContactAboutDetails = dynamic(
   () => import("../componants/ContactAboutDetails"),
@@ -17,6 +17,7 @@ const BannerCarousel = dynamic(() => import("../componants/Banner"), {
 });
 const page = () => {
   const [ContactData, setContactData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const fetchContactData = async () => {
     try {
       const response = await axios.get(
@@ -25,6 +26,8 @@ const page = () => {
       setContactData(response.data); // The result is in response.data with Axios
     } catch (error) {
       console.error("Error fetching content data", error);
+    } finally {
+      setLoading(false); // Hide loader when data is fetched
     }
   };
 
@@ -32,6 +35,9 @@ const page = () => {
     fetchContactData();
   }, []);
 
+    if (loading) {
+      return <Loader />; // Show loader while fetching data
+    }
   return (
     <>
       <BannerCarousel

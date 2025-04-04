@@ -1,16 +1,34 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import BannerCarousel from "../componants/Banner";
 import axios from "axios";
 import { useParams } from "next/navigation";
-import LandingAboutSection from "../componants/LandingAboutSection";
-import AboutLambsheim from "../componants/AboutLambsheim";
-import LendingAbout from "../componants/LendingAbout";
-import LeandingCategories from "../componants/LeandingCategories";
-import Leanding_AboutLambsheim from "../componants/Leanding_AboutLambsheim";
+import dynamic from "next/dynamic";
+
+
+const BannerCarousel = dynamic(() => import("../componants/Banner"), {
+  ssr: false,
+});
+const LandingAboutSection = dynamic(
+  () => import("../componants/LandingAboutSection"),
+  { ssr: false }
+);
+const LendingAbout = dynamic(() => import("../componants/LendingAbout"), {
+  ssr: false,
+});
+const LeandingCategories = dynamic(
+  () => import("../componants/LeandingCategories"),
+  { ssr: false }
+);
+const Leanding_AboutLambsheim = dynamic(
+  () => import("../componants/Leanding_AboutLambsheim"),
+  { ssr: false }
+);
+const Loader = dynamic(() => import("../componants/Loader"),
+{ ssr: false });
 
 const page = () => {
   const [LendiangPageData, setLendiangPageData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const params = useParams();
   const slug = params?.slug;
   const fetchBlog = async () => {
@@ -21,6 +39,8 @@ const page = () => {
       setLendiangPageData(response.data.acf);
     } catch (error) {
       console.error("Error fetching blog data:", error);
+    } finally {
+      setLoading(false); // Hide loader when data is fetched
     }
   };
 
@@ -28,6 +48,9 @@ const page = () => {
     fetchBlog();
   }, [slug]);
 
+    if (loading) {
+      return <Loader />; // Show loader while fetching data
+    }
   return (
     <>
       <BannerCarousel
