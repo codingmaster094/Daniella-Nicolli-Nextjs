@@ -36,7 +36,7 @@
   }
 
   h1 {
-    @apply text-h2 lg:text-h1 leading-[1.1];
+    @apply text-h3 md:text-h2 lg:text-h1 leading-[1.1];
   }
 
   h2 {
