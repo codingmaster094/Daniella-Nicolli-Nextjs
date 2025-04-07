@@ -71,12 +71,14 @@ const Page = () => {
         title={AesthetikData?.aesthetik_grundsätze_main_title?.value}
         BTN={AesthetikData?.aesthetik_grundsätze_button.value}
         columns={AesthetikData?.aesthetik_grundsätze_all_contents?.value}
+        loading={loading}
       />
 
       <MultipleAboutdetails
         MultipleAboutdeta={
           AesthetikData?.aesthetik_all_anfrage_faltenunterspritzung
         }
+        loading={loading}
       />
       {AesthetikData && (
         <Slidehover
@@ -96,6 +98,7 @@ const Page = () => {
         main_title={AesthetikData?.faq_main_title?.value}
         all_faqs={AesthetikData?.all_faqs?.value}
         show_section={AesthetikData?.faq_main_faq_show.value}
+        loading={loading}
       />
     </>
   );

@@ -73,12 +73,14 @@ const page = () => {
         title={Naturheilmedizin?.aesthetik_grundsätze_main_title.value}
         BTN={Naturheilmedizin?.aesthetik_grundsätze_button.value}
         columns={Naturheilmedizin?.aesthetik_grundsätze_all_contents.value}
+        loading={loading}
       />
 
       <MultipleAboutdetails
         MultipleAboutdeta={
           Naturheilmedizin?.aesthetik_all_anfrage_faltenunterspritzung
         }
+        loading={loading}
       />
 
       {Naturheilmedizin && (
@@ -101,6 +103,7 @@ const page = () => {
         main_title={Naturheilmedizin?.faq_main_title?.value}
         all_faqs={Naturheilmedizin?.all_faqs?.value}
         show_section={Naturheilmedizin?.faq_main_faq_show.value}
+        loading={loading}
       />
     </>
   );

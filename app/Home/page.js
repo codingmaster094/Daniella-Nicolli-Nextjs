@@ -149,6 +149,7 @@ const page = () => {
         main_title={HomePageData?.faq_main_title?.value}
         all_faqs={HomePageData?.all_faqs?.value}
         show_section={HomePageData?.faq_main_faq_show.value}
+        loading={loading}
       />
     </>
   );

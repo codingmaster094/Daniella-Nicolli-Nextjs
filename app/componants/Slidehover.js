@@ -7,7 +7,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
 import WhiteVellrySvg from "../../public/images/Whitevelly.svg";
 
-const Slidehover = ({bg_image , main_title, all_referenzen, enabledisable_referenz }) => {
+const Slidehover = ({bg_image , main_title, all_referenzen, enabledisable_referenz , loading }) => {
   const [swiperInstance, setSwiperInstance] = useState(null);
   
     const nextSlide = () => {

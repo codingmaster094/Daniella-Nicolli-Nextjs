@@ -72,6 +72,7 @@ const [loading, setLoading] = useState(true);
         image={Ubermich?.ueber_geschichte_image?.value}
         sub_content={Ubermich?.experience_year?.value}
         Small_image_show={Ubermich?.ueber_geschichte_image_show}
+        loading={loading}
       />
 
       {Ubermich && (
@@ -86,6 +87,7 @@ const [loading, setLoading] = useState(true);
         content={Ubermich?.ueber_praxis_content?.value}
         image={Ubermich?.ueber_praxis_image?.value}
         Small_image_show={Ubermich?.ueber_praxis_image_show?.value}
+        loading={loading}
       />
 
       <Categories

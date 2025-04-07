@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
+import ContactBox from "./ContactBox";
 const ContactAboutDetails = ({
+  loading,
   main_title,
   content,
   image,
@@ -55,71 +57,59 @@ const ContactAboutDetails = ({
           </div>
           <div className="w-full max-w-[1780px]  flex flex-col lg:flex-row  gap-4 lg:gap-0 py-0 lg:py-[64px] relative after:none lg:after:absolute lg:after:right-[15px] lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[80%] 2xl:after:w-[60%] lg:after:h-full lg:after:-z-10">
             <div className="flex flex-shrink-0 px-4  items-center flex-col w-full lg:w-1/3 2xl:w-[45%]  md:flex-row py-0 lg:py-[15px] bg-white">
-              {image && (
-                <Image
-                  src={image}
-                  width={836}
-                  height={550}
-                  alt="about-left.png"
-                  className="w-full object-cover object-center lg:object-left 2xl:object-center h-full"
-                />
+              {loading ? (
+                <div className="ph-item w-full h-full"></div>
+              ) : (
+                image && (
+                  <Image
+                    src={image}
+                    width={836}
+                    height={550}
+                    alt="about-left.png"
+                    className="w-full object-cover object-center lg:object-left 2xl:object-center h-full"
+                  />
+                )
               )}
             </div>
             <div className="flex gap-5  flex-col w-full justify-center lg:w:1/2 2xl:w-[60%] lg:gap-8 ">
               <div className="flex flex-col sm:flex-row flex-wrap px-4   2xl:px-8 gap-2">
-                <div className="flex flex-col active w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4   *hover:text-white transition-all duration-500 ease-in-out">
-                  {/* {<h3 className="text-h4 2xl:text-h3">{telefonnummer_label}</h3>} */}
-                  <h3 className="text-h4">{telefonnummer_label}</h3>
-                  <div className="block :text-sm :2xl:text-base :4xl:text-a :break-words">
-                    <p>{ContactOptionData?.footer_phone_number.title}</p>
-                  </div>
-                  {ContactOptionData?.footer_phone_number && (
-                    <Link
-                      href={ContactOptionData?.footer_phone_number.url}
-                      target={ContactOptionData?.footer_phone_number.target}
-                      className="text-body lg:text-a block mt-auto"
-                    >
-                      <button className="mt-auto flex self-start text-center text-base 4xl:text-a group-hover:!bg-white group-hover:!text-Teal bg-Teal text-white   font-normal  p-3 2xl:px-9 sm:py-4 transition-all duration-500 ease-in-out">
-                        {telefonnummer_button}
-                      </button>
-                    </Link>
-                  )}
-                </div>
-                <div className="flex flex-col active w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4   *hover:text-white transition-all duration-500 ease-in-out">
-                  <h3 className=" text-h4">{email_label}</h3>
-                  <div className="block  :text-sm :2xl:text-base :4xl:text-a :break-words">
-                    <p>{ContactOptionData?.footer_email_address.title}</p>
-                  </div>
+                {loading ? (
+                  <>
+                    <div className="ph-itemContact flex flex-col w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4 transition-all duration-500 ease-in-out h-[200px]"></div>
+                    <div className="ph-itemContact flex flex-col w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4 transition-all duration-500 ease-in-out h-[200px]"></div>
+                    <div className="ph-itemContact flex flex-col w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4 transition-all duration-500 ease-in-out h-[200px]"></div>
+                  </>
+                ) : (
+                  <>
+                    <ContactBox
+                      title={telefonnummer_label}
+                      value={ContactOptionData?.footer_phone_number?.title}
+                      buttonText={telefonnummer_button}
+                      buttonLink={ContactOptionData?.footer_phone_number?.url}
+                      buttonTarget={
+                        ContactOptionData?.footer_phone_number?.target
+                      }
+                    />
 
-                  {ContactOptionData?.footer_email_address && (
-                    <Link
-                      href={ContactOptionData?.footer_email_address.url}
-                      target={ContactOptionData?.footer_email_address.target}
-                      className="text-body lg:text-a block mt-auto"
-                    >
-                      <button className="mt-auto flex self-start text-center text-base 4xl:text-a group-hover:!bg-white group-hover:!text-Teal bg-Teal text-white   font-normal  p-3 2xl:px-9 sm:py-4 transition-all duration-700 ease-in">
-                        {email_button}
-                      </button>
-                    </Link>
-                  )}
-                </div>
-                <div className="flex flex-col active w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4  *hover:text-white transition-all duration-500 ease-in-out">
-                  <h3 className=" text-h4">{terminbuchung_label}</h3>
-                  <div className="block :text-sm :2xl:text-base :4xl:text-a :break-words">
-                    <p>{terminbuchung_text}</p>
-                  </div>
-                  {terminbuchung_button && (
-                    <Link
-                      href={terminbuchung_button?.url}
-                      target={terminbuchung_button?.target}
-                      className="mt-auto text-body  lg:text-a break-words  block"
-                    >
-                      <button className="mt-auto flex self-start text-center text-base 4xl:text-a group-hover:!bg-white group-hover:!text-Teal bg-Teal text-white   font-normal   p-3 2xl:px-9 sm:py-4 transition-all duration-700 ease-in">
-                        {terminbuchung_button?.title}
-                      </button>
-                    </Link>
-                  )}
-                </div>
+                    <ContactBox
+                      title={email_label}
+                      value={ContactOptionData?.footer_email_address?.title}
+                      buttonText={email_button}
+                      buttonLink={ContactOptionData?.footer_email_address?.url}
+                      buttonTarget={
+                        ContactOptionData?.footer_email_address?.target
+                      }
+                    />
+
+                    <ContactBox
+                      title={terminbuchung_label}
+                      value={terminbuchung_text}
+                      buttonText={terminbuchung_button?.title}
+                      buttonLink={terminbuchung_button?.url}
+                      buttonTarget={terminbuchung_button?.target}
+                    />
+                  </>
+                )}
               </div>
             </div>
           </div>
