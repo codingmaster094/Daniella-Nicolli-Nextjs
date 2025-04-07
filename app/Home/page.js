@@ -47,7 +47,7 @@ const page = () => {
       setError("Failed to load data");
     }
     finally{
-      setLoading(false);
+      setLoading(true);
     }
   };
 
