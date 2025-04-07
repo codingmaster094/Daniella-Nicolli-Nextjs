@@ -11,7 +11,7 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
               {loading ? (
                 <div className="ph-item w-full"></div>
               ) : (
-            <div className="bg-banner bg-banner-img bg-cover w-full h-full">
+            <div className="bg-banner bg-banner-img bg-cover w-full">
                 <>
                   <Image
                     src={img}
