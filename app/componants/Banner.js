@@ -11,15 +11,14 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
             {loading ? (
               <div className="ph-item w-full h-[850px]"></div>
             ) : (
-              <div className="bg-banner bg-banner-img bg-cover w-full">
+              <div className="bg-banner bg-banner-img bg-cover w-full relative">
                 <>
                   <Image
                     src={img}
                     className="absolute top-0 left-0 w-screen h-full object-cover"
                     alt="hero banner image"
                     role="img"
-                    width={1920}
-                    height={1080}
+                    fill
                     priority={true}
                     sizes="100vw"
                   />
