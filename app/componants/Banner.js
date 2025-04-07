@@ -9,7 +9,7 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
         <div className="Banner-sliders relative overflow-hidden w-full h-full">
           <div className="item relative w-full h-full">
             {loading ? (
-              <div className="ph-item w-full h-[850px]"></div>
+              <div className="ph-item w-full"></div>
             ) : (
               <div className="bg-banner bg-banner-img bg-cover w-full relative">
                 <>
@@ -20,7 +20,6 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
                     role="img"
                     fill
                     priority={true}
-                    sizes="100vw"
                   />
                   <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] relative z-10">
                     <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
