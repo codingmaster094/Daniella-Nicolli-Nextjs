@@ -62,6 +62,7 @@ const [loading, setLoading] = useState(true);
           main_title={Ubermich?.partners_section_main_title.value}
           section_all_partners={Ubermich?.partners_section_all_partners}
           activate_deactivate={Ubermich?.enabledisable_partners_logos?.value}
+          loading={loading}
         />
       )}
 
@@ -92,6 +93,7 @@ const [loading, setLoading] = useState(true);
         description={Ubermich?.ueber_geschichte_anfrage_1_content?.value}
         BTN={Ubermich?.ueber_geschichte_anfrage_1_button.value}
         bg_img={Ubermich?.ueber_geschichte_anfrage_1_image?.value}
+        loading={loading}
       />
 
       {Ubermich && (

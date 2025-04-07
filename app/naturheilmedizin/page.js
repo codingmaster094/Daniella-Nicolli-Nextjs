@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react"; 
 import axios from "axios";
 import dynamic from "next/dynamic";
-import Loader from "../componants/Loader";
+
 const BannerCarousel = dynamic(() => import("../componants/Banner"), {
   ssr: false,
 });
@@ -66,6 +66,7 @@ const page = () => {
           activate_deactivate={
             Naturheilmedizin?.enabledisable_partners_logos?.value
           }
+          loading={loading}
         />
       )}
       <Terminbroncher
@@ -94,6 +95,7 @@ const page = () => {
       <Comment
         main_title={Naturheilmedizin?.bewertungen_main_title?.value}
         content={Naturheilmedizin?.bewertungen_content?.value}
+        loading={loading}
       />
       <Accordian
         main_title={Naturheilmedizin?.faq_main_title?.value}

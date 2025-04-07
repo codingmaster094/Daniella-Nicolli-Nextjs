@@ -3,26 +3,33 @@ import Image from "next/image";
 import React from "react";
 import CommitImage from "../../public/images/comment-img.png";
 
-const Comment = ({ main_title, content }) => {
+const Comment = ({ main_title, content, loading }) => {
   return (
     <section className="py-[30px] md:py-[40px] lg:py-[50px]">
       <div className="container mx-auto px-[15px]">
         <div className="flex w-full max-w-[1440px] flex-col gap-6 md:gap-8 lg:gap-12 mx-auto text-center">
-          <div className="flex flex-col gap-6">
-            <h2
-              dangerouslySetInnerHTML={{
-                __html: main_title,
-              }}
-            ></h2>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: content
-                  ?.replace(/<p>/g, "")
-                  .replace(/<\/p>/g, "")
-                  .replace(/&amp;/g, "&"),
-              }}
-            ></p>
-          </div>
+          {loading ? (
+            <div className="h-8 w-3/4 bg-gray-200 animate-pulse mx-auto"></div>
+          ) : (
+            <div className="flex flex-col gap-6">
+              <h2
+                dangerouslySetInnerHTML={{
+                  __html: main_title,
+                }}
+              ></h2>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: content
+                    ?.replace(/<p>/g, "")
+                    .replace(/<\/p>/g, "")
+                    .replace(/&amp;/g, "&"),
+                }}
+              ></p>
+            </div>
+          )}
+          {loading ? (
+          <div className="w-full h-[300px] bg-gray-300 animate-pulse rounded-lg"></div>
+          ) : (
           <div className="flex w-full shadow-shadow">
             <Image
               src={CommitImage}
@@ -35,6 +42,7 @@ const Comment = ({ main_title, content }) => {
               // Remove priority to allow lazy loading
             />
           </div>
+          )}
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const BannerCarousel = ({ title, img, content, BTN, loading }) => {
   return (
-    <section className="relative w-screen h-screen">
+    <section className="relative w-screen md:h-screen h-[80vh]">
       <div className="Banner relative w-full h-full">
         <div className="Banner-sliders relative overflow-hidden w-full h-full">
           <div className="item relative w-full h-full">
@@ -15,7 +15,7 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
                 <>
                   <Image
                     src={img}
-                    className="absolute top-0 left-0 w-screen h-[845px] object-cover"
+                    className="absolute top-0 left-0 w-screen h-full object-cover"
                     alt="hero banner image"
                     role="img"
                     width={1920}

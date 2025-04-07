@@ -73,6 +73,7 @@ const page = () => {
           main_title={HomePageData?.partners_section_main_title.value}
           section_all_partners={HomePageData?.partners_section_all_partners}
           activate_deactivate={HomePageData?.enabledisable_partner_logos?.value}
+          loading={loading}
         />
       )}
 
@@ -92,6 +93,7 @@ const page = () => {
         description={HomePageData?.home_anfrage_1_content.value}
         BTN={HomePageData?.home_anfrage_1_button.value}
         bg_img={HomePageData?.home_anfrage_1_image?.value}
+        loading={loading}
       />
 
       <AboutLambsheim
@@ -107,6 +109,7 @@ const page = () => {
         <Fermentum
           main_title={HomePageData?.home_vorteile_main_title.value}
           all_vorteile={HomePageData?.home_all_vorteile}
+          loading={loading}
         />
       )}
 
@@ -115,6 +118,7 @@ const page = () => {
         description={HomePageData?.home_anfrage_2_content.value}
         BTN={HomePageData?.home_anfrage_2_button.value}
         bg_img={HomePageData?.home_anfrage_2_image?.value}
+        loading={loading}
       />
 
       {HomePageData && (
@@ -122,12 +126,14 @@ const page = () => {
           main_title={HomePageData?.home_ablauf_main_title.value}
           all_ablauf={HomePageData?.home_all_ablauf}
           enabledisable_referenz={HomePageData?.enabledisable_referenz?.value}
+          loading={loading}
         />
       )}
 
       <Comment
         main_title={HomePageData?.bewertungen_main_title?.value}
         content={HomePageData?.bewertungen_content?.value}
+        loading={loading}
       />
 
       {HomePageData && (

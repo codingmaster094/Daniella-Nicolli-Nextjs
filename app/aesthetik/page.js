@@ -64,6 +64,7 @@ const Page = () => {
           activate_deactivate={
             AesthetikData?.enabledisable_partners_logos?.value
           }
+          loading={loading}
         />
       )}
       <Terminbroncher
@@ -89,6 +90,7 @@ const Page = () => {
       <Comment
         main_title={AesthetikData?.bewertungen_main_title?.value}
         content={AesthetikData?.bewertungen_content?.value}
+        loading={loading}
       />
       <Accordian
         main_title={AesthetikData?.faq_main_title?.value}
