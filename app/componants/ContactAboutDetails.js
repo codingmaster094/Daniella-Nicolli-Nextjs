@@ -21,7 +21,7 @@ const ContactAboutDetails = ({
   const fetchContactOptionData = async () => {
     try {
       const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom/v1/acf-options"
+        `${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/acf-options`
       );
       setContactOptionData(response.data);
     } catch (error) {

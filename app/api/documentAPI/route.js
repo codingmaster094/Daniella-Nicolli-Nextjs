@@ -13,7 +13,7 @@ export async function GET(req) {
 
   try {
     const response = await axios.get(
-      `https://daniella.blog-s.de/wp-json/custom/v1/page-data/${slug}`
+      `${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/page-data/${slug}`
     );
     return NextResponse.json(response.data, { status: 200 });
   } catch (error) {

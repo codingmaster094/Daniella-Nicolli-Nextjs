@@ -2,7 +2,7 @@
 import WithPlaiceholder from "@plaiceholder/next"
 const nextConfig = {
   images: {
-    domains: ["daniella.blog-s.de"],
+    domains: ["daniella.blog-s.de", "https://daniella.rocket-wp.com"],
     formats: ["image/webp"],
   },
   // remove

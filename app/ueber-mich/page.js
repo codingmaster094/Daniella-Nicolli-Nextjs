@@ -30,7 +30,7 @@ const [loading, setLoading] = useState(true);
   const fetchUbermich = async () => {
     try {
       const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/ueber-mich"
+        `${process.env.NEXT_PUBLIC_BASE_URL}/ueber-mich`
       );
       setUbermich(response.data); // The result is in response.data with Axios
     } catch (error) {

@@ -31,7 +31,7 @@ const page = () => {
   const fetchNaturheilmedizin = async () => {
     try {
       const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/naturheilmedizin"
+        `${process.env.NEXT_PUBLIC_BASE_URL}/naturheilmedizin`
       );
       setNaturheilmedizin(response.data);
     } catch (error) {

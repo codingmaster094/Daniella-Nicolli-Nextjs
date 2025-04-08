@@ -31,7 +31,7 @@ const Page = () => {
     const fetchAesthetikData = async () => {
       try {
         const response = await axios.get(
-          "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/aesthetik"
+          `${process.env.NEXT_PUBLIC_BASE_URL}/aesthetik`
         );
         setAesthetikData(response.data);
       } catch (error) {

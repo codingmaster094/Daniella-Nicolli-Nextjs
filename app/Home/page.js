@@ -40,7 +40,7 @@ const page = () => {
   const fetchHomeData = async () => {
     try {
       const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/home"
+        `${process.env.NEXT_PUBLIC_BASE_URL}/home`
       );
       setHomePageData(response.data);
     } catch (error) {
@@ -60,7 +60,6 @@ const page = () => {
       <BannerCarousel
         title={HomePageData?.hero_slider_main_title?.value}
         img={HomePageData?.hero_slider_image?.value}
-        mobile_img={HomePageData?.hero_slider_mobile_image?.value}
         content={HomePageData?.hero_slider_content?.value.replace(
           /<\/?ul[^>]*>/g,
           ""

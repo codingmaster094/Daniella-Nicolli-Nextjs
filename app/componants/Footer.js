@@ -18,7 +18,7 @@ const Footer = () => {
     const fetchFooterData = async () => {
       try {
         const response = await axios.get(
-          "https://daniella.blog-s.de/wp-json/custom/v1/acf-options"
+          `${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/acf-options`
         );
         setFooterData(response.data);
       } catch (error) {
@@ -29,7 +29,7 @@ const Footer = () => {
     const getMenu = async () => {
       try {
         const response = await axios.get(
-          "https://daniella.blog-s.de/wp-json/custom/v1/menus/menu-1"
+          `${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/menus/menu-1`
         );
         setFooterDatamenu(response.data);
       } catch (error) {

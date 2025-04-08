@@ -7,7 +7,7 @@ const ReviewDetails = () => {
   const fetchReviweDetail = async () => {
     try {
       const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom/v1/google-reviews/?id=520"
+        `${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/google-reviews/?id=520`
       );
       setReviweDetail(response.data);
     } catch (error) {
