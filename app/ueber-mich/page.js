@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import Loader from "../componants/Loader";
+
 
 const ClientCarousel = dynamic(() => import("../componants/client"), {
   ssr: false,

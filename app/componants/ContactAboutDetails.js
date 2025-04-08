@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
-import Link from "next/link";
 import ContactBox from "./ContactBox";
 const ContactAboutDetails = ({
   loading,

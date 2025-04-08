@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import Loader from "../componants/Loader";
 
 const ContactAboutDetails = dynamic(
   () => import("../componants/ContactAboutDetails"),

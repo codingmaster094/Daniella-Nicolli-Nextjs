@@ -23,8 +23,7 @@ const Leanding_AboutLambsheim = dynamic(
   () => import("../componants/Leanding_AboutLambsheim"),
   { ssr: false }
 );
-const Loader = dynamic(() => import("../componants/Loader"),
-{ ssr: false });
+
 
 const page = () => {
   const [LendiangPageData, setLendiangPageData] = useState([]);
