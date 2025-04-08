@@ -19,6 +19,7 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
                     role="img"
                     layout="fill"
                     objectFit="cover"
+                    quality={75}
                     priority={true}
                     className="absolute top-0 left-0 w-full h-full"
                   />

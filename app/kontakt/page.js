@@ -1,40 +1,33 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import axios from "axios";
+import React from "react";
+import ContactAboutDetails from "../componants/ContactAboutDetails";
+import Contactform from "../componants/Contactform";
+import Maps from "../componants/Maps";
+import BannerCarousel from "../componants/Banner";
+const page = async () => {
+  let ContactData;
 
-const ContactAboutDetails = dynamic(
-  () => import("../componants/ContactAboutDetails"),
-  { ssr: false }
-);
-const Contactform = dynamic(() => import("../componants/Contactform"), {
-  ssr: false,
-});
-const Maps = dynamic(() => import("../componants/Maps"), { ssr: false });
-const BannerCarousel = dynamic(() => import("../componants/Banner"), {
-  ssr: false,
-});
-const page = () => {
-  const [ContactData, setContactData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const fetchContactData = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/kontakt`
-      );
-      setContactData(response.data); // The result is in response.data with Axios
-    } catch (error) {
-      console.error("Error fetching content data", error);
-    } finally {
-      setLoading(false); // Hide loader when data is fetched
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/kontakt`,
+      {
+        cache: "no-store",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
     }
-  };
 
-  useEffect(() => {
-    fetchContactData();
-  }, []);
+    ContactData = await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    ContactData = null; 
+  }
 
-    
+  if (!ContactData) {
+    return <div>Error loading data.</div>; 
+  }
+
   return (
     <>
       <BannerCarousel
@@ -45,7 +38,6 @@ const page = () => {
           ""
         )}
         BTN={ContactData?.hero_slider_button?.value}
-        loading={loading}
       />
 
       <ContactAboutDetails
@@ -59,7 +51,6 @@ const page = () => {
         email_button={ContactData?.kontakt_email_button?.value}
         terminbuchung_button={ContactData?.kontakt_terminbuchung_button?.value}
         terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
-        loading={loading}
       />
 
       <Maps

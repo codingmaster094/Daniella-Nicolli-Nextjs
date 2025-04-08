@@ -20,7 +20,6 @@ const Header = () => {
   const [HeaderDatamenu, setHeaderDatamenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const lenisRef = useRef(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const scroller = new Lenis();
@@ -80,8 +79,6 @@ const Header = () => {
         setHeaderData(response.data);
       } catch (error) {
         console.error("Error fetching header data", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -93,8 +90,6 @@ const Header = () => {
         setHeaderDatamenu(response.data);
       } catch (error) {
         console.error("Error fetching menu data", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -124,9 +119,7 @@ const Header = () => {
     >
       <nav className="flex w-full px-[15px] 2xl:px-[calc(9rem-4px)] justify-between py-2 lg:py-0 items-center">
         <div className="logo flex items-center justify-center w-[150px] 2xl:w-[230px]">
-          {loading ? (
-            <div className="ph-item w-full h-44 bg-gray-200 rounded-lg p-6 animate-pulse"></div>
-          ) : (
+          {
             HeaderDatamenu && (
               <Link href="/" aria-label="Home">
                 <Image
@@ -137,7 +130,7 @@ const Header = () => {
                 />
               </Link>
             )
-          )}
+          }
         </div>
         <div
           className={`side-menu fixed py-6 opacity-0 z-20 px-5 lg:px-0 w-72 -left-full top-0 bg-Teal h-full pt-7 pb-7 border-r-4 border-gray-light gap-4 xl:gap-8 lg:flex-1 lg:border-none lg:bg-transparent lg:opacity-100 lg:w-auto lg:static lg:flex lg:items-center transition-all duration-700 ease-in lg:transition-none lg:py-8 lg:justify-end lg:overflow-y-visible overflow-y-auto max-h-full ${
@@ -151,15 +144,7 @@ const Header = () => {
           >
             <Image src={CloseBtn} alt="Close menu button" />
           </span>
-          {loading ? (
-            <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
-              {Array(5)
-                .fill("")
-                .map((_, i) => (
-              <div className="ph-item  w-[100px] h-44 bg-gray-200 rounded-lg p-6 animate-pulse "></div>
-                ))}
-            </ul>
-          ) : (
+          {
             <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
               {HeaderDatamenu?.menu?.map((item, index) => {
                 item.slug = item.slug === "home" ? "/" : item.slug;
@@ -273,11 +258,9 @@ const Header = () => {
                 );
               })}
             </ul>
-          )}
+          }
 
-          {loading ? (
-            <div className="ph-item  w-[200px] h-44 bg-gray-200 rounded-lg p-6 animate-pulse  "></div>
-          ) : (
+          {
             HeaderData && (
               <Link
                 href={HeaderData.header_button.url}
@@ -287,7 +270,7 @@ const Header = () => {
                 TERMIN BUCHEN
               </Link>
             )
-          )}
+          }
         </div>
         <span
           className="mobile-toggle w-8 flex lg:hidden cursor-pointer"

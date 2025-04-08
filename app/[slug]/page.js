@@ -1,104 +1,78 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useParams } from "next/navigation";
-import dynamic from "next/dynamic";
+import React from "react";
+import BannerCarousel from "../componants/Banner";
+import LandingAboutSection from "../componants/LandingAboutSection";
+import LendingAbout from "../componants/LendingAbout";
+import LeandingCategories from "../componants/LeandingCategories";
+import Leanding_AboutLambsheim from "../componants/Leanding_AboutLambsheim";
 
+// ✅ Fetch data in a Server Component
+async function getLandingData(slug) {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_POST_BASE_URL}/landing?slug=${slug}`,
+      { cache: "no-store" } // Always fetch fresh data
+    );
 
-const BannerCarousel = dynamic(() => import("../componants/Banner"), {
-  ssr: false,
-});
-const LandingAboutSection = dynamic(
-  () => import("../componants/LandingAboutSection"),
-  { ssr: false }
-);
-const LendingAbout = dynamic(() => import("../componants/LendingAbout"), {
-  ssr: false,
-});
-const LeandingCategories = dynamic(
-  () => import("../componants/LeandingCategories"),
-  { ssr: false }
-);
-const Leanding_AboutLambsheim = dynamic(
-  () => import("../componants/Leanding_AboutLambsheim"),
-  { ssr: false }
-);
-
-
-const page = () => {
-  const [LendiangPageData, setLendiangPageData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const params = useParams();
-  const slug = params?.slug;
-  const fetchBlog = async () => {
-    try {
-      const response = await axios.get(
-        `https://daniella.blog-s.de/wp-json/wp/v2/landing?slug=${slug}`
-      );
-      setLendiangPageData(response.data.acf);
-    } catch (error) {
-      console.error("Error fetching blog data:", error);
-    } finally {
-      setLoading(false); // Hide loader when data is fetched
+    if (!res.ok) {
+      throw new Error("Failed to fetch landing data");
     }
-  };
 
-  useEffect(() => {
-    fetchBlog();
-  }, [slug]);
+    const data = await res.json();
+    return data.acf || {}; // Return ACF fields if available
+  } catch (error) {
+    console.error("Error fetching landing data:", error);
+    return {};
+  }
+}
 
+// ✅ Convert Page to Server Component
+export default async function LandingPage({ params }) {
+  const slug = params.slug; // Get the slug from the URL
+  const landingData = await getLandingData(slug); // Fetch data
 
   return (
     <>
       <BannerCarousel
-        title={LendiangPageData?.hero_slider_main_title}
-        img={LendiangPageData?.hero_slider_image}
-        content={LendiangPageData?.hero_slider_content?.replace(
-          /<\/?ul[^>]*>/g,
-          ""
-        )}
-        BTN={LendiangPageData?.hero_slider_button}
-        loading={loading}
+        title={landingData?.hero_slider_main_title}
+        img={landingData?.hero_slider_image}
+        content={landingData?.hero_slider_content?.replace(/<\/?ul[^>]*>/g, "")}
+        BTN={landingData?.hero_slider_button}
       />
 
       <LandingAboutSection
-        main_title={LendiangPageData?.landing_page_1_main_title}
-        section_image={LendiangPageData?.landing_page_1_image}
-        section_content={LendiangPageData?.landing_page_1_content}
-        section_sub_content={
-          LendiangPageData?.home_leistungen_section_sub_content
-        }
-        BTN={LendiangPageData?.landing_page_1_termin_buchen}
-        section_show={LendiangPageData.landing_ubersicht_1_section_show}
-        Small_image_show={LendiangPageData.landing_ubersicht_image_show}
+        main_title={landingData?.landing_page_1_main_title}
+        section_image={landingData?.landing_page_1_image}
+        section_content={landingData?.landing_page_1_content}
+        section_sub_content={landingData?.home_leistungen_section_sub_content}
+        BTN={landingData?.landing_page_1_termin_buchen}
+        section_show={landingData?.landing_ubersicht_1_section_show}
+        Small_image_show={landingData?.landing_ubersicht_image_show}
       />
 
       <LendingAbout
-        title={LendiangPageData.landing_aesthetic_treatments_title}
-        content={LendiangPageData.landing_aesthetic_treatments_content}
-        allData={LendiangPageData.landing_aesthetic_treatments_details}
-        BTN={LendiangPageData.landing_aesthetic_treatments_button}
-        section_show={LendiangPageData.landing_aesthetic_section_show}
+        title={landingData?.landing_aesthetic_treatments_title}
+        content={landingData?.landing_aesthetic_treatments_content}
+        allData={landingData?.landing_aesthetic_treatments_details}
+        BTN={landingData?.landing_aesthetic_treatments_button}
+        section_show={landingData?.landing_aesthetic_section_show}
       />
 
       <Leanding_AboutLambsheim
-        main_title={LendiangPageData?.home_anfrage_1_main_title}
-        standorte_content={LendiangPageData?.home_standorte_content}
-        BTN={LendiangPageData?.home_standorte_button}
-        standorte_image={LendiangPageData?.home_standorte_image?.url}
-        section_show={LendiangPageData.landing_standorte_section_show}
-        Small_image_show={LendiangPageData.landing_standorte_image_show}
+        main_title={landingData?.home_anfrage_1_main_title}
+        standorte_content={landingData?.home_standorte_content}
+        BTN={landingData?.home_standorte_button}
+        standorte_image={landingData?.home_standorte_image?.url}
+        section_show={landingData?.landing_standorte_section_show}
+        Small_image_show={landingData?.landing_standorte_image_show}
       />
 
       <LeandingCategories
-        title={LendiangPageData?.home_anfrage_1_main_title}
-        description={LendiangPageData?.home_anfrage_1_content}
-        BTN={LendiangPageData?.home_anfrage_1_button}
-        bg_img={LendiangPageData?.home_anfrage_1_image?.url}
-        section_show={LendiangPageData.landing_anfrage_1_section_show}
+        title={landingData?.home_anfrage_1_main_title}
+        description={landingData?.home_anfrage_1_content}
+        BTN={landingData?.home_anfrage_1_button}
+        bg_img={landingData?.home_anfrage_1_image?.url}
+        section_show={landingData?.landing_anfrage_1_section_show}
       />
     </>
   );
-};
-
-export default page;
+}

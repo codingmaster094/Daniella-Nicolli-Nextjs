@@ -17,7 +17,7 @@ const Page = () => {
   const fetchBlog = async () => {
     try {
       const response = await axios.get(
-        `https://daniella.blog-s.de/wp-json/wp/v2/posts?slug=${slug}`
+        `${process.env.NEXT_PUBLIC_POST_BASE_URL}/posts?slug=${slug}`
       );
       setBlogData(response.data);
       setBlogContent(response.data);

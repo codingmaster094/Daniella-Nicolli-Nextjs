@@ -1,42 +1,52 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
-import dynamic from "next/dynamic";
-const Blog = dynamic(() => import("../componants/Blog"), { ssr: false });
-const BannerCarousel = dynamic(() => import("../componants/Banner"), {
-  ssr: false,
-});
+import Blog from "../componants/Blog"; 
+import BannerCarousel from "../componants/Banner"; 
 
-const page = () => {
-  const [BlogData, setBlogData] = useState(null);
-  const [RatgeberData, setRatgeberData] = useState(null);
 
-  const fetchBlogData = async () => {
-    try {
-      const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/custom-api/v1/acf-fields/blog"
-      );
-      setBlogData(response.data);
-    } catch (error) {
-      console.error("Error fetching content data", error);
+const Page = async () => {
+  let HomePageData;
+  let BlogData = null;
+  let RatgeberData = null;
+
+  // Fetch HomePage Data
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/home`, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch HomePage data");
     }
-  };
 
-  const fetchRatgeberData = async () => {
-    try {
-      const response = await axios.get(
-        "https://daniella.blog-s.de/wp-json/wp/v2/posts"
-      );
-      setRatgeberData(response.data);
-    } catch (error) {
-      console.error("Error fetching content data", error);
-    }
-  };
+    HomePageData = await response.json();
+  } catch (error) {
+    console.error("Error fetching Homepage data:", error);
+    HomePageData = null; 
+  }
 
-  useEffect(() => {
-    fetchBlogData();
-    fetchRatgeberData();
-  }, []);
+  try {
+    const blogResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/blog`
+    );
+    BlogData = blogResponse.data;
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
+  }
+
+  try {
+    const ratgeberResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_POST_BASE_URL}/posts`
+    );
+    RatgeberData = ratgeberResponse.data;
+  } catch (error) {
+    console.error("Error fetching Ratgeber data:", error);
+  }
+
+  // Handle case where HomePageData is not available
+  if (!HomePageData) {
+    return <div>Error loading data.</div>;
+  }
 
   return (
     <>
@@ -57,4 +67,5 @@ const page = () => {
     </>
   );
 };
-export default page;
+
+export default Page;
