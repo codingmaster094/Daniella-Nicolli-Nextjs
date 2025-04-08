@@ -22,9 +22,7 @@
   body {
     @apply overflow-x-hidden font-primary-font text-body text-black-900;
   }
-     .layout_contenter {
-       @apply min-h-[calc(100vh_-_0px)] px-0;
-     }
+
 
   h1,
   h2,

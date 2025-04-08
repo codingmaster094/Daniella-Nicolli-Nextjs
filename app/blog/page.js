@@ -5,25 +5,8 @@ import BannerCarousel from "../componants/Banner";
 
 
 const Page = async () => {
-  let HomePageData;
   let BlogData = null;
   let RatgeberData = null;
-
-  // Fetch HomePage Data
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/home`, {
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch HomePage data");
-    }
-
-    HomePageData = await response.json();
-  } catch (error) {
-    console.error("Error fetching Homepage data:", error);
-    HomePageData = null; 
-  }
 
   try {
     const blogResponse = await axios.get(
@@ -41,11 +24,6 @@ const Page = async () => {
     RatgeberData = ratgeberResponse.data;
   } catch (error) {
     console.error("Error fetching Ratgeber data:", error);
-  }
-
-  // Handle case where HomePageData is not available
-  if (!HomePageData) {
-    return <div>Error loading data.</div>;
   }
 
   return (

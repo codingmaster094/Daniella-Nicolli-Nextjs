@@ -1,8 +1,8 @@
 import "./globals.css";
 import "../public/font/stylesheet.css";
-import Header from "../app/componants/Header";
-import Footer from "../app/componants/Footer";
+import Footer from "./Footer/page";
 import TopButton from "../app/componants/Top-Button";
+import Header from "./Header/page";
 
 export const metadata = {
   title: "Daniella Nicolli",
@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header />
+        <Header/>
         <main className="layout_contenter">
          {children}
         </main>

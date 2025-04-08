@@ -9,17 +9,16 @@ import CloseBtn from "../../public/images/close.svg";
 import Lenis from "@studio-freight/lenis";
 import { useRouter } from "next/navigation";
 
-const Header = () => {
+const Header = ({ headerDatas, menuData }) => {
   const router = useRouter();
   const dropdownRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [submenuOpen, setSubmenuOpen] = useState(null);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const pathname = usePathname();
-  const [HeaderData, setHeaderData] = useState(null);
-  const [HeaderDatamenu, setHeaderDatamenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const lenisRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const scroller = new Lenis();
@@ -70,32 +69,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const fetchHeaderData = async () => {
-      try {
-        const response = await axios.get(
-         ` ${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/acf-options`
-        );
-        setHeaderData(response.data);
-      } catch (error) {
-        console.error("Error fetching header data", error);
-      }
-    };
-
-    const getMenu = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/menus/menu-1`
-        );
-        setHeaderDatamenu(response.data);
-      } catch (error) {
-        console.error("Error fetching menu data", error);
-      }
-    };
-
-    fetchHeaderData();
-    getMenu();
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -120,10 +93,10 @@ const Header = () => {
       <nav className="flex w-full px-[15px] 2xl:px-[calc(9rem-4px)] justify-between py-2 lg:py-0 items-center">
         <div className="logo flex items-center justify-center w-[150px] 2xl:w-[230px]">
           {
-            HeaderDatamenu && (
+            menuData && (
               <Link href="/" aria-label="Home">
                 <Image
-                  src={HeaderDatamenu?.site_logo}
+                  src={menuData?.site_logo}
                   width={249}
                   height={82}
                   alt="Logo"
@@ -146,7 +119,7 @@ const Header = () => {
           </span>
           {
             <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
-              {HeaderDatamenu?.menu?.map((item, index) => {
+              {menuData?.menu?.map((item, index) => {
                 item.slug = item.slug === "home" ? "/" : item.slug;
                 const isActive =
                   pathname === (item.slug === "/" ? "/" : `/${item.slug}`);
@@ -261,10 +234,10 @@ const Header = () => {
           }
 
           {
-            HeaderData && (
+            headerDatas && (
               <Link
-                href={HeaderData.header_button.url}
-                target={HeaderData.header_button.target}
+                href={headerDatas.header_button.url}
+                target={headerDatas.header_button.target}
                 className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"
               >
                 TERMIN BUCHEN
