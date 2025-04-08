@@ -194,7 +194,7 @@ const Header = ({ headerDatas, menuData }) => {
                         }`}
                       >
                         <ul
-                          className={` left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
+                          className={`left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
                           style={{
                             maxHeight: submenuOpen === index ? "500px" : "0px",
                             overflow: "hidden",
@@ -204,22 +204,22 @@ const Header = ({ headerDatas, menuData }) => {
                         >
                           {item.children.map((child) => {
                             return (
-                                <li
-                                  key={child.id}
-                                  onClick={(e) =>
-                                    handleSubmenuClick(
-                                      e,
-                                      child.url,
-                                      item.slug,
-                                      child.id
-                                    )
-                                  }
-                                  className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100y`}
-                                >
-                              <Link href={`${item.slug}${child.url}`}>
+                              <li
+                                key={child.id}
+                                onClick={(e) =>
+                                  handleSubmenuClick(
+                                    e,
+                                    child.url,
+                                    item.slug,
+                                    child.id
+                                  )
+                                }
+                                className={`cursor-pointer block w-full hover:text-teal-700 text-black-900 hover:bg-gray-100y`}
+                              >
+                                <Link href={`${item.slug}${child.url}`}>
                                   {child.title}
-                              </Link>
-                                </li>
+                                </Link>
+                              </li>
                             );
                           })}
                         </ul>
