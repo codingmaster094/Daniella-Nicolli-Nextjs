@@ -1,8 +1,29 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
 const BannerCarousel = ({ title, img, content, BTN, loading }) => {
+   const imgRef = useRef(null);
+   const wrapperRef = useRef(null);
+   const [aspectRatio, setAspectRatio] = useState("100%");
+
+   useEffect(() => {
+     if (imgRef.current && wrapperRef.current) {
+       const adjustAspectRatio = () => {
+         const { naturalWidth, naturalHeight } = imgRef.current;
+         if (naturalWidth && naturalHeight) {
+           const ratio = (naturalHeight / naturalWidth) * 100;
+           setAspectRatio(`${ratio}%`);
+         }
+       };
+
+       if (imgRef.current.complete) {
+         adjustAspectRatio();
+       } else {
+         imgRef.current.onload = adjustAspectRatio;
+       }
+     }
+   }, [img]);
   return (
     <section className="relative w-screen md:h-screen h-full">
       <div className="Banner relative w-full h-full">
@@ -11,27 +32,18 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
             {loading ? (
               <div className="ph-item w-full h-full"></div>
             ) : (
-              <div className="bg-banner bg-banner-img bg-cover w-full relative">
+              <div ref={wrapperRef} style={{ paddingBottom: aspectRatio }} className="bg-banner bg-banner-img bg-cover relative w-full overflow-hidden">
                 <>
-                  <Image
-                    src={img}
-                    alt="hero banner image"
-                    role="img"
-                    layout="fill"
-                    objectFit="cover"
-                    priority={true}
-                    className="absolute top-0 left-0 w-full h-full"
-                  />
-{/* 
-                  <Image
-                    src={img}
-                    alt="hero banner image"
-                    role="img"
-                    width={1920}
-                    height={1080}
-                    priority={true}
-                    className="absolute top-0 left-0 w-screen h-full object-cover"
-                  /> */}
+                <Image
+                  ref={imgRef}
+                  src={img}
+                  alt="hero banner image"
+                  role="img"
+                  layout="fill"
+                  objectFit="cover"
+                  priority={true}
+                  className="absolute top-0 left-0 w-full h-full"
+                />
                   <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] relative z-10">
                     <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
                     <ul
@@ -60,3 +72,5 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
 };
 
 export default BannerCarousel;
+
+

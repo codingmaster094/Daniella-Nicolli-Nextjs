@@ -464,7 +464,7 @@ background: linear-gradient(180deg, rgba(12, 65, 88, 0) 0%, rgba(26, 130, 129, 0
 
 /* === 📌 Container Class === */
 .ph-item {
-  @apply h-full overflow-hidden relative  animate-[placeholderAnimate_1.7s_infinite_linear];
+  @apply h-full overflow-hidden relative  animate-[placeholderAnimate_1.9s_infinite_linear];
   background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
 }
 .ph-itemContact {
