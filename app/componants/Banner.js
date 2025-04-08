@@ -20,7 +20,6 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
                     width={1920}
                     height={1080}
                     priority={true}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1920px"
                     className="absolute top-0 left-0 w-screen h-full object-cover"
                   />
                   <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] relative z-10">
