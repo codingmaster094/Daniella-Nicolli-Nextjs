@@ -45,6 +45,7 @@ const ClientCarousel = ({
               <button
                 className="clientSwiper-prev border rounded-full border-teal p-1 sm:p-2 hidden xl:!block"
                 onClick={prevSlide}
+                aria-label="Previous slide"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +103,7 @@ const ClientCarousel = ({
                           className="border border-gray-200"
                         >
                           <div className="ph-item w-full h-44 bg-gray-200 rounded-lg p-6 animate-pulse">
-                            <div className="flex items-center gap-4">
-                            </div>
+                            <div className="flex items-center gap-4"></div>
                           </div>
                         </SwiperSlide>
                       ))
@@ -152,6 +152,7 @@ const ClientCarousel = ({
               <button
                 className="clientSwiper-next border rounded-full border-teal p-1 sm:p-2 hidden xl:!block"
                 onClick={nextSlide}
+                aria-label="Next slide"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
