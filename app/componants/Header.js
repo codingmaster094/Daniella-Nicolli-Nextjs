@@ -18,7 +18,6 @@ const Header = ({ headerDatas, menuData }) => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const lenisRef = useRef(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const scroller = new Lenis();
@@ -204,9 +203,7 @@ const Header = ({ headerDatas, menuData }) => {
                           }}
                         >
                           {item.children.map((child) => {
-                            const isSubmenuActive = activeSubmenu === child.id;
                             return (
-                              <Link href={`${item.slug}${child.url}`}>
                                 <li
                                   key={child.id}
                                   onClick={(e) =>
@@ -219,9 +216,10 @@ const Header = ({ headerDatas, menuData }) => {
                                   }
                                   className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100y`}
                                 >
+                              <Link href={`${item.slug}${child.url}`}>
                                   {child.title}
-                                </li>
                               </Link>
+                                </li>
                             );
                           })}
                         </ul>
