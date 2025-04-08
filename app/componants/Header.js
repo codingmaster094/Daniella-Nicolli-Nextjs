@@ -20,6 +20,7 @@ const Header = () => {
   const [HeaderDatamenu, setHeaderDatamenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const lenisRef = useRef(null);
+    const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const scroller = new Lenis();
@@ -79,6 +80,8 @@ const Header = () => {
         setHeaderData(response.data);
       } catch (error) {
         console.error("Error fetching header data", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -90,6 +93,8 @@ const Header = () => {
         setHeaderDatamenu(response.data);
       } catch (error) {
         console.error("Error fetching menu data", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -119,15 +124,19 @@ const Header = () => {
     >
       <nav className="flex w-full px-[15px] 2xl:px-[calc(9rem-4px)] justify-between py-2 lg:py-0 items-center">
         <div className="logo flex items-center justify-center w-[150px] 2xl:w-[230px]">
-          {HeaderDatamenu && (
-            <Link href="/" aria-label="Home">
-              <Image
-                src={HeaderDatamenu?.site_logo}
-                width={249}
-                height={82}
-                alt="Logo"
-              />
-            </Link>
+          {loading ? (
+            <div className="ph-item w-full h-44 bg-gray-200 rounded-lg p-6 animate-pulse"></div>
+          ) : (
+            HeaderDatamenu && (
+              <Link href="/" aria-label="Home">
+                <Image
+                  src={HeaderDatamenu?.site_logo}
+                  width={249}
+                  height={82}
+                  alt="Logo"
+                />
+              </Link>
+            )
           )}
         </div>
         <div
@@ -143,122 +152,142 @@ const Header = () => {
             <Image src={CloseBtn} alt="Close menu button" />
           </span>
           <ul className="flex gap-4 text-a 2xl:gap-6 pt-10 lg:pt-0 [&_li>a]:px-2 2xl:[&_li>a]:px-6 lg:[&_li>a]:py-3 text-white lg:text-black-900 [&_li>a]:inline-block font-medium transition-colors duration-700 ease-in-out flex-col lg:flex-row w-full lg:w-auto">
-            {HeaderDatamenu?.menu?.map((item, index) => {
-              item.slug = item.slug === "home" ? "/" : item.slug;
-              const isActive =
-                pathname === (item.slug === "/" ? "/" : `/${item.slug}`);
-              return (
-                <li
-                  key={item.id}
-                  className="relative group w-full lg:w-auto"
-                  onMouseEnter={() => {
-                    if (window.innerWidth >= 1024 && item.children.length > 0) {
-                      setSubmenuOpen(index);
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    if (window.innerWidth >= 1024) {
-                      setSubmenuOpen(null);
-                    }
-                  }}
-                >
-                  <div
-                    className="w-full lg:w-auto flex items-center justify-between cursor-pointer"
-                    onClick={() => {
-                      if (window.innerWidth < 1024) {
-                        if (item.children.length > 0) {
-                          setSubmenuOpen(submenuOpen === index ? null : index);
-                          setMenuOpen(true); // Open menu when submenu exists
-                        } else {
-                          setSubmenuOpen(null);
-                          setMenuOpen(false); // Close menu when no submenu
+            {loading
+              ? Array(5)
+                  .fill("")
+                  .map((_, i) => (
+                    <li
+                      key={i}
+                      className="ph-item w-full h-44 bg-gray-200 rounded-lg p-6 animate-pulse"
+                    ></li>
+                  ))
+              : HeaderDatamenu?.menu?.map((item, index) => {
+                  item.slug = item.slug === "home" ? "/" : item.slug;
+                  const isActive =
+                    pathname === (item.slug === "/" ? "/" : `/${item.slug}`);
+                  return (
+                    <li
+                      key={item.id}
+                      className="relative group w-full lg:w-auto"
+                      onMouseEnter={() => {
+                        if (
+                          window.innerWidth >= 1024 &&
+                          item.children.length > 0
+                        ) {
+                          setSubmenuOpen(index);
                         }
-                      }
-                    }}
-                  >
-                    <Link
-                      href={`/${item.slug}`}
-                      onClick={handleMainMenuClick}
-                      className="flex items-center w-full lg:w-auto justify-between lg:justify-start gap-2"
+                      }}
+                      onMouseLeave={() => {
+                        if (window.innerWidth >= 1024) {
+                          setSubmenuOpen(null);
+                        }
+                      }}
                     >
-                      <span
-                        className={`${
-                          isActive
-                            ? "text-black-900 lg:text-Teal font-bold"
-                            : ""
-                        }`}
-                      >
-                        {item.title}
-                      </span>
-                      {/* Arrow Toggle for Mobile */}
-                      {item.children.length > 0 && (
-                        <span
-                          className={`text-sm lg:hidden transition-transform duration-300 ${
-                            submenuOpen === index
-                              ? "rotate-180 text-black-900"
-                              : "rotate-0"
-                          }`}
-                        >
-                          ▼
-                        </span>
-                      )}
-                    </Link>
-                  </div>
-
-                  {item.children.length > 0 && (
-                    <div
-                      className={`lg:absolute transition-all duration-1000 ${
-                        submenuOpen === index
-                          ? "pt-0 lg:pt-[50px] bg-white"
-                          : "pt-0 bg-white"
-                      }`}
-                    >
-                      <ul
-                        className={` left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
-                        style={{
-                          maxHeight: submenuOpen === index ? "500px" : "0px",
-                          overflow: "hidden",
-                          transition: "max-height 0.4s ease-in-out",
-                          minHeight: submenuOpen === index ? "50px" : "0px",
+                      <div
+                        className="w-full lg:w-auto flex items-center justify-between cursor-pointer"
+                        onClick={() => {
+                          if (window.innerWidth < 1024) {
+                            if (item.children.length > 0) {
+                              setSubmenuOpen(
+                                submenuOpen === index ? null : index
+                              );
+                              setMenuOpen(true); // Open menu when submenu exists
+                            } else {
+                              setSubmenuOpen(null);
+                              setMenuOpen(false); // Close menu when no submenu
+                            }
+                          }
                         }}
                       >
-                        {item.children.map((child) => {
-                          const isSubmenuActive = activeSubmenu === child.id;
-                          return (
-                            <Link href={`${item.slug}${child.url}`}>
-                              <li
-                                key={child.id}
-                                onClick={(e) =>
-                                  handleSubmenuClick(
-                                    e,
-                                    child.url,
-                                    item.slug,
-                                    child.id
-                                  )
-                                }
-                                className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100y`}
-                              >
-                                {child.title}
-                              </li>
-                            </Link>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  )}
-                </li>
-              );
-            })}
+                        <Link
+                          href={`/${item.slug}`}
+                          onClick={handleMainMenuClick}
+                          className="flex items-center w-full lg:w-auto justify-between lg:justify-start gap-2"
+                        >
+                          <span
+                            className={`${
+                              isActive
+                                ? "text-black-900 lg:text-Teal font-bold"
+                                : ""
+                            }`}
+                          >
+                            {item.title}
+                          </span>
+                          {/* Arrow Toggle for Mobile */}
+                          {item.children.length > 0 && (
+                            <span
+                              className={`text-sm lg:hidden transition-transform duration-300 ${
+                                submenuOpen === index
+                                  ? "rotate-180 text-black-900"
+                                  : "rotate-0"
+                              }`}
+                            >
+                              ▼
+                            </span>
+                          )}
+                        </Link>
+                      </div>
+
+                      {item.children.length > 0 && (
+                        <div
+                          className={`lg:absolute transition-all duration-1000 ${
+                            submenuOpen === index
+                              ? "pt-0 lg:pt-[50px] bg-white"
+                              : "pt-0 bg-white"
+                          }`}
+                        >
+                          <ul
+                            className={` left-0 bg-white z-10 shadow-md top-full transition-all duration-300 ease-in-out w-full lg:w-[250px]`}
+                            style={{
+                              maxHeight:
+                                submenuOpen === index ? "500px" : "0px",
+                              overflow: "hidden",
+                              transition: "max-height 0.4s ease-in-out",
+                              minHeight: submenuOpen === index ? "50px" : "0px",
+                            }}
+                          >
+                            {item.children.map((child) => {
+                              const isSubmenuActive =
+                                activeSubmenu === child.id;
+                              return (
+                                <Link href={`${item.slug}${child.url}`}>
+                                  <li
+                                    key={child.id}
+                                    onClick={(e) =>
+                                      handleSubmenuClick(
+                                        e,
+                                        child.url,
+                                        item.slug,
+                                        child.id
+                                      )
+                                    }
+                                    className={`cursor-pointer block w-full px-4 py-2 text-black-900 hover:bg-gray-100y`}
+                                  >
+                                    {child.title}
+                                  </li>
+                                </Link>
+                              );
+                            })}
+                          </ul>
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
           </ul>
 
-          {HeaderData && (
-            <Link
-              href={HeaderData.header_button.url}
-              target={HeaderData.header_button.target}
-              className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"
-            >
-              TERMIN BUCHEN
-            </Link>
+          {loading ? (
+            <div className="ph-item  w-[150px] h-44 bg-gray-200 rounded-lg p-6 animate-pulse "></div>
+          ) : (
+            HeaderData && (
+              <Link
+                href={HeaderData.header_button.url}
+                target={HeaderData.header_button.target}
+                className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"
+              >
+                TERMIN BUCHEN
+              </Link>
+            )
           )}
         </div>
         <span
