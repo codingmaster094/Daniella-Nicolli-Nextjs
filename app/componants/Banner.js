@@ -17,11 +17,21 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
                     src={img}
                     alt="hero banner image"
                     role="img"
+                    layout="fill"
+                    objectFit="cover"
+                    priority={true}
+                    className="absolute top-0 left-0 w-full h-full"
+                  />
+{/* 
+                  <Image
+                    src={img}
+                    alt="hero banner image"
+                    role="img"
                     width={1920}
                     height={1080}
                     priority={true}
                     className="absolute top-0 left-0 w-screen h-full object-cover"
-                  />
+                  /> */}
                   <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:w-[845px] relative z-10">
                     <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
                     <ul
