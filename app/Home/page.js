@@ -60,6 +60,7 @@ const page = () => {
       <BannerCarousel
         title={HomePageData?.hero_slider_main_title?.value}
         img={HomePageData?.hero_slider_image?.value}
+        mobile_img={HomePageData?.hero_slider_mobile_image?.value}
         content={HomePageData?.hero_slider_content?.value.replace(
           /<\/?ul[^>]*>/g,
           ""

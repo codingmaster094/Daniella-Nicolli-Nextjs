@@ -1,8 +1,24 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
-const BannerCarousel = ({ title, img, content, BTN, loading }) => {
+const BannerCarousel = ({ title, img, content, BTN, loading, mobile_img }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 425);
+    };
+
+    handleResize(); // Check on initial render
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <section className="relative w-screen md:h-screen h-full">
       <div className="Banner relative w-full h-full">
@@ -14,7 +30,7 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
               <div className="bg-banner bg-banner-img bg-cover w-full relative">
                 <>
                   <Image
-                    src={img}
+                    src={isMobile ? mobile_img : img} // Use mobile_img when screen width is 425px or less
                     alt="hero banner image"
                     role="img"
                     layout="fill"
@@ -50,5 +66,3 @@ const BannerCarousel = ({ title, img, content, BTN, loading }) => {
 };
 
 export default BannerCarousel;
-
-
