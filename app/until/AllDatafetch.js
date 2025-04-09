@@ -1,5 +1,4 @@
 export default async function Alldata(params) {
-  console.log('params', params)
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}${params}`,
@@ -12,7 +11,6 @@ export default async function Alldata(params) {
     }
 
     const data = await response.json();
-    console.log("Fetched data:", data);
     return data;
   } catch (error) {
     console.error("Error in Alldata:", error);

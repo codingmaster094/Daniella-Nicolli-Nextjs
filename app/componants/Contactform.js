@@ -8,6 +8,9 @@ import Twitter from "../../public/images/Twitter.svg";
 import facebook from "../../public/images/facebook.svg";
 import Instagram from "../../public/images/instagram.svg";
 import Chat from "../../public/images/message.svg";
+import Fahne from "../../public/images/Fahne.webp";
+import Key from "../../public/images/Key.webp";
+import Tree from "../../public/images/Tree.webp";
 import axios from "axios";
 import Link from "next/link";
 const Contactform = ({
@@ -315,7 +318,7 @@ const Contactform = ({
                 )}
 
                 <div className="input-box w-full">
-                  <div className="flex gap-4 mt-2">
+                  <div className="flex items-center gap-4 mt-2">
                     <label className="cursor-pointer">
                       <input
                         type="radio"
@@ -327,7 +330,7 @@ const Contactform = ({
                       />
                       <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500">
                         <Image
-                          src="/images/Fahne.png"
+                          src={Fahne}
                           alt="Fahne"
                           width={40}
                           height={40}
@@ -346,7 +349,7 @@ const Contactform = ({
                       />
                       <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500">
                         <Image
-                          src="/images/Key.png"
+                          src={Key}
                           alt="Stern"
                           width={40}
                           height={40}
@@ -365,7 +368,7 @@ const Contactform = ({
                       />
                       <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500 mt-2">
                         <Image
-                          src="/images/Tree.png"
+                          src={Tree}
                           alt="Kreis"
                           width={40}
                           height={40}
