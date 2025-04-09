@@ -6,8 +6,8 @@ import PostGet from "../until/PostGet";
 
 
 const Page = async () => {
-  let BlogData = null;
-  let RatgeberData = null;
+  let BlogData 
+  let RatgeberData 
 try {
   BlogData = await Alldata("/blog");
 } catch (error) {
@@ -18,6 +18,7 @@ try {
 if (!BlogData) {
   return <div>No data available.</div>; // Fallback UI
 }
+
 try {
   RatgeberData = await PostGet("/posts");
 } catch (error) {
