@@ -4,31 +4,13 @@ import LandingAboutSection from "../componants/LandingAboutSection";
 import LendingAbout from "../componants/LendingAbout";
 import LeandingCategories from "../componants/LeandingCategories";
 import Leanding_AboutLambsheim from "../componants/Leanding_AboutLambsheim";
+import getLandingData from "../until/getLandingData";
 
-// ✅ Fetch data in a Server Component
-async function getLandingData(slug) {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_POST_BASE_URL}/landing?slug=${slug}`,
-      { cache: "no-store" } // Always fetch fresh data
-    );
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch landing data");
-    }
-
-    const data = await res.json();
-    return data.acf || {}; // Return ACF fields if available
-  } catch (error) {
-    console.error("Error fetching landing data:", error);
-    return {};
-  }
-}
 
 // ✅ Convert Page to Server Component
 export default async function LandingPage({ params }) {
   const slug = params.slug; // Get the slug from the URL
-  const landingData = await getLandingData(slug); // Fetch data
+  const landingData = await getLandingData(`/landing?slug=${slug}`); // Fetch data
 
   return (
     <>

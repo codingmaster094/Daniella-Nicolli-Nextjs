@@ -86,23 +86,21 @@ const Header = ({ headerDatas, menuData }) => {
   return (
     <header
       className={`  bg-white transition-all duration-300 ${
-        scrolled ? "fixed top-0 w-full z-20 bg-white py-0" : "py-2"
+        scrolled ? "fixed top-0 w-full z-20 bg-white py-0" : "py-0"
       }  `}
     >
       <nav className="flex w-full px-[15px] 2xl:px-[calc(9rem-4px)] justify-between py-2 lg:py-0 items-center">
         <div className="logo flex items-center justify-center w-[150px] 2xl:w-[230px]">
-          {
-            menuData && (
-              <Link href="/" aria-label="Home">
-                <Image
-                  src={menuData?.site_logo}
-                  width={249}
-                  height={82}
-                  alt="Logo"
-                />
-              </Link>
-            )
-          }
+          {menuData && (
+            <Link href="/" aria-label="Home">
+              <Image
+                src={menuData?.site_logo}
+                width={249}
+                height={82}
+                alt="Logo"
+              />
+            </Link>
+          )}
         </div>
         <div
           className={`side-menu fixed py-6 opacity-0 z-20 px-5 lg:px-0 w-72 -left-full top-0 bg-Teal h-full pt-7 pb-7 border-r-4 border-gray-light gap-4 xl:gap-8 lg:flex-1 lg:border-none lg:bg-transparent lg:opacity-100 lg:w-auto lg:static lg:flex lg:items-center transition-all duration-700 ease-in lg:transition-none lg:py-8 lg:justify-end lg:overflow-y-visible overflow-y-auto max-h-full ${
@@ -231,17 +229,15 @@ const Header = ({ headerDatas, menuData }) => {
             </ul>
           }
 
-          {
-            headerDatas && (
-              <Link
-                href={headerDatas.header_button.url}
-                target={headerDatas.header_button.target}
-                className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"
-              >
-                TERMIN BUCHEN
-              </Link>
-            )
-          }
+          {headerDatas && (
+            <Link
+              href={headerDatas.header_button.url}
+              target={headerDatas.header_button.target}
+              className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"
+            >
+              TERMIN BUCHEN
+            </Link>
+          )}
         </div>
         <span
           className="mobile-toggle w-8 flex lg:hidden cursor-pointer"
