@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 import Blog from "../componants/Blog"; 
 import BannerCarousel from "../componants/Banner"; 
+import Alldata from "../until/AllDatafetch";
 import PostGet from "../until/PostGet";
 
 
