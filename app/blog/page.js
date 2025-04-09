@@ -1,34 +1,30 @@
 import React from "react";
+import axios from "axios";
 import Blog from "../componants/Blog"; 
 import BannerCarousel from "../componants/Banner"; 
-import Alldata from "../until/AllDatafetch";
-import PostGet from "../until/PostGet";
 
 
 const Page = async () => {
-  let BlogData 
-  let RatgeberData 
-try {
-  BlogData = await Alldata("/blog");
-} catch (error) {
-  console.error("Error fetching data:", error);
-  return <div>Error loading data.</div>; // Fallback UI
-}
+  let BlogData = null;
+  let RatgeberData = null;
 
-if (!BlogData) {
-  return <div>No data available.</div>; // Fallback UI
-}
+  try {
+    const blogResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/blog`
+    );
+    BlogData = blogResponse.data;
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
+  }
 
-try {
-  RatgeberData = await PostGet("/posts");
-} catch (error) {
-  console.error("Error fetching data:", error);
-  return <div>Error loading data.</div>; // Fallback UI
-}
-
-if (!RatgeberData) {
-  return <div>No data available.</div>; // Fallback UI
-}
+  try {
+    const ratgeberResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_POST_BASE_URL}/posts`
+    );
+    RatgeberData = ratgeberResponse.data;
+  } catch (error) {
+    console.error("Error fetching Ratgeber data:", error);
+  }
 
   return (
     <>
