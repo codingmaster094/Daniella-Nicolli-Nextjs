@@ -12,13 +12,17 @@ import Accordian from "../componants/Accordian"
 import Alldata from "../until/AllDatafetch";
 
 const Page = async () => {
-  let HomePageData;
-  try {
-    HomePageData = await Alldata("/home");
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    HomePageData = null; 
-  }
+   let HomePageData;
+   try {
+     HomePageData = await Alldata("/home");
+   } catch (error) {
+     console.error("Error fetching data:", error);
+     return <div>Error loading data.</div>; // Fallback UI
+   }
+
+   if (!HomePageData) {
+     return <div>No data available.</div>; // Fallback UI
+   }
 
   return (
     <>

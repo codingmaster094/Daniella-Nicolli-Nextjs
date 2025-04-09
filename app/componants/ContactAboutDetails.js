@@ -4,7 +4,6 @@ import Image from "next/image";
 import axios from "axios";
 import ContactBox from "./ContactBox";
 const ContactAboutDetails = ({
-  loading,
   main_title,
   content,
   image,
@@ -32,7 +31,6 @@ const ContactAboutDetails = ({
     fetchContactOptionData();
   }, []);
 
-  const Small_image_show = false;
   return (
     <>
       <section className="pt-[30px] md:pt-[40px] pb-0 lg:pt-[50px]">
@@ -56,9 +54,7 @@ const ContactAboutDetails = ({
           </div>
           <div className="w-full max-w-[1780px]  flex flex-col lg:flex-row  gap-4 lg:gap-0 py-0 lg:py-[64px] relative after:none lg:after:absolute lg:after:right-[15px] lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[80%] 2xl:after:w-[60%] lg:after:h-full lg:after:-z-10">
             <div className="flex flex-shrink-0 px-4  items-center flex-col w-full lg:w-1/3 2xl:w-[45%]  md:flex-row py-0 lg:py-[15px] bg-white">
-              {loading ? (
-                <div className="ph-item w-full h-full"></div>
-              ) : (
+              {
                 image && (
                   <Image
                     src={image}
@@ -68,18 +64,11 @@ const ContactAboutDetails = ({
                     className="w-full object-cover object-center lg:object-left 2xl:object-center h-full"
                   />
                 )
-              )}
+              }
             </div>
             <div className="flex gap-5  flex-col w-full justify-center lg:w:1/2 2xl:w-[60%] lg:gap-8 ">
               <div className="flex flex-col sm:flex-row flex-wrap px-4   2xl:px-8 gap-2">
-                {loading ? (
-                  <>
-                    <div className="ph-itemContact flex flex-col w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4 transition-all duration-500 ease-in-out h-[200px]"></div>
-                    <div className="ph-itemContact flex flex-col w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4 transition-all duration-500 ease-in-out h-[200px]"></div>
-                    <div className="ph-itemContact flex flex-col w-full md:w-[32.22%] border border-Teal gap-4 4xl:gap-6 p-4 transition-all duration-500 ease-in-out h-[200px]"></div>
-                  </>
-                ) : (
-                  <>
+                
                     <ContactBox
                       title={telefonnummer_label}
                       value={ContactOptionData?.footer_phone_number?.title}
@@ -107,8 +96,6 @@ const ContactAboutDetails = ({
                       buttonLink={terminbuchung_button?.url}
                       buttonTarget={terminbuchung_button?.target}
                     />
-                  </>
-                )}
               </div>
             </div>
           </div>

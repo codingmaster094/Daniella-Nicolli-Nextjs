@@ -15,9 +15,7 @@ const ClientCarousel = ({
   main_title,
   section_all_partners,
   activate_deactivate,
-  loading
 }) => {
-
   const [swiperInstance, setSwiperInstance] = useState(null);
 
   const nextSlide = () => {
@@ -94,60 +92,45 @@ const ClientCarousel = ({
                   },
                 }}
               >
-                {loading
-                  ? Array(6)
-                      .fill("")
-                      .map((_, i) => (
-                        <SwiperSlide
-                          key={`loading-${i}`}
-                          className="border border-gray-200"
-                        >
-                          <div className="ph-item w-full h-44 bg-gray-200 rounded-lg p-6 animate-pulse">
-                            <div className="flex items-center gap-4"></div>
-                          </div>
-                        </SwiperSlide>
-                      ))
-                  : duplicatedSlides.map((val, index) => (
-                      <SwiperSlide
-                        key={index}
-                        className="grid place-content-center place-items-center"
+                {duplicatedSlides.map((val, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className="grid place-content-center place-items-center"
+                  >
+                    {val.partners_section_all_partners_website_link.url ? (
+                      <Link
+                        href={
+                          val.partners_section_all_partners_website_link.url
+                        }
+                        target={
+                          val.partners_section_all_partners_website_link.target
+                        }
+                        aria-label={
+                          val.partners_section_all_partners_website_link.title
+                        }
+                        className="block"
                       >
-                        {val.partners_section_all_partners_website_link.url ? (
-                          <Link
-                            href={
-                              val.partners_section_all_partners_website_link.url
-                            }
-                            target={
-                              val.partners_section_all_partners_website_link
-                                .target
-                            }
-                            aria-label={
-                              val.partners_section_all_partners_website_link
-                                .title
-                            }
-                            className="block"
-                          >
-                            <Image
-                              src={val.partners_section_all_partners_logos}
-                              alt={`Client logo for ${val.partners_section_all_partners_website_link.title}`}
-                              className="!w-auto"
-                              height={85}
-                              width={157}
-                              priority
-                            />
-                          </Link>
-                        ) : (
-                          <Image
-                            src={val.partners_section_all_partners_logos}
-                            alt={`Client logo ${index + 1}`}
-                            className="!w-auto"
-                            height={85}
-                            width={157}
-                            priority
-                          />
-                        )}
-                      </SwiperSlide>
-                    ))}
+                        <Image
+                          src={val.partners_section_all_partners_logos}
+                          alt={`Client logo for ${val.partners_section_all_partners_website_link.title}`}
+                          className="!w-auto"
+                          height={85}
+                          width={157}
+                          priority
+                        />
+                      </Link>
+                    ) : (
+                      <Image
+                        src={val.partners_section_all_partners_logos}
+                        alt={`Client logo ${index + 1}`}
+                        className="!w-auto"
+                        height={85}
+                        width={157}
+                        priority
+                      />
+                    )}
+                  </SwiperSlide>
+                ))}
               </Swiper>
               <button
                 className="clientSwiper-next border rounded-full border-teal p-1 sm:p-2 hidden xl:!block"

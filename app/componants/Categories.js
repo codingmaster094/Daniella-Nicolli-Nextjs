@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 const Categories = (props) => {
-  const { title, description, BTN, bg_img, section_show, loading } = props;
+  const { title, description, BTN, bg_img } = props;
 
   return (
     <section
@@ -12,7 +12,7 @@ const Categories = (props) => {
       }`}
     >
       {/* Background Image */}
-      {!loading && bg_img && (
+      {bg_img && (
         <Image
           src={bg_img}
           className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
@@ -25,29 +25,22 @@ const Categories = (props) => {
       )}
 
       {/* Overlay */}
-      {!loading && bg_img && (
+      {bg_img && (
         <div className="overlay-1 absolute w-full h-full top-0 left-0 z-0 bg-[rgba(0,0,0,0.3)]"></div>
       )}
 
       <div className="w-full container mx-auto px-[15px]">
         <div className="flex w-full max-w-[922px] flex-col text-white gap-8 mx-auto text-center relative">
           <div className="flex flex-col gap-6">
-            {/* Title */}
-            {loading ? (
-              <div className="h-8 w-3/4 bg-gray-300 animate-pulse mx-auto"></div>
-            ) : (
+            
               <h2
                 className="text-white"
                 dangerouslySetInnerHTML={{
                   __html: title,
                 }}
               ></h2>
-            )}
-
-            {/* Description */}
-            {loading ? (
-              <div className="h-6 w-2/3 bg-gray-300 animate-pulse mx-auto"></div>
-            ) : (
+          
+            
               <p
                 dangerouslySetInnerHTML={{
                   __html: description
@@ -56,13 +49,11 @@ const Categories = (props) => {
                     .replace(/&amp;/g, "&"),
                 }}
               ></p>
-            )}
+       
           </div>
 
           {/* Button */}
-          {loading ? (
-            <div className="h-10 w-40 bg-gray-300 animate-pulse mx-auto"></div>
-          ) : (
+          {
             BTN?.title && (
               <Link
                 href={BTN?.url}
@@ -74,7 +65,7 @@ const Categories = (props) => {
                 {BTN?.title}
               </Link>
             )
-          )}
+          }
         </div>
       </div>
     </section>

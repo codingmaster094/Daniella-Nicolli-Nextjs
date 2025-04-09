@@ -1,11 +1,21 @@
 export default async function Alldata(params) {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${params}`,
-        {
-          cache: "no-store",
-        }
-      );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}${params}`,
+      {
+        cache: "no-store",
+      }
+    );
 
-      return await response.json();
-    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    console.log("Fetched data:", data);
+    return data;
+  } catch (error) {
+    console.error("Error in Alldata:", error);
+    throw error; // Rethrow the error to be caught in the calling component
+  }
 }

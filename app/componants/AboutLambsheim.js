@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const AboutLambsheim = ({
-  loading,
   main_title,
   standorte_content,
   BTN,
@@ -18,9 +17,7 @@ const AboutLambsheim = ({
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 3xl:gap-[100px] group-[.reverse]:lg:flex-row-reverse">
             {/* Image Section */}
             <div className={Small_image_show ? "lg:w-1/3" : "lg:w-1/2"}>
-              {loading ? (
-                <div className="w-full h-[300px] bg-gray-300 animate-pulse rounded-lg"></div>
-              ) : (
+              {
                 <div className="sticky top-40">
                   <div className="aspect-square bg-white">
                     {standorte_image && (
@@ -35,7 +32,7 @@ const AboutLambsheim = ({
                     )}
                   </div>
                 </div>
-              )}
+              }
             </div>
 
             {/* Content Section */}
@@ -46,31 +43,24 @@ const AboutLambsheim = ({
             >
               <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
                 {/* Title */}
-                {loading ? (
-                  <div className="h-8 w-3/4 bg-gray-300 animate-pulse rounded-md"></div>
-                ) : (
-                  main_title && (
+                {main_title && (
                     <h2
                       className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
                       dangerouslySetInnerHTML={{ __html: main_title }}
                     />
                   )
-                )}
+                }
 
                 {/* Description */}
-                {loading ? (
-                  <div className="ph-text w-full h-full space-y-2"></div>
-                ) : (
+                {
                   <div
                     className="space-y-2"
                     dangerouslySetInnerHTML={{ __html: standorte_content }}
                   />
-                )}
+                }
 
                 {/* Button */}
-                {loading ? (
-                  <div className="h-10 w-40 bg-gray-300 animate-pulse rounded-md"></div>
-                ) : (
+                {
                   BTN && (
                     <Link
                       href={BTN?.url}
@@ -82,7 +72,7 @@ const AboutLambsheim = ({
                       {BTN?.title}
                     </Link>
                   )
-                )}
+                }
               </div>
             </div>
           </div>

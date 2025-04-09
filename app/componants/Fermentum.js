@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import equalSlides from "../until/equalSlides";
 
-const Fermentum = ({ main_title, all_vorteile , loading}) => {
+const Fermentum = ({ main_title, all_vorteile }) => {
   const carouselRef = useRef();
   equalSlides();
 
@@ -18,17 +18,13 @@ const Fermentum = ({ main_title, all_vorteile , loading}) => {
     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-white">
       <div className="w-full max-w-[1550px] px-[15px] mx-auto">
         <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
-        {
-          loading ? 
-          <div className="h-8 w-3/4 bg-gray-200 animate-pulse mx-auto"></div>
-          :
           <div className="flex justify-center text-center">
             <h2
               className="sm:text-h3 lg:text-h2"
               dangerouslySetInnerHTML={{ __html: main_title }}
             />
           </div>
-        }
+
           <div className="slider-wrapper flex gap-3 lg:gap-10 items-center p-2">
             <div className="prosSwiper-prev border rounded-full border-teal p-1 sm:p-2 hidden xl:block">
               <svg
@@ -71,58 +67,40 @@ const Fermentum = ({ main_title, all_vorteile , loading}) => {
                 },
               }}
             >
-              {loading
-                ? Array(3) 
-                    .fill("")
-                    .map((_, i) => (
-                      <SwiperSlide
-                        key={`loading-${i}`}
-                        className="border border-gray-200"
-                      >
-                        <div className="ph-item w-full h-44 bg-gray-200 rounded-lg p-6 animate-pulse">
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
-                            <div className="h-4 w-3/4 bg-gray-300 rounded"></div>
-                          </div>
-                          <div className="mt-4 h-3 w-full bg-gray-300 rounded"></div>
-                          <div className="mt-2 h-3 w-2/3 bg-gray-300 rounded"></div>
-                        </div>
-                      </SwiperSlide>
-                    ))
-                : all_vorteile?.value?.map((service) => (
-                    <SwiperSlide
-                      key={service.id || service.home_all_vorteile_title}
-                      className="border border-teal"
-                    >
-                      <div className="p-6 xl:p-12 space-y-4">
-                        <div className="flex items-center gap-6">
-                          <Image
-                            src={service.home_all_vorteile_icon}
-                            width={48}
-                            height={48}
-                            alt={`Service Icon for ${service.home_all_vorteile_title}`}
-                            className="!w-12 h-12"
-                          />
-                          <h3
-                            className="text-black md:text-h4 text-teal-700"
-                            dangerouslySetInnerHTML={{
-                              __html: service.home_all_vorteile_title,
-                            }}
-                          />
-                        </div>
-                        <div className="flex">
-                          <p
-                            dangerouslySetInnerHTML={{
-                              __html: service.home_all_vorteile_content
-                                ?.replace(/<p>/g, "")
-                                .replace(/<\/p>/g, "")
-                                .replace(/&amp;/g, "&"),
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
+              {all_vorteile?.value?.map((service) => (
+                <SwiperSlide
+                  key={service.id || service.home_all_vorteile_title}
+                  className="border border-teal"
+                >
+                  <div className="p-6 xl:p-12 space-y-4">
+                    <div className="flex items-center gap-6">
+                      <Image
+                        src={service.home_all_vorteile_icon}
+                        width={48}
+                        height={48}
+                        alt={`Service Icon for ${service.home_all_vorteile_title}`}
+                        className="!w-12 h-12"
+                      />
+                      <h3
+                        className="text-black md:text-h4 text-teal-700"
+                        dangerouslySetInnerHTML={{
+                          __html: service.home_all_vorteile_title,
+                        }}
+                      />
+                    </div>
+                    <div className="flex">
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: service.home_all_vorteile_content
+                            ?.replace(/<p>/g, "")
+                            .replace(/<\/p>/g, "")
+                            .replace(/&amp;/g, "&"),
+                        }}
+                      />
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
               <div className="swiper-pagination static mt-3 md:mt-6" />
             </Swiper>
             <div className="prosSwiper-next border rounded-full border-teal p-1 sm:p-2 hidden xl:block">

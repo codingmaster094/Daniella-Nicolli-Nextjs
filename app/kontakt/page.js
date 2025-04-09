@@ -6,13 +6,19 @@ import BannerCarousel from "../componants/Banner";
 import Alldata from "../until/AllDatafetch";
 const page = async () => {
   let ContactData;
- try {
-   ContactData = await Alldata("/kontakt");
- } catch (error) {
-   console.error("Error fetching data:", error);
-   ContactData = null;
- }
- 
+
+  try {
+    ContactData = await Alldata("/kontakt");
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return <div>Error loading data.</div>; // Fallback UI
+  }
+
+  if (!ContactData) {
+    return <div>No data available.</div>; // Fallback UI
+  }
+  
+
   return (
     <>
       <BannerCarousel
