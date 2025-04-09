@@ -2,9 +2,10 @@
 
 const nextConfig = {
   images: {
-    domains: ["daniella.blog-s.de", ],
+    domains: ["daniella.blog-s.de"],
     formats: ["image/webp"],
   },
+
   async redirects() {
     return [
       {
@@ -69,6 +70,7 @@ const nextConfig = {
   },
   experimental: {
     scrollRestoration: true,
+    turbopack: false,
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {

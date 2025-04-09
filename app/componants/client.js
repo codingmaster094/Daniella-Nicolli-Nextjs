@@ -116,7 +116,7 @@ const ClientCarousel = ({
                           className="!w-auto"
                           height={85}
                           width={157}
-                          priority
+                          loading="lazy"  
                         />
                       </Link>
                     ) : (
@@ -126,7 +126,7 @@ const ClientCarousel = ({
                         className="!w-auto"
                         height={85}
                         width={157}
-                        priority
+                        loading="lazy"  
                       />
                     )}
                   </SwiperSlide>
