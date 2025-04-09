@@ -6,31 +6,16 @@ import UberAboutDeatilsleft from "../componants/UberAboutDeatilsleft";
 import Gallrey from "../componants/Gallrey";
 import Categories from "../componants/Categories";
 import BannerCarousel from "../componants/Banner";
+import Alldata from "../until/AllDatafetch";
 
 const page = async () => {  
   let Ubermich;
-
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/ueber-mich`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    Ubermich = await response.json();
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    Ubermich = null; 
-  }
-
-  if (!Ubermich) {
-    return <div>Error loading data.</div>; 
-  }
+ try {
+   Ubermich = await Alldata("/ueber-mich");
+ } catch (error) {
+   console.error("Error fetching data:", error);
+   Ubermich = null;
+ }
 
   return (
     <>

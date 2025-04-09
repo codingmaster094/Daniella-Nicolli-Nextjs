@@ -6,32 +6,16 @@ import Slidehover from "../componants/Slidehover"
 import Terminbroncher from "../componants/Terminbroncher"
 import MultipleAboutdetails from "../componants/MultipleAboutdetails"
 import BannerCarousel from "../componants/Banner"
+import Alldata from "../until/AllDatafetch";
 
 const Page = async() => {
   let AesthetikData;
-
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/aesthetik`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    AesthetikData = await response.json();
+ try {
+    AesthetikData = await Alldata("/aesthetik");
   } catch (error) {
     console.error("Error fetching data:", error);
     AesthetikData = null; 
   }
-
-  if (!AesthetikData) {
-    return <div>Error loading data.</div>; 
-  }
-
   return (
     <>
       <BannerCarousel

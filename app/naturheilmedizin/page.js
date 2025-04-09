@@ -9,31 +9,17 @@ import Terminbroncher from "../componants/Terminbroncher";
 import Slidehover from "../componants/Slidehover";
 import Accordian from "../componants/Accordian";
 import MultipleAboutdetails from "../componants/MultipleAboutdetails";
+import Alldata from "../until/AllDatafetch";
 
 const page = async () => {
   let Naturheilmedizin;
-
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/naturheilmedizin`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    Naturheilmedizin = await response.json();
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    Naturheilmedizin = null; 
-  }
-
-  if (!Naturheilmedizin) {
-    return <div>Error loading data.</div>; 
-  }
+ try {
+   Naturheilmedizin = await Alldata("/naturheilmedizin");
+ } catch (error) {
+   console.error("Error fetching data:", error);
+   Naturheilmedizin = null;
+ }
+  
   return (
     <>
       <BannerCarousel

@@ -2,6 +2,8 @@
 import React from "react";
 import axios from "axios"; 
 import Header from "../componants/Header";
+import HeaderDatas from "../until/HeaderData";
+import Menudatas from "../until/MenuData";
 
 
 const Page = async () => {
@@ -9,20 +11,13 @@ const Page = async () => {
   let menuData = null;
 
   try {
-    const headerResponse = await axios.get(
-      `https://daniella.blog-s.de/wp-json/custom/v1/acf-options`
-    );
-    headerData = headerResponse.data;
+   headerData = await HeaderDatas("/acf-options");
   } catch (error) {
     console.error("Error fetching header data:", error);
   }
 
-  console.log('headerData', headerData)
   try {
-    const menuResponse = await axios.get(
-      `https://daniella.blog-s.de/wp-json/custom/v1/menus/menu-1`
-    );
-    menuData = menuResponse.data;
+     menuData = await Menudatas("/menus/menu-1");
   } catch (error) {
     console.error("Error fetching menu data:", error);
   }

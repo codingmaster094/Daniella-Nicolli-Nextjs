@@ -3,31 +3,16 @@ import ContactAboutDetails from "../componants/ContactAboutDetails";
 import Contactform from "../componants/Contactform";
 import Maps from "../componants/Maps";
 import BannerCarousel from "../componants/Banner";
+import Alldata from "../until/AllDatafetch";
 const page = async () => {
   let ContactData;
-
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/kontakt`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    ContactData = await response.json();
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    ContactData = null; 
-  }
-
-  if (!ContactData) {
-    return <div>Error loading data.</div>; 
-  }
-
+ try {
+   ContactData = await Alldata("/kontakt");
+ } catch (error) {
+   console.error("Error fetching data:", error);
+   ContactData = null;
+ }
+ 
   return (
     <>
       <BannerCarousel

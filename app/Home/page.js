@@ -9,27 +9,15 @@ import Comment from "../componants/Comment"
 import Slidehover from "../componants/Slidehover"
 import BannerCarousel from "../componants/Banner"
 import Accordian from "../componants/Accordian"
+import Alldata from "../until/AllDatafetch";
 
 const Page = async () => {
   let HomePageData;
-
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/home`, {
-      cache: 'no-store',
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    HomePageData = await response.json();
+    HomePageData = await Alldata("/home");
   } catch (error) {
     console.error("Error fetching data:", error);
     HomePageData = null; 
-  }
-
-  if (!HomePageData) {
-    return <div>Error loading data.</div>; 
   }
 
   return (
