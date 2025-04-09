@@ -1,4 +1,5 @@
 export default async function Alldata(params) {
+  console.log('params', params)
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}${params}`,
@@ -6,8 +7,7 @@ export default async function Alldata(params) {
         cache: "no-store",
       }
     );
-
-    if (!response.ok) {
+    if (!response) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
 

@@ -1,34 +1,24 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import axios from "axios";
-import { useParams } from "next/navigation";
+import React from "react";
 import dayjs from "dayjs";
+import Categories from "../../componants/Categories"
+import PostGet from "@/app/until/PostGet";
 
-const Categories = dynamic(() => import("../../componants/Categories"), {
-  ssr: false,
-});
-
-const Page = () => {
-  const [blogData, setBlogData] = useState([]);
-  const [BlogContent, setBlogContent] = useState([]);
-  const params = useParams();
+const Page = async({params}) => {
   const slug = params?.slug;
-  const fetchBlog = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_POST_BASE_URL}/posts?slug=${slug}`
-      );
-      setBlogData(response.data);
-      setBlogContent(response.data);
-    } catch (error) {
-      console.error("Error fetching blog data:", error);
-    }
-  };
+let blogData;
+  try {
+         blogData = await PostGet(`/posts?slug=${slug}`);
+       } catch (error) {
+         if (!blogData) {
+           return <div>Error loading data.</div>;
+         }
+       }
+    
+       if (!blogData) {
+         return <div>No data available.</div>;
+       }
 
-  useEffect(() => {
-    fetchBlog();
-  }, [slug]);
+  
 
   return (
     <>
@@ -58,11 +48,11 @@ const Page = () => {
             <div className="flex flex-col gap-5 md:gap-6 lg:gap-8">
               <div className="flex justify-between gap-4 flex-wrap items-center">
                 <p className="text-body">
-                  <span>{dayjs(BlogContent?.date).format("DD.MM.YYYY")}</span> |
+                  <span>{dayjs(blogData?.date).format("DD.MM.YYYY")}</span> |
                   <span>
                     {" "}
                     ZULETZT AKTUALISIERT{" "}
-                    {dayjs(BlogContent?.modified).format("DD.MM.YYYY")}
+                    {dayjs(blogData?.modified).format("DD.MM.YYYY")}
                   </span>
                 </p>
                 <div className="flex border border-Border w-auto lg:w-[35%] justify-between items-center">
@@ -142,7 +132,7 @@ const Page = () => {
         <div className="container px-[15px] mx-auto">
           <div
             className="blogtemplate border border-Teal p-5 md:p-10 lg:p-20"
-            dangerouslySetInnerHTML={{ __html: BlogContent?.content }}
+            dangerouslySetInnerHTML={{ __html: blogData?.content }}
           ></div>
         </div>
       </section>

@@ -12,7 +12,6 @@ export default async function HeaderDatas(params) {
     }
 
     const data = await response.json();
-    console.log("Fetched data:", data);
     return data;
   } catch (error) {
     console.error("Error in Alldata:", error);
