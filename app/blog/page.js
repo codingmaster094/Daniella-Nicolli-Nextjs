@@ -21,6 +21,8 @@ const Page = async () => {
     const ratgeberResponse = await axios.get(
       `${process.env.NEXT_PUBLIC_POST_BASE_URL}/posts`
     );
+    console.log('ratgeberResponse', ratgeberResponse)
+    console.log("data", ratgeberResponse.data);
     RatgeberData = ratgeberResponse.data;
   } catch (error) {
     console.error("Error fetching Ratgeber data:", error);
