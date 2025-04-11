@@ -5,7 +5,7 @@ import LendingAbout from "../componants/LendingAbout";
 import LeandingCategories from "../componants/LeandingCategories";
 import Leanding_AboutLambsheim from "../componants/Leanding_AboutLambsheim";
 import getLandingData from "../until/getLandingData";
-import MetaDataAPIS from "../until/metadataAPI";
+// import MetaDataAPIS from "../until/metadataAPI";
 
 // ✅ Convert Page to Server Component
 export default async function LandingPage({ params }) {
@@ -59,23 +59,23 @@ export default async function LandingPage({ params }) {
   );
 }
 
-export async function generateMetadata({ params }) {
-  const {slug} = await params
-  let metadata = await MetaDataAPIS(`landing/${slug}`);
+// export async function generateMetadata({ params }) {
+//   const {slug} = await params
+//   let metadata = await MetaDataAPIS(`landing/${slug}`);
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
+//   // Extract metadata from the head string
+//   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+//   const descriptionMatch = metadata.head.match(
+//     /<meta name="description" content="(.*?)"/
+//   );
 
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
+//   const title = titleMatch ? titleMatch[1] : "Default Title";
+//   const description = descriptionMatch
+//     ? descriptionMatch[1]
+//     : "Default Description";
 
-  return {
-    title,
-    description,
-  };
-}
+//   return {
+//     title,
+//     description,
+//   };
+// }

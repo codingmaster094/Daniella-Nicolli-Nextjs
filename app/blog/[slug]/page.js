@@ -2,7 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import Categories from "../../componants/Categories";
 import PostGet from "@/app/until/PostGet";
-import MetaDataAPIS from "@/app/until/metadataAPI";
+// import MetaDataAPIS from "@/app/until/metadataAPI";
 
 const Page = async ({ params }) => {
   // Await params to avoid Next.js error
@@ -140,23 +140,23 @@ const Page = async ({ params }) => {
 
 export default Page;
 
-export async function generateMetadata({ params }) {
-  const {slug } = await params; // No need to await
+// export async function generateMetadata({ params }) {
+//   const {slug } = await params; // No need to await
 
-  let metadata = await MetaDataAPIS(`/${slug}`);
+//   let metadata = await MetaDataAPIS(`/${slug}`);
 
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
+//   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+//   const descriptionMatch = metadata.head.match(
+//     /<meta name="description" content="(.*?)"/
+//   );
 
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
+//   const title = titleMatch ? titleMatch[1] : "Default Title";
+//   const description = descriptionMatch
+//     ? descriptionMatch[1]
+//     : "Default Description";
 
-  return {
-    title,
-    description,
-  };
-}
+//   return {
+//     title,
+//     description,
+//   };
+// }
