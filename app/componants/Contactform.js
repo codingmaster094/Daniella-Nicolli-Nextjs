@@ -8,11 +8,36 @@ import Twitter from "../../public/images/Twitter.svg";
 import facebook from "../../public/images/facebook.svg";
 import Instagram from "../../public/images/instagram.svg";
 import Chat from "../../public/images/message.svg";
+import axios from "axios";
+import Link from "next/link";
+
 import Fahne from "../../public/images/Fahne.webp";
 import Key from "../../public/images/Key.webp";
 import Tree from "../../public/images/Tree.webp";
-import axios from "axios";
-import Link from "next/link";
+import airoplain from "../../public/images/airoplain.svg";
+import heart from "../../public/images/heart.svg";
+import home from "../../public/images/home.svg";
+import star from "../../public/images/star.svg";
+import tea from "../../public/images/tea.svg";
+import truck from "../../public/images/truck.svg";
+
+const iconData = [
+  { value: "Herz", label: "Herz", image: heart },
+  { value: "Tasse", label: "Tasse", image: tea },
+  { value: "Stern", label: "Stern", image: star },
+  { value: "LKW", label: "LKW", image: truck },
+  { value: "Schlüssel", label: "Schlüssel", image: Key },
+  { value: "Haus", label: "Haus", image: home },
+  { value: "Flugzeug", label: "Flugzeug", image: airoplain },
+  { value: "Baum", label: "Baum", image: Tree },
+  { value: "Fahne", label: "Fahne", image: Fahne },
+];
+
+const getRandomItems = (array, count) => {
+  let shuffled = [...array].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
 const Contactform = ({
   main_title,
   content,
@@ -34,7 +59,20 @@ const Contactform = ({
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [Success, setSuccess] = useState(null);
-  const correctAnswer = "Fahne";
+  const [correctAnswer, setcorrectAnswer] = useState(null);
+  const [randomIcons, setRandomIcons] = useState([]);
+  const [randomLabel, setRandomLabel] = useState("");
+
+    useEffect(() => {
+      const selectedIcons = getRandomItems(iconData, 3);
+      setRandomIcons(selectedIcons);
+
+      // Pick the label from one of the selected icons as the correct answer
+      const randomLabelItem =
+        selectedIcons[Math.floor(Math.random() * selectedIcons.length)];
+      setRandomLabel(randomLabelItem.label);
+      setcorrectAnswer(randomLabelItem.label); // Store the correct answer
+    }, []);
 
   const fetchContactOptionData = async () => {
     try {
@@ -57,7 +95,6 @@ const Contactform = ({
 
   const validateForm = () => {
     const newErrors = {};
-
     if (!formData.name.trim()) newErrors.name = "Name ist erforderlich";
     if (!formData.email.trim()) {
       newErrors.email = "E-Mail ist erforderlich";
@@ -72,58 +109,13 @@ const Contactform = ({
     }
     if (!formData.message.trim())
       newErrors.message = "Nachricht ist erforderlich";
-    // if (!formData.Contact_Datenschutz) {
-    //   newErrors.Contact_Datenschutz =
-    //     "Sie müssen der Datenschutzerklärung zustimmen.";
-    // }
-
-    // Add validation for bot-proof question
-    if (formData.selectedIcon !== correctAnswer) {
-      newErrors.selectedIcon = "Bitte wählen Sie das richtige Symbol aus.";
-    }
+     if (formData.selectedIcon !== correctAnswer) {
+       newErrors.selectedIcon = "Bitte wählen Sie das richtige Symbol aus.";
+     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
-  const endpoint =
-    process.env.NEXT_PUBLIC_SENDER_MAIL || "https://formspree.io/f/mnnjpeda";
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   if (validateForm()) {
-  //     const response = await fetch(endpoint, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     const result = await response.json();
-  //     if (response.ok) {
-  //       setSuccess("Nachricht erfolgreich gesendet");
-  //       setFormData({
-  //         // Reset the form fields after successful submission
-  //         name: "",
-  //         email: "",
-  //         telephone: "",
-  //         message: "",
-  //         Contact_email: false,
-  //         Contact_telefon: false,
-  //         Contact_Datenschutz: false,
-  //         selectedIcon: "",
-  //       });
-  //       setErrors({}); // Clear validation errors
-  //     } else {
-  //       setErrorMessage(
-  //         `Nachricht konnte nicht gesendet werden: ${result.message}`
-  //       );
-  //     }
-  //   } else {
-  //     console.log("Validation failed");
-  //   }
-
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -160,20 +152,17 @@ const Contactform = ({
       console.log("Validation failed");
     }
   };
+
   useEffect(() => {
     fetchContactOptionData();
   }, []);
 
   return (
-    <section className="pb-[30px] md:pb-[40px] lg:pb-[50px]  w-full">
+    <section className="pb-[30px] md:pb-[40px] lg:pb-[50px] w-full">
       <div className="container mx-auto px-[15px]">
         <div className="flex flex-col gap-4 md:gap-6 lg:gap-8 mx-auto p-0 sm:p-4 md:p-6 lg:p-[50px]">
           <div className="flex flex-col gap-6 sm:gap-8">
-            <h2
-              dangerouslySetInnerHTML={{
-                __html: main_title,
-              }}
-            ></h2>
+            <h2 dangerouslySetInnerHTML={{ __html: main_title }}></h2>
             <p
               dangerouslySetInnerHTML={{
                 __html: content
@@ -184,8 +173,8 @@ const Contactform = ({
             ></p>
           </div>
           <div className="flex justify-between gap-6 flex-col lg:flex-row">
-            <div className="flex flex-col w-full  lg:w-[60%]">
-              <form action="" onSubmit={handleSubmit} className="w-full">
+            <div className="flex flex-col w-full lg:w-[60%]">
+              <form onSubmit={handleSubmit} className="w-full">
                 <div className="input-group flex flex-wrap gap-4">
                   <div className="input-box w-full">
                     <label htmlFor="name" className="hidden">
@@ -240,12 +229,11 @@ const Contactform = ({
                     )}
                   </div>
                   <div className="input-box w-full">
-                    <label htmlFor="Name" className="hidden">
+                    <label htmlFor="message" className="hidden">
                       Ihre Nachricht
                     </label>
                     <textarea
                       name="message"
-                      id=""
                       placeholder="* Ihre Nachricht"
                       className="border placeholder:text-black-900 w-full border-Teal outline-none px-6 py-4 resize-none h-[110px]"
                       value={formData.message}
@@ -264,9 +252,9 @@ const Contactform = ({
                   <div className="input-box flex gap-2 items-center">
                     <input
                       type="checkbox"
-                      name="Contact_email" // Correctly set the `name` to match the state key
+                      name="Contact_email"
                       id="Contact_email"
-                      checked={formData.Contact_email} // Use `checked` instead of `value`
+                      checked={formData.Contact_email}
                       onChange={handleInputChange}
                     />
                     <label htmlFor="Contact_email">E-Mail</label>
@@ -293,88 +281,35 @@ const Contactform = ({
                       </p>
                     </p>
                   </div>
-
-                  {/* <div className="input-box flex gap-2 w-full items-center">
-                    <input
-                      type="checkbox"
-                      name="Contact_Datenschutz"
-                      id="Contact_Datenschutz"
-                      checked={formData.Contact_Datenschutz}
-                      onChange={handleInputChange}
-                    />
-                    <label htmlFor="Contact_Datenschutz">
-                      Hiermit bestätige ich den Datenschutz gelesen zu haben.
-                    </label>
-                  </div> */}
                   <p>
-                    Bitte beweise, dass du kein Spambot bist und wähle das
-                    Symbol <strong>Fahne</strong> aus.
+                    Sind Sie ein Mensch? Dann wählen Sie bitte:{" "}
+                    <strong>{randomLabel}</strong>
                   </p>
                 </div>
-                {errors.Contact_Datenschutz && (
-                  <p className="text-red-500 text-sm mt-2">
-                    {errors.Contact_Datenschutz}
-                  </p>
-                )}
-
                 <div className="input-box w-full">
                   <div className="flex items-center gap-4 mt-2">
-                    <label className="cursor-pointer">
-                      <input
-                        type="radio"
-                        name="selectedIcon"
-                        value="Fahne"
-                        checked={formData.selectedIcon === "Fahne"}
-                        onChange={handleInputChange}
-                        className="hidden peer"
-                      />
-                      <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500">
-                        <Image
-                          src={Fahne}
-                          alt="Fahne"
-                          width={40}
-                          height={40}
-                        />
-                      </div>
-                    </label>
-
-                    <label className="cursor-pointer">
-                      <input
-                        type="radio"
-                        name="selectedIcon"
-                        value="Stern"
-                        checked={formData.selectedIcon === "Stern"}
-                        onChange={handleInputChange}
-                        className="hidden peer"
-                      />
-                      <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500">
-                        <Image
-                          src={Key}
-                          alt="Stern"
-                          width={40}
-                          height={40}
-                        />
-                      </div>
-                    </label>
-
-                    <label className="cursor-pointer">
-                      <input
-                        type="radio"
-                        name="selectedIcon"
-                        value="Kreis"
-                        checked={formData.selectedIcon === "Kreis"}
-                        onChange={handleInputChange}
-                        className="hidden peer"
-                      />
-                      <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500 mt-2">
-                        <Image
-                          src={Tree}
-                          alt="Kreis"
-                          width={40}
-                          height={40}
-                        />
-                      </div>
-                    </label>
+                    {randomIcons.map((icon, i) => {
+                      return (
+                        <label key={i} className="cursor-pointer">
+                          <input
+                            type="radio"
+                            name="selectedIcon"
+                            value={icon.label}
+                            checked={formData.selectedIcon === icon.label}
+                            onChange={handleInputChange}
+                            className="hidden peer"
+                          />
+                          <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500">
+                            <Image
+                              src={icon.image}
+                              alt={icon.label}
+                              width={30}
+                              height={30}
+                            />
+                          </div>
+                        </label>
+                      );
+                    })}
                   </div>
 
                   {errors.selectedIcon && (
@@ -383,9 +318,10 @@ const Contactform = ({
                     </p>
                   )}
                 </div>
+
                 <button
                   type="submit"
-                  className="flex self-start justify-center mt-6 md:mt-8 lg:mt-12 bg-white border border-Teal text-Teal hover:bg-Teal hover:text-white font-normal  px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in w-full "
+                  className="flex self-start justify-center mt-6 md:mt-8 lg:mt-12 bg-white border border-Teal text-Teal hover:bg-Teal hover:text-white font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in w-full"
                   aria-label="link-button"
                   role="button"
                 >
@@ -407,7 +343,7 @@ const Contactform = ({
                 </div>
               )}
             </div>
-            <div className="flex flex-col w-full  lg:w-[30%] gap-6 sm:gap-8 *:flex-shrink-0">
+            <div className="flex flex-col w-full lg:w-[30%] gap-6 sm:gap-8">
               <div className="flex flex-col gap-6 [div&_a]:text-black-900 text-body xm:text-a font-medium">
                 <div className="flex gap-2 xm:gap-5 ">
                   <span className="flex flex-shrink-0">

@@ -4,10 +4,6 @@ import Footer from "./Footer/page";
 import TopButton from "../app/componants/Top-Button";
 import Header from "./Header/page";
 
-export const metadata = {
-  title: "Daniella Nicolli",
-  description: "Daniella nicolli",
-};
 
 export default function RootLayout({ children }) {
   return (
@@ -23,3 +19,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

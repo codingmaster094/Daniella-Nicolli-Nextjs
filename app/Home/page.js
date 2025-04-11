@@ -11,6 +11,7 @@ import BannerCarousel from "../componants/Banner"
 import Accordian from "../componants/Accordian"
 import Alldata from "../until/AllDatafetch";
 
+
 const Page = async () => {
    let HomePageData;
    try {
@@ -23,6 +24,8 @@ const Page = async () => {
    if (!HomePageData) {
      return <div>No data available.</div>; // Fallback UI
    }
+
+   
 
   return (
     <>

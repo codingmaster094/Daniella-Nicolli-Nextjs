@@ -1,7 +1,4 @@
 import React from "react";
-import axios from "axios";
-import dynamic from "next/dynamic";
-
 import BannerCarousel from "../componants/Banner";
 import Comment from "../componants/Comment";
 import ClientCarousel from "../componants/client";
@@ -10,6 +7,7 @@ import Slidehover from "../componants/Slidehover";
 import Accordian from "../componants/Accordian";
 import MultipleAboutdetails from "../componants/MultipleAboutdetails";
 import Alldata from "../until/AllDatafetch";
+import MetaDataAPIS from "../until/metadataAPI";
 
 const page = async () => {
   let Naturheilmedizin;
@@ -84,3 +82,23 @@ const page = async () => {
 };
 
 export default page;
+
+export async function generateMetadata() {
+  let metadata = await MetaDataAPIS("/naturheilmedizin");
+
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
+
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
+
+  return {
+    title,
+    description,
+  };
+}

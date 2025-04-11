@@ -2,6 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import Categories from "../../componants/Categories"
 import PostGet from "@/app/until/PostGet";
+import MetaDataAPIS from "@/app/until/metadataAPI";
 
 const Page = async({params}) => {
   const slug = params?.slug;
@@ -141,3 +142,24 @@ let blogData;
 };
 
 export default Page;
+
+export async function generateMetadata({ params }) {
+  const slug = params?.slug;
+  let metadata = await MetaDataAPIS(`/${slug}`);
+
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
+
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
+
+  return {
+    title,
+    description,
+  };
+}
