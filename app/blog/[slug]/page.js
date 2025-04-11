@@ -1,25 +1,23 @@
 import React from "react";
 import dayjs from "dayjs";
-import Categories from "../../componants/Categories"
+import Categories from "../../componants/Categories";
 import PostGet from "@/app/until/PostGet";
 import MetaDataAPIS from "@/app/until/metadataAPI";
 
-const Page = async({params}) => {
-  const slug = params?.slug;
-let blogData;
-  try {
-         blogData = await PostGet(`/posts?slug=${slug}`);
-       } catch (error) {
-         if (!blogData) {
-           return <div>Error loading data.</div>;
-         }
-       }
-    
-       if (!blogData) {
-         return <div>No data available.</div>;
-       }
+const Page = async ({ params }) => {
+  // Await params to avoid Next.js error
+  const { slug } = await params;
 
-  
+  let blogData;
+  try {
+    blogData = await PostGet(`/posts?slug=${slug}`);
+  } catch (error) {
+    return <div>Error loading data.</div>;
+  }
+
+  if (!blogData) {
+    return <div>No data available.</div>;
+  }
 
   return (
     <>
@@ -33,16 +31,15 @@ let blogData;
           }}
         >
           {blogData?.featured_image_url && (
-            <>
-              <div className="px-[15px] 2xl:ps-[148px]">
-                <div className="flex flex-col bg-Bgwhite  p-6 lg:p-12 gap-4 lg:gap-8 w-full md:max-w-[845px]">
-                  <h1>{blogData?.title}</h1>
-                </div>
+            <div className="px-[15px] 2xl:ps-[148px]">
+              <div className="flex flex-col bg-Bgwhite p-6 lg:p-12 gap-4 lg:gap-8 w-full md:max-w-[845px]">
+                <h1>{blogData?.title}</h1>
               </div>
-            </>
+            </div>
           )}
         </div>
       </section>
+
       {blogData?.ratgeber_single_wichtigste_content && (
         <section className="py-[30px] md:py-[50px] lg:py-[50px]">
           <div className="container px-[15px] mx-auto">
@@ -144,10 +141,10 @@ let blogData;
 export default Page;
 
 export async function generateMetadata({ params }) {
-  const slug = params?.slug;
+  const {slug } = await params; // No need to await
+
   let metadata = await MetaDataAPIS(`/${slug}`);
 
-  // Extract metadata from the head string
   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
   const descriptionMatch = metadata.head.match(
     /<meta name="description" content="(.*?)"/
