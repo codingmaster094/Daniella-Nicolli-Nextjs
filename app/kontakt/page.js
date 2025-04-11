@@ -4,7 +4,7 @@ import Contactform from "../componants/Contactform";
 import Maps from "../componants/Maps";
 import BannerCarousel from "../componants/Banner";
 import Alldata from "../until/AllDatafetch";
-// import MetaDataAPIS from "../until/metadataAPI";
+import MetaDataAPIS from "../until/metadataAPI";
 const page = async () => {
   let ContactData;
 
@@ -63,22 +63,22 @@ const page = async () => {
 
 export default page;
 
-// export async function generateMetadata() {
-//   let metadata = await MetaDataAPIS("/kontakt");
+export async function generateMetadata() {
+  let metadata = await MetaDataAPIS("/kontakt");
 
-//   // Extract metadata from the head string
-//   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-//   const descriptionMatch = metadata.head.match(
-//     /<meta name="description" content="(.*?)"/
-//   );
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
 
-//   const title = titleMatch ? titleMatch[1] : "Default Title";
-//   const description = descriptionMatch
-//     ? descriptionMatch[1]
-//     : "Default Description";
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
 
-//   return {
-//     title,
-//     description,
-//   };
-// }
+  return {
+    title,
+    description,
+  };
+}
