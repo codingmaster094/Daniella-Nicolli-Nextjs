@@ -9,7 +9,7 @@ import MetaDataAPIS from "../until/metadataAPI";
 
 // ✅ Convert Page to Server Component
 export default async function LandingPage({ params }) {
-  const slug = params.slug; // Get the slug from the URL
+  const {slug} = await params
   const landingData = await getLandingData(`/landing?slug=${slug}`); // Fetch data
 
   return (
@@ -60,7 +60,7 @@ export default async function LandingPage({ params }) {
 }
 
 export async function generateMetadata({ params }) {
-  const slug = params?.slug;
+  const {slug} = await params
   let metadata = await MetaDataAPIS(`landing/${slug}`);
 
   // Extract metadata from the head string
