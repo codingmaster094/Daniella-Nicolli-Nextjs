@@ -302,8 +302,8 @@ const Contactform = ({
                             <Image
                               src={icon.image}
                               alt={icon.label}
-                              width={30}
-                              height={30}
+                              width={25}
+                              height={25}
                             />
                           </div>
                         </label>

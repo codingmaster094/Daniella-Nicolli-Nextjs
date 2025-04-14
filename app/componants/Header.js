@@ -18,6 +18,7 @@ const Header = ({ headerDatas, menuData }) => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const lenisRef = useRef(null);
+  
 
   useEffect(() => {
     const scroller = new Lenis();
@@ -86,7 +87,7 @@ const Header = ({ headerDatas, menuData }) => {
   return (
     <header
       className={`  bg-white transition-all duration-300 ${
-        scrolled ? "fixed top-0 w-full z-20 bg-white py-0" : "py-0"
+        scrolled ? "sticky top-0 w-full z-20 bg-white py-0" : "py-0"
       }  `}
     >
       <nav className="flex w-full px-[15px] 2xl:px-[calc(9rem-4px)] justify-between py-2 lg:py-0 items-center">

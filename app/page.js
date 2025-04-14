@@ -18,7 +18,6 @@ export async function generateMetadata() {
   const description = descriptionMatch
     ? descriptionMatch[1]
     : "Default Description";
-
   return {
     title,
     description,
