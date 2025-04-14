@@ -34,8 +34,8 @@ const ContactAboutDetails = ({
   return (
     <>
       <section className="pt-[30px] md:pt-[40px] pb-0 lg:pt-[50px]">
-        <div className=" flex flex-col gap-8">
-          <div className="flex relative w-full max-w-[1578px] px-[15px] gap-4 sm:gap-8 flex-col mx-auto text-center justify-center ">
+        <div className=" flex flex-col gap-8 px-[15px]">
+          <div className="flex relative w-full max-w-[1578px]  gap-4 sm:gap-8 flex-col mx-auto text-center justify-center ">
             <h2
               dangerouslySetInnerHTML={{
                 __html: main_title,
@@ -52,8 +52,8 @@ const ContactAboutDetails = ({
               ></p>
             )}
           </div>
-          <div className="w-full max-w-[1780px]  flex flex-col lg:flex-row  gap-4 lg:gap-0 py-0 lg:py-[64px] relative after:none lg:after:absolute lg:after:right-[15px] lg:after:top-0 lg:after:border lg:after:border-Teal lg:after:w-[80%] 2xl:after:w-[60%] lg:after:h-full lg:after:-z-10">
-            <div className="flex flex-shrink-0 px-4  items-center flex-col w-full lg:w-1/3 2xl:w-[45%]  md:flex-row py-0 lg:py-[15px] bg-white">
+          <div className="w-full max-w-[1200px] mx-auto   flex flex-col lg:flex-row  gap-6  justify-center ">
+            {/* <div className="flex flex-shrink-0 px-4  items-center flex-col w-full lg:w-1/3 2xl:w-[45%]  md:flex-row py-0 lg:py-[15px] bg-white">
               {
                 image && (
                   <Image
@@ -65,38 +65,32 @@ const ContactAboutDetails = ({
                   />
                 )
               }
-            </div>
-            <div className="flex gap-5  flex-col w-full justify-center lg:w:1/2 2xl:w-[60%] lg:gap-8 ">
-              <div className="flex flex-col sm:flex-row flex-wrap px-4   2xl:px-8 gap-2">
-                
-                    <ContactBox
-                      title={telefonnummer_label}
-                      value={ContactOptionData?.footer_phone_number?.title}
-                      buttonText={telefonnummer_button}
-                      buttonLink={ContactOptionData?.footer_phone_number?.url}
-                      buttonTarget={
-                        ContactOptionData?.footer_phone_number?.target
-                      }
-                    />
+            </div> */}
 
-                    <ContactBox
-                      title={email_label}
-                      value={ContactOptionData?.footer_email_address?.title}
-                      buttonText={email_button}
-                      buttonLink={ContactOptionData?.footer_email_address?.url}
-                      buttonTarget={
-                        ContactOptionData?.footer_email_address?.target
-                      }
-                    />
+            <div className="flex w-full flex-col sm:flex-row flex-wrap  gap-4">
+              <ContactBox
+                title={telefonnummer_label}
+                value={ContactOptionData?.footer_phone_number?.title}
+                buttonText={telefonnummer_button}
+                buttonLink={ContactOptionData?.footer_phone_number?.url}
+                buttonTarget={ContactOptionData?.footer_phone_number?.target}
+              />
 
-                    <ContactBox
-                      title={terminbuchung_label}
-                      value={terminbuchung_text}
-                      buttonText={terminbuchung_button?.title}
-                      buttonLink={terminbuchung_button?.url}
-                      buttonTarget={terminbuchung_button?.target}
-                    />
-              </div>
+              <ContactBox
+                title={email_label}
+                value={ContactOptionData?.footer_email_address?.title}
+                buttonText={email_button}
+                buttonLink={ContactOptionData?.footer_email_address?.url}
+                buttonTarget={ContactOptionData?.footer_email_address?.target}
+              />
+
+              <ContactBox
+                title={terminbuchung_label}
+                value={terminbuchung_text}
+                buttonText={terminbuchung_button?.title}
+                buttonLink={terminbuchung_button?.url}
+                buttonTarget={terminbuchung_button?.target}
+              />
             </div>
           </div>
         </div>

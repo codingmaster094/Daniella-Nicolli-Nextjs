@@ -22,15 +22,15 @@ import tea from "../../public/images/tea.svg";
 import truck from "../../public/images/truck.svg";
 
 const iconData = [
-  { value: "Herz", label: "Herz", image: heart },
-  { value: "Tasse", label: "Tasse", image: tea },
-  { value: "Stern", label: "Stern", image: star },
-  { value: "LKW", label: "LKW", image: truck },
-  { value: "Schlüssel", label: "Schlüssel", image: Key },
-  { value: "Haus", label: "Haus", image: home },
-  { value: "Flugzeug", label: "Flugzeug", image: airoplain },
-  { value: "Baum", label: "Baum", image: Tree },
-  { value: "Fahne", label: "Fahne", image: Fahne },
+  { value: "Herz", label: " den  Herz", image: heart },
+  { value: "Tasse", label: " den  Tasse", image: tea },
+  { value: "Stern", label: " den  Stern", image: star },
+  { value: "LKW", label: " den  LKW", image: truck },
+  { value: "Schlüssel", label: " den  Schlüssel", image: Key },
+  { value: "Haus", label: " den  Haus", image: home },
+  { value: "Flugzeug", label: " den  Flugzeug", image: airoplain },
+  { value: "Baum", label: " den  Baum", image: Tree },
+  { value: "Fahne", label: " den  Fahne", image: Fahne },
 ];
 
 const getRandomItems = (array, count) => {
@@ -243,13 +243,13 @@ const Contactform = ({
                       <p className="text-red-500 text-sm">{errors.message}</p>
                     )}
                   </div>
-                  <div className="input-box w-full">
+                  {/* <div className="input-box w-full">
                     <p>
                       Bitte wählen Sie aus, über welchen Weg ich Sie
                       kontaktieren darf:
                     </p>
-                  </div>
-                  <div className="input-box flex gap-2 items-center">
+                  </div> */}
+                  {/* <div className="input-box flex gap-2 items-center">
                     <input
                       type="checkbox"
                       name="Contact_email"
@@ -258,8 +258,8 @@ const Contactform = ({
                       onChange={handleInputChange}
                     />
                     <label htmlFor="Contact_email">E-Mail</label>
-                  </div>
-                  <div className="input-box flex gap-2 items-center">
+                  </div> */}
+                  {/* <div className="input-box flex gap-2 items-center">
                     <input
                       type="checkbox"
                       name="Contact_telefon"
@@ -268,22 +268,21 @@ const Contactform = ({
                       onChange={handleInputChange}
                     />
                     <label htmlFor="Contact_telefon">Telefon</label>
-                  </div>
+                  </div> */}
 
                   <div className="text-a w-full">
                     <p className="Im-section">
                       Informationen zum Datenschutz bzgl. Ihrer Anfrage finden
-                      Sie hier:
-                      <p>
-                        <Link href="/datenschutzerklarung">
-                          Datenschutzerklärung.
-                        </Link>
-                      </p>
+                      Sie hier :{" "}
+                      <Link href="/datenschutzerklarung">
+                        Datenschutzerklärung.
+                      </Link>
+             
                     </p>
                   </div>
                   <p>
-                    Sind Sie ein Mensch? Dann wählen Sie bitte:{" "}
-                    <strong>{randomLabel}</strong>
+                    Sind Sie ein Mensch? Dann wählen Sie bitte
+                    <strong>{randomLabel}</strong>.
                   </p>
                 </div>
                 <div className="input-box w-full">
