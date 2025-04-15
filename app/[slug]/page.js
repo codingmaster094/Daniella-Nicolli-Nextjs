@@ -6,11 +6,15 @@ import LeandingCategories from "../componants/LeandingCategories";
 import Leanding_AboutLambsheim from "../componants/Leanding_AboutLambsheim";
 import getLandingData from "../until/getLandingData";
 import MetaDataAPIS from "../until/metadataAPI";
+import Custom404 from "../not-found";
 
-// ✅ Convert Page to Server Component
 export default async function LandingPage({ params }) {
-  const {slug} = await params
-  const landingData = await getLandingData(`/landing?slug=${slug}`); // Fetch data
+  const { slug } = await params;
+  const landingData = await getLandingData(`/landing?slug=${slug}`); 
+
+  if (!landingData || Object.keys(landingData).length === 0) {
+   return(<Custom404/>)
+  }
 
   return (
     <>
@@ -60,7 +64,7 @@ export default async function LandingPage({ params }) {
 }
 
 export async function generateMetadata({ params }) {
-  const {slug} = await params
+  const { slug } = await params;
   let metadata = await MetaDataAPIS(`landing/${slug}`);
 
   // Extract metadata from the head string

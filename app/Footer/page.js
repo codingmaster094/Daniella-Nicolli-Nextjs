@@ -1,29 +1,23 @@
-// app/Footer/page.js
 import React from "react";
-import axios from "axios";
-import Footer from "../componants/Footer"; // Ensure the path is correct
+import Footer from "../componants/Footer"; 
+import Menudatas from "../until/MenuData";
+import HeaderDatas from "../until/HeaderData";
 
 const Page = async () => {
   let FooterData = null;
   let menuData = null;
 
   try {
-    const headerResponse = await axios.get(
-      `https://daniella.blog-s.de/wp-json/custom/v1/acf-options`
-    );
-    FooterData = headerResponse.data;
-  } catch (error) {
-    console.error("Error fetching footer data:", error);
-  }
-
-  try {
-    const menuResponse = await axios.get(
-      `https://daniella.blog-s.de/wp-json/custom/v1/menus/menu-1`
-    );
-    menuData = menuResponse.data;
-  } catch (error) {
-    console.error("Error fetching menu data:", error);
-  }
+     FooterData = await HeaderDatas("/acf-options");
+    } catch (error) {
+      console.error("Error fetching header data:", error);
+    }
+  
+    try {
+       menuData = await Menudatas("/menus/menu-1");
+    } catch (error) {
+      console.error("Error fetching menu data:", error);
+    }
 
   return <Footer FooterData={FooterData} menuData={menuData} />;
 };

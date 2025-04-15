@@ -1,25 +1,21 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import Menudatas from "../until/MenuData";
 
-const page = () => {
-  const [datenschutzerklärung, setdatenschutzerklärung] = useState(null);
-  const [error, setError] = useState(null);
-  const slug = "datenschutzerklarung"; // You can make this dynamic based on routing
+const page = async() => {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/api/documentAPI?slug=${slug}`);
-      
-        setdatenschutzerklärung(response.data);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchData();
-  }, [slug]);
+    let datenschutzerklärung;
+     try {
+       datenschutzerklärung = await Menudatas(
+         "/page-data/datenschutzerklarung"
+       );
+     } catch (error) {
+       console.error("Error fetching data:", error);
+       return <div>Error loading data.</div>; // Fallback UI
+     }
+  
+     if (!datenschutzerklärung) {
+       return <div>No data available.</div>; // Fallback UI
+     }
 
 
   return (

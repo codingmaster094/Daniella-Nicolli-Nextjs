@@ -1,25 +1,20 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import Menudatas from "../until/MenuData";
 
-const page = () => {
-  const [ImpressumData, setImpressumData] = useState(null);
-  const [error, setError] = useState(null);
-  const slug = "impressum"; 
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/api/documentAPI?slug=${slug}`);
+const page = async() => {
+   let ImpressumData;
+       try {
+         ImpressumData = await Menudatas(
+           "/page-data/impressum"
+         );
+       } catch (error) {
+         console.error("Error fetching data:", error);
+         return <div>Error loading data.</div>; // Fallback UI
+       }
     
-        setImpressumData(response.data);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchData();
-  }, [slug]);
+       if (!ImpressumData) {
+         return <div>No data available.</div>; // Fallback UI
+       }
 
   return (
     <section className="Im-section section">

@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Header/>
-        <main className="layout_contenter">
+        <main>
          {children}
         </main>
           <TopButton />
