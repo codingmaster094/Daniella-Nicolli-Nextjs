@@ -26,7 +26,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
           </div>
 
           <div className="slider-wrapper flex gap-3 lg:gap-10 items-center p-2">
-            <div className="prosSwiper-prev border rounded-full border-teal p-1 sm:p-2 hidden xl:block">
+            <div className="prosSwiper-prev border cursor-pointer rounded-full border-Teal p-1 sm:p-2 hidden xl:block">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
@@ -103,7 +103,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
               ))}
               <div className="swiper-pagination static mt-3 md:mt-6" />
             </Swiper>
-            <div className="prosSwiper-next border rounded-full border-teal p-1 sm:p-2 hidden xl:block">
+            <div className="prosSwiper-next border cursor-pointer rounded-full border-Teal p-1 sm:p-2 hidden xl:block">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"

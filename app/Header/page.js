@@ -1,6 +1,5 @@
 // app/Header/page.js
-import React from "react";
-import axios from "axios"; 
+import React from "react"; 
 import Header from "../componants/Header";
 import HeaderDatas from "../until/HeaderData";
 import Menudatas from "../until/MenuData";

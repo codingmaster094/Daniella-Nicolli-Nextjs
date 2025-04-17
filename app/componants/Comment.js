@@ -20,7 +20,7 @@ const Comment = ({ main_title, content }) => {
                   __html: content
                     ?.replace(/<p>/g, "")
                     .replace(/<\/p>/g, "")
-                    .replace(/&amp;/g, "&"),
+                    .replace(/&amp;/g, "&")
                 }}
               ></p>
             </div>

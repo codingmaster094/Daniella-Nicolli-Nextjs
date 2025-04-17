@@ -26,7 +26,7 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
           }
 
           <div className="slider-wrapper flex gap-3 lg:gap-10 items-center">
-            <div className="serviceSwiper-prev rounded-full p-1 sm:p-2 hidden xl:block">
+            <div className="serviceSwiper-prev cursor-pointer rounded-full border border-Teal p-1 sm:p-2 hidden xl:block">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
@@ -106,7 +106,7 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
               ))}
               <div className="swiper-pagination static mt-3 md:mt-6" />
             </Swiper>
-            <div className="serviceSwiper-next rounded-full p-1 sm:p-2 hidden xl:block">
+            <div className="serviceSwiper-next cursor-pointer rounded-full border border-Teal p-1 sm:p-2 hidden xl:block">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"

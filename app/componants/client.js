@@ -41,7 +41,7 @@ const ClientCarousel = ({
             )}
             <div className="slider-wrapper flex gap-3 sm:gap-10 items-center">
               <button
-                className="clientSwiper-prev border rounded-full border-teal p-1 sm:p-2 hidden xl:!block"
+                className="clientSwiper-prev border rounded-full border-Teal p-1 sm:p-2 hidden xl:!block"
                 onClick={prevSlide}
                 aria-label="Previous slide"
               >
@@ -133,7 +133,7 @@ const ClientCarousel = ({
                 ))}
               </Swiper>
               <button
-                className="clientSwiper-next border rounded-full border-teal p-1 sm:p-2 hidden xl:!block"
+                className="clientSwiper-next border rounded-full border-Teal p-1 sm:p-2 hidden xl:!block"
                 onClick={nextSlide}
                 aria-label="Next slide"
               >
