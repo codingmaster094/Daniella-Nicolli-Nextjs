@@ -3,19 +3,18 @@ import "../public/css/stylesheet.css";
 import Footer from "./Footer/page";
 import TopButton from "../app/componants/Top-Button";
 import Header from "./Header/page";
-import { Analytics } from "@vercel/analytics/react";
+
 
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header />
+        <Header/>
         <main>
-          {children}
-          <Analytics />
+         {children}
         </main>
-        <TopButton />
+          <TopButton />
         <Footer />
       </body>
     </html>
