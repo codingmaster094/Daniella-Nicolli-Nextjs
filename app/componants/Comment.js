@@ -25,7 +25,7 @@ const Comment = ({ main_title, content }) => {
     return () => {
       document.body.removeChild(script);
     };
-  }, []);
+  }, [demoRef]);
 
   return (
     <section className="py-[30px] md:py-[40px] lg:py-[50px]">
