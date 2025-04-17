@@ -47,7 +47,7 @@ const Comment = ({ main_title, content }) => {
 
           {/* Actual Trustindex widget container */}
           <div
-            className="flex w-full shadow-shadow justify-center demo"
+            className="flex w-full  justify-center demo"
             ref={demoRef}
           >
             {/* Trustindex widget will render here */}
