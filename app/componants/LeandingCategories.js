@@ -20,7 +20,9 @@ const LeandingCategories = (props) => {
           height={420}
           priority
         />
+        {bg_img && (
         <div className="overlay-1 absolute w-full h-full top-0 left-0 z-0 bg-[rgba(0,0,0,0.3)]"></div>
+        )}
         <div className="w-full container mx-auto px-[15px]">
           <div className="flex w-full max-w-[922px] flex-col text-white gap-8 mx-auto text-center relative">
             <div className="flex flex-col gap-6">

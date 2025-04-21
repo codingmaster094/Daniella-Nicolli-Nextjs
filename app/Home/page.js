@@ -24,8 +24,6 @@ const Page = async () => {
      return <div>No data available.</div>; 
    }
 
-   
-
   return (
     <>
       <BannerCarousel
