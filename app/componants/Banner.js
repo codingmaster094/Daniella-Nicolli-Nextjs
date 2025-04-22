@@ -9,9 +9,7 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
       <div className="Banner relative w-full h-full">
         <div className="Banner-sliders relative overflow-hidden w-full h-full">
           <div className="item relative w-full h-full">
-            {
               <div className="bg-banner bg-banner-img bg-cover w-full relative ">
-                <>
                   <Image
                     src={img}
                     alt="hero banner image"
@@ -40,9 +38,7 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
                       </Link>
                     )}
                   </div>
-                </>
               </div>
-            }
           </div>
         </div>
       </div>
