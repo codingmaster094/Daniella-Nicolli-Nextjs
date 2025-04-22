@@ -10,7 +10,17 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
         <div className="Banner-sliders relative overflow-hidden w-full h-full">
           <div className="item relative w-full h-full">
             <div className="bg-banner bg-banner-img bg-cover w-full relative ">
-              <Image
+              <picture>
+                <source srcset={img} type="image/webp" />
+                <img
+                  className="absolute top-0 left-0 w-full h-full "
+                  src={img}
+                  alt="Image"
+                  width="1200"
+                  height="800"
+                />
+              </picture>
+              {/* <Image
                 src={img}
                 alt="hero banner image"
                 role="img"
@@ -21,7 +31,7 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
                 priority={true}
                 fetchPriority="high"
                 className="absolute top-0 left-0 w-full h-full "
-              />
+              /> */}
               <div className="flex flex-col bg-Bgwhite my-[15px] p-6 lg:p-10 gap-4 lg:gap-8 w-full md:w-[845px] relative z-10">
                 <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
                 <ul
