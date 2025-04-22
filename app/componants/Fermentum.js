@@ -82,7 +82,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
                         className="!w-12 h-12"
                       />
                       <h3
-                        className="text-black md:text-h4 text-teal-700"
+                        className="text-black md:text-h4 text-Teal"
                         dangerouslySetInnerHTML={{
                           __html: service.home_all_vorteile_title,
                         }}

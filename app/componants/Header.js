@@ -213,7 +213,7 @@ const Header = ({ headerDatas, menuData }) => {
                                     child.id
                                   )
                                 }
-                                className={`cursor-pointer block w-full hover:text-teal-700 text-black-900 hover:bg-gray-100y`}
+                                className={`cursor-pointer block w-full hover:text-Teal text-black-900 hover:bg-gray-100y`}
                               >
                                 <Link href={`${item.slug}${child.url}`}>
                                   {child.title}
