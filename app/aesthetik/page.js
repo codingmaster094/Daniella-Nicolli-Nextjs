@@ -15,11 +15,11 @@ const Page = async() => {
        AesthetikData = await Alldata("/aesthetik");
      } catch (error) {
        console.error("Error fetching data:", error);
-       return <div>Error loading data.</div>; // Fallback UI
+       return <div>Error loading data.</div>;
      }
   
      if (!AesthetikData) {
-       return <div>No data available.</div>; // Fallback UI
+       return <div>No data available.</div>;
      }
 
 

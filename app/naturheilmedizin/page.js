@@ -11,7 +11,6 @@ import MetaDataAPIS from "../until/metadataAPI";
 
 const page = async () => {
   let Naturheilmedizin;
-
   try {
     Naturheilmedizin = await Alldata("/naturheilmedizin");
   } catch (error) {
