@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ["daniella.blog-s.de"],
     formats: ["image/webp"],
+    unoptimized: true,
   },
 
   async redirects() {
