@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React from "react";
 import CommitImage from "../../public/images/comment-img.png";
-// import REVIEWS from "../reviews/page"
 
 const Comment = ({ main_title, content }) => {
   return (
