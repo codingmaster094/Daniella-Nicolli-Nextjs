@@ -117,6 +117,7 @@ const ClientCarousel = ({
                           height={85}
                           width={157}
                           loading="lazy"  
+      
                         />
                       </Link>
                     ) : (
