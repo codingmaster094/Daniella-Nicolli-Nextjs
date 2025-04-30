@@ -69,10 +69,26 @@ const nextConfig = {
       },
     ];
   },
+
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
+
   experimental: {
     scrollRestoration: true,
     turbopack: false,
   },
+
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.alias["lodash"] = "lodash-es";
@@ -86,9 +102,10 @@ const nextConfig = {
 
     return config;
   },
+
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
 };
 
-export default nextConfig
+export default nextConfig;
