@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
 
-const Gallrey = ({ main_title, gallery_images }) => {
+const Gallrey = ({ main_title, gallery_images, gallery_truefalse }) => {
   const [swiperInstance, setSwiperInstance] = useState(null);
 
   const nextSlide = () => {
@@ -20,14 +20,14 @@ const Gallrey = ({ main_title, gallery_images }) => {
   const duplicatedSlides = gallery_images?.concat(gallery_images);
 
   return (
+    gallery_truefalse && (
     <section className="pt-[30px] md:pt-[40px] lg:pt-[50px]">
       <div className="flex flex-col gap-6 md:gap-11 lg:gap-16">
         <div className="flex justify-center px-4 text-center">
           <h2
             className="sm:text-h3 lg:text-h2"
             dangerouslySetInnerHTML={{ __html: main_title }}
-          >
-          </h2>
+          ></h2>
         </div>
         <div className="slider-wrapper relative z-10">
           <Swiper
@@ -104,6 +104,7 @@ const Gallrey = ({ main_title, gallery_images }) => {
         </div>
       </div>
     </section>
+    )
   );
 };
 

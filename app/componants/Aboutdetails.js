@@ -43,7 +43,7 @@ const Aboutdetails = (props) => {
                 {
                   main_title && (
                     <h2
-                      className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
+                      className="text-xl lg:text-2xl xl:text-[33px] xl:leading-snug"
                       dangerouslySetInnerHTML={{ __html: main_title }}
                     />
                   )
@@ -64,7 +64,7 @@ const Aboutdetails = (props) => {
                             (subitem, j) => (
                               <div className="link-blocks space-y-2" key={j}>
                                 {item.home_leistungen_section_sub_content_title && (
-                                  <h3 className="text-5 lg:text-[24px] xl:font-semibold">
+                                  <h3 className="text-5 lg:text-[24px]">
                                     {
                                       item.home_leistungen_section_sub_content_title
                                     }
@@ -104,7 +104,7 @@ const Aboutdetails = (props) => {
                                     .home_leistungen_section_sub_content_button
                                     ?.target || "_self"
                                 }
-                                className="uppercase bg-[#1A8281] py-4 px-9 text-white inline-block"
+                                className="bg-[#1A8281] py-4 px-9 text-white inline-block"
                               >
                                 {
                                   item

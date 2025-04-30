@@ -47,25 +47,25 @@ export default {
         h1: [
           "40px",
           {
-            fontWeight: "700",
+            fontWeight: "500",
           },
         ],
         h2: [
           "33px",
           {
-            fontWeight: "700",
+            fontWeight: "500",
           },
         ],
         h3: [
           "28px",
           {
-            fontWeight: "600",
+            fontWeight: "500",
           },
         ],
         h4: [
           "23px",
           {
-            fontWeight: "600",
+            fontWeight: "500",
           },
         ],
         body: [

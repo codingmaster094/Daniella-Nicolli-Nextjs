@@ -77,6 +77,7 @@ const page = async () => {
         <Gallrey
           main_title={Ubermich?.ueber_gallery_main_title?.value}
           gallery_images={Ubermich?.ueber_gallery_images?.value}
+          gallery_truefalse={Ubermich?.gallery_truefalse?.value}
         />
       )}
     </>

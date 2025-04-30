@@ -34,7 +34,7 @@ const UberAboutDeatils = ({
                 {
                   main_title && (
                     <h2
-                      className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
+                      className="text-xl lg:text-2xl xl:text-[33px] xl:leading-snug"
                       dangerouslySetInnerHTML={{
                         __html: main_title,
                       }}

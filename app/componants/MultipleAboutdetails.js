@@ -87,7 +87,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                             <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20 w-full">
                               {valData.aesthetik_all_faltenunterspritzung_title && (
                                 <h2
-                                  className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
+                                  className="text-xl lg:text-2xl xl:text-[33px]  xl:leading-snug"
                                   dangerouslySetInnerHTML={{
                                     __html:
                                       valData.aesthetik_all_faltenunterspritzung_title,
@@ -118,7 +118,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                       >
                                         <div className="link-blocks space-y-2">
                                           {item.aesthetik_all_faltenunterspritzung_content_items_title && (
-                                            <h3 className="text-5 lg:text-[24px]  xl:font-semibold">
+                                            <h3 className="text-5 lg:text-[24px]">
                                               {
                                                 item.aesthetik_all_faltenunterspritzung_content_items_title
                                               }
