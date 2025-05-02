@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 const UberAboutDeatilsleft = ({
   main_title,
+  sub_content,
   image,
   Small_image_show,
-  sub_content,
 }) => {
   return (
     <section className="py-[20px] group bg-whitereverse">
@@ -29,7 +29,7 @@ const UberAboutDeatilsleft = ({
             <div
               className={`${
                 Small_image_show ? "lg:w-2/3" : "lg:w-1/2"
-              } flex items-center`}
+              } sm:flex block items-center`}
             >
               <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
                 {main_title && (
@@ -40,11 +40,7 @@ const UberAboutDeatilsleft = ({
                     }}
                   />
                 )}
-                {/* <div
-                  className="space-y-2"
-                  dangerouslySetInnerHTML={{ __html: content }}
-                /> */}
-                <div className="flex gap-2 flex-wrap">
+                <div className="sm:flex block gap-2 flex-wrap">
                   <div className="bg-[#FDF6EE] p-4 sm:p-8 space-y-4 2xl:w-[calc(50%-4px)] grow">
                     <div className="link-blocks space-y-2">
                       <ul

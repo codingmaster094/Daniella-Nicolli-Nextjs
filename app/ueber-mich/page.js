@@ -23,7 +23,7 @@ const page = async () => {
     return <div>No data available.</div>; // Fallback UI
   }
 
-console.log('Ubermich======>', Ubermich)
+
   return (
     <>
       <BannerCarousel
@@ -45,8 +45,10 @@ console.log('Ubermich======>', Ubermich)
       )}
 
       <UberAboutDeatils
-        main_title={Ubermich?.ueber_praxis_main_title?.value}
-        content={Ubermich?.ueber_praxis_content?.value}
+        main_title={Ubermich?.ueber_geschichte_main_title?.value}
+        content={Ubermich?.ueber_geschichte_content?.value}
+        main_title1={Ubermich?.ueber_praxis_main_title?.value}
+        content1={Ubermich?.ueber_praxis_content?.value}
         image={Ubermich?.ueber_geschichte_image?.value}
         Small_image_show={Ubermich?.ueber_geschichte_image_show}
       />
@@ -59,10 +61,10 @@ console.log('Ubermich======>', Ubermich)
       )}
 
       <UberAboutDeatilsleft
-        main_title={Ubermich?.ueber_praxis_main_title?.value}
+        main_title={Ubermich?.experience_title?.value}
+        sub_content={Ubermich?.experience_year?.value}
         image={Ubermich?.ueber_praxis_image?.value}
         Small_image_show={Ubermich?.ueber_praxis_image_show?.value}
-        sub_content={Ubermich?.experience_year?.value}
       />
 
       <Categories
