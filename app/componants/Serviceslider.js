@@ -7,10 +7,22 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import equalSlides from "../until/equalSlides";
+// import equalSlides from "../until/equalSlides";
+import commentEqualcontent from "../until/commentEqualcontent";
 
 const Serviceslider = ({ main_title, all_ablauf }) => {
-  equalSlides();
+  // equalSlides();
+   useEffect(() => {
+      const handleResize = () => {
+        commentEqualcontent();
+      };
+  
+      commentEqualcontent(); // Initial call
+      window.addEventListener("resize", handleResize); // Reapply on resize
+  
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
 
   return (
     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-white">
@@ -44,8 +56,8 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
               </svg>
             </div>
             <Swiper
-              className="serviceSwiper select-none"
-              modules={[Navigation, Pagination, Autoplay]}
+              className="serviceSwiper select-none equal-text1"
+              modules={[Navigation, Pagination , Autoplay]}
               spaceBetween={18}
               slidesPerView={1}
               autoplay={{ delay: 2500 }}
@@ -85,13 +97,14 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
                         className="!w-14 h-14 object-contain"
                       />
                       <h3
-                        className="text-a md:text-h4 lg:text-h3"
+                        className="text-a md:text-h4 lg:text-h3 heading"
                         dangerouslySetInnerHTML={{
                           __html: val.home_all_ablauf_title,
                         }}
+                      
                       />
                     </div>
-                    <div className="flex text-center">
+                    <div className="flex text-center paragraph">
                       <p
                         dangerouslySetInnerHTML={{
                           __html: val.home_all_ablauf_content
@@ -104,7 +117,7 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
                   </div>
                 </SwiperSlide>
               ))}
-              <div className="swiper-pagination static mt-3 md:mt-6" />
+              <div className="swiper-pagination xl:hidden block static mt-3 md:mt-6" />
             </Swiper>
             <div className="serviceSwiper-next cursor-pointer rounded-full border border-Teal p-1 sm:p-2 hidden xl:block">
               <svg

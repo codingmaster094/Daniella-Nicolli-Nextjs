@@ -8,11 +8,20 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import equalSlides from "../until/equalSlides";
+import commentEqualcontent from "../until/commentEqualcontent";
 
 const Fermentum = ({ main_title, all_vorteile }) => {
   const carouselRef = useRef();
-  equalSlides();
+  useEffect(() => {
+       const handleResize = () => {
+         commentEqualcontent();
+       };
+   
+       commentEqualcontent(); // Initial call
+       window.addEventListener("resize", handleResize); // Reapply on resize
+   
+       return () => window.removeEventListener("resize", handleResize);
+     }, []);
 
   return (
     <section className="py-[30px] md:py-[40px] lg:py-[50px] bg-white">
@@ -46,7 +55,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}
               ref={carouselRef}
-              className="prosSwiper"
+              className="prosSwiper equal-text2"
               spaceBetween={10}
               slidesPerView={1}
               autoplay={{ delay: 2500 }}
@@ -82,13 +91,13 @@ const Fermentum = ({ main_title, all_vorteile }) => {
                         className="!w-12 h-12"
                       />
                       <h3
-                        className="text-black md:text-h4 text-Teal"
+                        className="text-black md:text-h4 text-Teal heading"
                         dangerouslySetInnerHTML={{
                           __html: service.home_all_vorteile_title,
                         }}
                       />
                     </div>
-                    <div className="flex">
+                    <div className="flex paragraph">
                       <p
                         dangerouslySetInnerHTML={{
                           __html: service.home_all_vorteile_content

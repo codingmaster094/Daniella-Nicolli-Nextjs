@@ -29,7 +29,10 @@ const Page = async () => {
       <BannerCarousel
         title={HomePageData?.hero_slider_main_title?.value}
         img={HomePageData?.hero_slider_image?.value}
-        content={HomePageData?.hero_slider_content?.value.replace(/<\/?ul[^>]*>/g, "")}
+        content={HomePageData?.hero_slider_content?.value.replace(
+          /<\/?ul[^>]*>/g,
+          ""
+        )}
         BTN={HomePageData?.hero_slider_button?.value}
       />
 
@@ -43,7 +46,9 @@ const Page = async () => {
         main_title={HomePageData?.home_leistungen_section_main_title?.value}
         section_image={HomePageData?.home_leistungen_section_image?.value}
         section_content={HomePageData?.home_leistungen_section_content?.value}
-        section_sub_content={HomePageData?.home_leistungen_section_sub_content.value}
+        section_sub_content={
+          HomePageData?.home_leistungen_section_sub_content.value
+        }
         Small_image_show={HomePageData?.home_leistungen_image_show?.value}
       />
 
@@ -83,6 +88,7 @@ const Page = async () => {
       <Comment
         main_title={HomePageData?.bewertungen_main_title?.value}
         content={HomePageData?.bewertungen_content?.value}
+        slider={HomePageData?.slider?.value}
       />
 
       <Slidehover

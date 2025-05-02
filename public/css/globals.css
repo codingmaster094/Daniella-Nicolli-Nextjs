@@ -431,8 +431,14 @@
 .serviceSwiper .swiper-pagination,
 .prosSwiper .swiper-pagination{
 position: static;
+display:none;
 }
-
+@media (max-width: 1280px) {
+  .serviceSwiper .swiper-pagination,
+    .prosSwiper .swiper-pagination {
+      display: block;
+    }
+}
 .LendingAbout a{
   @apply !text-[#1A8281]
 }
