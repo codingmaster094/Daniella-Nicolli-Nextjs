@@ -4,17 +4,31 @@ import LandingAboutSection from "../componants/LandingAboutSection";
 import LendingAbout from "../componants/LendingAbout";
 import LeandingCategories from "../componants/LeandingCategories";
 import Leanding_AboutLambsheim from "../componants/Leanding_AboutLambsheim";
+import Comment from "../componants/Comment";
 import getLandingData from "../until/getLandingData";
 import MetaDataAPIS from "../until/metadataAPI";
 import Custom404 from "../not-found";
+import HeaderDatas from "../until/HeaderData";
 
 export default async function LandingPage({ params }) {
   const { slug } = await params;
-  const landingData = await getLandingData(`/landing?slug=${slug}`); 
 
-  if (!landingData || Object.keys(landingData).length === 0) {
-   return(<Custom404/>)
-  }
+     let ReviewData;
+     let landingData;
+     try {
+        landingData = await getLandingData(`/landing?slug=${slug}`); 
+       ReviewData = await HeaderDatas("/acf-options");
+       if (!landingData || Object.keys(landingData).length === 0) {
+         return <Custom404 />;
+       }
+     } catch (error) {
+       console.error("Error fetching data:", error);
+       return <div>Error loading data.</div>; 
+     }
+  
+     if (!ReviewData) {
+       return <div>No data available.</div>;
+     }
 
   return (
     <>
@@ -58,6 +72,14 @@ export default async function LandingPage({ params }) {
         BTN={landingData?.home_anfrage_1_button}
         bg_img={landingData?.home_anfrage_1_image?.url}
         section_show={landingData?.landing_anfrage_1_section_show}
+      />
+
+      <Comment
+        main_title="Daniella Nicolli <br> Das sagen meine Patienten"
+        content="<p>Privatsphäre, individuelle Betreuung und höchste Sorgfalt stehen bei mir an erster Stelle – dafür braucht es ein offenes Ohr für ehrliches Feedback.</p>"
+        
+        reviewlogos={ReviewData?.logo_slider}
+        slider={ReviewData?.slider}
       />
     </>
   );
