@@ -9,9 +9,14 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import Link from "next/link";
 import commentEqualcontent from "../until/commentEqualcontent";
+import ProvenExpert from "../../public/images/ProvenExpert-Logo_dark_RGB.svg";
+import JamedaLogo from "../../public/images/Jameda_Daniella_Nicolli.png";
+import goggleReview from "../../public/images/google_review.webp";
+import Logoshore from "../../public/images/logo_shore.svg";
+import HeaderDatas from "../until/HeaderData";
 
 
-const Comment = ({ main_title, content, slider }) => {
+const Comment = ({ main_title, content, slider, reviewlogos }) => {
   const carouselRef = useRef();
   const [swiperInstance, setSwiperInstance] = useState(null);
 
@@ -48,6 +53,28 @@ const Comment = ({ main_title, content, slider }) => {
                   .replace(/&amp;/g, "&"),
               }}
             />
+          </div>
+          <div
+            className="flex justify-center items-center text-center w-full xl:gap-32 lg:gap-20 md:gap-12 sm:gap-8 
+          gap-4"
+          >
+            {reviewlogos?.map((item, i) => (
+              <div>
+                <Link
+                  href={item.logo_url.url}
+                  target={item.logo_url.target}
+                  title={item.logo_url.title}
+                >
+                  <Image
+                    src={item.logos.url}
+                    width={150}
+                    height={48}
+                    alt="Review Icon "
+                    className=""
+                  />
+                </Link>
+              </div>
+            ))}
           </div>
           <div className="slider-wrapper flex gap-3 lg:gap-10 items-center p-2">
             <div
@@ -90,10 +117,7 @@ const Comment = ({ main_title, content, slider }) => {
               }}
             >
               {slider?.map((item, i) => (
-                <SwiperSlide
-                  key={item.id || item.slider_title}
-                  className="border border-teal"
-                >
+                <SwiperSlide key={item.id || i} className="border border-teal">
                   <div className="p-6 xl:p-10 space-y-4">
                     <div className="flex items-center gap-6">
                       <Image
@@ -122,15 +146,8 @@ const Comment = ({ main_title, content, slider }) => {
                     </div>
                     {item.slider_button && (
                       <>
-                      <span>
-                        Quelle:{" "}
-                      </span>
-                        <Link
-                          href={item.slider_button.url}
-                          className="text-body text-gray-600 font-semibold inline-block mt-4"
-                        >
-                          {item.slider_button.title}
-                        </Link>
+                        <span>Quelle: </span>
+                        {item.slider_button.title}
                       </>
                     )}
                   </div>

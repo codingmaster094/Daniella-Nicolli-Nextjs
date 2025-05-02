@@ -8,17 +8,20 @@ import Accordian from "../componants/Accordian";
 import MultipleAboutdetails from "../componants/MultipleAboutdetails";
 import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
+import HeaderDatas from "../until/HeaderData";
 
 const page = async () => {
   let Naturheilmedizin;
+   let ReviewData;
   try {
     Naturheilmedizin = await Alldata("/naturheilmedizin");
+    ReviewData = await HeaderDatas("/acf-options");
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>; // Fallback UI
   }
 
-  if (!Naturheilmedizin) {
+  if (!Naturheilmedizin || !ReviewData) {
     return <div>No data available.</div>; // Fallback UI
   }
 
@@ -70,6 +73,8 @@ const page = async () => {
       <Comment
         main_title={Naturheilmedizin?.bewertungen_main_title?.value}
         content={Naturheilmedizin?.bewertungen_content?.value}
+        reviewlogos={ReviewData?.logo_slider}
+        slider={ReviewData?.slider}
       />
       <Accordian
         main_title={Naturheilmedizin?.faq_main_title?.value}

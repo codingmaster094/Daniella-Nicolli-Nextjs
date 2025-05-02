@@ -10,18 +10,21 @@ import Slidehover from "../componants/Slidehover"
 import BannerCarousel from "../componants/Banner"
 import Accordian from "../componants/Accordian"
 import Alldata from "../until/AllDatafetch";
+import HeaderDatas from "../until/HeaderData";
 
 const Page = async () => {
    let HomePageData;
+   let ReviewData;
    try {
      HomePageData = await Alldata("/home");
+     ReviewData = await HeaderDatas("/acf-options");
    } catch (error) {
      console.error("Error fetching data:", error);
      return <div>Error loading data.</div>; 
    }
 
-   if (!HomePageData) {
-     return <div>No data available.</div>; 
+   if (!HomePageData || !ReviewData) {
+     return <div>No data available.</div>;
    }
 
   return (
@@ -88,7 +91,8 @@ const Page = async () => {
       <Comment
         main_title={HomePageData?.bewertungen_main_title?.value}
         content={HomePageData?.bewertungen_content?.value}
-        slider={HomePageData?.slider?.value}
+        reviewlogos={ReviewData?.logo_slider}
+        slider={ReviewData?.slider}
       />
 
       <Slidehover

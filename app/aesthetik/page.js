@@ -8,17 +8,19 @@ import MultipleAboutdetails from "../componants/MultipleAboutdetails"
 import BannerCarousel from "../componants/Banner"
 import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
+import HeaderDatas from "../until/HeaderData";
 const Page = async() => {
   let AesthetikData;
-
+ let ReviewData;
   try {
        AesthetikData = await Alldata("/aesthetik");
+       ReviewData = await HeaderDatas("/acf-options");
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>;
      }
   
-     if (!AesthetikData) {
+     if (!AesthetikData || !ReviewData) {
        return <div>No data available.</div>;
      }
 
@@ -33,7 +35,6 @@ const Page = async() => {
           ""
         )}
         BTN={AesthetikData?.hero_slider_button?.value}
-
       />
 
       {AesthetikData && (
@@ -43,21 +44,18 @@ const Page = async() => {
           activate_deactivate={
             AesthetikData?.enabledisable_partners_logos?.value
           }
-
         />
       )}
       <Terminbroncher
         title={AesthetikData?.aesthetik_grundsätze_main_title?.value}
         BTN={AesthetikData?.aesthetik_grundsätze_button.value}
         columns={AesthetikData?.aesthetik_grundsätze_all_contents?.value}
-
       />
 
       <MultipleAboutdetails
         MultipleAboutdeta={
           AesthetikData?.aesthetik_all_anfrage_faltenunterspritzung
         }
-
       />
       {AesthetikData && (
         <Slidehover
@@ -71,13 +69,13 @@ const Page = async() => {
       <Comment
         main_title={AesthetikData?.bewertungen_main_title?.value}
         content={AesthetikData?.bewertungen_content?.value}
- 
+        reviewlogos={ReviewData?.logo_slider}
+        slider={ReviewData?.slider}
       />
       <Accordian
         main_title={AesthetikData?.faq_main_title?.value}
         all_faqs={AesthetikData?.all_faqs?.value}
         show_section={AesthetikData?.faq_main_faq_show.value}
-   
       />
     </>
   );
