@@ -121,12 +121,17 @@ const Comment = ({ main_title, content, slider }) => {
                       />
                     </div>
                     {item.slider_button && (
-                      <Link
-                        href={item.slider_button.url}
-                        className="text-body text-gray-600 font-semibold inline-block mt-4"
-                      >
-                        Quelle: {item.slider_button.title}
-                      </Link>
+                      <>
+                      <span>
+                        Quelle:{" "}
+                      </span>
+                        <Link
+                          href={item.slider_button.url}
+                          className="text-body text-gray-600 font-semibold inline-block mt-4"
+                        >
+                          {item.slider_button.title}
+                        </Link>
+                      </>
                     )}
                   </div>
                 </SwiperSlide>

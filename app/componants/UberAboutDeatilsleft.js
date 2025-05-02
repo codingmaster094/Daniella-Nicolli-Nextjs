@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 const UberAboutDeatilsleft = ({
   main_title,
-  content,
   image,
   Small_image_show,
+  sub_content,
 }) => {
   return (
     <section className="py-[20px] group bg-whitereverse">
@@ -40,10 +40,25 @@ const UberAboutDeatilsleft = ({
                     }}
                   />
                 )}
-                <div
+                {/* <div
                   className="space-y-2"
                   dangerouslySetInnerHTML={{ __html: content }}
-                />
+                /> */}
+                <div className="flex gap-2 flex-wrap">
+                  <div className="bg-[#FDF6EE] p-4 sm:p-8 space-y-4 2xl:w-[calc(50%-4px)] grow">
+                    <div className="link-blocks space-y-2">
+                      <ul
+                        className="menu menu1 list-g-disc text-[18px]"
+                        dangerouslySetInnerHTML={{
+                          __html: sub_content
+                            ?.replace(/<ul>/g, "")
+                            .replace(/<\/ul>/g, "")
+                            .replace(/&amp;/g, "&"),
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
