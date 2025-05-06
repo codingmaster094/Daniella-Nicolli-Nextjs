@@ -57,7 +57,7 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
               <div>
                 <Link
                   href={item.logo_url.url}
-                  target={item.logo_url.target}
+                  target="_blank"
                   title={item.logo_url.title}
                 >
                   <Image

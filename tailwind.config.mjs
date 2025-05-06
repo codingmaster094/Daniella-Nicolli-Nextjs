@@ -45,19 +45,19 @@ export default {
       },
       fontSize: {
         h1: [
-          "40px",
-          {
+          "30px",
+          {lineHeight: "1.4",
             fontWeight: "500",
           },
         ],
         h2: [
-          "33px",
+          "28px",
           {
             fontWeight: "500",
           },
         ],
         h3: [
-          "28px",
+          "26px",
           {
             fontWeight: "500",
           },
