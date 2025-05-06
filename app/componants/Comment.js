@@ -54,7 +54,7 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
           gap-4"
           >
             {reviewlogos?.map((item, i) => (
-              <div>
+              <div key={i}>
                 <Link
                   href={item.logo_url.url}
                   target="_blank"
@@ -119,8 +119,8 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                         src={item.profile.url}
                         width={48}
                         height={48}
-                        alt="Service Icon "
-                        className="!w-12 h-12 rounded-full"
+                        alt="Service Icon"
+                        className="!w-12 h-12 rounded-full !object-cover !object-center"
                       />
                       <h3
                         className="text-black md:text-h4 heading"
@@ -140,10 +140,10 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                       />
                     </div>
                     {item.slider_button && (
-                      <>
+                      <div className="mt-2">
                         <span>Quelle: </span>
                         {item.slider_button.title}
-                      </>
+                      </div>
                     )}
                   </div>
                 </SwiperSlide>
