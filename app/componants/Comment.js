@@ -9,11 +9,6 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import Link from "next/link";
 import commentEqualcontent from "../until/commentEqualcontent";
-import ProvenExpert from "../../public/images/ProvenExpert-Logo_dark_RGB.svg";
-import JamedaLogo from "../../public/images/Jameda_Daniella_Nicolli.png";
-import goggleReview from "../../public/images/google_review.webp";
-import Logoshore from "../../public/images/logo_shore.svg";
-import HeaderDatas from "../until/HeaderData";
 
 
 const Comment = ({ main_title, content, slider, reviewlogos }) => {
@@ -66,7 +61,7 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                   title={item.logo_url.title}
                 >
                   <Image
-                    src={item.logos.url}
+                    src={item?.logos?.url}
                     width={150}
                     height={48}
                     alt="Review Icon "

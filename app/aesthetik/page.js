@@ -1,6 +1,6 @@
 import React from "react";
 import ClientCarousel from "../componants/client"
-import Comment from "../componants/Comment"
+import ReviewsData from "../ReviewsData/page";
 import Accordian from "../componants/Accordian"
 import Slidehover from "../componants/Slidehover"
 import Terminbroncher from "../componants/Terminbroncher"
@@ -8,19 +8,16 @@ import MultipleAboutdetails from "../componants/MultipleAboutdetails"
 import BannerCarousel from "../componants/Banner"
 import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
-import HeaderDatas from "../until/HeaderData";
 const Page = async() => {
   let AesthetikData;
- let ReviewData;
   try {
        AesthetikData = await Alldata("/aesthetik");
-       ReviewData = await HeaderDatas("/acf-options");
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>;
      }
   
-     if (!AesthetikData || !ReviewData) {
+     if (!AesthetikData) {
        return <div>No data available.</div>;
      }
 
@@ -66,12 +63,7 @@ const Page = async() => {
         />
       )}
 
-      <Comment
-        main_title={AesthetikData?.bewertungen_main_title?.value}
-        content={AesthetikData?.bewertungen_content?.value}
-        reviewlogos={ReviewData?.logo_slider}
-        slider={ReviewData?.slider}
-      />
+      <ReviewsData />
       <Accordian
         main_title={AesthetikData?.faq_main_title?.value}
         all_faqs={AesthetikData?.all_faqs?.value}

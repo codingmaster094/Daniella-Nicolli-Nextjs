@@ -5,25 +5,22 @@ import Categories from "../componants/Categories"
 import AboutLambsheim from "../componants/AboutLambsheim"
 import Fermentum from "../componants/Fermentum"
 import Serviceslider from "../componants/Serviceslider"
-import Comment from "../componants/Comment"
+import ReviewsData from "../ReviewsData/page";
 import Slidehover from "../componants/Slidehover"
 import BannerCarousel from "../componants/Banner"
 import Accordian from "../componants/Accordian"
 import Alldata from "../until/AllDatafetch";
-import HeaderDatas from "../until/HeaderData";
 
 const Page = async () => {
    let HomePageData;
-   let ReviewData;
    try {
      HomePageData = await Alldata("/home");
-     ReviewData = await HeaderDatas("/acf-options");
    } catch (error) {
      console.error("Error fetching data:", error);
      return <div>Error loading data.</div>; 
    }
 
-   if (!HomePageData || !ReviewData) {
+   if (!HomePageData) {
      return <div>No data available.</div>;
    }
 
@@ -88,12 +85,7 @@ const Page = async () => {
         enabledisable_referenz={HomePageData?.enabledisable_referenz?.value}
       />
 
-      <Comment
-        main_title={HomePageData?.bewertungen_main_title?.value}
-        content={HomePageData?.bewertungen_content?.value}
-        reviewlogos={ReviewData?.logo_slider}
-        slider={ReviewData?.slider}
-      />
+      <ReviewsData />
 
       <Slidehover
         main_title={HomePageData?.referenzen_main_title.value}
