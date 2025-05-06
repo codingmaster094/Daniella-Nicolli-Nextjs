@@ -273,7 +273,7 @@ const Contactform = ({
                   <div className="text-a w-full">
                     <p className="Im-section">
                       Informationen zum Datenschutz bzgl. Ihrer Anfrage finden
-                      Sie hier :{" "}
+                      Sie hier:{" "}
                       <Link href="/datenschutzerklarung">
                         Datenschutzerklärung.
                       </Link>
