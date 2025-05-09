@@ -55,19 +55,29 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
           >
             {reviewlogos?.map((item, i) => (
               <div key={i}>
-                <Link
-                  href={item.logo_url.url}
-                  target="_blank"
-                  title={item.logo_url.title}
-                >
-                  <Image
-                    src={item?.logos?.url}
-                    width={150}
-                    height={48}
-                    alt="Review Icon "
-                    className=""
-                  />
-                </Link>
+                {item.logo_url.url !== "/" ? (
+                  <Link
+                    href={item.logo_url.url}
+                    target={item.logo_url.target}
+                    title={item.logo_url.title}
+                  >
+                    <Image
+                      src={item?.logos?.url}
+                      width={150}
+                      height={48}
+                      alt="Review Icon "
+                      className=""
+                    />
+                  </Link>
+                ) : (
+                    <Image
+                      src={item?.logos?.url}
+                      width={150}
+                      height={48}
+                      alt="Review Icon "
+                      className=""
+                    />
+                )}
               </div>
             ))}
           </div>

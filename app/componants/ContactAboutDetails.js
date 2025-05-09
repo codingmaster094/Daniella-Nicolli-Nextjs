@@ -76,6 +76,13 @@ const ContactAboutDetails = ({
                 buttonTarget={ContactOptionData?.footer_phone_number?.target}
               />
 
+              <ContactBox 
+                title={email_label}
+                value={ContactOptionData?.footer_email_address?.title}    // whatsaap
+                buttonText={email_button}
+                buttonLink={ContactOptionData?.footer_email_address?.url}
+                buttonTarget={ContactOptionData?.footer_email_address?.target}
+              />
               <ContactBox
                 title={email_label}
                 value={ContactOptionData?.footer_email_address?.title}

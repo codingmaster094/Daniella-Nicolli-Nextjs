@@ -42,7 +42,7 @@ const LandingAboutSection = (props) => {
                 <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
                   {main_title && (
                     <h2
-                      className="text-xl lg:text-2xl xl:text-[33px] font-bold xl:leading-snug"
+                      className="text-xl lg:text-2xl xl:text-[33px]  xl:leading-snug"
                       dangerouslySetInnerHTML={{ __html: main_title }}
                     />
                   )}
