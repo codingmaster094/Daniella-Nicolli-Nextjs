@@ -80,7 +80,7 @@ const Aboutdetails = (props) => {
                                 )}
 
                                 <ul
-                                  className="menu menu1 list-g-disc text-[18px]"
+                                  className="menu menu1 list-g-disc text-[16px]"
                                   dangerouslySetInnerHTML={{
                                     __html:
                                       subitem.home_leistungen_section_sub_contents_item_content

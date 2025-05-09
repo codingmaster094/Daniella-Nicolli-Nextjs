@@ -44,7 +44,7 @@ const UberAboutDeatilsleft = ({
                   <div className="bg-[#FDF6EE] p-4 sm:p-8 space-y-4 2xl:w-[calc(50%-4px)] grow">
                     <div className="link-blocks space-y-2">
                       <ul
-                        className="menu menu1 list-g-disc text-[18px]"
+                        className="menu menu1 list-g-disc text-[16px]"
                         dangerouslySetInnerHTML={{
                           __html: sub_content
                             ?.replace(/<ul>/g, "")

@@ -126,7 +126,7 @@ const AsehetikAboutpage = ({ MultipleAboutdeta }) => {
                                           )}
 
                                           <ul
-                                            className="menu menu1 list-g-disc text-[18px]"
+                                            className="menu menu1 list-g-disc text-[16px]"
                                             dangerouslySetInnerHTML={{
                                               __html:
                                                 item?.aesthetik_all_faltenunterspritzung_content_items

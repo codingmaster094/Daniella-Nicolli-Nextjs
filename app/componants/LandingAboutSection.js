@@ -79,7 +79,7 @@ const LandingAboutSection = (props) => {
                             )}
 
                             <ul
-                              className="menu list-g-disc text-[18px]"
+                              className="menu list-g-disc text-[16px]"
                               dangerouslySetInnerHTML={{
                                 __html:
                                   item.home_leistungen_section_sub_contents_item
