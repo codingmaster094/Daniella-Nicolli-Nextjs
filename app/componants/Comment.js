@@ -70,13 +70,13 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                     />
                   </Link>
                 ) : (
-                    <Image
-                      src={item?.logos?.url}
-                      width={150}
-                      height={48}
-                      alt="Review Icon "
-                      className=""
-                    />
+                  <Image
+                    src={item?.logos?.url}
+                    width={150}
+                    height={48}
+                    alt="Review Icon "
+                    className=""
+                  />
                 )}
               </div>
             ))}
@@ -138,6 +138,9 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                           __html: item.slider_title,
                         }}
                       />
+                      <div className="flex justify-center text-center"> {/* here slug change*/}
+                        <p>09-05-2025</p> 
+                      </div>
                     </div>
                     <div className="flex paragraph">
                       <p

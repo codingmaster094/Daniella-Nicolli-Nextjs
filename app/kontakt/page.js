@@ -42,7 +42,8 @@ const page = async () => {
         telefonnummer_button={ContactData?.kontakt_telefonnummer_button?.value}
         email_button={ContactData?.kontakt_email_button?.value}
         terminbuchung_button={ContactData?.kontakt_terminbuchung_button?.value}
-        terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
+        terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value} 
+         // add whatsaap detalis in 
       />
 
       <Maps
