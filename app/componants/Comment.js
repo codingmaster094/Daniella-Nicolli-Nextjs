@@ -142,7 +142,11 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                         <div className="flex justify-center text-center *:text-sm">
                           {" "}
                           {/* here slug change*/}
-                          <p>2025-05-09</p>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: item.review_slider_date
+                            }}
+                          />
                         </div>
                       </div>
                     </div>

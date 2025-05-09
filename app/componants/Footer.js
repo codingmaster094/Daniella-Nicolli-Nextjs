@@ -16,10 +16,14 @@ const Footer = ({ FooterData, menuData }) => {
         <div className="flex gap-6 lg:gap-8 2xl:gap-[90px] justify-between lg:flex-nowrap flex-wrap py-8 md:py-20">
           <div className="flex flex-col md:w-auto w-full gap-4">
             <h3>{FooterData?.kontakt_label}</h3>
-            <ul className="[&>li>span>img]:!mt-4">
+            <ul className="[&>li]:flex [&>li]:justify-start [&>li]:items-start">
               <li>
                 <span className="flex flex-shrink-0">
-                  <Image src={LocationSvg} alt="location-svg" />
+                  <Image
+                    src={LocationSvg}
+                    alt="location-svg"
+                    className="mt-[5px]"
+                  />
                 </span>
 
                 <div
@@ -31,7 +35,7 @@ const Footer = ({ FooterData, menuData }) => {
               </li>
               <li>
                 <span className="flex flex-shrink-0">
-                  <Image src={PhoneSvg} alt="phone-svg" />
+                  <Image src={PhoneSvg} alt="phone-svg" className="mt-[5px]" />
                 </span>
                 {FooterData?.footer_phone_number && (
                   <Link
@@ -46,7 +50,11 @@ const Footer = ({ FooterData, menuData }) => {
               </li>
               <li>
                 <span className="flex flex-shrink-0">
-                  <Image src={WhatsappSvg} alt="whatsapp-svg" />
+                  <Image
+                    src={WhatsappSvg}
+                    alt="whatsapp-svg"
+                    className="mt-[5px] w-[18px] h-[18px]"
+                  />
                 </span>
                 {FooterData?.footer_whatsapp_number && (
                   <Link
@@ -67,7 +75,7 @@ const Footer = ({ FooterData, menuData }) => {
               </li> */}
               <li>
                 <span className="flex flex-shrink-0">
-                  <Image src={MailSvg} alt="MailSvg" />
+                  <Image src={MailSvg} alt="MailSvg" className="mt-[5px]" />
                 </span>
                 {FooterData?.footer_email_address && (
                   <Link
