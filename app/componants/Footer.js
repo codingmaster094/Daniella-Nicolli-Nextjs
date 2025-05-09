@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import LocationSvg from "../../public/images/location.svg";
 import PhoneSvg from "../../public/images/phone.svg";
-import FaxSvg from "../../public/images/fax.svg";
+// import FaxSvg from "../../public/images/fax.svg";
+import WhatsappSvg from "../../public/images/wtsapp.svg";
 import MailSvg from "../../public/images/mail.svg";
 import FacebookSvg from "../../public/images/face-book.svg";
 import InstagramSvg from "../../public/images/Whiteinstgram.svg";
@@ -15,9 +16,12 @@ const Footer = ({ FooterData, menuData }) => {
         <div className="flex gap-6 lg:gap-8 2xl:gap-[90px] justify-between lg:flex-nowrap flex-wrap py-8 md:py-20">
           <div className="flex flex-col md:w-auto w-full gap-4">
             <h3>{FooterData?.kontakt_label}</h3>
-            <ul className="[&_li>img]:mt-4">
+            <ul className="[&>li>span>img]:!mt-4">
               <li>
-                <Image src={LocationSvg} alt="location-svg" />
+                <span className="flex flex-shrink-0">
+                  <Image src={LocationSvg} alt="location-svg" />
+                </span>
+
                 <div
                   dangerouslySetInnerHTML={{
                     __html: FooterData?.footer_address || "",
@@ -42,10 +46,25 @@ const Footer = ({ FooterData, menuData }) => {
               </li>
               <li>
                 <span className="flex flex-shrink-0">
+                  <Image src={WhatsappSvg} alt="whatsapp-svg" />
+                </span>
+                {FooterData?.footer_whatsapp_number && (
+                  <Link
+                    href={FooterData?.footer_whatsapp_number?.url}
+                    target={FooterData?.footer_whatsapp_number?.target}
+                    aria-label="phone-link"
+                    role="link"
+                  >
+                    {FooterData?.footer_whatsapp_number?.title}
+                  </Link>
+                )}
+              </li>
+              {/* <li>
+                <span className="flex flex-shrink-0">
                   <Image src={FaxSvg} alt="fax-svg" />
                 </span>
                 {FooterData?.footer_fax_number?.title}
-              </li>
+              </li> */}
               <li>
                 <span className="flex flex-shrink-0">
                   <Image src={MailSvg} alt="MailSvg" />

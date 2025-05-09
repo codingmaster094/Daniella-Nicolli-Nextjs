@@ -8,7 +8,7 @@ const Categories = (props) => {
   return (
     <section
       className={`py-10 md:py-[70px] lg:py-[100px] bg-cover bg-center bg-no-repeat relative ${
-        bg_img ? "min-h-[400px]" : "bg-Teal h-auto"
+        bg_img ? "min-h-[450px]" : "bg-Teal h-auto"
       }`}
     >
       {/* Background Image */}

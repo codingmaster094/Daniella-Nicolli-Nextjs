@@ -132,14 +132,18 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                         alt="Service Icon"
                         className="!w-12 h-12 rounded-full !object-cover !object-center"
                       />
-                      <h3
-                        className="text-black md:text-h4 heading"
-                        dangerouslySetInnerHTML={{
-                          __html: item.slider_title,
-                        }}
-                      />
-                      <div className="flex justify-center text-center"> {/* here slug change*/}
-                        <p>09-05-2025</p> 
+                      <div className="flex flex-col justify-start items-start">
+                        <h3
+                          className="text-black md:text-h4 heading"
+                          dangerouslySetInnerHTML={{
+                            __html: item.slider_title,
+                          }}
+                        />
+                        <div className="flex justify-center text-center *:text-sm">
+                          {" "}
+                          {/* here slug change*/}
+                          <p>2025-05-09</p>
+                        </div>
                       </div>
                     </div>
                     <div className="flex paragraph">

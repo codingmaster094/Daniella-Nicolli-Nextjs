@@ -37,13 +37,20 @@ const page = async () => {
         content={ContactData?.kontakt_uebersicht_content?.value}
         image={ContactData?.kontakt_uebersicht_image?.value}
         telefonnummer_label={ContactData?.kontakt_telefonnummer_label?.value}
+        kontakt_whatsapp_label={ContactData?.kontakt_whatsapp_label?.value}
         email_label={ContactData?.kontakt_email_label?.value}
         terminbuchung_label={ContactData?.kontakt_terminbuchung_label?.value}
         telefonnummer_button={ContactData?.kontakt_telefonnummer_button?.value}
+        kontakt_whatsapp_button_text={
+          ContactData?.kontakt_whatsapp_button_text?.value
+        }
         email_button={ContactData?.kontakt_email_button?.value}
         terminbuchung_button={ContactData?.kontakt_terminbuchung_button?.value}
-        terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value} 
-         // add whatsaap detalis in 
+        terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
+        footer_whatsapp_number={
+          ContactData?.footer_whatsapp_number?.value
+        }
+        // add whatsaap detalis in
       />
 
       <Maps

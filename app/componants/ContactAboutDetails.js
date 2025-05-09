@@ -8,9 +8,11 @@ const ContactAboutDetails = ({
   content,
   image,
   telefonnummer_label,
+  kontakt_whatsapp_label,
   email_label,
   terminbuchung_label,
   telefonnummer_button,
+  kontakt_whatsapp_button_text,
   email_button,
   terminbuchung_button,
   terminbuchung_text,
@@ -76,12 +78,12 @@ const ContactAboutDetails = ({
                 buttonTarget={ContactOptionData?.footer_phone_number?.target}
               />
 
-              <ContactBox 
-                title={email_label} // aad whatsaap slu title 
-                value={ContactOptionData?.footer_email_address?.title}    // whatsaap
-                buttonText={email_button}
-                buttonLink={ContactOptionData?.footer_email_address?.url}
-                buttonTarget={ContactOptionData?.footer_email_address?.target}
+              <ContactBox
+                title={kontakt_whatsapp_label}
+                value={ContactOptionData?.footer_whatsapp_number?.title}
+                buttonText={kontakt_whatsapp_button_text}
+                buttonLink={ContactOptionData?.footer_whatsapp_number?.url}
+                buttonTarget={ContactOptionData?.footer_whatsapp_number?.target}
               />
               <ContactBox
                 title={email_label}
