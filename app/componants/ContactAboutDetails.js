@@ -80,7 +80,7 @@ const ContactAboutDetails = ({
 
               <ContactBox
                 title={kontakt_whatsapp_label}
-                // value={ContactOptionData?.footer_whatsapp_number?.title}
+                 value={ContactOptionData?.footer_whatsapp_number?.title}  
                 buttonText={kontakt_whatsapp_button_text}
                 buttonLink={ContactOptionData?.footer_whatsapp_number?.url}
                 buttonTarget={ContactOptionData?.footer_whatsapp_number?.target}
