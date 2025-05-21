@@ -132,8 +132,6 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                           .map((word) => word.charAt(0).toUpperCase())
                           .join("")}
                       </span>
-
-                      {/* here... */}
                       <div className="flex flex-col justify-start items-start">
                         <h3
                           className="text-black md:text-h4 heading"

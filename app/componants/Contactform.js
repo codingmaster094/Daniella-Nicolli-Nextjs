@@ -38,6 +38,15 @@ const getRandomItems = (array, count) => {
   return shuffled.slice(0, count);
 };
 
+const LoadingDots = () => {
+  return (
+    <section class="dots-container">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </section>
+  );
+};
 const Contactform = ({
   main_title,
   content,
@@ -45,6 +54,7 @@ const Contactform = ({
   form_address,
 }) => {
   const [ContactOptionData, setContactOptionData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -71,7 +81,8 @@ const Contactform = ({
       const randomLabelItem =
         selectedIcons[Math.floor(Math.random() * selectedIcons.length)];
       setRandomLabel(randomLabelItem.label);
-      setcorrectAnswer(randomLabelItem.label); // Store the correct answer
+      setcorrectAnswer(randomLabelItem.label); 
+      setLoading(false);
     }, []);
 
   const fetchContactOptionData = async () => {
@@ -260,7 +271,11 @@ const Contactform = ({
                 </div>
                 <div className="input-box w-full">
                   <div className="flex items-center gap-4 mt-2">
-                    {randomIcons.map((icon, i) => {
+                  
+                  {loading ? ( 
+                  <LoadingDots /> 
+                ) : (
+                      randomIcons.map((icon, i) => {
                       return (
                         <label key={i} className="cursor-pointer">
                           <input
@@ -281,7 +296,8 @@ const Contactform = ({
                           </div>
                         </label>
                       );
-                    })}
+                    })
+                  )}
                   </div>
 
                   {errors.selectedIcon && (
