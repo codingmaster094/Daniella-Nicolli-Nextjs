@@ -243,33 +243,6 @@ const Contactform = ({
                       <p className="text-red-500 text-sm">{errors.message}</p>
                     )}
                   </div>
-                  {/* <div className="input-box w-full">
-                    <p>
-                      Bitte wählen Sie aus, über welchen Weg ich Sie
-                      kontaktieren darf:
-                    </p>
-                  </div> */}
-                  {/* <div className="input-box flex gap-2 items-center">
-                    <input
-                      type="checkbox"
-                      name="Contact_email"
-                      id="Contact_email"
-                      checked={formData.Contact_email}
-                      onChange={handleInputChange}
-                    />
-                    <label htmlFor="Contact_email">E-Mail</label>
-                  </div> */}
-                  {/* <div className="input-box flex gap-2 items-center">
-                    <input
-                      type="checkbox"
-                      name="Contact_telefon"
-                      id="Contact_telefon"
-                      checked={formData.Contact_telefon}
-                      onChange={handleInputChange}
-                    />
-                    <label htmlFor="Contact_telefon">Telefon</label>
-                  </div> */}
-
                   <div className="text-a w-full">
                     <p className="Im-section">
                       Informationen zum Datenschutz bzgl. Ihrer Anfrage finden
@@ -317,7 +290,7 @@ const Contactform = ({
                     </p>
                   )}
                 </div>
-
+                
                 <button
                   type="submit"
                   className="flex self-start justify-center mt-6 md:mt-8 lg:mt-12 bg-white border border-Teal text-Teal hover:bg-Teal hover:text-white font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in w-full"

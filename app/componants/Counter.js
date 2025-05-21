@@ -128,8 +128,6 @@
 import React from "react";
 
 const Counter = ({ main_title, all_leistungen }) => {
-  console.log('all_leistungen', all_leistungen)
-
   return (
     <section className="py-10 md:py-[70px] lg:py-[100px] bg-Teal">
       <div className="container mx-auto px-[15px] sm:px-[30px] lg:px-[61px]">

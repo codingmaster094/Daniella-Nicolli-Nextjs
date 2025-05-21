@@ -125,13 +125,15 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                 <SwiperSlide key={item.id || i} className="border border-teal">
                   <div className="p-6 xl:p-10 space-y-4">
                     <div className="flex items-center gap-6">
-                      <Image
-                        src={item.profile.url}
-                        width={48}
-                        height={48}
-                        alt="Service Icon"
-                        className="!w-12 h-12 rounded-full !object-cover !object-center"
-                      />
+                      <span className="avtar">
+                        {item.slider_title
+                          ?.split(" ")
+                          .slice(0, 2)
+                          .map((word) => word.charAt(0).toUpperCase())
+                          .join("")}
+                      </span>
+
+                      {/* here... */}
                       <div className="flex flex-col justify-start items-start">
                         <h3
                           className="text-black md:text-h4 heading"
@@ -144,7 +146,7 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
                           {/* here slug change*/}
                           <p
                             dangerouslySetInnerHTML={{
-                              __html: item.review_slider_date
+                              __html: item.review_slider_date,
                             }}
                           />
                         </div>
