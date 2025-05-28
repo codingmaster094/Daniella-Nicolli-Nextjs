@@ -1,27 +1,24 @@
 // app/sitemap.xml/route.js
-import Menudatas from "../until/MenuData"; // Update path if needed
+import FetchAllslug from "../until/FetchAllslug"; // Update path if needed
 
 export async function GET() {
   let urls = [];
 
   try {
-    const menuData = await Menudatas("/menus/menu-1");
-    const items = menuData?.menu || [];
+    const SiteMapData = await FetchAllslug("/custom-sitemap/v1/slugs");
+    console.log('SiteMapData', SiteMapData)
+    const items = SiteMapData || [];
 
     const collectUrls = (menuItems) => {
       return menuItems.flatMap((item) => {
         const current = `
           <url>
-            <loc>${item.url}</loc>
+            <loc>${item}</loc>
             <lastmod>${new Date().toISOString()}</lastmod>
           </url>
         `;
 
-        const children = item.children?.length
-          ? collectUrls(item.children)
-          : [];
-
-        return [current, ...children];
+        return [current];
       });
     };
 
