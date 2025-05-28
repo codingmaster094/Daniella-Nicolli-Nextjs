@@ -40,10 +40,10 @@ const getRandomItems = (array, count) => {
 
 const LoadingDots = () => {
   return (
-    <section class="dots-container">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
+    <section className="dots-container">
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
     </section>
   );
 };
@@ -73,17 +73,17 @@ const Contactform = ({
   const [randomIcons, setRandomIcons] = useState([]);
   const [randomLabel, setRandomLabel] = useState("");
 
-    useEffect(() => {
-      const selectedIcons = getRandomItems(iconData, 3);
-      setRandomIcons(selectedIcons);
+  useEffect(() => {
+    const selectedIcons = getRandomItems(iconData, 3);
+    setRandomIcons(selectedIcons);
 
-      // Pick the label from one of the selected icons as the correct answer
-      const randomLabelItem =
-        selectedIcons[Math.floor(Math.random() * selectedIcons.length)];
-      setRandomLabel(randomLabelItem.label);
-      setcorrectAnswer(randomLabelItem.label); 
-      setLoading(false);
-    }, []);
+    // Pick the label from one of the selected icons as the correct answer
+    const randomLabelItem =
+      selectedIcons[Math.floor(Math.random() * selectedIcons.length)];
+    setRandomLabel(randomLabelItem.label);
+    setcorrectAnswer(randomLabelItem.label);
+    setLoading(false);
+  }, []);
 
   const fetchContactOptionData = async () => {
     try {
@@ -120,9 +120,9 @@ const Contactform = ({
     }
     if (!formData.message.trim())
       newErrors.message = "Nachricht ist erforderlich";
-     if (formData.selectedIcon !== correctAnswer) {
-       newErrors.selectedIcon = "Bitte wählen Sie das richtige Symbol aus.";
-     }
+    if (formData.selectedIcon !== correctAnswer) {
+      newErrors.selectedIcon = "Bitte wählen Sie das richtige Symbol aus.";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -261,7 +261,6 @@ const Contactform = ({
                       <Link href="/datenschutzerklarung">
                         Datenschutzerklärung.
                       </Link>
-             
                     </p>
                   </div>
                   <p>
@@ -271,33 +270,32 @@ const Contactform = ({
                 </div>
                 <div className="input-box w-full">
                   <div className="flex items-center gap-4 mt-2">
-                  
-                  {loading ? ( 
-                  <LoadingDots /> 
-                ) : (
+                    {loading ? (
+                      <LoadingDots />
+                    ) : (
                       randomIcons.map((icon, i) => {
-                      return (
-                        <label key={i} className="cursor-pointer">
-                          <input
-                            type="radio"
-                            name="selectedIcon"
-                            value={icon.label}
-                            checked={formData.selectedIcon === icon.label}
-                            onChange={handleInputChange}
-                            className="hidden peer"
-                          />
-                          <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500">
-                            <Image
-                              src={icon.image}
-                              alt={icon.label}
-                              width={25}
-                              height={25}
+                        return (
+                          <label key={i} className="cursor-pointer">
+                            <input
+                              type="radio"
+                              name="selectedIcon"
+                              value={icon.label}
+                              checked={formData.selectedIcon === icon.label}
+                              onChange={handleInputChange}
+                              className="hidden peer"
                             />
-                          </div>
-                        </label>
-                      );
-                    })
-                  )}
+                            <div className="p-1 peer-checked:border-2 peer-checked:border-orange-500">
+                              <Image
+                                src={icon.image}
+                                alt={icon.label}
+                                width={25}
+                                height={25}
+                              />
+                            </div>
+                          </label>
+                        );
+                      })
+                    )}
                   </div>
 
                   {errors.selectedIcon && (
@@ -306,7 +304,7 @@ const Contactform = ({
                     </p>
                   )}
                 </div>
-                
+
                 <button
                   type="submit"
                   className="flex self-start justify-center mt-6 md:mt-8 lg:mt-12 bg-white border border-Teal text-Teal hover:bg-Teal hover:text-white font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in w-full"

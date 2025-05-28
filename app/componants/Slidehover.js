@@ -38,7 +38,7 @@ const Slidehover = ({bg_image , main_title, all_referenzen, enabledisable_refere
             <Swiper
               modules={[Navigation, Autoplay]}
               slidesPerView={1}
-              autoplay={{ delay: 2500 }}
+              autoplay={{ delay: 6000 }}
               loop={true}
               breakpoints={{
                 700: { slidesPerView: 2 },
@@ -76,16 +76,16 @@ const Slidehover = ({bg_image , main_title, all_referenzen, enabledisable_refere
                   </SwiperSlide>
                 ))}
             </Swiper>
-            <div class="absolute inset-0 -z-20">
+            <div className="absolute inset-0 -z-20">
               <Image
                 src={bg_image}
                 width={1920}
                 height={700}
                 alt=""
-                class="size-full object-cover"
+                className="size-full object-cover"
               />
             </div>
-            <div class="absolute inset-0 -z-10 blc-gradient"></div>
+            <div className="absolute inset-0 -z-10 blc-gradient"></div>
             <button
               onClick={prevSlide}
               className="absolute top-1/2 -translate-y-1/2 bg-[#000] bg-opacity-10 rounded-r-sm left-0 text-white p-1 sm:p-2 hidden xl:block z-30"

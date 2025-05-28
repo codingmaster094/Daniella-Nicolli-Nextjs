@@ -57,10 +57,10 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
             </div>
             <Swiper
               className="serviceSwiper select-none equal-text1"
-              modules={[Navigation, Pagination , Autoplay]}
+              modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={18}
               slidesPerView={1}
-              autoplay={{ delay: 2500 }}
+              autoplay={{ delay: 6000 }}
               loop={true}
               navigation={{
                 nextEl: ".serviceSwiper-next",
@@ -101,7 +101,6 @@ const Serviceslider = ({ main_title, all_ablauf }) => {
                         dangerouslySetInnerHTML={{
                           __html: val.home_all_ablauf_title,
                         }}
-                      
                       />
                     </div>
                     <div className="flex text-center paragraph">

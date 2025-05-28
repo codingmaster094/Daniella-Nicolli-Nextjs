@@ -40,7 +40,7 @@ const ClientCarousel = ({
               <h2 dangerouslySetInnerHTML={{ __html: main_title }} />
             )}
             <div className="slider-wrapper flex gap-3 sm:gap-10 items-center">
-              <button
+              {/* <button
                 className="clientSwiper-prev border rounded-full border-Teal p-1 sm:p-2 hidden xl:!block"
                 onClick={prevSlide}
                 aria-label="Previous slide"
@@ -60,12 +60,12 @@ const ClientCarousel = ({
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M15 6l-6 6l6 6" />
                 </svg>
-              </button>
+              </button> */}
               <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 className="clientSwiper select-none"
                 spaceBetween={16}
-                autoplay={{ delay: 2500 }}
+                autoplay={{ delay: 6000 }}
                 loop={true}
                 pagination={{ el: ".swiper-pagination" }}
                 onSwiper={setSwiperInstance}
@@ -116,8 +116,7 @@ const ClientCarousel = ({
                           className="!w-auto"
                           height={85}
                           width={157}
-                          loading="lazy"  
-      
+                          loading="lazy"
                         />
                       </Link>
                     ) : (
@@ -127,13 +126,13 @@ const ClientCarousel = ({
                         className="!w-auto"
                         height={85}
                         width={157}
-                        loading="lazy"  
+                        loading="lazy"
                       />
                     )}
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <button
+              {/* <button
                 className="clientSwiper-next border rounded-full border-Teal p-1 sm:p-2 hidden xl:!block"
                 onClick={nextSlide}
                 aria-label="Next slide"
@@ -153,7 +152,7 @@ const ClientCarousel = ({
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M9 6l6 6l-6 6" />
                 </svg>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

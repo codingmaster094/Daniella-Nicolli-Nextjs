@@ -58,7 +58,7 @@ const Fermentum = ({ main_title, all_vorteile }) => {
               className="prosSwiper equal-text2"
               spaceBetween={10}
               slidesPerView={1}
-              autoplay={{ delay: 2500 }}
+              autoplay={{ delay: 6000 }}
               loop={true}
               navigation={{
                 nextEl: ".prosSwiper-next",

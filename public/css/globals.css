@@ -469,7 +469,7 @@ span.avtar {
   margin-right: 10px;
   border-radius: 10px;
   background-color: #000000;
-  animation: pulse 1.5s infinite ease-in-out;
+  animation: pulse 2.5s infinite ease-in-out;
 }
 
 .dot:last-child {
