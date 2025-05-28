@@ -1,36 +1,63 @@
 // app/sitemap.xml/route.js
-import FetchAllslug from "../until/FetchAllslug"; // Update path if needed
 
 export async function GET() {
-  let urls = [];
+  const siteUrl = "https://daniella-nicolli-nextjs.vercel.app"; // Replace with your actual domain
 
-  try {
-    const SiteMapData = await FetchAllslug("/custom-sitemap/v1/slugs");
-    console.log('SiteMapData', SiteMapData)
-    const items = SiteMapData || [];
+  const SiteMapData = [
+    "fett-weg-spritze-mannheim",
+    "fett-weg-spritze-ludwigshafen",
+    "fett-weg-spritze-heidelberg",
+    "fett-weg-spritze-frankenthal",
+    "microneedling-mannheim",
+    "microneedling-ludwigshafen",
+    "microneedling-gruenstadt",
+    "microneedling-frankenthal",
+    "heilpraktikerin-worms",
+    "heilpraktikerin-ludwigshafen",
+    "heilpraktikerin-freinsheim",
+    "heilpraktikerin-bad-duerkheim",
+    "heilpraktiker-maxdorf",
+    "heilpraktiker-mannheim",
+    "heilpraktiker-gruenstadt",
+    "heilpraktiker-frankenthal",
+    "faltenunterspritzung-hyaluronsaeure",
+    "faltenunterspritzung-mannheim",
+    "faltenunterspritzung-ludwigshafen",
+    "faltenunterspritzung-lambsheim",
+    "faltenunterspritzung-gruenstadt",
+    "faltenbehandlung-mannheim",
+    "faltenbehandlung-heidelberg",
+    "fadenlifting-mannheim",
+    "faltenbehandlung-frankenthal",
+    "fadenlifting-ludwigshafen",
+    "landing-page",
+    "datenschutzerklarung",
+    "impressum",
+    "blog",
+    "ratgerber",
+    "ueber-mich",
+    "naturheilmedizin",
+    "kontakt",
+    "aesthetik",
+    "home",
+  ];
 
-    const collectUrls = (menuItems) => {
-      return menuItems.flatMap((item) => {
-        const current = `
-          <url>
-            <loc>${item}</loc>
-            <lastmod>${new Date().toISOString()}</lastmod>
-          </url>
-        `;
-
-        return [current];
-      });
-    };
-
-    urls = collectUrls(items);
-  } catch (error) {
-    console.error("Error generating sitemap:", error);
-  }
+  // Remove duplicates
+  const uniquePaths = [...new Set(SiteMapData)];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.join("\n")}
-</urlset>`;
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    ${uniquePaths
+      .map(
+        (slug) => `
+    <url>
+      <loc>${siteUrl}/${slug}</loc>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+    </url>`
+      )
+      .join("")}
+  </urlset>`;
 
   return new Response(sitemap, {
     headers: {
