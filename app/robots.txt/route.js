@@ -2,27 +2,24 @@
 
 export async function GET() {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/robots`
-    );
-    const text = await res.text();
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/robots`);
+    const raw = await res.text();
 
-    // Convert escaped \n to real newlines
-    const cleanText = text.replace(/\\n/g, "\n").replace(/\\\//g, "/");
+    // Remove wrapping quotes if any, and unescape newlines and slashes
+    const clean = JSON.parse(raw); // will automatically remove quotes + unescape \n and \/
 
-    return new Response(cleanText, {
+    return new Response(clean, {
       headers: {
         "Content-Type": "text/plain",
       },
     });
   } catch (error) {
-    console.error("Failed to fetch robots.txt:", error);
+    console.error("robots.txt fetch error:", error);
 
-    // Fallback content
     const fallback = `User-agent: *
-                      Disallow: /
-                      Allow: /
-                      Sitemap:/`;
+  Disallow: /wp-admin/
+  Allow: /wp-admin/admin-ajax.php
+  Sitemap: https://daniella-nicolli-nextjs.vercel.app/sitemap.xml`;
 
     return new Response(fallback, {
       headers: {
