@@ -3,10 +3,10 @@
 export async function GET() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/robots`);
+    console.log('res', res)
     const raw = await res.text();
 
-    // Remove wrapping quotes if any, and unescape newlines and slashes
-    const clean = JSON.parse(raw); // will automatically remove quotes + unescape \n and \/
+    const clean = JSON.parse(raw); 
 
     return new Response(clean, {
       headers: {

@@ -21,7 +21,6 @@ const Aboutdetails = (props) => {
         <div className="container max-w-3xl lg:max-w-full 3xl:p-0 relative z-10 3xl:static p-4 sm:p-10 mx-auto">
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-10 3xl:gap-[100px] group-[.reverse]:lg:flex-row-reverse">
             <div className={Small_image_show ? "lg:w-1/3" : "lg:w-1/2"}>
-              {
                 <div className="sticky top-40">
                   <div className="aspect-square bg-white relative w-full">
                     {section_image?.url && (
@@ -36,8 +35,8 @@ const Aboutdetails = (props) => {
                     )}
                   </div>
                 </div>
-              }
             </div>
+            
             <div className={Small_image_show ? "lg:w-2/3" : "lg:w-1/2"}>
               <div className="space-y-6 3xl:pr-[100px] group-[.reverse]:3xl:pr-[0] group-[.reverse]:3xl:pl-[100px] 3xl:py-20">
                 {
