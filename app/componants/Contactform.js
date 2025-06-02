@@ -60,9 +60,6 @@ const Contactform = ({
     email: "",
     telephone: "",
     message: "",
-    Contact_email: false,
-    Contact_telefon: false,
-    Contact_Datenschutz: false,
     selectedIcon: "",
   });
 
@@ -130,39 +127,53 @@ const Contactform = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      const response = await fetch("/api/emaildata", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
 
-      const result = await response.json();
-      if (response.ok) {
-        setSuccess("Nachricht erfolgreich gesendet");
-        // Reset form data
-        setFormData({
-          name: "",
-          email: "",
-          telephone: "",
-          message: "",
-          Contact_email: false,
-          Contact_telefon: false,
-          Contact_Datenschutz: false,
-          selectedIcon: "",
+    if (validateForm()) {
+      try {
+        const response = await fetch("https://formspree.io/f/xqabzpzn", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            telephone: formData.telephone,
+            message: formData.message,
+            selectedIcon: formData.selectedIcon,
+          }),
         });
-        setErrors({});
-      } else {
-        setErrorMessage(
-          `Nachricht konnte nicht gesendet werden: ${result.message}`
-        );
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setSuccess("Nachricht erfolgreich gesendet");
+
+          // Reset form
+          setFormData({
+            name: "",
+            email: "",
+            telephone: "",
+            message: "",
+            selectedIcon: "",
+          });
+          setErrors({});
+        } else {
+          setErrorMessage(
+            `Nachricht konnte nicht gesendet werden: ${
+              result?.message || "Unbekannter Fehler"
+            }`
+          );
+        }
+      } catch (error) {
+        setErrorMessage(`Ein Fehler ist aufgetreten: ${error.message}`);
       }
     } else {
       console.log("Validation failed");
     }
   };
+  
 
   useEffect(() => {
     fetchContactOptionData();

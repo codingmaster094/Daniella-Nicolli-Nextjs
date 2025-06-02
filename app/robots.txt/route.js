@@ -17,9 +17,9 @@ export async function GET() {
     console.error("robots.txt fetch error:", error);
 
     const fallback = `User-agent: *
-  Disallow: /wp-admin/
-  Allow: /wp-admin/admin-ajax.php
-  Sitemap: https://daniella-nicolli-nextjs.vercel.app/sitemap.xml`;
+                      Disallow: /wp-admin/
+                      Allow: /wp-admin/admin-ajax.php
+                      Sitemap: https://www.heilpraktikerin-nicolli.de/sitemap.xml`;
 
     return new Response(fallback, {
       headers: {
