@@ -3,7 +3,8 @@ import FetchAllslug from "../until/FetchAllslug";
 
 export async function GET() {
   const siteUrl =
-  process.env.NEXT_DOMAIN_URL || "https://www.heilpraktikerin-nicolli.de";  
+    process.env.NEXT_DOMAIN_URL ||
+    "https://daniella-nicolli-nextjs.vercel.app/";  
   let SiteMapData;
   try {
     SiteMapData = await FetchAllslug("/custom-sitemap/v1/slugs");
