@@ -130,20 +130,24 @@ const Contactform = ({
 
     if (validateForm()) {
       try {
-        const response = await fetch("https://formspree.io/f/xqabzpzn", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            telephone: formData.telephone,
-            message: formData.message,
-            selectedIcon: formData.selectedIcon,
-          }),
-        });
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_SENDER_MAIL ||
+            "https://formspree.io/f/xqabzpzn",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              telephone: formData.telephone,
+              message: formData.message,
+              // selectedIcon: formData.selectedIcon,
+            }),
+          }
+        );
 
         const result = await response.json();
 
@@ -262,7 +266,7 @@ const Contactform = ({
                       onChange={handleInputChange}
                     ></textarea>
                     {errors.message && (
-                      <p className="text-red-500 text-sm">{errors.message}</p>
+                      <p className="text-red-500 text-sm">{errors.message}</p>  
                     )}
                   </div>
                   <div className="text-a w-full">

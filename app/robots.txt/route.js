@@ -2,8 +2,10 @@
 
 export async function GET() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HEADER_BASE_URL}/robots`);
-    console.log('res', res)
+    const APIDATA =
+      process.env.NEXT_PUBLIC_HEADER_BASE_URL ||
+      "https://daniella.blog-s.de/wp-json/custom/v1";
+    const res = await fetch(`${APIDATA}/robots`);
     const raw = await res.text();
 
     const clean = JSON.parse(raw); 

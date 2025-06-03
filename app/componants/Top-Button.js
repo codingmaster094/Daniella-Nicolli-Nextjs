@@ -18,7 +18,7 @@ const TopButton = () => {
   };
 
   const smoothScrollToTop = () => {
-    const scrollStep = -window.scrollY / 50;
+    const scrollStep = -window.scrollY / 50 ;
     const scrollAnimation = () => {
       if (window.scrollY !== 0) {
         window.scrollBy(0, scrollStep);
@@ -36,7 +36,7 @@ const TopButton = () => {
   }, []);
 
   return (
-    visible && ( // Only render when `visible` is true
+    visible && (
       <button
         onClick={smoothScrollToTop}
         onMouseEnter={() => setIsHovered(true)}
@@ -44,8 +44,8 @@ const TopButton = () => {
         aria-label="Scroll to top"
         style={{
           backgroundColor: isHovered
-            ? "rgb(26 130 129 / var(--tw-bg-opacity, 1))"
-            : "#b9b3a0",
+          ? "rgb(26 130 129 / var(--tw-bg-opacity, 1))"
+          : "#b9b3a0",
           cursor: "pointer",
           width: "50px",
           height: "50px",
@@ -55,13 +55,12 @@ const TopButton = () => {
           bottom: "32px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "center",  
           borderRadius: "100%",
           boxShadow: "0 4px 16px 0 rgba(0, 0, 0, 0.4)",
           transition: "background-color 0.3s ease",
         }}
       >
-        {/* Up Arrow Icon */}
         <svg
           className="icon__arrow-up"
           viewBox="0 0 24 24"

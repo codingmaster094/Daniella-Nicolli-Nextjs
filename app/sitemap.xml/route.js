@@ -7,7 +7,6 @@ export async function GET() {
   let SiteMapData;
   try {
     SiteMapData = await FetchAllslug("/custom-sitemap/v1/slugs");
-    console.log("SiteMapData", SiteMapData);
   } catch (error) {
     console.log("error", error);
     SiteMapData = [];
