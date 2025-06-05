@@ -3,6 +3,7 @@ import "../public/css/stylesheet.css";
 import Footer from "./Footer/page";
 import TopButton from "../app/componants/Top-Button";
 import Header from "./Header/page";
+import CanonicalTag from "./componants/CanonicalTag";
 
 
 
@@ -10,11 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Header/>
-        <main>
-         {children}
-        </main>
-          <TopButton />
+        <CanonicalTag />
+        <Header />
+        <main>{children}</main>
+        <TopButton />
         <Footer />
       </body>
     </html>
