@@ -4,14 +4,13 @@ import Footer from "./Footer/page";
 import TopButton from "../app/componants/Top-Button";
 import Header from "./Header/page";
 import CanonicalTag from "./componants/CanonicalTag";
-import logo from "../public/images/denilieaLogo.svg";
 
 export default function RootLayout({ children }) {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Praxis für Naturheilmedizin & Ästhetik – Daniella Nicolli – Heilpraktikerin",
-    image: { logo },
+    image: "/images/denilieaLogo.svg",
     telephone: "+49 6233 8693200",
     address: {
       "@type": "PostalAddress",
