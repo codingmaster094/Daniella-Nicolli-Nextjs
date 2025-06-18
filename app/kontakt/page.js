@@ -1,75 +1,75 @@
-import React from "react";
-import ContactAboutDetails from "../componants/ContactAboutDetails";
-import Contactform from "../componants/Contactform";
-import Maps from "../componants/Maps";
-import BannerCarousel from "../componants/Banner";
-import Alldata from "../until/AllDatafetch";
-import MetaDataAPIS from "../until/metadataAPI";
-const page = async () => {
-  let ContactData;
+  import React from "react";
+  import ContactAboutDetails from "../componants/ContactAboutDetails";
+  import Contactform from "../componants/Contactform";
+  import Maps from "../componants/Maps";
+  import BannerCarousel from "../componants/Banner";
+  import Alldata from "../until/AllDatafetch";
+  import MetaDataAPIS from "../until/metadataAPI";
+  const page = async () => {
+    let ContactData;
 
-  try {
-    ContactData = await Alldata("/kontakt");
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return <div>Error loading data.</div>; // Fallback UI
-  }
+    try {
+      ContactData = await Alldata("/kontakt");
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return <div>Error loading data.</div>; // Fallback UI
+    }
 
-  if (!ContactData) {
-    return <div>No data available.</div>; // Fallback UI
-  }
-  
+    if (!ContactData) {
+      return <div>No data available.</div>; // Fallback UI
+    }
+    
 
-  return (
-    <>
-      <BannerCarousel
-        title={ContactData?.hero_slider_main_title?.value}
-        img={ContactData?.hero_slider_image?.value}
-        content={ContactData?.hero_slider_content?.value.replace(
-          /<\/?ul[^>]*>/g,
-          ""
-        )}
-        BTN={ContactData?.hero_slider_button?.value}
-      />
+    return (
+      <>
+        <BannerCarousel
+          title={ContactData?.hero_slider_main_title?.value}
+          img={ContactData?.hero_slider_image?.value}
+          content={ContactData?.hero_slider_content?.value.replace(
+            /<\/?ul[^>]*>/g,
+            ""
+          )}
+          BTN={ContactData?.hero_slider_button?.value}
+        />
 
-      <ContactAboutDetails
-        main_title={ContactData?.kontakt_uebersicht_main_title?.value}
-        content={ContactData?.kontakt_uebersicht_content?.value}
-        image={ContactData?.kontakt_uebersicht_image?.value}
-        telefonnummer_label={ContactData?.kontakt_telefonnummer_label?.value}
-        kontakt_whatsapp_label={ContactData?.kontakt_whatsapp_label?.value}
-        email_label={ContactData?.kontakt_email_label?.value}
-        terminbuchung_label={ContactData?.kontakt_terminbuchung_label?.value}
-        telefonnummer_button={ContactData?.kontakt_telefonnummer_button?.value}
-        kontakt_whatsapp_button_text={
-          ContactData?.kontakt_whatsapp_button_text?.value
-        }
-        email_button={ContactData?.kontakt_email_button?.value}
-        terminbuchung_button={ContactData?.kontakt_terminbuchung_button?.value}
-        terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
-        footer_whatsapp_number={
-          ContactData?.footer_whatsapp_number?.value
-        }
-        // add whatsaap detalis in
-      />
+        <ContactAboutDetails
+          main_title={ContactData?.kontakt_uebersicht_main_title?.value}
+          content={ContactData?.kontakt_uebersicht_content?.value}
+          image={ContactData?.kontakt_uebersicht_image?.value}
+          telefonnummer_label={ContactData?.kontakt_telefonnummer_label?.value}
+          kontakt_whatsapp_label={ContactData?.kontakt_whatsapp_label?.value}
+          email_label={ContactData?.kontakt_email_label?.value}
+          terminbuchung_label={ContactData?.kontakt_terminbuchung_label?.value}
+          telefonnummer_button={ContactData?.kontakt_telefonnummer_button?.value}
+          kontakt_whatsapp_button_text={
+            ContactData?.kontakt_whatsapp_button_text?.value
+          }
+          email_button={ContactData?.kontakt_email_button?.value}
+          terminbuchung_button={ContactData?.kontakt_terminbuchung_button?.value}
+          terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
+          footer_whatsapp_number={
+            ContactData?.footer_whatsapp_number?.value
+          }
+          // add whatsaap detalis in
+        />
 
-      <Maps
-        main_title={ContactData?.kontakt_standort_kartemain_title?.value}
-        map_image={ContactData?.map_image?.value}
-        map_url={ContactData?.map_url?.value}
-      />
+        <Maps
+          main_title={ContactData?.kontakt_standort_kartemain_title?.value}
+          map_image={ContactData?.map_image?.value}
+          map_url={ContactData?.map_url?.value}
+        />
 
-      <Contactform
-        main_title={ContactData?.kontakt_form_main_title?.value}
-        content={ContactData?.kontakt_form_content?.value}
-        live_chat_with_us={ContactData?.kontakt_form_live_chat_with_us?.value}
-        form_address={ContactData?.kontakt_form_address?.value}
-      />
-    </>
-  );
-};
+        <Contactform
+          main_title={ContactData?.kontakt_form_main_title?.value}
+          content={ContactData?.kontakt_form_content?.value}
+          live_chat_with_us={ContactData?.kontakt_form_live_chat_with_us?.value}
+          form_address={ContactData?.kontakt_form_address?.value}
+        />
+      </>
+    );
+  };
 
-export default page;
+  export default page;
 
 export async function generateMetadata() {
   let metadata = await MetaDataAPIS("/kontakt");

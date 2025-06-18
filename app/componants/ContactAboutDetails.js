@@ -55,20 +55,6 @@ const ContactAboutDetails = ({
             )}
           </div>
           <div className="w-full max-w-[1200px] mx-auto   flex flex-col lg:flex-row  gap-6  justify-center ">
-            {/* <div className="flex flex-shrink-0 px-4  items-center flex-col w-full lg:w-1/3 2xl:w-[45%]  md:flex-row py-0 lg:py-[15px] bg-white">
-              {
-                image && (
-                  <Image
-                    src={image}
-                    width={836}
-                    height={550}
-                    alt="about-left.png"
-                    className="w-full object-cover object-center lg:object-left 2xl:object-center h-full"
-                  />
-                )
-              }
-            </div> */}
-
             <div className="flex w-full flex-col sm:flex-row flex-wrap  gap-4">
               <ContactBox
                 title={telefonnummer_label}

@@ -4,20 +4,20 @@
 
 @layer base {
   html.lenis {
-    @apply h-auto;
-  }
-
-  .lenis.lenis-smooth {
-    @apply scroll-auto;
-  }
-
-  .lenis.lenis-smooth [data-lenis-prevent] {
-    @apply overscroll-contain;
-  }
-
-  .lenis.lenis-stopped {
-    @apply overflow-hidden;
-  }
+      @apply h-auto;
+    }
+  
+    .lenis.lenis-smooth {
+      @apply scroll-auto;
+    }
+  
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      @apply overscroll-contain;
+    }
+  
+    .lenis.lenis-stopped {
+      @apply overflow-hidden;
+    }
 
   body {
     @apply overflow-x-hidden font-primary-font text-body text-black-900;
@@ -488,6 +488,9 @@ span.avtar {
   animation-delay: 0.1s;
 }
 
+.collapsible__drag{
+  color: red !important;
+}
 @keyframes pulse {
   0% {
     transform: scale(0.8);

@@ -25,7 +25,7 @@ const page = async() => {
       </div>
       <div className="container mx-auto px-[15px] ">
         <div
-          className="py-10 md:py-[70px] text-a     space-y-4 "
+          className="py-10 md:py-[70px] text-a space-y-4 "
           dangerouslySetInnerHTML={{ __html: ImpressumData?.content }}
         ></div>
       </div>

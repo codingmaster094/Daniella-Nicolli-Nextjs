@@ -4,12 +4,33 @@ import Footer from "./Footer/page";
 import TopButton from "../app/componants/Top-Button";
 import Header from "./Header/page";
 import CanonicalTag from "./componants/CanonicalTag";
-
-
+import Head from 'next/head';
 
 export default function RootLayout({ children }) {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Heilpraktikerin Nicolli",
+    image: "https://www.heilpraktikerin-nicolli.de/path-to-image.jpg",
+    telephone: "+49-xxx-xxx-xxxx",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Your Street",
+      addressLocality: "City",
+      postalCode: "12345",
+      addressCountry: "DE",
+    },
+    url: "https://www.heilpraktikerin-nicolli.de/",
+  };
+
   return (
     <html lang="en">
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
+      </Head>
       <body>
         <CanonicalTag />
         <Header />

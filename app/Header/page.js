@@ -8,7 +8,6 @@ import Menudatas from "../until/MenuData";
 const Page = async () => {
   let headerData = null;
   let menuData = null;
-
   try {
    headerData = await HeaderDatas("/acf-options");
   } catch (error) {
