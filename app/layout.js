@@ -30,9 +30,10 @@ export default async function RootLayout({ children }) {
           addressCountry: Schema_markup.bussiness_address?.country_code,
         },
         url: Schema_markup.business_url?.url,
+        priceRange: "€€",
       }
     : null;
-    
+
   console.log('schemaData', schemaData)
   return (
     <html lang="en">
