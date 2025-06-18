@@ -4,23 +4,30 @@ import Footer from "./Footer/page";
 import TopButton from "../app/componants/Top-Button";
 import Header from "./Header/page";
 import CanonicalTag from "./componants/CanonicalTag";
+import HeaderDatas from "./until/HeaderData";
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+let Schema_markup
+    try {
+      Schema_markup = await HeaderDatas("/acf-options");
+    } catch (error) {
+      console.error("Error fetching header data:", error);
+    }
+
   const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Praxis für Naturheilmedizin & Ästhetik – Daniella Nicolli – Heilpraktikerin",
-    image:
-      "https://daniella-nicolli-nextjs.vercel.app/images/denilieaLogo.svg",
-    telephone: "+49 6233 8693200",
+    "@context": Schema_markup.context,
+    "@type": Schema_markup.context_type,
+    name: Schema_markup.business_name,
+    image: Schema_markup.business_image.url,
+    telephone: Schema_markup.business_phone,
     address: {
-      "@type": "PostalAddress",
-      streetAddress: "Mühltorstraße 33",
-      addressLocality: "Lambsheim",
-      postalCode: "67245",
-      addressCountry: "DE",
+      "@type": Schema_markup.bussiness_address.address_type,
+      streetAddress: Schema_markup.bussiness_address.street_address,
+      addressLocality: Schema_markup.bussiness_address.city,
+      postalCode: Schema_markup.bussiness_address.postal_code,
+      addressCountry: Schema_markup.bussiness_address.country_code,
     },
-    url: "https://www.heilpraktikerin-nicolli.de/",
+    url: Schema_markup.business_url.url,
   };
 
   return (

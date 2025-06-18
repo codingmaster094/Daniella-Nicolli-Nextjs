@@ -10,7 +10,6 @@ import Lenis from "@studio-freight/lenis";
 import { useRouter } from "next/navigation";
 
 const Header = ({ headerDatas, menuData }) => {
-  console.log("headerDatas", headerDatas);
   const router = useRouter();
   const dropdownRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -204,7 +203,6 @@ const Header = ({ headerDatas, menuData }) => {
                           }}
                         >
                           {item.children.map((child) => {
-                            console.log("child" , child)
                             return (
                               <li
                                 key={child.id}
