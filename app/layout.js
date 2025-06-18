@@ -10,7 +10,8 @@ export default function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Praxis für Naturheilmedizin & Ästhetik – Daniella Nicolli – Heilpraktikerin",
-    image: "/images/denilieaLogo.svg",
+    image:
+      "https://daniella-nicolli-nextjs.vercel.app/images/denilieaLogo.svg",
     telephone: "+49 6233 8693200",
     address: {
       "@type": "PostalAddress",
