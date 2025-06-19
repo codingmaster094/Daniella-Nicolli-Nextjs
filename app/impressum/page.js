@@ -1,6 +1,5 @@
 import React from "react";
 import Menudatas from "../until/MenuData";
-
 const page = async() => {
    let ImpressumData;
        try {
@@ -11,7 +10,6 @@ const page = async() => {
          console.error("Error fetching data:", error);
          return <div>Error loading data.</div>; // Fallback UI
        }
-    
        if (!ImpressumData) {
          return <div>No data available.</div>; // Fallback UI
        }
