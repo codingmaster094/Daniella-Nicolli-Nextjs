@@ -8,19 +8,11 @@ import Accordian from "../componants/Accordian";
 import MultipleAboutdetails from "../componants/MultipleAboutdetails";
 import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
+
 const page = async () => {
   let Naturheilmedizin;
-  let schemaJSON;
   try {
     Naturheilmedizin = await Alldata("/naturheilmedizin");
-    const metadata = await MetaDataAPIS("/naturheilmedizin");
-  
-    const schemaMatch = metadata.head.match(
-      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-    );
-     schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>; // Fallback UI
@@ -30,9 +22,9 @@ const page = async () => {
     return <div>No data available.</div>; // Fallback UI
   }
 
+  
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
       <BannerCarousel
         title={Naturheilmedizin?.hero_slider_main_title?.value}
         img={Naturheilmedizin?.hero_slider_image?.value}
@@ -88,65 +80,21 @@ const page = async () => {
 export default page;
 
 export async function generateMetadata() {
-  try {
-    const metadata = await MetaDataAPIS("/naturheilmedizin");
-    const head = metadata?.head || "";
+  let metadata = await MetaDataAPIS("/naturheilmedizin");
 
-    const titleMatch = head.match(/<title>(.*?)<\/title>/);
-    const descriptionMatch = head.match(
-      /<meta name="description" content="(.*?)"/
-    );
-    const canonicalMatch = head.match(
-      /<link\s+rel="canonical"\s+href="([^"]+)"/i
-    );
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
 
-    const title = titleMatch?.[1] || "Naturheilmedizin | Daniella Nicolli";
-    const description =
-      descriptionMatch?.[1] ||
-      "Individuelle Therapien mit natürlichem Ansatz – erfahren Sie mehr über unsere naturheilkundlichen Behandlungen.";
-    const canonical =
-      canonicalMatch?.[1] ||
-      "https://daniella-nicolli-nextjs.vercel.app/naturheilmedizin";
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
 
-    return {
-      title,
-      description,
-      alternates: {
-        canonical,
-      },
-      openGraph: {
-        title,
-        description,
-        url: canonical,
-      },
-      twitter: {
-        title,
-        description,
-        card: "summary_large_image",
-      },
-    };
-  } catch (error) {
-    console.error("Error in generateMetadata for /naturheilmedizin:", error);
-    return {
-      title: "Naturheilmedizin | Daniella Nicolli",
-      description:
-        "Individuelle Therapien mit natürlichem Ansatz – erfahren Sie mehr über unsere naturheilkundlichen Behandlungen.",
-      alternates: {
-        canonical:
-          "https://daniella-nicolli-nextjs.vercel.app/naturheilmedizin",
-      },
-      openGraph: {
-        title: "Naturheilmedizin | Daniella Nicolli",
-        description:
-          "Individuelle Therapien mit natürlichem Ansatz – erfahren Sie mehr über unsere naturheilkundlichen Behandlungen.",
-        url: "https://daniella-nicolli-nextjs.vercel.app/naturheilmedizin",
-      },
-      twitter: {
-        title: "Naturheilmedizin | Daniella Nicolli",
-        description:
-          "Individuelle Therapien mit natürlichem Ansatz – erfahren Sie mehr über unsere naturheilkundlichen Behandlungen.",
-        card: "summary_large_image",
-      },
-    };
-  }
+  return {
+    title,
+    description,
+  };
 }

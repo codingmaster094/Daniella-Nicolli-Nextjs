@@ -8,23 +8,15 @@ import ReviewsData from "../ReviewsData/page";
 import getLandingData from "../until/getLandingData";
 import MetaDataAPIS from "../until/metadataAPI";
 import Custom404 from "../not-found";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
+
 export default async function LandingPage({ params }) {
   const { slug } = await params;
      let landingData;
-     let schemaJSON;
      try {
         landingData = await getLandingData(`/landing?slug=${slug}`); 
        if (!landingData || Object.keys(landingData).length === 0) {
          return <Custom404 />;
-        }
-        const metadata = await MetaDataAPIS(`landing/${slug}`);
-        
-          const schemaMatch = metadata.head.match(
-            /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-          );
-           schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+       }
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>; 
@@ -34,10 +26,8 @@ export default async function LandingPage({ params }) {
        return <div>No data available.</div>;
      }
 
-
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
       <BannerCarousel
         title={landingData?.hero_slider_main_title}
         img={landingData?.hero_slider_image}
@@ -86,52 +76,22 @@ export default async function LandingPage({ params }) {
 }
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
+  let metadata = await MetaDataAPIS(`landing/${slug}`);
 
-  try {
-    const metadata = await MetaDataAPIS(`landing/${slug}`);
-    const head = metadata?.head || "";
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
 
-    const titleMatch = head.match(/<title>(.*?)<\/title>/);
-    const descriptionMatch = head.match(
-      /<meta name="description" content="(.*?)"/
-    );
-    const canonicalMatch = head.match(
-      /<link\s+rel="canonical"\s+href="([^"]+)"/i
-    );
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
 
-    const title = titleMatch?.[1] || `Default Title - ${slug}`;
-    const description =
-      descriptionMatch?.[1] || `Default description for ${slug}`;
-    const canonical =
-      canonicalMatch?.[1] ||
-      `https://daniella-nicolli-nextjs.vercel.app/landing/${slug}`;
-
-    return {
-      title,
-      description,
-      alternates: {
-        canonical,
-      },
-      openGraph: {
-        title,
-        description,
-        url: canonical,
-      },
-      twitter: {
-        title,
-        description,
-        card: "summary_large_image",
-      },
-    };
-  } catch (error) {
-    console.error(`generateMetadata error for slug "/landing/${slug}":`, error);
-    return {
-      title: `Default Title - ${slug}`,
-      description: `Default description for ${slug}`,
-      alternates: {
-        canonical: `https://daniella-nicolli-nextjs.vercel.app/landing/${slug}`,
-      },
-    };
-  }
+  return {
+    title,
+    description,
+  };
 }

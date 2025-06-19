@@ -5,19 +5,11 @@
   import BannerCarousel from "../componants/Banner";
   import Alldata from "../until/AllDatafetch";
   import MetaDataAPIS from "../until/metadataAPI";
-  import dynamic from "next/dynamic";
-  const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
   const page = async () => {
     let ContactData;
-    let schemaJSON;
+
     try {
       ContactData = await Alldata("/kontakt");
-      const metadata = await MetaDataAPIS("/kontakt");
-  
-      const schemaMatch = metadata.head.match(
-        /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-      );
-       schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
     } catch (error) {
       console.error("Error fetching data:", error);
       return <div>Error loading data.</div>; // Fallback UI
@@ -27,9 +19,9 @@
       return <div>No data available.</div>; // Fallback UI
     }
     
+
     return (
       <>
-        <SchemaInjector schemaJSON={schemaJSON} />
         <BannerCarousel
           title={ContactData?.hero_slider_main_title?.value}
           img={ContactData?.hero_slider_image?.value}
@@ -48,18 +40,16 @@
           kontakt_whatsapp_label={ContactData?.kontakt_whatsapp_label?.value}
           email_label={ContactData?.kontakt_email_label?.value}
           terminbuchung_label={ContactData?.kontakt_terminbuchung_label?.value}
-          telefonnummer_button={
-            ContactData?.kontakt_telefonnummer_button?.value
-          }
+          telefonnummer_button={ContactData?.kontakt_telefonnummer_button?.value}
           kontakt_whatsapp_button_text={
             ContactData?.kontakt_whatsapp_button_text?.value
           }
           email_button={ContactData?.kontakt_email_button?.value}
-          terminbuchung_button={
-            ContactData?.kontakt_terminbuchung_button?.value
-          }
+          terminbuchung_button={ContactData?.kontakt_terminbuchung_button?.value}
           terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
-          footer_whatsapp_number={ContactData?.footer_whatsapp_number?.value}
+          footer_whatsapp_number={
+            ContactData?.footer_whatsapp_number?.value
+          }
           // add whatsaap detalis in
         />
 
@@ -81,67 +71,22 @@
 
   export default page;
 
-  export async function generateMetadata() {
-    try {
-      const metadata = await MetaDataAPIS("/kontakt");
-      const head = metadata?.head || "";
+export async function generateMetadata() {
+  let metadata = await MetaDataAPIS("/kontakt");
 
-      // Extract tags
-      const titleMatch = head.match(/<title>(.*?)<\/title>/);
-      const descriptionMatch = head.match(
-        /<meta name="description" content="(.*?)"/
-      );
-      const canonicalMatch = head.match(
-        /<link\s+rel="canonical"\s+href="([^"]+)"/i
-      );
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
 
-      const title = titleMatch?.[1] || "Kontakt | Daniella Nicolli";
-      const description =
-        descriptionMatch?.[1] ||
-        "Nehmen Sie Kontakt mit der Praxis für Ästhetik & Naturheilmedizin auf.";
-      const canonical =
-        canonicalMatch?.[1] ||
-        "https://daniella-nicolli-nextjs.vercel.app/kontakt";
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
 
-      return {
-        title,
-        description,
-        alternates: {
-          canonical,
-        },
-        openGraph: {
-          title,
-          description,
-          url: canonical,
-        },
-        twitter: {
-          title,
-          description,
-          card: "summary_large_image",
-        },
-      };
-    } catch (error) {
-      console.error("Error in generateMetadata for /kontakt:", error);
-      return {
-        title: "Kontakt | Daniella Nicolli",
-        description:
-          "Nehmen Sie Kontakt mit der Praxis für Ästhetik & Naturheilmedizin auf.",
-        alternates: {
-          canonical: "https://daniella-nicolli-nextjs.vercel.app/kontakt",
-        },
-        openGraph: {
-          title: "Kontakt | Daniella Nicolli",
-          description:
-            "Nehmen Sie Kontakt mit der Praxis für Ästhetik & Naturheilmedizin auf.",
-          url: "https://daniella-nicolli-nextjs.vercel.app/kontakt",
-        },
-        twitter: {
-          title: "Kontakt | Daniella Nicolli",
-          description:
-            "Nehmen Sie Kontakt mit der Praxis für Ästhetik & Naturheilmedizin auf.",
-          card: "summary_large_image",
-        },
-      };
-    }
-  }
-  
+  return {
+    title,
+    description,
+  };
+}

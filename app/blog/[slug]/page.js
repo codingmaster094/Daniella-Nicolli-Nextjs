@@ -3,22 +3,14 @@ import dayjs from "dayjs";
 import Categories from "../../componants/Categories";
 import PostGet from "@/app/until/PostGet";
 import MetaDataAPIS from "@/app/until/metadataAPI";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../../componants/SchemaInjector"));
+
 const Page = async ({ params }) => {
   // Await params to avoid Next.js error
   const { slug } = await params;
 
   let blogData;
-  let schemaJSON;
   try {
     blogData = await PostGet(`/posts?slug=${slug}`);
-    const metadata = await MetaDataAPIS(`/${slug}`);
-  
-    const schemaMatch = metadata.head.match(
-      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-    );
-     schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   } catch (error) {
     return <div>Error loading data.</div>;
   }
@@ -29,7 +21,6 @@ const Page = async ({ params }) => {
 
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
       <section>
         <div
           className="blog-banner w-full lg:h-[450px] h-auto lg:py-[180px] md:py-[150px] py-[100px] relative bg-cover bg-center flex justify-start items-center"
@@ -150,63 +141,22 @@ const Page = async ({ params }) => {
 export default Page;
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const {slug } = await params; // No need to await
 
-  try {
-    const metadata = await MetaDataAPIS(`/${slug}`);
-    const head = metadata?.head || "";
+  let metadata = await MetaDataAPIS(`/${slug}`);
 
-    const titleMatch = head.match(/<title>(.*?)<\/title>/);
-    const descriptionMatch = head.match(
-      /<meta name="description" content="(.*?)"/
-    );
-    const canonicalMatch = head.match(
-      /<link\s+rel="canonical"\s+href="([^"]+)"/i
-    );
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
 
-    const title = titleMatch?.[1] || `Default Title - ${slug}`;
-    const description =
-      descriptionMatch?.[1] || `Default description for ${slug}`;
-    const canonical =
-      canonicalMatch?.[1] ||
-      `https://daniella-nicolli-nextjs.vercel.app/${slug}`;
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
 
-    return {
-      title,
-      description,
-      alternates: {
-        canonical,
-      },
-      openGraph: {
-        title,
-        description,
-        url: canonical,
-      },
-      twitter: {
-        title,
-        description,
-        card: "summary_large_image",
-      },
-    };
-  } catch (error) {
-    console.error(`generateMetadata error for slug "/${slug}":`, error);
-    return {
-      title: `Default Title - ${slug}`,
-      description: `Default description for ${slug}`,
-      alternates: {
-        canonical: `https://daniella-nicolli-nextjs.vercel.app/${slug}`,
-      },
-      openGraph: {
-        title: `Default Title - ${slug}`,
-        description: `Default description for ${slug}`,
-        url: `https://daniella-nicolli-nextjs.vercel.app/${slug}`,
-      },
-      twitter: {
-        title: `Default Title - ${slug}`,
-        description: `Default description for ${slug}`,
-        card: "summary_large_image",
-      },
-    };
-  }
+  return {
+    title,
+    description,
+  };
 }
-

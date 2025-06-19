@@ -8,20 +8,12 @@ import Categories from "../componants/Categories";
 import BannerCarousel from "../componants/Banner";
 import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 
 const page = async () => {  
   let Ubermich;
-let schemaJSON;
+
   try {
     Ubermich = await Alldata("/ueber-mich");
-    const metadata = await MetaDataAPIS("/ueber-mich");
-  
-    const schemaMatch = metadata.head.match(
-      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-    );
-     schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>; // Fallback UI
@@ -31,9 +23,9 @@ let schemaJSON;
     return <div>No data available.</div>; // Fallback UI
   }
 
+
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
       <BannerCarousel
         title={Ubermich?.hero_slider_main_title?.value}
         img={Ubermich?.hero_slider_image?.value}
@@ -96,64 +88,21 @@ let schemaJSON;
 export default page;
 
 export async function generateMetadata() {
-  try {
-    const metadata = await MetaDataAPIS("/ueber-mich");
-    const head = metadata?.head || "";
+  let metadata = await MetaDataAPIS("/ueber-mich");
 
-    const titleMatch = head.match(/<title>(.*?)<\/title>/);
-    const descriptionMatch = head.match(
-      /<meta name="description" content="(.*?)"/
-    );
-    const canonicalMatch = head.match(
-      /<link\s+rel="canonical"\s+href="([^"]+)"/i
-    );
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
 
-    const title = titleMatch?.[1] || "Über mich | Daniella Nicolli";
-    const description =
-      descriptionMatch?.[1] ||
-      "Erfahren Sie mehr über Daniella Nicolli, ihre Philosophie und ihr ganzheitliches Behandlungskonzept.";
-    const canonical =
-      canonicalMatch?.[1] ||
-      "https://daniella-nicolli-nextjs.vercel.app/ueber-mich";
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
 
-    return {
-      title,
-      description,
-      alternates: {
-        canonical,
-      },
-      openGraph: {
-        title,
-        description,
-        url: canonical,
-      },
-      twitter: {
-        title,
-        description,
-        card: "summary_large_image",
-      },
-    };
-  } catch (error) {
-    console.error("Metadata generation error (/ueber-mich):", error);
-    return {
-      title: "Über mich | Daniella Nicolli",
-      description:
-        "Erfahren Sie mehr über Daniella Nicolli, ihre Philosophie und ihr ganzheitliches Behandlungskonzept.",
-      alternates: {
-        canonical: "https://daniella-nicolli-nextjs.vercel.app/ueber-mich",
-      },
-      openGraph: {
-        title: "Über mich | Daniella Nicolli",
-        description:
-          "Erfahren Sie mehr über Daniella Nicolli, ihre Philosophie und ihr ganzheitliches Behandlungskonzept.",
-        url: "https://daniella-nicolli-nextjs.vercel.app/ueber-mich",
-      },
-      twitter: {
-        title: "Über mich | Daniella Nicolli",
-        description:
-          "Erfahren Sie mehr über Daniella Nicolli, ihre Philosophie und ihr ganzheitliches Behandlungskonzept.",
-        card: "summary_large_image",
-      },
-    };
-  }
+  return {
+    title,
+    description,
+  };
 }
