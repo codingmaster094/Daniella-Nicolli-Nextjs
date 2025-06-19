@@ -67,7 +67,7 @@ export async function generateMetadata() {
   );
   const canonical = canonicalMatch
     ? canonicalMatch[1]
-    : "https://daniella.blog-s.de/blog";
+    : `${process.env.NEXT_DOMIN_URL}/blog`;
   const title = titleMatch ? titleMatch[1] : "Default Title";
   const description = descriptionMatch
     ? descriptionMatch[1]

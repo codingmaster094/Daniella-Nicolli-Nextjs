@@ -112,7 +112,7 @@ export async function generateMetadata() {
     : "Default Description";
     const canonical = canonicalMatch
       ? canonicalMatch[1]
-      : "https://daniella.blog-s.de/ueber-mich";
+      :`${process.env.NEXT_DOMIN_URL}/ueber-mich`;
   return {
     title,
     description,
