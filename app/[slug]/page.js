@@ -8,7 +8,8 @@ import ReviewsData from "../ReviewsData/page";
 import getLandingData from "../until/getLandingData";
 import MetaDataAPIS from "../until/metadataAPI";
 import Custom404 from "../not-found";
-
+import dynamic from "next/dynamic";
+const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 export default async function LandingPage({ params }) {
   const { slug } = await params;
      let landingData;
@@ -26,8 +27,16 @@ export default async function LandingPage({ params }) {
        return <div>No data available.</div>;
      }
 
+     const metadata = await MetaDataAPIS(`landing/${slug}`);
+     
+       const schemaMatch = metadata.head.match(
+         /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+       );
+       const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+
   return (
     <>
+      <SchemaInjector schemaJSON={schemaJSON} />
       <BannerCarousel
         title={landingData?.hero_slider_main_title}
         img={landingData?.hero_slider_image}
@@ -84,14 +93,21 @@ export async function generateMetadata({ params }) {
   const descriptionMatch = metadata.head.match(
     /<meta name="description" content="(.*?)"/
   );
-
+  const canonicalMatch = metadata.head.match(
+    /<link\s+rel="canonical"\s+href="([^"]+)"/i
+  );
   const title = titleMatch ? titleMatch[1] : "Default Title";
   const description = descriptionMatch
     ? descriptionMatch[1]
     : "Default Description";
-
+    const canonical = canonicalMatch
+      ? canonicalMatch[1]
+      : `https://daniella.blog-s.de/${slug}`;
   return {
     title,
     description,
+    alternates: {
+      canonical,
+    },
   };
 }

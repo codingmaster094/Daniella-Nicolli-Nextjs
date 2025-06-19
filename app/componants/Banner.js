@@ -20,6 +20,8 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
                 quality={75}
                 priority={true}
                 unoptimized
+                fetchPriority="high"
+                loading="eager"
                 className="absolute top-0 left-0 w-full h-full"
               />
               <div className="flex flex-col bg-Bgwhite my-[15px] p-6 lg:p-10 gap-4 lg:gap-8 w-full md:w-[845px] relative z-10">

@@ -5,6 +5,8 @@
   import BannerCarousel from "../componants/Banner";
   import Alldata from "../until/AllDatafetch";
   import MetaDataAPIS from "../until/metadataAPI";
+  import dynamic from "next/dynamic";
+  const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
   const page = async () => {
     let ContactData;
 
@@ -19,9 +21,15 @@
       return <div>No data available.</div>; // Fallback UI
     }
     
+    const metadata = await MetaDataAPIS("/kontakt");
 
+    const schemaMatch = metadata.head.match(
+      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+    );
+    const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
     return (
       <>
+        <SchemaInjector schemaJSON={schemaJSON} />
         <BannerCarousel
           title={ContactData?.hero_slider_main_title?.value}
           img={ContactData?.hero_slider_image?.value}
@@ -40,16 +48,18 @@
           kontakt_whatsapp_label={ContactData?.kontakt_whatsapp_label?.value}
           email_label={ContactData?.kontakt_email_label?.value}
           terminbuchung_label={ContactData?.kontakt_terminbuchung_label?.value}
-          telefonnummer_button={ContactData?.kontakt_telefonnummer_button?.value}
+          telefonnummer_button={
+            ContactData?.kontakt_telefonnummer_button?.value
+          }
           kontakt_whatsapp_button_text={
             ContactData?.kontakt_whatsapp_button_text?.value
           }
           email_button={ContactData?.kontakt_email_button?.value}
-          terminbuchung_button={ContactData?.kontakt_terminbuchung_button?.value}
-          terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
-          footer_whatsapp_number={
-            ContactData?.footer_whatsapp_number?.value
+          terminbuchung_button={
+            ContactData?.kontakt_terminbuchung_button?.value
           }
+          terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
+          footer_whatsapp_number={ContactData?.footer_whatsapp_number?.value}
           // add whatsaap detalis in
         />
 
@@ -79,14 +89,22 @@ export async function generateMetadata() {
   const descriptionMatch = metadata.head.match(
     /<meta name="description" content="(.*?)"/
   );
-
+  const canonicalMatch = metadata.head.match(
+    /<link\s+rel="canonical"\s+href="([^"]+)"/i
+  );
   const title = titleMatch ? titleMatch[1] : "Default Title";
   const description = descriptionMatch
     ? descriptionMatch[1]
     : "Default Description";
 
+    const canonical = canonicalMatch
+      ? canonicalMatch[1]
+      : "https://daniella.blog-s.de/kontakt";
   return {
     title,
     description,
+    alternates: {
+      canonical,
+    },
   };
 }

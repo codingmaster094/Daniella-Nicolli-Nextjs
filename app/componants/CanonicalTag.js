@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function CanonicalTag() {
   const pathname = usePathname();
-  const canonicalUrl = `${process.env.NEXT_DOMIN_URL}${pathname}`;
+  const canonicalUrl = `https://daniella-nicolli-nextjs.vercel.app${pathname}`;
 
   useEffect(() => {
     const existingLink = document.querySelector("link[rel='canonical']");

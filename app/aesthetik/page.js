@@ -8,6 +8,8 @@ import MultipleAboutdetails from "../componants/MultipleAboutdetails"
 import BannerCarousel from "../componants/Banner"
 import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
+import dynamic from "next/dynamic";
+const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const Page = async() => {
   let AesthetikData;
   try {
@@ -21,9 +23,16 @@ const Page = async() => {
        return <div>No data available.</div>;
      }
 
+     const metadata = await MetaDataAPIS("/aesthetik");
+          
+            const schemaMatch = metadata.head.match(
+              /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+            );
+            const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
 
   return (
     <>
+      <SchemaInjector schemaJSON={schemaJSON} />
       <BannerCarousel
         title={AesthetikData?.hero_slider_main_title?.value}
         img={AesthetikData?.hero_slider_image?.value}
@@ -76,21 +85,26 @@ const Page = async() => {
 export default Page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/aesthetik");
+  const metadata = await MetaDataAPIS("/aesthetik");
 
-  // Extract metadata from the head string
   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
   const descriptionMatch = metadata.head.match(
     /<meta name="description" content="(.*?)"/
   );
+  const canonicalMatch = metadata.head.match(
+    /<link\s+rel="canonical"\s+href="([^"]+)"/i
+  );
 
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-
+  const title = titleMatch?.[1] || "Default Title";
+  const description = descriptionMatch?.[1] || "Default Description";
+const canonical = canonicalMatch
+  ? canonicalMatch[1]
+  : "https://daniella.blog-s.de/aesthetik";
   return {
     title,
     description,
+    alternates: {
+      canonical,
+    },
   };
 }

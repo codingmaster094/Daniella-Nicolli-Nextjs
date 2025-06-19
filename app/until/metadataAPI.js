@@ -1,7 +1,7 @@
 export default async function MetaDataAPIS(params) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_META_DATA_BAS_URL}${params}`,
+      `${process.env.NEXT_META_DATA_BASE_URL}${params}`,
       {
         cache: "no-store",
       }
