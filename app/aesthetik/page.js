@@ -85,26 +85,41 @@ const Page = async() => {
 export default Page;
 
 export async function generateMetadata() {
-  const metadata = await MetaDataAPIS("/aesthetik");
+  try {
+    const metadata = await MetaDataAPIS("/aesthetik");
 
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const canonicalMatch = metadata.head.match(
-    /<link\s+rel="canonical"\s+href="([^"]+)"/i
-  );
+    const head = metadata?.head || "";
 
-  const title = titleMatch?.[1] || "Default Title";
-  const description = descriptionMatch?.[1] || "Default Description";
-const canonical = canonicalMatch
-  ? canonicalMatch[1]
-  : `${process.env.NEXT_DOMIN_URL}/aesthetik`;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-  };
+    const titleMatch = head.match(/<title>(.*?)<\/title>/);
+    const descriptionMatch = head.match(
+      /<meta name="description" content="(.*?)"/
+    );
+    const canonicalMatch = head.match(
+      /<link\s+rel="canonical"\s+href="([^"]+)"/i
+    );
+
+    const title = titleMatch?.[1] || "Default Title";
+    const description = descriptionMatch?.[1] || "Default Description";
+    const canonical =
+      canonicalMatch?.[1] ||
+      "https://daniella-nicolli-nextjs.vercel.app/aesthetik";
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical,
+      },
+    };
+  } catch (error) {
+    console.error("Error generating metadata for /aesthetik:", error);
+    return {
+      title: "Default Title",
+      description: "Default Description",
+      alternates: {
+        canonical: "https://daniella-nicolli-nextjs.vercel.app/aesthetik",
+      },
+    };
+  }
 }
+

@@ -49,30 +49,67 @@ const page = async() => {
 
 export default page;
 
-export async function generateMetadata({ params }) {
-  const {slug } = await params; // No need to await
+export async function generateMetadata() {
+  try {
+    const metadata = await MetaDataAPIS("/datenschutzerklarung");
+    const head = metadata?.head || "";
 
-  let metadata = await MetaDataAPIS(`/datenschutzerklarung`);
+    const titleMatch = head.match(/<title>(.*?)<\/title>/);
+    const descriptionMatch = head.match(
+      /<meta name="description" content="(.*?)"/
+    );
+    const canonicalMatch = head.match(
+      /<link\s+rel="canonical"\s+href="([^"]+)"/i
+    );
 
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const canonicalMatch = metadata.head.match(
-    /<link\s+rel="canonical"\s+href="([^"]+)"/i
-  );
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-    const canonical = canonicalMatch
-      ? canonicalMatch[1]
-      : `${process.env.NEXT_DOMIN_URL}/datenschutzerklarung`;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-  };
+    const title = titleMatch?.[1] || "Datenschutzerklärung | Daniella Nicolli";
+    const description =
+      descriptionMatch?.[1] ||
+      "Informationen zum Datenschutz der Praxis für Ästhetik & Naturheilmedizin – Daniella Nicolli.";
+    const canonical =
+      canonicalMatch?.[1] ||
+      "https://daniella-nicolli-nextjs.vercel.app/datenschutzerklarung";
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical,
+      },
+      openGraph: {
+        title,
+        description,
+        url: canonical,
+      },
+      twitter: {
+        title,
+        description,
+        card: "summary_large_image",
+      },
+    };
+  } catch (error) {
+    console.error("Metadata generation error (/datenschutzerklarung):", error);
+    return {
+      title: "Datenschutzerklärung | Daniella Nicolli",
+      description:
+        "Informationen zum Datenschutz der Praxis für Ästhetik & Naturheilmedizin – Daniella Nicolli.",
+      alternates: {
+        canonical:
+          "https://daniella-nicolli-nextjs.vercel.app/datenschutzerklarung",
+      },
+      openGraph: {
+        title: "Datenschutzerklärung | Daniella Nicolli",
+        description:
+          "Informationen zum Datenschutz der Praxis für Ästhetik & Naturheilmedizin – Daniella Nicolli.",
+        url: "https://daniella-nicolli-nextjs.vercel.app/datenschutzerklarung",
+      },
+      twitter: {
+        title: "Datenschutzerklärung | Daniella Nicolli",
+        description:
+          "Informationen zum Datenschutz der Praxis für Ästhetik & Naturheilmedizin – Daniella Nicolli.",
+        card: "summary_large_image",
+      },
+    };
+  }
 }
+

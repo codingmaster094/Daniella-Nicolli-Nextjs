@@ -149,30 +149,63 @@ const Page = async ({ params }) => {
 export default Page;
 
 export async function generateMetadata({ params }) {
-  const {slug } = await params; // No need to await
+  const { slug } = params;
 
-  let metadata = await MetaDataAPIS(`/${slug}`);
+  try {
+    const metadata = await MetaDataAPIS(`/${slug}`);
+    const head = metadata?.head || "";
 
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const canonicalMatch = metadata.head.match(
-    /<link\s+rel="canonical"\s+href="([^"]+)"/i
-  );
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
+    const titleMatch = head.match(/<title>(.*?)<\/title>/);
+    const descriptionMatch = head.match(
+      /<meta name="description" content="(.*?)"/
+    );
+    const canonicalMatch = head.match(
+      /<link\s+rel="canonical"\s+href="([^"]+)"/i
+    );
 
-    const canonical = canonicalMatch
-      ? canonicalMatch[1]
-      : `${process.env.NEXT_DOMIN_URL}/${slug}`;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-  };
+    const title = titleMatch?.[1] || `Default Title - ${slug}`;
+    const description =
+      descriptionMatch?.[1] || `Default description for ${slug}`;
+    const canonical =
+      canonicalMatch?.[1] ||
+      `https://daniella-nicolli-nextjs.vercel.app/${slug}`;
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical,
+      },
+      openGraph: {
+        title,
+        description,
+        url: canonical,
+      },
+      twitter: {
+        title,
+        description,
+        card: "summary_large_image",
+      },
+    };
+  } catch (error) {
+    console.error(`generateMetadata error for slug "/${slug}":`, error);
+    return {
+      title: `Default Title - ${slug}`,
+      description: `Default description for ${slug}`,
+      alternates: {
+        canonical: `https://daniella-nicolli-nextjs.vercel.app/${slug}`,
+      },
+      openGraph: {
+        title: `Default Title - ${slug}`,
+        description: `Default description for ${slug}`,
+        url: `https://daniella-nicolli-nextjs.vercel.app/${slug}`,
+      },
+      twitter: {
+        title: `Default Title - ${slug}`,
+        description: `Default description for ${slug}`,
+        card: "summary_large_image",
+      },
+    };
+  }
 }
+

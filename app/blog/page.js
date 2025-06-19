@@ -55,29 +55,74 @@ const Page = async () => {
 export default Page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/blog");
+  try {
+    const metadata = await MetaDataAPIS("/blog");
+    const head = metadata?.head || "";
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const canonicalMatch = metadata.head.match(
-    /<link\s+rel="canonical"\s+href="([^"]+)"/i
-  );
-  const canonical = canonicalMatch
-    ? canonicalMatch[1]
-    : `${process.env.NEXT_DOMIN_URL}/blog`;
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
+    // Extract meta values
+    const titleMatch = head.match(/<title>(.*?)<\/title>/);
+    const descriptionMatch = head.match(
+      /<meta name="description" content="(.*?)"/
+    );
+    const canonicalMatch = head.match(
+      /<link\s+rel="canonical"\s+href="([^"]+)"/i
+    );
+    const ogTitleMatch = head.match(
+      /<meta property="og:title" content="(.*?)"/
+    );
+    const ogDescriptionMatch = head.match(
+      /<meta property="og:description" content="(.*?)"/
+    );
+    const ogUrlMatch = head.match(/<meta property="og:url" content="(.*?)"/);
+    const twitterTitleMatch = head.match(
+      /<meta name="twitter:title" content="(.*?)"/
+    );
+    const twitterDescriptionMatch = head.match(
+      /<meta name="twitter:description" content="(.*?)"/
+    );
 
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-  };
+    // Fallback values
+    const title = titleMatch?.[1] || "Default Blog Title";
+    const description = descriptionMatch?.[1] || "Default Blog Description";
+    const canonical =
+      canonicalMatch?.[1] || "https://daniella-nicolli-nextjs.vercel.app/blog";
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical,
+      },
+      openGraph: {
+        title: ogTitleMatch?.[1] || title,
+        description: ogDescriptionMatch?.[1] || description,
+        url: ogUrlMatch?.[1] || canonical,
+      },
+      twitter: {
+        title: twitterTitleMatch?.[1] || title,
+        description: twitterDescriptionMatch?.[1] || description,
+        card: "summary_large_image",
+      },
+    };
+  } catch (error) {
+    console.error("Error in generateMetadata for /blog:", error);
+
+    return {
+      title: "Default Blog Title",
+      description: "Default Blog Description",
+      alternates: {
+        canonical: "https://daniella-nicolli-nextjs.vercel.app/blog",
+      },
+      openGraph: {
+        title: "Default Blog Title",
+        description: "Default Blog Description",
+        url: "https://daniella-nicolli-nextjs.vercel.app/blog",
+      },
+      twitter: {
+        title: "Default Blog Title",
+        description: "Default Blog Description",
+        card: "summary_large_image",
+      },
+    };
+  }
 }

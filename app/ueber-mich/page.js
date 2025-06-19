@@ -96,28 +96,64 @@ const page = async () => {
 export default page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/ueber-mich");
+  try {
+    const metadata = await MetaDataAPIS("/ueber-mich");
+    const head = metadata?.head || "";
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const canonicalMatch = metadata.head.match(
-    /<link\s+rel="canonical"\s+href="([^"]+)"/i
-  );
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-    const canonical = canonicalMatch
-      ? canonicalMatch[1]
-      :`${process.env.NEXT_DOMIN_URL}/ueber-mich`;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-  };
+    const titleMatch = head.match(/<title>(.*?)<\/title>/);
+    const descriptionMatch = head.match(
+      /<meta name="description" content="(.*?)"/
+    );
+    const canonicalMatch = head.match(
+      /<link\s+rel="canonical"\s+href="([^"]+)"/i
+    );
+
+    const title = titleMatch?.[1] || "Über mich | Daniella Nicolli";
+    const description =
+      descriptionMatch?.[1] ||
+      "Erfahren Sie mehr über Daniella Nicolli, ihre Philosophie und ihr ganzheitliches Behandlungskonzept.";
+    const canonical =
+      canonicalMatch?.[1] ||
+      "https://daniella-nicolli-nextjs.vercel.app/ueber-mich";
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical,
+      },
+      openGraph: {
+        title,
+        description,
+        url: canonical,
+      },
+      twitter: {
+        title,
+        description,
+        card: "summary_large_image",
+      },
+    };
+  } catch (error) {
+    console.error("Metadata generation error (/ueber-mich):", error);
+    return {
+      title: "Über mich | Daniella Nicolli",
+      description:
+        "Erfahren Sie mehr über Daniella Nicolli, ihre Philosophie und ihr ganzheitliches Behandlungskonzept.",
+      alternates: {
+        canonical: "https://daniella-nicolli-nextjs.vercel.app/ueber-mich",
+      },
+      openGraph: {
+        title: "Über mich | Daniella Nicolli",
+        description:
+          "Erfahren Sie mehr über Daniella Nicolli, ihre Philosophie und ihr ganzheitliches Behandlungskonzept.",
+        url: "https://daniella-nicolli-nextjs.vercel.app/ueber-mich",
+      },
+      twitter: {
+        title: "Über mich | Daniella Nicolli",
+        description:
+          "Erfahren Sie mehr über Daniella Nicolli, ihre Philosophie und ihr ganzheitliches Behandlungskonzept.",
+        card: "summary_large_image",
+      },
+    };
+  }
 }
