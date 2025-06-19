@@ -4,7 +4,6 @@ import MetaDataAPIS from "./until/metadataAPI";
 export default async function Home() {
   return <HomePage />;
 }
-
 export async function generateMetadata() {
   let metadata = await MetaDataAPIS("/home");
 
