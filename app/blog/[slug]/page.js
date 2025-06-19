@@ -3,14 +3,21 @@ import dayjs from "dayjs";
 import Categories from "../../componants/Categories";
 import PostGet from "@/app/until/PostGet";
 import MetaDataAPIS from "@/app/until/metadataAPI";
-
+import dynamic from "next/dynamic";
+const SchemaInjector = dynamic(() => import("../../componants/SchemaInjector"));
 const Page = async ({ params }) => {
   // Await params to avoid Next.js error
   const { slug } = await params;
 
   let blogData;
+  let schemaJSON;
   try {
     blogData = await PostGet(`/posts?slug=${slug}`);
+    const metadata = await MetaDataAPIS(`/${slug}`);
+    const schemaMatch = metadata.head.match(
+      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+    );
+    schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   } catch (error) {
     return <div>Error loading data.</div>;
   }
@@ -21,6 +28,7 @@ const Page = async ({ params }) => {
 
   return (
     <>
+      <SchemaInjector schemaJSON={schemaJSON} />
       <section>
         <div
           className="blog-banner w-full lg:h-[450px] h-auto lg:py-[180px] md:py-[150px] py-[100px] relative bg-cover bg-center flex justify-start items-center"
@@ -149,14 +157,20 @@ export async function generateMetadata({ params }) {
   const descriptionMatch = metadata.head.match(
     /<meta name="description" content="(.*?)"/
   );
-
+  const canonicalMatch = metadata.head.match(
+    /<link\s+rel="canonical"\s+href="([^"]+)"/i
+  );
   const title = titleMatch ? titleMatch[1] : "Default Title";
   const description = descriptionMatch
     ? descriptionMatch[1]
     : "Default Description";
-
+    const canonical =
+      canonicalMatch?.[1] || "https://daniella-nicolli-nextjs.vercel.app";
   return {
     title,
     description,
+    alternates: {
+      canonical,
+    },
   };
 }

@@ -20,7 +20,7 @@ export default async function LandingPage({ params }) {
        if (!landingData || Object.keys(landingData).length === 0) {
          return <Custom404 />;
        }
-        const metadata = await MetaDataAPIS("/aesthetik");
+        const metadata = await MetaDataAPIS(`landing/${slug}`);
            const schemaMatch = metadata.head.match(
              /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
            );
