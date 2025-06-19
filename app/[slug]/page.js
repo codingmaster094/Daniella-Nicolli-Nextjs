@@ -8,15 +8,23 @@ import ReviewsData from "../ReviewsData/page";
 import getLandingData from "../until/getLandingData";
 import MetaDataAPIS from "../until/metadataAPI";
 import Custom404 from "../not-found";
-
+import dynamic from "next/dynamic";
+const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 export default async function LandingPage({ params }) {
   const { slug } = await params;
      let landingData;
+     let schemaJSON;
+
      try {
         landingData = await getLandingData(`/landing?slug=${slug}`); 
        if (!landingData || Object.keys(landingData).length === 0) {
          return <Custom404 />;
        }
+        const metadata = await MetaDataAPIS("/aesthetik");
+           const schemaMatch = metadata.head.match(
+             /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+           );
+           schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>; 
@@ -28,6 +36,7 @@ export default async function LandingPage({ params }) {
 
   return (
     <>
+      <SchemaInjector schemaJSON={schemaJSON} />
       <BannerCarousel
         title={landingData?.hero_slider_main_title}
         img={landingData?.hero_slider_image}
@@ -84,14 +93,22 @@ export async function generateMetadata({ params }) {
   const descriptionMatch = metadata.head.match(
     /<meta name="description" content="(.*?)"/
   );
+  const canonicalMatch = metadata.head.match(
+    /<link\s+rel="canonical"\s+href="([^"]+)"/i
+  );
 
   const title = titleMatch ? titleMatch[1] : "Default Title";
   const description = descriptionMatch
     ? descriptionMatch[1]
     : "Default Description";
+    const canonical =
+      canonicalMatch?.[1] || "https://daniella-nicolli-nextjs.vercel.app";
 
   return {
     title,
     description,
+    alternates: {
+      canonical,
+    },
   };
 }
