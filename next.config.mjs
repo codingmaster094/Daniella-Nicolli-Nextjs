@@ -86,6 +86,7 @@ const nextConfig = {
 
   experimental: {
     scrollRestoration: true,
+    turbopack: false,
   },
 
   webpack: (config, { isServer }) => {
