@@ -2,15 +2,18 @@ import dynamic from "next/dynamic";
 import HomePage from "./Home/page";
 import MetaDataAPIS from "./until/metadataAPI";
 const SchemaInjector = dynamic(() => import("./componants/SchemaInjector"));
-
 export default async function Home() {
-
-  const metadata = await MetaDataAPIS("/home");
-
-  const schemaMatch = metadata.head.match(
-    /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-  );
-  const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+  let schemaJSON;
+    try {
+         const metadata = await MetaDataAPIS("/aesthetik");    
+         const schemaMatch = metadata.head.match(
+          /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+         );
+           schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+       } catch (error) {
+         console.error("Error fetching data:", error);
+         return <div>Error loading data.</div>;
+       }
   return (
     <>
       <SchemaInjector schemaJSON={schemaJSON} />
@@ -20,34 +23,28 @@ export default async function Home() {
 }
 
 export async function generateMetadata() {
-  try {
-    const metadata = await MetaDataAPIS("/home");
-    const head = metadata?.head || "";
+  let metadata = await MetaDataAPIS("/home");
 
-    const title = head.match(/<title>(.*?)<\/title>/)?.[1] || "Default Title";
-    const description =
-      head.match(/<meta name="description" content="(.*?)"/)?.[1] ||
-      "Default Description";
-    const canonical =
-      head.match(/<link\s+rel="canonical"\s+href="([^"]+)"/i)?.[1] ||
-      process.env.NEXT_DOMAIN_URL ||
+  // Extract metadata from the head string
+  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
+  const descriptionMatch = metadata.head.match(
+    /<meta name="description" content="(.*?)"/
+  );
+  const canonicalMatch = head.match(
+    /<link\s+rel="canonical"\s+href="([^"]+)"/i
+  );
+
+  const title = titleMatch ? titleMatch[1] : "Default Title";
+  const description = descriptionMatch
+    ? descriptionMatch[1]
+    : "Default Description";
+    canonicalMatch?.[1] ||
       "https://daniella-nicolli-nextjs.vercel.app";
-
-    return {
-      title,
-      description,
-      alternates: {
-        canonical,
-      },
-    };
-  } catch (error) {
-    console.error("Metadata generation failed:", error);
-    return {
-      title: "Default Title",
-      description: "Default Description",
-      alternates: {
-        canonical: "https://daniella-nicolli-nextjs.vercel.app",
-      },
-    };
-  }
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+  };
 }

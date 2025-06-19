@@ -10,10 +10,15 @@ const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const Page = async () => {
   let BlogData ;
   let RatgeberData ;
-
+let schemaJSON;
   try {
        BlogData = await Alldata("/blog");
        RatgeberData = await PostGet("/posts");
+       const metadata = await MetaDataAPIS("/blog");
+       const schemaMatch = metadata.head.match(
+         /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+       );
+        schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
      } catch (error) {
        if (!BlogData || !RatgeberData) {
          return <div>Error loading data.</div>;
@@ -24,12 +29,6 @@ const Page = async () => {
        return <div>No data available.</div>;
      }
 
-     const metadata = await MetaDataAPIS("/blog");
-
-     const schemaMatch = metadata.head.match(
-       /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-     );
-     const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   
   return (
     <>

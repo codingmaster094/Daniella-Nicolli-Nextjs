@@ -10,8 +10,15 @@ const Page = async ({ params }) => {
   const { slug } = await params;
 
   let blogData;
+  let schemaJSON;
   try {
     blogData = await PostGet(`/posts?slug=${slug}`);
+    const metadata = await MetaDataAPIS(`/${slug}`);
+  
+    const schemaMatch = metadata.head.match(
+      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+    );
+     schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   } catch (error) {
     return <div>Error loading data.</div>;
   }
@@ -20,12 +27,6 @@ const Page = async ({ params }) => {
     return <div>No data available.</div>;
   }
 
-  const metadata = await MetaDataAPIS(`/${slug}`);
-
-  const schemaMatch = metadata.head.match(
-    /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-  );
-  const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   return (
     <>
       <SchemaInjector schemaJSON={schemaJSON} />

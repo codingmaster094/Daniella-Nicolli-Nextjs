@@ -12,8 +12,14 @@ import dynamic from "next/dynamic";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const Page = async() => {
   let AesthetikData;
+  let schemaJSON;
   try {
        AesthetikData = await Alldata("/aesthetik");
+       const metadata = await MetaDataAPIS("/aesthetik");    
+       const schemaMatch = metadata.head.match(
+        /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+       );
+         schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>;
@@ -23,12 +29,6 @@ const Page = async() => {
        return <div>No data available.</div>;
      }
 
-     const metadata = await MetaDataAPIS("/aesthetik");
-          
-            const schemaMatch = metadata.head.match(
-              /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-            );
-            const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
 
   return (
     <>

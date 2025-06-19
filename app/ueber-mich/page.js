@@ -13,9 +13,15 @@ const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 
 const page = async () => {  
   let Ubermich;
-
+let schemaJSON;
   try {
     Ubermich = await Alldata("/ueber-mich");
+    const metadata = await MetaDataAPIS("/ueber-mich");
+  
+    const schemaMatch = metadata.head.match(
+      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+    );
+     schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>; // Fallback UI
@@ -24,12 +30,6 @@ const page = async () => {
   if (!Ubermich) {
     return <div>No data available.</div>; // Fallback UI
   }
-  const metadata = await MetaDataAPIS("/ueber-mich");
-
-  const schemaMatch = metadata.head.match(
-    /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-  );
-  const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
 
   return (
     <>

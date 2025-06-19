@@ -13,11 +13,18 @@ const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 export default async function LandingPage({ params }) {
   const { slug } = await params;
      let landingData;
+     let schemaJSON;
      try {
         landingData = await getLandingData(`/landing?slug=${slug}`); 
        if (!landingData || Object.keys(landingData).length === 0) {
          return <Custom404 />;
-       }
+        }
+        const metadata = await MetaDataAPIS(`landing/${slug}`);
+        
+          const schemaMatch = metadata.head.match(
+            /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
+          );
+           schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>; 
@@ -27,12 +34,6 @@ export default async function LandingPage({ params }) {
        return <div>No data available.</div>;
      }
 
-     const metadata = await MetaDataAPIS(`landing/${slug}`);
-     
-       const schemaMatch = metadata.head.match(
-         /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-       );
-       const schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
 
   return (
     <>
