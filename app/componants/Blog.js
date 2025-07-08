@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Arrowbtn from "../../public/images/arrow-btn.svg";
 import Link from "next/link";
+import dayjs from "dayjs";
 
 const Blog = ({ title, BTN, blogsData }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -19,7 +20,11 @@ const Blog = ({ title, BTN, blogsData }) => {
       setFilteredBlogs(blogsData); // Show all blogs if search is empty
     } else {
       const filtered = blogsData.filter((val) =>
-        val?.title?.toLowerCase().includes(searchQuery.toLowerCase())
+       {
+        return val?.title?.rendered
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+       }
       );
       setFilteredBlogs(filtered);
     }
@@ -69,15 +74,15 @@ const Blog = ({ title, BTN, blogsData }) => {
                   className="flex flex-col mt-6 xl:mt-[50px] w-full xm:w-[47%] lg:w-[30%] border border-Teal ps-6 pe-6 pb-6 xl:ps-12 xl:pe-12 xl:pb-12 gap-4 sm:gap-6 md:gap-8"
                 >
                   <div className="flex -mt-6 justify-center xl:-mt-[50px] h-full sm:h-[360px]">
-                    {val?.featured_image_url && (
+                    {val?.acf.hero_slider_image && (
                       <Link
-                        href={`/blog/${val.slug}`}
+                        href={`/ratgeber/${val.slug}`}
                         aria-label="image-button"
                         role="link"
                         className="flex w-full"
                       >
                         <Image
-                          src={val?.featured_image_url}
+                          src={val?.acf?.hero_slider_image}
                           width={358}
                           height={239}
                           alt="BlogImage"
@@ -86,21 +91,24 @@ const Blog = ({ title, BTN, blogsData }) => {
                       </Link>
                     )}
                   </div>
+                  <p>
+                    <span>{dayjs(val?.date).format("DD.MM.YYYY")}</span>
+                  </p>
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
-                      {val?.title && (
+                      {val?.title?.rendered && (
                         <Link
-                          href={`/blog/${val.slug}`}
+                          href={`/ratgeber/${val.slug}`}
                           aria-label="link-title"
                           role="link"
                         >
                           <h3 className="text-a md:text-h4 text-black-900 hover:text-Teal !font-normal">
-                            {val?.title}
+                            {val?.title?.rendered}
                           </h3>
                         </Link>
                       )}
                       <Link
-                        href={`/blog/${val.slug}`}
+                        href={`/ratgeber/${val.slug}`}
                         aria-label="arrow-btn"
                         role="link"
                         className="w-[30px] h-[30px] sm:w-[50px] sm:h-[50px] flex flex-shrink-0"
@@ -110,14 +118,14 @@ const Blog = ({ title, BTN, blogsData }) => {
                         </span>
                       </Link>
                     </div>
-                    <p
+                    {/* <p
                       dangerouslySetInnerHTML={{
-                        __html: val?.excerpt?.rendered
+                        __html: val?.content?.rendered
                           .replace(/<p>/g, "")
                           .replace(/<\/p>/g, "")
-                          .replace(/&amp;/g, "&"),
+                          .replace(/&/g, "&"),
                       }}
-                    />
+                    /> */}
                   </div>
                 </div>
               );

@@ -44,12 +44,7 @@ export default {
         "primary-font": ["Opensans", "sans-serif"],
       },
       fontSize: {
-        h1: [
-          "30px",
-          {lineHeight: "1.4",
-            fontWeight: "500",
-          },
-        ],
+        h1: ["30px", { lineHeight: "1.4", fontWeight: "500" }],
         h2: [
           "28px",
           {

@@ -12,7 +12,7 @@ export default async function MetaDataAPIS(params) {
     }
 
     const data = await response.json();
-    return data;
+    return data ;
   } catch (error) {
     console.error("Error in Alldata:", error);
     throw error; // Rethrow the error to be caught in the calling component

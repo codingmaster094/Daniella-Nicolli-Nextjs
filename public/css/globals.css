@@ -261,6 +261,10 @@
     @apply flex gap-2 flex-wrap flex-col sm:flex-row sm:gap-4 mb-4 lg:mb-8;
   }
 
+    .blog-container{
+      @apply max-w-[1440px] w-full mx-auto my-0 px-[15px] py-0;
+    }
+
   .blogtemplate
     .wp-container-core-columns-is-layout-2
     .wp-block-column-is-layout-flow,
@@ -289,7 +293,7 @@
   }
 
   .blogtemplate .wp-block-list {
-    @apply flex flex-col gap-3 text-a mb-8;
+    @apply flex flex-col gap-3 text-a mb-8 !pl-5;
   }
 
   .blogtemplate h4.wp-block-heading {

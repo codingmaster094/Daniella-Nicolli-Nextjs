@@ -52,7 +52,7 @@ const TopButton = () => {
           zIndex: "999",
           position: "fixed",
           right: "32px",
-          bottom: "32px",
+          bottom: "70px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",  

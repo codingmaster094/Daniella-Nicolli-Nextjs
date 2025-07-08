@@ -5,7 +5,7 @@ const SchemaInjector = dynamic(() => import("./componants/SchemaInjector"));
 export default async function Home() {
   let schemaJSON;
   try {
-    const metadata = await MetaDataAPIS("/aesthetik");
+    const metadata = await MetaDataAPIS("/home");
     const schemaMatch = metadata.head.match(
       /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
     );
@@ -37,7 +37,7 @@ export async function generateMetadata() {
     ? descriptionMatch[1]
     : "Default Description";
     const canonical =
-      canonicalMatch?.[1] || "https://daniella-nicolli-nextjs.vercel.app";
+      canonicalMatch?.[1] || "https://www.heilpraktikerin-nicolli.de";
   return {
     title,
     description,

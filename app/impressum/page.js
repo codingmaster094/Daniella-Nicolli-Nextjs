@@ -60,7 +60,7 @@ export async function generateMetadata() {
     ? descriptionMatch[1]
     : "Default Description";
     const canonical =
-      canonicalMatch?.[1] || "https://daniella-nicolli-nextjs.vercel.app";
+      canonicalMatch?.[1] || "https://www.heilpraktikerin-nicolli.de";
   return {
     title,
     description,

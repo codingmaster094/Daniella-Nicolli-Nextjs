@@ -13,8 +13,8 @@ const Page = async () => {
   let schemaJSON;
   try {
     BlogData = await Alldata("/blog");
-    RatgeberData = await PostGet("/posts");
-    const metadata = await MetaDataAPIS("/blog");
+    RatgeberData = await PostGet("/ratgeber");
+    const metadata = await MetaDataAPIS("/ratgeber");
     const schemaMatch = metadata.head.match(
       /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
     );
@@ -29,7 +29,7 @@ const Page = async () => {
        return <div>No data available.</div>;
      }
 
-  
+
   return (
     <>
       <SchemaInjector schemaJSON={schemaJSON} />
@@ -54,7 +54,7 @@ const Page = async () => {
 export default Page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/blog");
+  let metadata = await MetaDataAPIS("/ratgeber");
 
   // Extract metadata from the head string
   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
@@ -69,7 +69,7 @@ export async function generateMetadata() {
     ? descriptionMatch[1]
     : "Default Description";
     const canonical =
-      canonicalMatch?.[1] || "https://daniella-nicolli-nextjs.vercel.app";
+      canonicalMatch?.[1] || "https://www.heilpraktikerin-nicolli.de";
   return {
     title,
     description,
