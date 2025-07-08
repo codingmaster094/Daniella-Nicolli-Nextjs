@@ -62,7 +62,7 @@ const Blog = ({ title, BTN, blogsData }) => {
                 aria-label="search-button"
                 role="button"
               >
-                Job finden
+                Jetzt suchen
               </button>
             </div>
           </div>
