@@ -23,35 +23,6 @@ const ContentWithTOC = ({ title, data, FAQ }) => {
       lenis.destroy();
     };
   }, []);
-
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      const listItems = document.querySelectorAll(
-        ".wp-blogpage .blogtemplate ul li, .wp-blogpage .blogtemplate ol li",
-      );
-
-      if (listItems.length > 0) {
-        listItems.forEach((li) => {
-          const hasLink = li.querySelector("a");
-          if (hasLink) {
-            li.classList.add("list_link");
-          }
-        });
-
-        // Once added, stop observing
-        observer.disconnect();
-      }
-    });
-
-    // Start observing body (or a more specific parent) for subtree changes
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-
-    // Cleanup
-    return () => observer.disconnect();
-  }, []);
   
   
   
@@ -102,30 +73,31 @@ const ContentWithTOC = ({ title, data, FAQ }) => {
   return (
     <div>
       <section className="py-[30px] md:py-[50px] lg:py-[50px]">
-        {title && 
-        <h2
-          className="mb-2 text-h4 sm:text-h3 md:text-h2"
-          dangerouslySetInnerHTML={{ __html: title }}
-        ></h2>
-        }
+        {title && (
+          <h2
+            className="mb-2 text-h4 sm:text-h3 md:text-h2"
+            dangerouslySetInnerHTML={{ __html: title }}
+          ></h2>
+        )}
 
-        <ul className="menu flex flex-col gap-3 [&_li]:font-secondary-font [&_li]:text-a [&_li]:font-normal marker:text-teal-700">
-          {headers.map((header) => (
-            header.id && (
-            <li key={header.id}>
-              <a href={`#${header.id}`} className="text-teal-700">
-                {header.text}
-              </a>
-            </li>
-            )
-          ))
-          }
-          {FAQ.faq_main_faq_show &&(
+        <ul className="menu flex flex-col gap-3 [&_li]:font-secondary-font [&_li]:text-a [&_li]:font-normal ">
+          {headers.map(
+            (header) =>
+              header.id && (
+                <li key={header.id}>
+                  <a href={`#${header.id}`} className="text-teal-700">
+                    {header.text}
+                  </a>
+                </li>
+              )
+          )}
+          {FAQ.faq_main_faq_show && (
             <li>
               <a href={`#faq`} className="text-teal-700">
                 {FAQ?.faq_main_title}
               </a>
-            </li>)}
+            </li>
+          )}
         </ul>
       </section>
 
@@ -140,9 +112,6 @@ const ContentWithTOC = ({ title, data, FAQ }) => {
             main_title={FAQ?.faq_main_title}
             all_faqs={FAQ?.all_faqs}
             show_section={FAQ?.faq_main_faq_show}
-
-
-            
           />
         </section>
       )}

@@ -37,36 +37,38 @@ const Page = async ({ params }) => {
           <div className="Banner-sliders relative overflow-hidden w-full h-full">
             <div className="item relative w-full h-full">
               <div className="bg-cover w-full relative flex flex-col-reverse lg:flex-row justify-center items-center h-full lg:gap-8 gap-0">
-                <div className="w-full lg:w-[50%] pl-0 lg:pl-8 xl:pl-[140px]">
-                  <div className="flex flex-col bg-transparent lg:bg-Bgwhite my-[15px] gap-4 lg:gap-8 max-w-full lg:max-w-[750px]  relative z-10">
-                    <h1
-                      dangerouslySetInnerHTML={{
-                        __html: blogData?.acf?.hero_slider_main_title,
-                      }}
-                    ></h1>
-                    <div
-                      className="[&_ul]:list-disc [&_ul]:pl-4 [&_ul>li]:!text-[16px]"
-                      dangerouslySetInnerHTML={{
-                        __html: blogData?.acf?.hero_slider_content,
-                      }}
-                    ></div>
+                <div className="blog-container">
+                  <div className="banner-content w-full lg:w-[50%]">
+                    <div className="flex flex-col bg-transparent lg:bg-Bgwhite mt-8 lg:mt-[15px] mb-[15px] gap-4 lg:gap-8 max-w-full lg:max-w-[750px]  relative z-10">
+                      <h1
+                        dangerouslySetInnerHTML={{
+                          __html: blogData?.acf?.hero_slider_main_title,
+                        }}
+                      ></h1>
+                      <div
+                        className="[&_ul]:list-disc [&_ul]:pl-4 [&_ul>li]:!text-[16px]"
+                        dangerouslySetInnerHTML={{
+                          __html: blogData?.acf?.hero_slider_content,
+                        }}
+                      ></div>
+                    </div>
                   </div>
+                  <Image
+                    src={blogData?.acf?.hero_slider_image}
+                    alt="hero banner image"
+                    role="img"
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="right"
+                    quality={75}
+                    priority={true}
+                    unoptimized
+                    fetchPriority="high"
+                    // loading="eager"
+                    // className="!relative top-0 !right-0 lg:!w-[50%] !w-full h-full !left-auto"
+                    className="!relative lg:!absolute right-0 top-0 lg:!w-[50%] !w-full h-full !left-auto"
+                  />
                 </div>
-
-                <Image
-                  src={blogData?.acf?.hero_slider_image}
-                  alt="hero banner image"
-                  role="img"
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="right"
-                  quality={75}
-                  priority={true}
-                  unoptimized
-                  fetchPriority="high"
-                  loading="eager"
-                  className="!relative top-0 !right-0 lg:!w-[50%] !w-full h-full !left-auto"
-                />
               </div>
             </div>
           </div>

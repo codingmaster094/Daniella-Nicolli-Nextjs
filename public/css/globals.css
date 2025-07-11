@@ -559,17 +559,15 @@ span.avtar {
 .wp-blogpage ol{
   list-style: decimal !important;
 }
-.wp-blogpage ol.wp-block-list li{
+/* .wp-blogpage ol.wp-block-list li{
   position: relative;
 }
+    */
 .wp-blogpage ol.wp-block-list li a, .wp-blogpage ul.wp-block-list li a {
   color: #1a8281 !important;
-}
+} 
+
 
 /* .wp-blogpage .blogtemplate ul li.list_link::marker{
   color: #1a8281 !important;
 }  */
-li.list_link {
-  list-style-position: outside;
-  color: #1a8281;
-}
