@@ -1,9 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
-const ContentWithTOC = ({ title  ,data }) => {
-  const [headers, setHeaders] = useState([]);
+import Accordian from "./Accordian";
 
+const ContentWithTOC = ({ title, data, FAQ }) => {
+  const [headers, setHeaders] = useState([]);
+  const [updatedHTML, setUpdatedHTML] = useState("");
+
+  // Initialize Lenis scroll
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -13,8 +17,6 @@ const ContentWithTOC = ({ title  ,data }) => {
     }
 
     requestAnimationFrame(raf);
-
-    // Optional: expose Lenis globally if needed later
     window.lenis = lenis;
 
     return () => {
@@ -23,31 +25,59 @@ const ContentWithTOC = ({ title  ,data }) => {
   }, []);
 
   useEffect(() => {
-    // Wait for DOM to update
-    const timer = setTimeout(() => {
-      const section = document.querySelector(".redirect");
-      if (section) {
-        const headerElements = Array.from(section.querySelectorAll("h2"));
-        const headersData = headerElements.map((header) => {
-          if (!header.id) {
-            const text = header.textContent.trim();
-            const id = text
-              .toLowerCase()
-              .replace(/\s+/g, "-")
-              .replace(/[^\w\-]/g, "");
-            header.id = id;
-            return { id, text: header.textContent };
-          } else {
-            return { id: header.id, text: header.textContent };
+    const observer = new MutationObserver(() => {
+      const listItems = document.querySelectorAll(
+        ".wp-blogpage .blogtemplate ul li, .wp-blogpage .blogtemplate ol li",
+      );
+
+      if (listItems.length > 0) {
+        listItems.forEach((li) => {
+          const hasLink = li.querySelector("a");
+          if (hasLink) {
+            li.classList.add("list_link");
           }
         });
-        setHeaders(headersData);
-      }
-    }, 100); // small delay to ensure DOM update
 
-    return () => clearTimeout(timer);
+        // Once added, stop observing
+        observer.disconnect();
+      }
+    });
+
+    // Start observing body (or a more specific parent) for subtree changes
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Cleanup
+    return () => observer.disconnect();
+  }, []);
+  
+  
+  
+  // Process content and assign IDs
+  useEffect(() => {
+    if (!data) return;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data, "text/html");
+    const headingElements = Array.from(doc.querySelectorAll("h2"));
+
+    const headerList = headingElements.map((heading) => {
+      const text = heading.textContent.trim();
+      const id = text
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w\-]/g, "");
+      heading.setAttribute("id", id);
+      return { id, text };
+    });
+
+    setHeaders(headerList);
+    setUpdatedHTML(doc.body.innerHTML); // updated HTML string with IDs
   }, [data]);
 
+  // Smooth scroll using Lenis
   useEffect(() => {
     const handleClick = (e) => {
       const link = e.target.closest("a[href^='#']");
@@ -58,9 +88,9 @@ const ContentWithTOC = ({ title  ,data }) => {
       if (targetElement) {
         e.preventDefault();
         window.lenis.scrollTo(targetElement, {
-          offset: -150, // adjust for fixed headers if needed
+          offset: -150,
           duration: 0.5,
-          easing: (t) => t * (2 - t), // easeOutQuad
+          easing: (t) => t * (2 - t),
         });
       }
     };
@@ -72,27 +102,48 @@ const ContentWithTOC = ({ title  ,data }) => {
   return (
     <div>
       <section className="py-[30px] md:py-[50px] lg:py-[50px]">
+        {title && 
         <h2
           className="mb-2 text-h4 sm:text-h3 md:text-h2"
           dangerouslySetInnerHTML={{ __html: title }}
         ></h2>
+        }
+
         <ul className="menu flex flex-col gap-3 [&_li]:font-secondary-font [&_li]:text-a [&_li]:font-normal marker:text-teal-700">
           {headers.map((header) => (
+            header.id && (
             <li key={header.id}>
               <a href={`#${header.id}`} className="text-teal-700">
                 {header.text}
               </a>
             </li>
-          ))}
+            )
+          ))
+          }
+          {FAQ.faq_main_faq_show &&(
+            <li>
+              <a href={`#faq`} className="text-teal-700">
+                {FAQ?.faq_main_title}
+              </a>
+            </li>)}
         </ul>
       </section>
 
-      {data && (
+      {updatedHTML && (
         <section className="redirect pb-10 md:pb-[70px] lg:pb-[100px]">
           <div
             className="blogtemplate"
-            dangerouslySetInnerHTML={{ __html: data }}
+            dangerouslySetInnerHTML={{ __html: updatedHTML }}
           ></div>
+          <Accordian
+            container={true}
+            main_title={FAQ?.faq_main_title}
+            all_faqs={FAQ?.all_faqs}
+            show_section={FAQ?.faq_main_faq_show}
+
+
+            
+          />
         </section>
       )}
     </div>

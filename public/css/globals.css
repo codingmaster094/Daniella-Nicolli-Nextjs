@@ -62,7 +62,7 @@
   }
 
   .menu li,
-  .blogtemplate .wp-block-list li {
+  .blogtemplate ul.wp-block-list li {
     @apply list-disc;
     /* @apply relative text-black-900 after:absolute after:left-0 after:top-0 after:mt-1 after:bg-velly-svg after:bg-contain after:w-5 after:h-5 ps-6 xm:ps-10 font-primary-font font-normal after:bg-no-repeat; */
   }
@@ -510,4 +510,66 @@ span.avtar {
     transform: scale(0.8);
     background-color: #000000;
   }
+}
+.blogtemplate blockquote {
+  padding: 40px 30px;
+  background: #1a8281;
+  color: #ffffff !important;
+  margin: 30px 0;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.blogtemplate blockquote h2, .blogtemplate blockquote h3, .blogtemplate blockquote h4, .blogtemplate blockquote p{
+  color:#ffffff !important;
+}
+.blogtemplate blockquote p:first-child {
+  font-size: 28px;
+  margin-bottom: 16px;
+  line-height: 50px;
+}
+
+.blogtemplate blockquote a {
+  background-color: #ffffff !important;
+  color: #1a8281 !important;
+  border: 1px solid transparent !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
+  width: fit-content !important;
+  padding:16px 36px !important;
+  transition: all .38s ease-in-out;
+  cursor: pointer !important;
+}
+.blogtemplate blockquote a:hover{
+  background-color: transparent !important;
+  color:#ffffff !important;
+  border:1px solid #ffffff !important;
+  cursor: pointer !important;
+}
+.wp-blogpage .accordian .accordion-content ul {
+  list-style: disc !important;
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.wp-blogpage ol{
+  list-style: decimal !important;
+}
+.wp-blogpage ol.wp-block-list li{
+  position: relative;
+}
+.wp-blogpage ol.wp-block-list li a, .wp-blogpage ul.wp-block-list li a {
+  color: #1a8281 !important;
+}
+
+/* .wp-blogpage .blogtemplate ul li.list_link::marker{
+  color: #1a8281 !important;
+}  */
+li.list_link {
+  list-style-position: outside;
+  color: #1a8281;
 }

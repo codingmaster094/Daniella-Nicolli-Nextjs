@@ -9,6 +9,7 @@ import getLandingData from "../until/getLandingData";
 import MetaDataAPIS from "../until/metadataAPI";
 import Custom404 from "../not-found";
 import dynamic from "next/dynamic";
+import Accordian from "../componants/Accordian";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 export default async function LandingPage({ params }) {
   const { slug } = await params;
@@ -34,6 +35,7 @@ export default async function LandingPage({ params }) {
        return <div>No data available.</div>;
      }
 
+     console.log('landingData', landingData)
   return (
     <>
       <SchemaInjector schemaJSON={schemaJSON} />
@@ -78,8 +80,12 @@ export default async function LandingPage({ params }) {
         bg_img={landingData?.home_anfrage_1_image?.url}
         section_show={landingData?.landing_anfrage_1_section_show}
       />
-
       <ReviewsData />
+      <Accordian
+        main_title={landingData?.faq_main_title}
+        all_faqs={landingData?.all_faqs}
+        show_section={landingData?.faq_main_faq_show}
+      />
     </>
   );
 }

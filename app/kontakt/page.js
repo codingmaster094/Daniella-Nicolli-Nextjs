@@ -6,6 +6,7 @@
   import Alldata from "../until/AllDatafetch";
   import MetaDataAPIS from "../until/metadataAPI";
   import dynamic from "next/dynamic";
+import Accordian from "../componants/Accordian";
   const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
   const page = async () => {
     let ContactData;
@@ -74,6 +75,12 @@
           content={ContactData?.kontakt_form_content?.value}
           live_chat_with_us={ContactData?.kontakt_form_live_chat_with_us?.value}
           form_address={ContactData?.kontakt_form_address?.value}
+        />
+
+        <Accordian
+          main_title={ContactData?.faq_main_title?.value}
+          all_faqs={ContactData?.all_faqs?.value}
+          show_section={ContactData?.faq_main_faq_show.value}
         />
       </>
     );

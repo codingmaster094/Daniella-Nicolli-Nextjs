@@ -9,6 +9,7 @@ import BannerCarousel from "../componants/Banner";
 import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
 import dynamic from "next/dynamic";
+import Accordian from "../componants/Accordian";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const page = async () => {  
   let Ubermich;
@@ -88,6 +89,12 @@ const page = async () => {
           gallery_truefalse={Ubermich?.gallery_truefalse?.value}
         />
       )}
+
+      <Accordian
+        main_title={Ubermich?.faq_main_title?.value}
+        all_faqs={Ubermich?.all_faqs?.value}
+        show_section={Ubermich?.faq_main_faq_show.value}
+      />
     </>
   );
 };

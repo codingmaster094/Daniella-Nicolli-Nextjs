@@ -29,7 +29,7 @@ const Page = async () => {
        return <div>No data available.</div>;
      }
 
-
+     console.log('RatgeberData', RatgeberData)
   return (
     <>
       <SchemaInjector schemaJSON={schemaJSON} />

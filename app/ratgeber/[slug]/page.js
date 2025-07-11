@@ -27,8 +27,10 @@ const Page = async ({ params }) => {
     return <div>No data available.</div>;
   }
 
+  console.log('blogData', blogData)
+
   return (
-    <>
+    <div className="wp-blogpage">
       <SchemaInjector schemaJSON={schemaJSON} />
       <section className="relative w-screen  lg:h-[75vh] h-full ">
         <div className="Banner relative w-full h-full bg-white">
@@ -36,18 +38,18 @@ const Page = async ({ params }) => {
             <div className="item relative w-full h-full">
               <div className="bg-cover w-full relative flex flex-col-reverse lg:flex-row justify-center items-center h-full lg:gap-8 gap-0">
                 <div className="w-full lg:w-[50%] pl-0 lg:pl-8 xl:pl-[140px]">
-                  <div className="flex flex-col bg-transparent lg:bg-Bgwhite my-[15px] p-6 lg:p-10 gap-4 lg:gap-8 max-w-full lg:max-w-[750px]  relative z-10">
+                  <div className="flex flex-col bg-transparent lg:bg-Bgwhite my-[15px] gap-4 lg:gap-8 max-w-full lg:max-w-[750px]  relative z-10">
                     <h1
                       dangerouslySetInnerHTML={{
                         __html: blogData?.acf?.hero_slider_main_title,
                       }}
                     ></h1>
-                    <ul
-                      className="menu list-disc li [&_li]:!text-[16px]"
+                    <div
+                      className="[&_ul]:list-disc [&_ul]:pl-4 [&_ul>li]:!text-[16px]"
                       dangerouslySetInnerHTML={{
                         __html: blogData?.acf?.hero_slider_content,
                       }}
-                    ></ul>
+                    ></div>
                   </div>
                 </div>
 
@@ -73,7 +75,7 @@ const Page = async ({ params }) => {
 
       <div className="blog-container">
         <section className="py-[30px] md:py-[50px] lg:py-[50px]">
-          <div className="px-[15px] mx-auto">
+          <div className=" mx-auto">
             <div className="flex flex-col gap-5 md:gap-6 lg:gap-8">
               <div className="flex justify-between gap-4 flex-wrap items-center">
                 <p className="text-body">
@@ -81,7 +83,9 @@ const Page = async ({ params }) => {
                   <span>
                     {" "}
                     ZULETZT AKTUALISIERT{" "}
-                    {/* {dayjs(blogData?.modified).format("DD.MM.YYYY")} */}
+                    <span>
+                      {dayjs(blogData?.modified).format("DD.MM.YYYY")}
+                    </span>
                   </span>
                 </p>
                 <div className="flex border border-Border w-auto lg:w-[35%] justify-between items-center p-1 bg-white shadow-md">
@@ -100,13 +104,15 @@ const Page = async ({ params }) => {
                 </div>
               </div>
               <div className="flex flex-col gap-5 md:gap-6 lg:gap-8">
-                <h2
-                  className="text-h4 sm:text-h3 md:text-h2"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      blogData?.acf?.ratgeber_single_wichtigste_main_title,
-                  }}
-                ></h2>
+                {blogData?.acf?.ratgeber_single_wichtigste_main_title && (
+                  <h2
+                    className="text-h4 sm:text-h3 md:text-h2"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        blogData?.acf?.ratgeber_single_wichtigste_main_title,
+                    }}
+                  ></h2>
+                )}
                 <ul
                   dangerouslySetInnerHTML={{
                     __html:
@@ -135,9 +141,10 @@ const Page = async ({ params }) => {
         <ContentWithTOC
           title={blogData?.acf?.ratgeber_single_wichtigste_2_main_title}
           data={blogData?.content?.rendered}
+          FAQ={blogData?.acf}
         />
       </div>
-    </>
+    </div>
   );
 };
 
