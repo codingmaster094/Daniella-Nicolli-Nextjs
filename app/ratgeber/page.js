@@ -12,7 +12,7 @@ const Page = async () => {
   let RatgeberData ;
   let schemaJSON;
   try {
-    BlogData = await Alldata("/blog");
+    BlogData = await Alldata("/ratgeber");
     RatgeberData = await PostGet("/ratgeber");
     const metadata = await MetaDataAPIS("/ratgeber");
     const schemaMatch = metadata.head.match(
@@ -29,7 +29,7 @@ const Page = async () => {
        return <div>No data available.</div>;
      }
 
-     console.log('RatgeberData', RatgeberData)
+     console.log('BlogData', BlogData)
   return (
     <>
       <SchemaInjector schemaJSON={schemaJSON} />
