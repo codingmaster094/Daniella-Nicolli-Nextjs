@@ -67,7 +67,9 @@ const Accordian = ({ main_title, all_faqs, show_section, container }) => {
                     }`}
                   >
                     <div
-                      className="accordian-header flex justify-between gap-2 cursor-pointer"
+                      className={`accordian-header flex justify-between gap-2 ${
+                        container ? "" : "cursor-pointer"
+                      }`}
                       onClick={() => handleClick(index)}
                     >
                       <h3
