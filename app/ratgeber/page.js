@@ -14,7 +14,7 @@ const Page = async () => {
   try {
     BlogData = await Alldata("/ratgeber");
     RatgeberData = await PostGet("/ratgeber");
-    const metadata = await MetaDataAPIS("/ratgeber");
+    const metadata = await MetaDataAPIS("/Ratgeber");
     const schemaMatch = metadata.head.match(
       /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
     );
@@ -29,7 +29,7 @@ const Page = async () => {
        return <div>No data available.</div>;
      }
 
-     console.log('BlogData', BlogData)
+
   return (
     <>
       <SchemaInjector schemaJSON={schemaJSON} />
@@ -54,7 +54,7 @@ const Page = async () => {
 export default Page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/ratgeber");
+  let metadata = await MetaDataAPIS("/Ratgeber");
 
   // Extract metadata from the head string
   const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);

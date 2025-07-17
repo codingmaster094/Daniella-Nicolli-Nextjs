@@ -34,8 +34,6 @@ export default async function LandingPage({ params }) {
      if (!landingData) {
        return <div>No data available.</div>;
      }
-
-     console.log('landingData', landingData)
   return (
     <>
       <SchemaInjector schemaJSON={schemaJSON} />

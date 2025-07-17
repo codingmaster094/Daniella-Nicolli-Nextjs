@@ -4,7 +4,6 @@ import Image from "next/image";
 import Chevronsvg from "../../public/images/chevron.svg";
 
 const Accordian = ({ main_title, all_faqs, show_section, container }) => {
-  console.log("show_section", show_section);
   const [selected, setSelected] = useState(0); // or null
   const [height, setHeight] = useState("0px"); // State for height
   const contentRefs = useRef(new Map());

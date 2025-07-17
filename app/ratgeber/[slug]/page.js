@@ -27,8 +27,6 @@ const Page = async ({ params }) => {
     return <div>No data available.</div>;
   }
 
-  console.log('blogData', blogData)
-
   return (
     <div className="wp-blogpage">
       <SchemaInjector schemaJSON={schemaJSON} />
