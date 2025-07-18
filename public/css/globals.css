@@ -461,7 +461,7 @@ background: linear-gradient(180deg, rgba(12, 65, 88, 0) 0%, rgba(26, 130, 129, 0
 }
 span.avtar {
   @apply w-12 h-12 justify-center items-center flex text-xl rounded-[100%];
-  background: rgb(185, 179, 160);
+  background: #b9b3a0;
 }
 .dots-container {
   display: flex;
