@@ -1,7 +1,5 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
-import Chevronsvg from "../../public/images/chevron.svg";
 
 const Accordian = ({ main_title, all_faqs, show_section, container }) => {
   const [selected, setSelected] = useState(0); // or null

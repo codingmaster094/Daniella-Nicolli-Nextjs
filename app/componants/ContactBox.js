@@ -7,7 +7,7 @@ const ContactBox = ({ title, value, buttonText, buttonLink, buttonTarget }) => (
       <p>{value || "N/A"}</p>
     </div>
     {buttonText && buttonLink && (
-      <Link href={buttonLink} target={buttonTarget} className="mt-auto">
+      <Link  href={buttonLink} target={buttonTarget} className="mt-auto">
         <button className="mt-auto flex self-start text-center text-base group-hover:bg-white group-hover:text-Teal bg-Teal text-white font-normal p-3 2xl:px-9 sm:py-4 transition-all duration-700 ease-in">
           {buttonText}
         </button>

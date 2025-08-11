@@ -7,6 +7,7 @@ const Mobile_buttons = () => {
       <div className="flex mobile-s-wrapper">
         {/* Call Button */}
         <Link
+        
           href="tel:+4971147745250"
           className="flex items-center justify-center gap-2 w-1/2 bg-Teal text-white m-call py-4 px-[36px]"
         >
@@ -30,6 +31,7 @@ const Mobile_buttons = () => {
 
         {/* Bewerben Button */}
         <Link
+        
           href="https://connect.shore.com/bookings/daniella-nicolli-heilpraktikerin/services?locale=de"
           target="_blank"
           className="flex items-center justify-center gap-2 w-1/2 bg-white text-Teal m-call m-bewer py-4 px-[36px]"

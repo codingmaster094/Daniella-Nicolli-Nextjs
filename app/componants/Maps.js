@@ -15,6 +15,7 @@ const Maps = ({ main_title, map_url, map_image }) => {
         <div className="flex w-full">
           {map_url ? (
             <Link
+            
               href={map_url}
               target="blank"
               className="map-block block w-full"

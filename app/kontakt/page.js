@@ -96,15 +96,11 @@ export async function generateMetadata() {
   const descriptionMatch = metadata.head.match(
     /<meta name="description" content="(.*?)"/
   );
-  const canonicalMatch = metadata.head.match(
-    /<link\s+rel="canonical"\s+href="([^"]+)"/i
-  );
   const title = titleMatch ? titleMatch[1] : "Default Title";
   const description = descriptionMatch
     ? descriptionMatch[1]
     : "Default Description";
-    const canonical =
-      canonicalMatch?.[1] || "https://www.heilpraktikerin-nicolli.de";
+    const canonical = "https://www.heilpraktikerin-nicolli.de/kontakt";
   return {
     title,
     description,

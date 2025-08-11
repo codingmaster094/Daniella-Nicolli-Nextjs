@@ -273,7 +273,7 @@ const Contactform = ({
                     <p className="Im-section">
                       Informationen zum Datenschutz bzgl. Ihrer Anfrage finden
                       Sie hier:{" "}
-                      <Link href="/datenschutzerklarung">
+                      <Link  href="/datenschutzerklarung">
                         Datenschutzerklärung.
                       </Link>
                     </p>
@@ -351,7 +351,7 @@ const Contactform = ({
                     {Phone && <Image src={Phone} alt="phone-svg" />}
                   </span>
                   {ContactOptionData?.footer_phone_number && (
-                    <Link
+                    <Link 
                       href={ContactOptionData?.footer_phone_number?.url}
                       role="link"
                       aria-label="address-link"
@@ -366,7 +366,7 @@ const Contactform = ({
                     <Image src={Email} alt="email-svg" />
                   </span>
                   {ContactOptionData?.footer_email_address && (
-                    <Link
+                    <Link 
                       href={ContactOptionData?.footer_email_address?.url}
                       target={ContactOptionData?.footer_email_address?.target}
                       role="link"
@@ -381,7 +381,7 @@ const Contactform = ({
                     <Image src={Chat} alt="chat-svg" />
                   </span>
                   {live_chat_with_us && (
-                    <Link
+                    <Link 
                       href={live_chat_with_us?.url}
                       target={live_chat_with_us?.target}
                       role="link"
@@ -396,7 +396,7 @@ const Contactform = ({
                     <Image src={location} alt="location-svg" />
                   </span>
                   {form_address && (
-                    <Link
+                    <Link 
                       href={form_address?.url}
                       target={form_address?.target}
                       role="link"
@@ -409,7 +409,7 @@ const Contactform = ({
               </div>
               <div className="flex gap-4">
                 {ContactOptionData?.footer_facebook_link && (
-                  <Link
+                  <Link 
                     href={ContactOptionData?.footer_facebook_link?.url}
                     target={ContactOptionData?.footer_facebook_link?.target}
                     className="inline-flex w-8 h-8 items-center justify-center border border-Teal rounded-[3px]"

@@ -59,7 +59,7 @@ const LendingAbout = ({ title, content, allData, section_show, BTN }) => {
               ))}
             {BTN && (
               <div className="text-center">
-                <Link
+                <Link 
                   href={BTN.url || "#"}
                   target={BTN?.target || "_self"}
                   className="uppercase bg-[#1A8281] py-4 px-9 text-white inline-block"

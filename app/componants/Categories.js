@@ -59,6 +59,7 @@ const Categories = (props) => {
           {/* Button */}
           {BTN?.title && (
             <Link
+            
               href={BTN?.url}
               target={BTN?.target}
               className={` flex self-center text-center border-[1.5px] border-solid border-transparent bg-white text-Teal hover:bg-teal-600 hover:text-white font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in hover:bg-transparent hover:border-white`}

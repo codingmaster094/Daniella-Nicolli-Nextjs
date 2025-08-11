@@ -94,7 +94,7 @@ const Header = ({ headerDatas, menuData }) => {
       <nav className="flex w-full px-[15px] 2xl:px-[calc(9rem-4px)] justify-between py-2 lg:py-0 items-center">
         <div className="logo flex items-center justify-center w-[150px] 2xl:w-[230px]">
           {menuData && (
-            <Link href="/" aria-label="Home">
+            <Link  href="/" aria-label="Home">
               <Image
                 src={menuData?.site_logo}
                 width={249}
@@ -157,6 +157,7 @@ const Header = ({ headerDatas, menuData }) => {
                       }}
                     >
                       <Link
+                      
                         href={`/${item.slug}`}
                         onClick={handleMainMenuClick}
                         className="flex items-center w-full lg:w-auto justify-between lg:justify-start gap-2"
@@ -216,7 +217,7 @@ const Header = ({ headerDatas, menuData }) => {
                                 }
                                 className={`cursor-pointer block w-full hover:text-Teal text-black-900 hover:bg-gray-100y`}
                               >
-                                <Link href={`${item.slug}${child.url}`}>
+                                <Link  href={`${item.slug}${child.url}`}>
                                   {child.title}
                                 </Link>
                               </li>
@@ -230,9 +231,9 @@ const Header = ({ headerDatas, menuData }) => {
               })}
             </ul>
           }
-
           {headerDatas && (
             <Link
+            
               href={headerDatas.header_button.url}
               target={headerDatas.header_button.target}
               className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"

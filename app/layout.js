@@ -7,7 +7,7 @@ import Header from "./Header/page";
 
 export default async function RootLayout({ children }) {  
   return (
-    <html lang="en">
+    <html lang="de">
       <body>
         <Header />
         <main>{children}</main>

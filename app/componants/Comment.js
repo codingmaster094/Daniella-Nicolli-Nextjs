@@ -57,6 +57,7 @@ const Comment = ({ main_title, content, slider, reviewlogos }) => {
               <div key={i}>
                 {item.logo_url.url !== "/" ? (
                   <Link
+                  rel="noopener noreferrer"
                     href={item.logo_url.url}
                     target={item.logo_url.target}
                     title={item.logo_url.title}

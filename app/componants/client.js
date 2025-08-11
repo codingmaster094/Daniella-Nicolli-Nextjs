@@ -99,6 +99,7 @@ const ClientCarousel = ({
                   >
                     {val.partners_section_all_partners_website_link.url ? (
                       <Link
+                      rel="noopener noreferrer"
                         href={
                           val.partners_section_all_partners_website_link.url
                         }

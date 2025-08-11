@@ -38,7 +38,7 @@ const Footer = ({ FooterData, menuData }) => {
                   <Image src={PhoneSvg} alt="phone-svg" className="mt-[5px]" />
                 </span>
                 {FooterData?.footer_phone_number && (
-                  <Link
+                  <Link 
                     href={FooterData?.footer_phone_number?.url}
                     target={FooterData?.footer_phone_number?.target}
                     aria-label="phone-link"
@@ -57,7 +57,7 @@ const Footer = ({ FooterData, menuData }) => {
                   />
                 </span>
                 {FooterData?.footer_whatsapp_number && (
-                  <Link
+                  <Link 
                     href={FooterData?.footer_whatsapp_number?.url}
                     target={FooterData?.footer_whatsapp_number?.target}
                     aria-label="phone-link"
@@ -78,7 +78,7 @@ const Footer = ({ FooterData, menuData }) => {
                   <Image src={MailSvg} alt="MailSvg" className="mt-[5px]" />
                 </span>
                 {FooterData?.footer_email_address && (
-                  <Link
+                  <Link 
                     href={FooterData?.footer_email_address?.url}
                     target={FooterData?.footer_email_address?.target}
                     aria-label="email-link"
@@ -109,7 +109,7 @@ const Footer = ({ FooterData, menuData }) => {
                 item.slug = item.slug === "home" ? "/" : item.slug;
                 return (
                   <li key={item.id}>
-                    <Link
+                    <Link 
                       href={`/${item.slug}`}
                       aria-label="footer-link"
                       role="link"
@@ -125,12 +125,12 @@ const Footer = ({ FooterData, menuData }) => {
             <h4>{FooterData?.footer_rechtliches_label}</h4>
             <ul>
               <li>
-                <Link href="/impressum" aria-label="footer-link" role="link">
+                <Link  href="/impressum" aria-label="footer-link" role="link">
                   Impressum{" "}
                 </Link>
               </li>
               <li>
-                <Link
+                <Link 
                   href="/datenschutzerklarung"
                   aria-label="footer-link"
                   role="link"
@@ -143,6 +143,7 @@ const Footer = ({ FooterData, menuData }) => {
               <li className="flex items-center justify-center">
                 {FooterData?.footer_facebook_link && (
                   <Link
+                  
                     href={FooterData?.footer_facebook_link?.url}
                     target={FooterData?.footer_facebook_link?.target}
                     aria-label="facebook-link"
@@ -156,6 +157,7 @@ const Footer = ({ FooterData, menuData }) => {
               <li className="flex items-center justify-center">
                 {FooterData?.footer_instagram_link && (
                   <Link
+                  
                     href={FooterData?.footer_instagram_link?.url}
                     target={FooterData?.footer_instagram_link?.target}
                     aria-label="Instagram-link"
@@ -175,6 +177,7 @@ const Footer = ({ FooterData, menuData }) => {
                 >
                   {val.footer_all_logo_url ? (
                     <Link
+                    
                       href={val.footer_all_logo_url?.url}
                       target={val.footer_all_logo_url?.target}
                       aria-label="image-link"

@@ -76,6 +76,7 @@ const Blog = ({ title, BTN, blogsData }) => {
                   <div className="flex -mt-6 justify-center xl:-mt-[50px] h-full sm:h-[360px]">
                     {val?.acf.hero_slider_image && (
                       <Link
+                      
                         href={`/ratgeber/${val.slug}`}
                         aria-label="image-button"
                         role="link"
@@ -98,6 +99,7 @@ const Blog = ({ title, BTN, blogsData }) => {
                     <div className="flex items-center justify-between">
                       {val?.title?.rendered && (
                         <Link
+                        
                           href={`/ratgeber/${val.slug}`}
                           aria-label="link-title"
                           role="link"
@@ -108,6 +110,7 @@ const Blog = ({ title, BTN, blogsData }) => {
                         </Link>
                       )}
                       <Link
+                      
                         href={`/ratgeber/${val.slug}`}
                         aria-label="arrow-btn"
                         role="link"

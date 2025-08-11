@@ -12,18 +12,22 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
             <div className="lg:bg-banner bg-banner-img bg-cover w-full relative lg:flex-row flex-col">
               <Image
                 src={img}
-                alt="hero banner image"
+                alt="Hero banner image"
                 role="img"
-                layout="fill"
-                objectFit="cover"
-                objectPosition="50% 10%"
-                quality={75}
-                priority={true}
-                unoptimized
-                fetchPriority="high"
-                loading="eager"
+                fill
+                sizes="100vw" // ensures responsive optimal sizes
+                quality={85} // slightly higher for hero sharpness
+                priority // preloads automatically in Next.js
+                fetchPriority="high" // hint for browser
+                // placeholder="blur" // CLS-safe placeholder
+                // blurDataURL={blurImg} // low-quality preview
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "50% 10%"
+                }}
                 className="!relative lg:!absolute top-0 left-0 w-full h-full"
-              />
+/>
+
               <div className="flex flex-col bg-Bgwhite my-[15px] p-6 lg:p-10 gap-4 lg:gap-8 w-full lg:w-[845px] relative z-10">
                 <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
                 <ul
@@ -32,6 +36,7 @@ const BannerCarousel = ({ title, img, content, BTN }) => {
                 ></ul>
                 {BTN && (
                   <Link
+                  
                     href={BTN?.url}
                     target={BTN?.target}
                     className="flex self-start text-center bg-Teal text-white hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in"
