@@ -16,10 +16,10 @@ export async function GET() {
   } catch (error) {
     console.error("robots.txt fetch error:", error);
 
-    const fallback = `User-agent: *
-                      Disallow: /wp-admin/
-                      Allow: /wp-admin/admin-ajax.php
-                      Sitemap: https://www.heilpraktikerin-nicolli.de/sitemap.xml`;
+    const fallback = `user-agent: *
+                      disallow: /wp-admin/
+                      allow: /wp-admin/admin-ajax.php
+                      sitemap: https://www.heilpraktikerin-nicolli.de/sitemap.xml`;
 
     return new Response(fallback, {
       headers: {

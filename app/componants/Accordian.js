@@ -35,7 +35,7 @@ const Accordian = ({ main_title, all_faqs, show_section, container }) => {
   return (
     show_section && (
       <section className={`py-[30px] md:py-[40px] lg:py-[50px] bg-white`}>
-        <div className={`container mx-auto ${!container ? "px-[15px]" : ""} `}>
+        <div className={`container mx-auto px-[15px]`}>
           <div
             className={`flex w-full ${
               container ? "max-w-full text-left" : "max-w-[1140px] text-center"
@@ -57,19 +57,13 @@ const Accordian = ({ main_title, all_faqs, show_section, container }) => {
                 {all_faqs?.map((item, index) => (
                   <div
                     key={index}
-                    className={`accordian flex flex-col p-4 transition-all shadow-[0px_4px_13px_-2px_#1310220f,0px_4.8px_24.4px_-6px_#1310221a] duration-300 ${
-                      container
-                        ? "active" // All active if container is true
-                        : selected === index
-                        ? "active" // Only the selected item is active
-                        : "border-transparent" // Others not active
-                    }`}
+                    className={`accordian flex flex-col p-4 transition-all shadow-[0px_4px_13px_-2px_#1310220f,0px_4.8px_24.4px_-6px_#1310221a] duration-300 border-transparent`}
                   >
                     <div
                       className={`accordian-header flex justify-between gap-2 ${
-                        container ? "" : "cursor-pointer"
+                        container ? "" : ""
                       }`}
-                      onClick={() => handleClick(index)}
+                      // onClick={() => handleClick(index)}
                     >
                       <h3
                         className="text-a sm:text-xl !font-medium"
@@ -77,7 +71,7 @@ const Accordian = ({ main_title, all_faqs, show_section, container }) => {
                           __html: item.all_faqs_question,
                         }}
                       ></h3>
-                      {!container && (
+                      {/* {container && (
                         <span
                           className={`arrow w-[28px] h-[28px] inline-block flex-shrink-0 transition-transform rounded-full ${
                             selected === index ? "rotate-180" : ""
@@ -85,17 +79,14 @@ const Accordian = ({ main_title, all_faqs, show_section, container }) => {
                         >
                           <Image src={Chevronsvg} alt="Chevron-svg" />
                         </span>
-                      )}
+                      )} */}
                     </div>
                     <div
                       className="accordion-content overflow-hidden transition-all duration-300 ease-in-out"
                       ref={(el) => el && contentRefs.current.set(index, el)}
                       style={{
-                        maxHeight: container
-                          ? "none"
-                          : selected === index
-                          ? height
-                          : "0px",
+                        maxHeight:height
+                          
                       }}
                     >
                       <p
