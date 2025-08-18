@@ -233,7 +233,7 @@ const Header = ({ headerDatas, menuData }) => {
           }
           {headerDatas && (
             <Link
-            
+            rel="noopener noreferrer"
               href={headerDatas.header_button.url}
               target={headerDatas.header_button.target}
               className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"

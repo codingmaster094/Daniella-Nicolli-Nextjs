@@ -12,19 +12,23 @@ export async function GET() {
     console.log("error", error);
     SiteMapData = [];
   }
+
   const uniquePaths = [...new Set(SiteMapData)];
   const totalUrls = uniquePaths.length;
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <!-- This XML Sitemap contains ${totalUrls} URLs -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${uniquePaths
-    .map(
-      (slug) => `
+    .map(({ slug, lastmod }) => {
+      // 👇 if slug is "home", replace with root
+      const path = slug === "home" ? "" : slug;
+      return `
   <url>
-    <loc>${siteUrl}/${slug.slug}</loc>
-    <lastmod>${slug.lastmod}</lastmod>
-  </url>`
-    )
+    <loc>${siteUrl}/${path}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </url>`;
+    })
     .join("")}
 </urlset>`;
 
