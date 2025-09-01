@@ -10,6 +10,7 @@ const page = async() => {
      ImpressumData = await Menudatas("/page-data/impressum");
      const metadata = await SEODATA("/impressum");
             schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
+                console.log('schemaJSON', schemaJSON)
    } catch (error) {
      console.error("Error fetching data:", error);
      return <div>Error loading data.</div>; // Fallback UI
@@ -20,7 +21,11 @@ const page = async() => {
 
   return (
     <>
-      {/* <SchemaInjector schemaJSON={schemaJSON} /> */}
+    {
+  schemaJSON && schemaJSON !== "[]" && (
+    <SchemaInjector schemaJSON={schemaJSON} />
+  )
+}
     <section className="Im-section section">
       <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">
         <div className="container mx-auto px-[15px] ">
@@ -57,6 +62,6 @@ export async function generateMetadata() {
     alternates: {
       canonical,
     },
-    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
+    robots: metadata.robots ? metadata.robots : "noindex,nofollow",
   };
 }

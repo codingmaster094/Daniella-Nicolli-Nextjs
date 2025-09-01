@@ -29,7 +29,11 @@ const Page = async() => {
 
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
+      {
+  schemaJSON && schemaJSON !== "[]" && (
+    <SchemaInjector schemaJSON={schemaJSON} />
+  )
+}
       <BannerCarousel
         title={AesthetikData?.hero_slider_main_title?.value}
         img={AesthetikData?.hero_slider_image?.value}
@@ -98,6 +102,6 @@ export async function generateMetadata() {
     alternates: {
       canonical,
     },
-    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
+    robots: metadata.robots ? metadata.robots : "noindex,nofollow",
   };
 }

@@ -23,7 +23,12 @@ const page = async() => {
 
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
+   {
+  schemaJSON && schemaJSON !== "[]" && (
+    <SchemaInjector schemaJSON={schemaJSON} />
+  )
+}
+
     <section className="section">
       <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">
         <div className="container mx-auto px-[15px] ">
@@ -60,6 +65,6 @@ export async function generateMetadata() {
     alternates: {
       canonical,
     },
-    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
+    robots: metadata.robots ? metadata.robots: "noindex,nofollow",
   };
 }

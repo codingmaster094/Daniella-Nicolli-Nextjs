@@ -36,7 +36,11 @@ export default async function LandingPage({ params }) {
      }
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
+       {
+  schemaJSON && schemaJSON !== "[]" && (
+    <SchemaInjector schemaJSON={schemaJSON} />
+  )
+}
       <BannerCarousel
         title={landingData?.hero_slider_main_title}
         img={landingData?.hero_slider_image}

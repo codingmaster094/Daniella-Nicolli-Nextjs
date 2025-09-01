@@ -16,7 +16,11 @@ export default async function Home() {
 
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
+      <SchemaInjector schemaJSON={schemaJSON} />  {
+  schemaJSON && schemaJSON !== "[]" && (
+    <SchemaInjector schemaJSON={schemaJSON} />
+  )
+}
       <HomePage />
     </>
   );
@@ -39,6 +43,6 @@ export async function generateMetadata() {
     alternates: {
       canonical,
     },
-    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
+    robots: metadata.robots ? metadata.robots : "noindex,nofollow",
   };
 }
