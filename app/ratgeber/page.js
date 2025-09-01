@@ -3,8 +3,8 @@ import Blog from "../componants/Blog";
 import BannerCarousel from "../componants/Banner"; 
 import PostGet from "../until/PostGet";
 import Alldata from "../until/AllDatafetch";
-import MetaDataAPIS from "../until/metadataAPI";
 import dynamic from "next/dynamic";
+import SEODATA from "../until/SEO_Data";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 
 const Page = async () => {
@@ -14,11 +14,8 @@ const Page = async () => {
   try {
     BlogData = await Alldata("/ratgeber");
     RatgeberData = await PostGet("/ratgeber");
-    const metadata = await MetaDataAPIS("/Ratgeber");
-    const schemaMatch = metadata.head.match(
-      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-    );
-    schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+     const metadata = await SEODATA("/ratgeber");
+    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
     if (!BlogData || !RatgeberData) {
       return <div>Error loading data.</div>;
@@ -54,23 +51,22 @@ const Page = async () => {
 export default Page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/Ratgeber");
+  const metadata = await SEODATA("/ratgeber");
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-    const canonical = "https://www.heilpraktikerin-nicolli.de/ratgeber";
+  // Fallback values if some field is missing
+  const title = metadata.title || "Default Title";
+  const description = metadata.description || "Default Description";
+  const canonical =
+    metadata.canonical && metadata.canonical !== ""
+      ? metadata.canonical
+      : "https://www.heilpraktikerin-nicolli.de/ratgeber";
+
   return {
     title,
     description,
     alternates: {
       canonical,
     },
+    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
   };
 }

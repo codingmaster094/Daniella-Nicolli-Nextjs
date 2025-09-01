@@ -7,17 +7,15 @@
   import MetaDataAPIS from "../until/metadataAPI";
   import dynamic from "next/dynamic";
 import Accordian from "../componants/Accordian";
+import SEODATA from "../until/SEO_Data";
   const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
   const page = async () => {
     let ContactData;
     let schemaJSON;
     try {
       ContactData = await Alldata("/kontakt");
-      const metadata = await MetaDataAPIS("/kontakt");
-      const schemaMatch = metadata.head.match(
-        /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-      );
-      schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+       const metadata = await SEODATA("/kontakt");
+    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
     } catch (error) {
       console.error("Error fetching data:", error);
       return <div>Error loading data.</div>; // Fallback UI
@@ -89,23 +87,22 @@ import Accordian from "../componants/Accordian";
   export default page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/kontakt");
+  const metadata = await SEODATA(`/kontakt`);
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-    const canonical = "https://www.heilpraktikerin-nicolli.de/kontakt";
+  // Fallback values if some field is missing
+  const title = metadata.title || "Default Title";
+  const description = metadata.description || "Default Description";
+  const canonical =
+    metadata.canonical && metadata.canonical !== ""
+      ? metadata.canonical
+      : "https://www.heilpraktikerin-nicolli.de/kontakt";
+
   return {
     title,
     description,
     alternates: {
       canonical,
     },
+    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
   };
 }

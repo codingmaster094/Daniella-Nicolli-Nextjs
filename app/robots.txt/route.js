@@ -7,7 +7,7 @@ export async function GET() {
     );
     const raw = await res.text();
     const clean = JSON.parse(raw);
-    console.log(clean);
+
     return new Response(clean, {
       headers: {
         "Content-Type": "text/plain",

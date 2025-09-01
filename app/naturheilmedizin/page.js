@@ -9,17 +9,15 @@ import MultipleAboutdetails from "../componants/MultipleAboutdetails";
 import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
 import dynamic from "next/dynamic";
+import SEODATA from "../until/SEO_Data";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const page = async () => {
   let Naturheilmedizin;
   let schemaJSON;
   try {
     Naturheilmedizin = await Alldata("/naturheilmedizin");
-    const metadata = await MetaDataAPIS("/naturheilmedizin");
-    const schemaMatch = metadata.head.match(
-      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-    );
-    schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+     const metadata = await SEODATA("/naturheilmedizin");
+        schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>; // Fallback UI
@@ -88,23 +86,22 @@ const page = async () => {
 export default page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/naturheilmedizin");
+  const metadata = await SEODATA("/naturheilmedizin");
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-    const canonical = "https://www.heilpraktikerin-nicolli.de/naturheilmedizin";
+  // Fallback values if some field is missing
+  const title = metadata.title || "Default Title";
+  const description = metadata.description || "Default Description";
+  const canonical =
+    metadata.canonical && metadata.canonical !== ""
+      ? metadata.canonical
+      : "https://www.heilpraktikerin-nicolli.de/naturheilmedizin";
+
   return {
     title,
     description,
     alternates: {
       canonical,
     },
+    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
   };
 }

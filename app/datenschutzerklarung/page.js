@@ -1,7 +1,7 @@
 import React from "react";
 import Menudatas from "../until/MenuData";
 import dynamic from "next/dynamic";
-import MetaDataAPIS from "../until/metadataAPI";
+import SEODATA from "../until/SEO_Data";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const page = async() => {
 
@@ -9,18 +9,15 @@ const page = async() => {
     let schemaJSON;
     try {
       datenschutzerklärung = await Menudatas("/page-data/datenschutzerklarung");
-      const metadata = await MetaDataAPIS("/datenschutzerklarung");
-      const schemaMatch = metadata.head.match(
-        /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-      );
-      schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+      const metadata = await SEODATA("/datenschutzerklarung");
+       schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
     } catch (error) {
       console.error("Error fetching data:", error);
-      return <div>Error loading data.</div>; // Fallback UI
+      return <div>Error loading data.</div>;
     }
   
      if (!datenschutzerklärung) {
-       return <div>No data available.</div>; // Fallback UI
+       return <div>No data available.</div>;
      }
 
 
@@ -47,24 +44,22 @@ const page = async() => {
 export default page;
 
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/datenschutzerklarung");
+  const metadata = await SEODATA(`/datenschutzerklarung`);
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
+  // Fallback values if some field is missing
+  const title = metadata.title || "Default Title";
+  const description = metadata.description || "Default Description";
+  const canonical =
+    metadata.canonical && metadata.canonical !== ""
+      ? metadata.canonical
+      : "https://www.heilpraktikerin-nicolli.de/datenschutzerklarung";
 
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-    const canonical = "https://www.heilpraktikerin-nicolli.de/datenschutzerklarung";
   return {
     title,
     description,
     alternates: {
       canonical,
     },
+    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
   };
 }

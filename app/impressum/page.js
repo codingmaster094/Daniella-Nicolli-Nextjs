@@ -1,34 +1,31 @@
 import React from "react";
 import Menudatas from "../until/MenuData";
 import dynamic from "next/dynamic";
-import MetaDataAPIS from "../until/metadataAPI";
+import SEODATA from "../until/SEO_Data";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const page = async() => {
-   let ImpressumData;
+   let ImpressumData ;
    let schemaJSON;
    try {
      ImpressumData = await Menudatas("/page-data/impressum");
-     const metadata = await MetaDataAPIS("/impressum");
-     const schemaMatch = metadata.head.match(
-       /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-     );
-     schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+     const metadata = await SEODATA("/impressum");
+            schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
    } catch (error) {
      console.error("Error fetching data:", error);
      return <div>Error loading data.</div>; // Fallback UI
    }
-       if (!ImpressumData) {
-         return <div>No data available.</div>; // Fallback UI
-       }
+    if (!ImpressumData) {
+      return <div>No data available.</div>; // Fallback UI
+    }
 
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />
+      {/* <SchemaInjector schemaJSON={schemaJSON} /> */}
     <section className="Im-section section">
       <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">
         <div className="container mx-auto px-[15px] ">
           <h1 className="text-white">{ImpressumData?.title}</h1>
-        </div>
+        </div>   
       </div>
       <div className="container mx-auto px-[15px] ">
         <div
@@ -43,25 +40,23 @@ const page = async() => {
 
 export default page;
 
-
 export async function generateMetadata() {
-  let metadata = await MetaDataAPIS("/impressum");
+  const metadata = await SEODATA(`/impressum`);
+  // Fallback values if some field is missing
+  const title = metadata.title || "Default Title";
+  const description = metadata.description || "Default Description";
+  const canonical =
+    metadata.canonical && metadata.canonical !== ""
+      ? metadata.canonical
+      : "https://www.heilpraktikerin-nicolli.de/impressum";
+      
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-    const canonical ="https://www.heilpraktikerin-nicolli.de/impressum";
   return {
     title,
     description,
     alternates: {
       canonical,
     },
+    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
   };
 }

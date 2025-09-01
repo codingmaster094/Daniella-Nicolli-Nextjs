@@ -6,6 +6,7 @@ import Image from "next/image";
 import MetaDataAPIS from "../../until/metadataAPI";
 import dynamic from "next/dynamic";
 import ContentWithTOC from "@/app/componants/ContentWithTOC";
+import SEODATA from "@/app/until/SEO_Data";
 const SchemaInjector = dynamic(() => import("../../componants/SchemaInjector"));
 const Page = async ({ params }) => {
 
@@ -14,11 +15,8 @@ const Page = async ({ params }) => {
   let schemaJSON;
   try {
     blogData = await PostGet(`/ratgeber?slug=${slug}`);
-    const metadata = await MetaDataAPIS(`/ratgeber/${slug}`);
-    const schemaMatch = metadata.head.match(
-      /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-    );
-    schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+     const metadata = await SEODATA(`/${slug}`);
+    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
     return <div>Error loading data.</div>;
   }
@@ -152,24 +150,23 @@ export default Page;
 
 
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  let metadata = await MetaDataAPIS(`/ratgeber/${slug}`);
+   const { slug } = await params;
+  const metadata = await SEODATA(`/${slug}`);
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-  const canonical = `https://www.heilpraktikerin-nicolli.de/ratgeber/${slug}`;
+  // Fallback values if some field is missing
+  const title = metadata.title || "Default Title";
+  const description = metadata.description || "Default Description";
+  const canonical =
+    metadata.canonical && metadata.canonical !== ""
+      ? metadata.canonical
+      : `https://www.heilpraktikerin-nicolli.de/ratgeber/${slug}`;
+
   return {
     title,
     description,
     alternates: {
       canonical,
     },
+    robots: metadata.robots ? metadata.robots.join(",") : "noindex,nofollow",
   };
 }
