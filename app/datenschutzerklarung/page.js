@@ -7,18 +7,17 @@ const page = async() => {
 
     let datenschutzerklärung;
     let schemaJSON;
-    try {
-      datenschutzerklärung = await Menudatas("/page-data/datenschutzerklaerung");
-      const metadata = await SEODATA("/datenschutzerklarung");
-       schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      return <div>Error loading data.</div>;
-    }
-  
-     if (!datenschutzerklärung) {
-       return <div>No data available.</div>;
-     }
+   try {
+  datenschutzerklärung = await Menudatas("/page-data/datenschutzerklaerung");
+  const metadata = await SEODATA("/datenschutzerklaerung");
+  schemaJSON = metadata?.schema ? JSON.stringify(metadata.schema) : null;
+} catch (error) {
+  console.error("Error fetching data:", error);
+  return null; // let build continue
+}
+
+if (!datenschutzerklärung) return null;
+
 
 
   return (
@@ -49,22 +48,27 @@ const page = async() => {
 export default page;
 
 export async function generateMetadata() {
-  const metadata = await SEODATA(`/datenschutzerklarung`);
+  try {
+    const metadata = await SEODATA("/datenschutzerklaerung");
 
-  // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
-  const canonical =
-    metadata.canonical && metadata.canonical !== ""
-      ? metadata.canonical
-      : "https://www.heilpraktikerin-nicolli.de/datenschutzerklarung";
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-    robots: metadata.robots ? metadata.robots: "noindex,nofollow",
-  };
+    return {
+      title: metadata?.title || "Default Title",
+      description: metadata?.description || "Default Description",
+      alternates: {
+        canonical:
+          metadata?.canonical && metadata.canonical !== ""
+            ? metadata.canonical
+            : "https://www.heilpraktikerin-nicolli.de/datenschutzerklaerung",
+      },
+      robots: metadata?.robots || "noindex,nofollow",
+    };
+  } catch (err) {
+    console.error("Error fetching SEO metadata:", err);
+    return {
+      title: "Default Title",
+      description: "Default Description",
+      robots: "noindex,nofollow",
+    };
+  }
 }
+
