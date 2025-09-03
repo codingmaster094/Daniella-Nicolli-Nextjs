@@ -4,11 +4,9 @@
   import Maps from "../componants/Maps";
   import BannerCarousel from "../componants/Banner";
   import Alldata from "../until/AllDatafetch";
-  import MetaDataAPIS from "../until/metadataAPI";
-  import dynamic from "next/dynamic";
 import Accordian from "../componants/Accordian";
 import SEODATA from "../until/SEO_Data";
-  const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
+import SchemaInjector from "@/app/componants/SchemaInjector";
   const page = async () => {
     let ContactData;
     let schemaJSON;

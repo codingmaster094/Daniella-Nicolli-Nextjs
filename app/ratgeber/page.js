@@ -3,9 +3,8 @@ import Blog from "../componants/Blog";
 import BannerCarousel from "../componants/Banner"; 
 import PostGet from "../until/PostGet";
 import Alldata from "../until/AllDatafetch";
-import dynamic from "next/dynamic";
 import SEODATA from "../until/SEO_Data";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
+import SchemaInjector from "@/app/componants/SchemaInjector";
 
 const Page = async () => {
   let BlogData ;

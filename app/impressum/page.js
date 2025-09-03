@@ -1,8 +1,7 @@
 import React from "react";
 import Menudatas from "../until/MenuData";
-import dynamic from "next/dynamic";
 import SEODATA from "../until/SEO_Data";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
+import SchemaInjector from "@/app/componants/SchemaInjector";
 const page = async() => {
    let ImpressumData ;
    let schemaJSON;

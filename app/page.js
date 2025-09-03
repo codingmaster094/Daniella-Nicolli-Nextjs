@@ -1,14 +1,21 @@
 import HomePage from "./Home/page";
-import dynamic from "next/dynamic";
 import SEODATA from "./until/SEO_Data";
+import SchemaInjector from "@/app/componants/SchemaInjector";
 
-const SchemaInjector = dynamic(() => import("./componants/SchemaInjector"));
 
 export default async function Home() {
   let schemaJSON;
   try {
     const metadata = await SEODATA("/home");
-    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
+
+    // ✅ Only stringify if metadata.schema is an object
+    if (metadata.schema && typeof metadata.schema === "object") {
+      schemaJSON = JSON.stringify(metadata.schema);
+    } else if (typeof metadata.schema === "string") {
+      schemaJSON = metadata.schema;
+    } else {
+      schemaJSON = null;
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>;
@@ -16,11 +23,7 @@ export default async function Home() {
 
   return (
     <>
-  {
-  schemaJSON && schemaJSON !== "[]" && (
-    <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+      {schemaJSON && <SchemaInjector schemaJSON={schemaJSON} />}
       <HomePage />
     </>
   );
@@ -29,19 +32,14 @@ export default async function Home() {
 export async function generateMetadata() {
   const metadata = await SEODATA("/home");
 
-  // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
-  const canonical =
-    metadata.canonical && metadata.canonical !== ""
-      ? metadata.canonical
-      : "https://www.heilpraktikerin-nicolli.de";
-
   return {
-    title,
-    description,
+    title: metadata.title || "Default Title",
+    description: metadata.description || "Default Description",
     alternates: {
-      canonical,
+      canonical:
+        metadata.canonical && metadata.canonical !== ""
+          ? metadata.canonical
+          : "https://www.heilpraktikerin-nicolli.de",
     },
     robots: metadata.robots ? metadata.robots : "noindex,nofollow",
   };
