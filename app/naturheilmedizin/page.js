@@ -10,35 +10,38 @@ import Alldata from "../until/AllDatafetch";
 import MetaDataAPIS from "../until/metadataAPI";
 import dynamic from "next/dynamic";
 import SEODATA from "../until/SEO_Data";
+
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
-const page = async () => {
-  let Naturheilmedizin;
-  let schemaJSON;
+
+const Page = async () => {
+  let Naturheilmedizin = null;
+  let schemaJSON = null;
+
   try {
     Naturheilmedizin = await Alldata("/naturheilmedizin");
-     const metadata = await SEODATA("/naturheilmedizin");
-        schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
+    const metadata = await SEODATA("/naturheilmedizin");
+    schemaJSON = metadata?.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
-    console.error("Error fetching data:", error);
-    return <div>Error loading data.</div>; // Fallback UI
+    console.error("Error fetching Naturheilmedizin data:", error);
+    // instead of returning JSX, gracefully show empty page to let build succeed
+    return null;
   }
 
   if (!Naturheilmedizin) {
-    return <div>No data available.</div>; // Fallback UI
+    // return null so build does not fail
+    return null;
   }
 
-  
   return (
     <>
-        {
-  schemaJSON && schemaJSON !== "[]" && (
-    <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+      {schemaJSON && schemaJSON !== "[]" && (
+        <SchemaInjector schemaJSON={schemaJSON} />
+      )}
+
       <BannerCarousel
         title={Naturheilmedizin?.hero_slider_main_title?.value}
         img={Naturheilmedizin?.hero_slider_image?.value}
-        content={Naturheilmedizin?.hero_slider_content?.value.replace(
+        content={Naturheilmedizin?.hero_slider_content?.value?.replace(
           /<\/?ul[^>]*>/g,
           ""
         )}
@@ -47,17 +50,20 @@ const page = async () => {
 
       {Naturheilmedizin && (
         <ClientCarousel
-          main_title={Naturheilmedizin?.partners_section_main_title.value}
-          section_all_partners={Naturheilmedizin?.partners_section_all_partners}
+          main_title={Naturheilmedizin?.partners_section_main_title?.value}
+          section_all_partners={
+            Naturheilmedizin?.partners_section_all_partners
+          }
           activate_deactivate={
             Naturheilmedizin?.enabledisable_partners_logos?.value
           }
         />
       )}
+
       <Terminbroncher
-        title={Naturheilmedizin?.aesthetik_grundsätze_main_title.value}
-        BTN={Naturheilmedizin?.aesthetik_grundsätze_button.value}
-        columns={Naturheilmedizin?.aesthetik_grundsätze_all_contents.value}
+        title={Naturheilmedizin?.aesthetik_grundsätze_main_title?.value}
+        BTN={Naturheilmedizin?.aesthetik_grundsätze_button?.value}
+        columns={Naturheilmedizin?.aesthetik_grundsätze_all_contents?.value}
       />
 
       <MultipleAboutdetails
@@ -68,7 +74,7 @@ const page = async () => {
 
       {Naturheilmedizin && (
         <Slidehover
-          main_title={Naturheilmedizin?.referenzen_main_title.value}
+          main_title={Naturheilmedizin?.referenzen_main_title?.value}
           all_referenzen={Naturheilmedizin?.all_referenzen}
           enabledisable_referenz={
             Naturheilmedizin?.enabledisable_referenz?.value
@@ -78,34 +84,39 @@ const page = async () => {
       )}
 
       <ReviewsData />
+
       <Accordian
         main_title={Naturheilmedizin?.faq_main_title?.value}
         all_faqs={Naturheilmedizin?.all_faqs?.value}
-        show_section={Naturheilmedizin?.faq_main_faq_show.value}
+        show_section={Naturheilmedizin?.faq_main_faq_show?.value}
       />
     </>
   );
 };
 
-export default page;
+export default Page;
 
 export async function generateMetadata() {
-  const metadata = await SEODATA("/naturheilmedizin");
+  try {
+    const metadata = await SEODATA("/naturheilmedizin");
 
-  // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
-  const canonical =
-    metadata.canonical && metadata.canonical !== ""
-      ? metadata.canonical
-      : "https://www.heilpraktikerin-nicolli.de/naturheilmedizin";
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-    robots: metadata.robots ? metadata.robots : "noindex,nofollow",
-  };
+    return {
+      title: metadata?.title || "Default Title",
+      description: metadata?.description || "Default Description",
+      alternates: {
+        canonical:
+          metadata?.canonical && metadata.canonical !== ""
+            ? metadata.canonical
+            : "https://www.heilpraktikerin-nicolli.de/naturheilmedizin",
+      },
+      robots: metadata?.robots || "noindex,nofollow",
+    };
+  } catch (err) {
+    console.error("Error fetching SEO metadata:", err);
+    return {
+      title: "Default Title",
+      description: "Default Description",
+      robots: "noindex,nofollow",
+    };
+  }
 }
