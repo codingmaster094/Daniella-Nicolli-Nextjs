@@ -1,7 +1,8 @@
 import React from "react";
 import Menudatas from "../until/MenuData";
+import dynamic from "next/dynamic";
 import SEODATA from "../until/SEO_Data";
-import SchemaInjector from "@/app/componants/SchemaInjector";
+const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const page = async() => {
 
     let datenschutzerklärung;

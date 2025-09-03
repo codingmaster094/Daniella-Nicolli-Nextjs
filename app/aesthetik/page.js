@@ -7,8 +7,9 @@ import Terminbroncher from "../componants/Terminbroncher"
 import MultipleAboutdetails from "../componants/MultipleAboutdetails"
 import BannerCarousel from "../componants/Banner"
 import Alldata from "../until/AllDatafetch";
+import dynamic from "next/dynamic";
 import SEODATA from "../until/SEO_Data";
-import SchemaInjector from "@/app/componants/SchemaInjector";
+const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 const Page = async() => {
   let AesthetikData;
   let schemaJSON;

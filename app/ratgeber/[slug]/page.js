@@ -3,9 +3,11 @@ import dayjs from "dayjs";
 import Categories from "../../componants/Categories";
 import PostGet from "@/app/until/PostGet";
 import Image from "next/image";
+import MetaDataAPIS from "../../until/metadataAPI";
+import dynamic from "next/dynamic";
 import ContentWithTOC from "@/app/componants/ContentWithTOC";
 import SEODATA from "@/app/until/SEO_Data";
-import SchemaInjector from "@/app/componants/SchemaInjector";
+const SchemaInjector = dynamic(() => import("../../componants/SchemaInjector"));
 const Page = async ({ params }) => {
 
   const { slug } = await params;
