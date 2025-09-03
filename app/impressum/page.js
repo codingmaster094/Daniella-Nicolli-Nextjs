@@ -21,11 +21,9 @@ const page = async() => {
 
   return (
     <>
-    {
-  schemaJSON && schemaJSON !== "[]" && (
+
     <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+
     <section className="Im-section section">
       <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">
         <div className="container mx-auto px-[15px] ">
@@ -48,8 +46,8 @@ export default page;
 export async function generateMetadata() {
   const metadata = await SEODATA(`/impressum`);
   // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
+  const title = metadata.title || "impressum";
+  const description = metadata.description || "impressum";
   const canonical =
     metadata.canonical && metadata.canonical !== ""
       ? metadata.canonical

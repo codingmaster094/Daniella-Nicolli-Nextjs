@@ -29,11 +29,8 @@ const Page = async() => {
 
   return (
     <>
-      {
-  schemaJSON && schemaJSON !== "[]" && (
     <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+
       <BannerCarousel
         title={AesthetikData?.hero_slider_main_title?.value}
         img={AesthetikData?.hero_slider_image?.value}

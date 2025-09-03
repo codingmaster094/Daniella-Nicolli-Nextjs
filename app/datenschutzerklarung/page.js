@@ -23,11 +23,9 @@ const page = async() => {
 
   return (
     <>
-   {
-  schemaJSON && schemaJSON !== "[]" && (
+
     <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+
 
     <section className="section">
       <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">
@@ -52,8 +50,8 @@ export async function generateMetadata() {
   const metadata = await SEODATA(`/datenschutzerklarung`);
 
   // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
+  const title = metadata.title || "datenschutzerklarung";
+  const description = metadata.description || "datenschutzerklarung";
   const canonical =
     metadata.canonical && metadata.canonical !== ""
       ? metadata.canonical
