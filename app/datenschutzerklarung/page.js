@@ -8,7 +8,7 @@ const page = async() => {
     let datenschutzerklärung;
     let schemaJSON;
     try {
-      datenschutzerklärung = await Menudatas("/page-data/datenschutzerklarung");
+      datenschutzerklärung = await Menudatas("/page-data/datenschutzerklaerung");
       const metadata = await SEODATA("/datenschutzerklarung");
        schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
     } catch (error) {

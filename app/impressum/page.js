@@ -8,6 +8,7 @@ const page = async() => {
    let schemaJSON;
    try {
      ImpressumData = await Menudatas("/page-data/impressum");
+     console.log('ImpressumData', ImpressumData)
      const metadata = await SEODATA("/impressum");
             schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
                 console.log('schemaJSON', schemaJSON)
@@ -19,6 +20,7 @@ const page = async() => {
       return <div>No data available.</div>; // Fallback UI
     }
 
+    console.log('ImpressumData', ImpressumData)
   return (
     <>
     {

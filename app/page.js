@@ -16,11 +16,11 @@ export default async function Home() {
 
   return (
     <>
-      <SchemaInjector schemaJSON={schemaJSON} />  {
-  schemaJSON && schemaJSON !== "[]" && (
-    <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+     {
+      schemaJSON && schemaJSON !== "[]" && (
+        <SchemaInjector schemaJSON={schemaJSON} />
+      )
+    }
       <HomePage />
     </>
   );
