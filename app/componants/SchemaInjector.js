@@ -1,21 +1,15 @@
 "use client";
-import { useEffect } from "react";
+import Script from "next/script";
 
 export default function SchemaInjector({ schemaJSON }) {
-  useEffect(() => {
-    if (!schemaJSON) return;
+  if (!schemaJSON) return null;
 
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = "rank-math-schema";
-    script.text = schemaJSON;
-
-    // Remove old one if exists
-    const oldScript = document.getElementById("rank-math-schema");
-    if (oldScript) oldScript.remove();
-
-    document.head.appendChild(script);
-  }, [schemaJSON]);
-
-  return null;
+  return (
+    <Script
+      id="structured-data"
+      type="application/ld+json"
+      strategy="beforeInteractive"
+      dangerouslySetInnerHTML={{ __html: schemaJSON }}
+    />
+  );
 }

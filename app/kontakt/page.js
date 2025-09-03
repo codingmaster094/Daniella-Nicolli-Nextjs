@@ -28,9 +28,11 @@ import SEODATA from "../until/SEO_Data";
 
     return (
       <>
-
+         {
+  schemaJSON && schemaJSON !== "[]" && (
     <SchemaInjector schemaJSON={schemaJSON} />
-
+  )
+}
         <BannerCarousel
           title={ContactData?.hero_slider_main_title?.value}
           img={ContactData?.hero_slider_image?.value}

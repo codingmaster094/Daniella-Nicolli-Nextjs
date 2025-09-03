@@ -26,10 +26,12 @@ const Page = async ({ params }) => {
   }
 
   return (
-    <>
-  <SchemaInjector schemaJSON={schemaJSON} />
     <div className="wp-blogpage">
-
+      {
+schemaJSON && schemaJSON !== "[]" && (
+  <SchemaInjector schemaJSON={schemaJSON} />
+)
+}
       <section className="relative w-screen  lg:h-[75vh] h-full ">
         <div className="Banner relative w-full h-full bg-white">
           <div className="Banner-sliders relative overflow-hidden w-full h-full">
@@ -145,7 +147,6 @@ const Page = async ({ params }) => {
         />
       </div>
     </div>
-    </>
   );
 };
 
