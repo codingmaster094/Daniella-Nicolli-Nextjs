@@ -94,8 +94,8 @@ export async function generateMetadata() {
   const metadata = await SEODATA(`/kontakt`);
 
   // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
+  const title = metadata.title || "Kontakt zu Daniella Nicolli: Ich bin für Sie da!";
+  const description = metadata.description || "Kontakt zu Daniella Nicolli: einfache Online-Terminbuchung | Telefon, Mail oder Kontaktformular für Fragen";
   const canonical =
     metadata.canonical && metadata.canonical !== ""
       ? metadata.canonical

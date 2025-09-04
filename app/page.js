@@ -30,8 +30,8 @@ export async function generateMetadata() {
   const metadata = await SEODATA("/home");
 
   // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
+  const title = metadata.title || "Praxis für Ästhetik und Naturheilmedizin: Daniella Nicolli";
+  const description = metadata.description || "Praxis für Ästhetik und Naturheilmedizin: Fadenlifting, Faltenunterspritzung und Lippenkorrektur | Individuelle Beratung | maßgeschneiderte Therapien ";
   const canonical =
     metadata.canonical && metadata.canonical !== ""
       ? metadata.canonical

@@ -158,8 +158,8 @@ export async function generateMetadata({ params }) {
   const metadata = await SEODATA(`/${slug}`);
 
   // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
+  const title = metadata.title || `${slug}: natürliches Facelifting ohne OP`;
+  const description = metadata.description || `${slug}: effektive Anti-Aging-Behandlung und straffe Haut ohne OP ► langfristig Falten reduzieren! ► Jetzt informieren!`;
   const canonical =
     metadata.canonical && metadata.canonical !== ""
       ? metadata.canonical

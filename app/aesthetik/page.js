@@ -89,8 +89,8 @@ export async function generateMetadata() {
   const metadata = await SEODATA("/aesthetik");
 
   // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
+  const title = metadata.title || "Ästhetische Behandlungen: straffe Haut und frisches Aussehen";
+  const description = metadata.description || "Ästhetische Behandlungen: Fadenlifting, Faltenunterspritzung, Lippenkorrektur | Individuelle Behandlungskonzepte für natürliche Ergebnisse";
   const canonical =
     metadata.canonical && metadata.canonical !== ""
       ? metadata.canonical

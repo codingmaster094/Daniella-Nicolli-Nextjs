@@ -50,8 +50,8 @@ export default page;
 export async function generateMetadata() {
   const metadata = await SEODATA(`/impressum`);
   // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
+  const title = metadata.title || "impressum";
+  const description = metadata.description || "impressum";
   const canonical =
     metadata.canonical && metadata.canonical !== ""
       ? metadata.canonical

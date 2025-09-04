@@ -106,8 +106,8 @@ export async function generateMetadata() {
   const metadata = await SEODATA('/ueber-mich');
 
   // Fallback values if some field is missing
-  const title = metadata.title || "Default Title";
-  const description = metadata.description || "Default Description";
+  const title = metadata.title || "Daniella Nicolli: Kompetenz für Ihr Wohlbefinden";
+  const description = metadata.description || "Daniella Nicolli: Sanfte Methoden für straffe Haut und frisches Aussehen | Natürliche Heilmethoden für Gesundheit und Vitalität";
   const canonical =
     metadata.canonical && metadata.canonical !== ""
       ? metadata.canonical

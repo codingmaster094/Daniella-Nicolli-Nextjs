@@ -52,8 +52,8 @@ export async function generateMetadata() {
     const metadata = await SEODATA("/datenschutzerklaerung");
 
     return {
-      title: metadata?.title || "Default Title",
-      description: metadata?.description || "Default Description",
+      title: metadata?.title || "datenschutzerklaerung",
+      description: metadata?.description || "datenschutzerklaerung",
       alternates: {
         canonical:
           metadata?.canonical && metadata.canonical !== ""

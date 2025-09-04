@@ -101,8 +101,8 @@ export async function generateMetadata() {
     const metadata = await SEODATA("/naturheilmedizin");
 
     return {
-      title: metadata?.title || "Default Title",
-      description: metadata?.description || "Default Description",
+      title: metadata?.title || "Naturheilverfahren: Gesundheit natürlich fördern",
+      description: metadata?.description || "Naturheilverfahren: Darmsanierung, Infusionstherapie, Hormonsprechstunde | Individuelle Beratung und maßgeschneiderte Therapien",
       alternates: {
         canonical:
           metadata?.canonical && metadata.canonical !== ""
