@@ -8,18 +8,7 @@ export default async function Home() {
   let schemaJSON;
   try {
     const metadata = await SEODATA("/home");
-       let schema = metadata?.schema;
-       // If wrapped inside "schema-xxxxx", unwrap it
-       if (schema && typeof schema === "object") {
-         const firstKey = Object.keys(schema)[0];
-         if (firstKey && schema[firstKey]) {
-           schema = schema[firstKey];
-         }
-       }
-       if (schema && !schema["@context"]) {
-         schema["@context"] = "https://schema.org";
-       }
-       schemaJSON = schema ? JSON.stringify(schema) : null;
+    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>;
