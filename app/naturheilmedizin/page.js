@@ -20,7 +20,18 @@ const Page = async () => {
   try {
     Naturheilmedizin = await Alldata("/naturheilmedizin");
     const metadata = await SEODATA("/naturheilmedizin");
-    schemaJSON = metadata?.schema ? JSON.stringify(metadata.schema) : null;
+    let schema = metadata?.schema;
+       // If wrapped inside "schema-xxxxx", unwrap it
+       if (schema && typeof schema === "object") {
+         const firstKey = Object.keys(schema)[0];
+         if (firstKey && schema[firstKey]) {
+           schema = schema[firstKey];
+         }
+       }
+       if (schema && !schema["@context"]) {
+         schema["@context"] = "https://schema.org";
+       }
+       schemaJSON = schema ? JSON.stringify(schema) : null;
   } catch (error) {
     console.error("Error fetching Naturheilmedizin data:", error);
     // instead of returning JSX, gracefully show empty page to let build succeed
