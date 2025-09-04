@@ -15,7 +15,18 @@ const Page = async () => {
     BlogData = await Alldata("/ratgeber");
     RatgeberData = await PostGet("/ratgeber");
      const metadata = await SEODATA("/ratgeber");
-    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
+    let schema = metadata?.schema;
+       // If wrapped inside "schema-xxxxx", unwrap it
+       if (schema && typeof schema === "object") {
+         const firstKey = Object.keys(schema)[0];
+         if (firstKey && schema[firstKey]) {
+           schema = schema[firstKey];
+         }
+       }
+       if (schema && !schema["@context"]) {
+         schema["@context"] = "https://schema.org";
+       }
+       schemaJSON = schema ? JSON.stringify(schema) : null;
   } catch (error) {
     if (!BlogData || !RatgeberData) {
       return <div>Error loading data.</div>;

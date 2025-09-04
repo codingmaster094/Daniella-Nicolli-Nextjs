@@ -3,44 +3,55 @@ import Menudatas from "../until/MenuData";
 import dynamic from "next/dynamic";
 import SEODATA from "../until/SEO_Data";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
-const page = async() => {
+const page = async () => {
 
-    let datenschutzerklärung;
-    let schemaJSON;
-   try {
-  datenschutzerklärung = await Menudatas("/page-data/datenschutzerklaerung");
-  const metadata = await SEODATA("/datenschutzerklaerung");
-  schemaJSON = metadata?.schema ? JSON.stringify(metadata.schema) : null;
-} catch (error) {
-  console.error("Error fetching data:", error);
-  return null; // let build continue
-}
+  let datenschutzerklärung;
+  let schemaJSON;
+  try {
+    datenschutzerklärung = await Menudatas("/page-data/datenschutzerklaerung");
+    const metadata = await SEODATA("/datenschutzerklaerung");
+    let schema = metadata?.schema;
+    // If wrapped inside "schema-xxxxx", unwrap it
+    if (schema && typeof schema === "object") {
+      const firstKey = Object.keys(schema)[0];
+      if (firstKey && schema[firstKey]) {
+        schema = schema[firstKey];
+      }
+    }
+    if (schema && !schema["@context"]) {
+      schema["@context"] = "https://schema.org";
+    }
+    schemaJSON = schema ? JSON.stringify(schema) : null;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null; // let build continue
+  }
 
-if (!datenschutzerklärung) return null;
+  if (!datenschutzerklärung) return null;
 
 
 
   return (
     <>
-   {
-  schemaJSON && schemaJSON !== "[]" && (
-    <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+      {
+        schemaJSON && schemaJSON !== "[]" && (
+          <SchemaInjector schemaJSON={schemaJSON} />
+        )
+      }
 
-    <section className="section">
-      <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">
-        <div className="container mx-auto px-[15px] ">
-          <h1 className="text-white">{datenschutzerklärung?.title}</h1>
+      <section className="section">
+        <div className="py-10  md:py-[70px]  lg:py-[100px] bg-Teal ">
+          <div className="container mx-auto px-[15px] ">
+            <h1 className="text-white">{datenschutzerklärung?.title}</h1>
+          </div>
         </div>
-      </div>
-      <div className="container mx-auto px-[15px]">
-        <div
-          className="py-10 md:py-[70px] text-a   space-y-4 "
-          dangerouslySetInnerHTML={{ __html: datenschutzerklärung?.content }}
-        ></div>
-      </div>
-    </section>
+        <div className="container mx-auto px-[15px]">
+          <div
+            className="py-10 md:py-[70px] text-a   space-y-4 "
+            dangerouslySetInnerHTML={{ __html: datenschutzerklärung?.content }}
+          ></div>
+        </div>
+      </section>
     </>
   );
 };
