@@ -1,7 +1,7 @@
 export default async function SEODATA(params) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_BASE_URL_SEO}/seo/v1/post-by-slug/${params}`,
+      `${process.env.NEXT_BASE_URL_SEO}/custom-seo/v1/rank-math?slug=${params}`,
       {
         next: { revalidate: 60 }
       }

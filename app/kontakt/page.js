@@ -15,18 +15,7 @@ import SEODATA from "../until/SEO_Data";
     try {
       ContactData = await Alldata("/kontakt");
     const metadata = await SEODATA("/kontakt");
-     let schema = metadata?.schema;
-       // If wrapped inside "schema-xxxxx", unwrap it
-       if (schema && typeof schema === "object") {
-         const firstKey = Object.keys(schema)[0];
-         if (firstKey && schema[firstKey]) {
-           schema = schema[firstKey];
-         }
-       }
-       if (schema && !schema["@context"]) {
-         schema["@context"] = "https://schema.org";
-       }
-       schemaJSON = schema ? JSON.stringify(schema) : null;
+    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
     } catch (error) {
       console.error("Error fetching data:", error);
       return <div>Error loading data.</div>;
@@ -102,15 +91,28 @@ import SEODATA from "../until/SEO_Data";
   export default page;
 
 export async function generateMetadata() {
-  const metadata = await SEODATA(`/kontakt`);
+  const metadata = await SEODATA("/kontakt");
+  const seo = metadata?.seo?.computed || {};
 
-  // Fallback values if some field is missing
-  const title = metadata.title || "Kontakt zu Daniella Nicolli: Ich bin für Sie da!";
-  const description = metadata.description || "Kontakt zu Daniella Nicolli: einfache Online-Terminbuchung | Telefon, Mail oder Kontaktformular für Fragen";
+  const title =
+    seo.title ||
+    "kontakt";
+
+  const description =
+    seo.description ||
+    "kontakt";
+
   const canonical =
-    metadata.canonical && metadata.canonical !== ""
-      ? metadata.canonical
+    seo.canonical && seo.canonical !== ""
+      ? seo.canonical
       : "https://www.heilpraktikerin-nicolli.de/kontakt";
+
+  const robots =
+    seo.robots && (seo.robots.index || seo.robots.follow)
+      ? `${seo.robots.index ? "index" : "noindex"},${
+          seo.robots.follow ? "follow" : "nofollow"
+        }`
+      : "noindex,nofollow";
 
   return {
     title,
@@ -118,6 +120,22 @@ export async function generateMetadata() {
     alternates: {
       canonical,
     },
-    robots: metadata.robots ? metadata.robots : "noindex,nofollow",
+    robots,
+    openGraph: {
+      title: seo.social?.facebook?.title || title,
+      description: seo.social?.facebook?.description || description,
+      url: canonical,
+      images: seo.social?.facebook?.image
+        ? [seo.social.facebook.image]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.social?.twitter?.title || title,
+      description: seo.social?.twitter?.description || description,
+      images: seo.social?.twitter?.image
+        ? [seo.social.twitter.image]
+        : undefined,
+    },
   };
 }

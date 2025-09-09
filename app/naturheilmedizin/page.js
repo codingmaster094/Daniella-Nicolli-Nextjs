@@ -20,18 +20,7 @@ const Page = async () => {
   try {
     Naturheilmedizin = await Alldata("/naturheilmedizin");
     const metadata = await SEODATA("/naturheilmedizin");
-    let schema = metadata?.schema;
-       // If wrapped inside "schema-xxxxx", unwrap it
-       if (schema && typeof schema === "object") {
-         const firstKey = Object.keys(schema)[0];
-         if (firstKey && schema[firstKey]) {
-           schema = schema[firstKey];
-         }
-       }
-       if (schema && !schema["@context"]) {
-         schema["@context"] = "https://schema.org";
-       }
-       schemaJSON = schema ? JSON.stringify(schema) : null;
+    schemaJSON = metadata?.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
     console.error("Error fetching Naturheilmedizin data:", error);
     // instead of returning JSX, gracefully show empty page to let build succeed
@@ -108,26 +97,51 @@ const Page = async () => {
 export default Page;
 
 export async function generateMetadata() {
-  try {
-    const metadata = await SEODATA("/naturheilmedizin");
+  const metadata = await SEODATA("/naturheilmedizin");
+  const seo = metadata?.seo?.computed || {};
 
-    return {
-      title: metadata?.title || "Naturheilverfahren: Gesundheit natürlich fördern",
-      description: metadata?.description || "Naturheilverfahren: Darmsanierung, Infusionstherapie, Hormonsprechstunde | Individuelle Beratung und maßgeschneiderte Therapien",
-      alternates: {
-        canonical:
-          metadata?.canonical && metadata.canonical !== ""
-            ? metadata.canonical
-            : "https://www.heilpraktikerin-nicolli.de/naturheilmedizin",
-      },
-      robots: metadata?.robots || "noindex,nofollow",
-    };
-  } catch (err) {
-    console.error("Error fetching SEO metadata:", err);
-    return {
-      title: "Default Title",
-      description: "Default Description",
-      robots: "noindex,nofollow",
-    };
-  }
+  const title =
+    seo.title ||
+    "naturheilmedizin";
+
+  const description =
+    seo.description ||
+    "naturheilmedizin";
+
+  const canonical =
+    seo.canonical && seo.canonical !== ""
+      ? seo.canonical
+      : "https://www.heilpraktikerin-nicolli.de/naturheilmedizin";
+
+  const robots =
+    seo.robots && (seo.robots.index || seo.robots.follow)
+      ? `${seo.robots.index ? "index" : "noindex"},${
+          seo.robots.follow ? "follow" : "nofollow"
+        }`
+      : "noindex,nofollow";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+    },
+    robots,
+    openGraph: {
+      title: seo.social?.facebook?.title || title,
+      description: seo.social?.facebook?.description || description,
+      url: canonical,
+      images: seo.social?.facebook?.image
+        ? [seo.social.facebook.image]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.social?.twitter?.title || title,
+      description: seo.social?.twitter?.description || description,
+      images: seo.social?.twitter?.image
+        ? [seo.social.twitter.image]
+        : undefined,
+    },
+  };
 }

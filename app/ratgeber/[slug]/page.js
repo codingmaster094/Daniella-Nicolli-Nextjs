@@ -16,18 +16,7 @@ const Page = async ({ params }) => {
   try {
     blogData = await PostGet(`/ratgeber?slug=${slug}`);
      const metadata = await SEODATA(`/${slug}`);
-     let schema = metadata?.schema;
-       // If wrapped inside "schema-xxxxx", unwrap it
-       if (schema && typeof schema === "object") {
-         const firstKey = Object.keys(schema)[0];
-         if (firstKey && schema[firstKey]) {
-           schema = schema[firstKey];
-         }
-       }
-       if (schema && !schema["@context"]) {
-         schema["@context"] = "https://schema.org";
-       }
-       schemaJSON = schema ? JSON.stringify(schema) : null;
+    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
     return <div>Error loading data.</div>;
   }
@@ -164,17 +153,32 @@ schemaJSON && schemaJSON !== "[]" && (
 export default Page;
 
 
+
+
 export async function generateMetadata({ params }) {
    const { slug } = await params;
   const metadata = await SEODATA(`/${slug}`);
+  const seo = metadata?.seo?.computed || {};
 
-  // Fallback values if some field is missing
-  const title = metadata.title || `${slug}: natürliches Facelifting ohne OP`;
-  const description = metadata.description || `${slug}: effektive Anti-Aging-Behandlung und straffe Haut ohne OP ► langfristig Falten reduzieren! ► Jetzt informieren!`;
+  const title =
+    seo.title ||
+    `${slug}`;
+
+  const description =
+    seo.description ||
+    `${slug}`;
+
   const canonical =
-    metadata.canonical && metadata.canonical !== ""
-      ? metadata.canonical
-      : `https://www.heilpraktikerin-nicolli.de/ratgeber/${slug}`;
+    seo.canonical && seo.canonical !== ""
+      ? seo.canonical
+      : "https://www.heilpraktikerin-nicolli.de/ratgeber/" + slug;
+
+  const robots =
+    seo.robots && (seo.robots.index || seo.robots.follow)
+      ? `${seo.robots.index ? "index" : "noindex"},${
+          seo.robots.follow ? "follow" : "nofollow"
+        }`
+      : "noindex,nofollow";
 
   return {
     title,
@@ -182,6 +186,22 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical,
     },
-    robots: metadata.robots ? metadata.robots : "noindex,nofollow",
+    robots,
+    openGraph: {
+      title: seo.social?.facebook?.title || title,
+      description: seo.social?.facebook?.description || description,
+      url: canonical,
+      images: seo.social?.facebook?.image
+        ? [seo.social.facebook.image]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.social?.twitter?.title || title,
+      description: seo.social?.twitter?.description || description,
+      images: seo.social?.twitter?.image
+        ? [seo.social.twitter.image]
+        : undefined,
+    },
   };
 }

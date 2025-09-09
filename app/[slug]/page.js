@@ -21,11 +21,8 @@ export default async function LandingPage({ params }) {
        if (!landingData || Object.keys(landingData).length === 0) {
          return <Custom404 />;
        }
-        const metadata = await MetaDataAPIS(`landing/${slug}`);
-           const schemaMatch = metadata.head.match(
-             /<script[^>]*type="application\/ld\+json"[^>]*class="rank-math-schema"[^>]*>([\s\S]*?)<\/script>/
-           );
-           schemaJSON = schemaMatch ? schemaMatch[1].trim() : null;
+        const metadata = await SEODATA(`landing/${slug}`);
+          schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>; 
@@ -92,25 +89,30 @@ export default async function LandingPage({ params }) {
   );
 }
 
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  let metadata = await MetaDataAPIS(`landing/${slug}`);
+export async function generateMetadata({params}) {
+   const { slug } = await params;
+  let metadata = await SEODATA(`landing/${slug}`);
+  const seo = metadata?.seo?.computed || {};
 
-  // Extract metadata from the head string
-  const titleMatch = metadata.head.match(/<title>(.*?)<\/title>/);
-  const descriptionMatch = metadata.head.match(
-    /<meta name="description" content="(.*?)"/
-  );
-  const canonicalMatch = metadata.head.match(
-    /<link\s+rel="canonical"\s+href="([^"]+)"/i
-  );
+  const title =
+    seo.title ||
+    "Praxis für Ästhetik und Naturheilmedizin: Daniella Nicolli";
 
-  const title = titleMatch ? titleMatch[1] : "Default Title";
-  const description = descriptionMatch
-    ? descriptionMatch[1]
-    : "Default Description";
-    const canonical =
-      canonicalMatch?.[1] || "https://www.heilpraktikerin-nicolli.de";
+  const description =
+    seo.description ||
+    "Praxis für Ästhetik und Naturheilmedizin: Fadenlifting, Faltenunterspritzung und Lippenkorrektur | Individuelle Beratung | maßgeschneiderte Therapien";
+
+  const canonical =
+    seo.canonical && seo.canonical !== ""
+      ? seo.canonical
+      : "https://www.heilpraktikerin-nicolli.de";
+
+  const robots =
+    seo.robots && (seo.robots.index || seo.robots.follow)
+      ? `${seo.robots.index ? "index" : "noindex"},${
+          seo.robots.follow ? "follow" : "nofollow"
+        }`
+      : "noindex,nofollow";
 
   return {
     title,
@@ -118,5 +120,23 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical,
     },
+    robots,
+    openGraph: {
+      title: seo.social?.facebook?.title || title,
+      description: seo.social?.facebook?.description || description,
+      url: canonical,
+      images: seo.social?.facebook?.image
+        ? [seo.social.facebook.image]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.social?.twitter?.title || title,
+      description: seo.social?.twitter?.description || description,
+      images: seo.social?.twitter?.image
+        ? [seo.social.twitter.image]
+        : undefined,
+    },
   };
 }
+

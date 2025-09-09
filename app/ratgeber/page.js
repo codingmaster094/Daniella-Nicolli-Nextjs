@@ -15,18 +15,7 @@ const Page = async () => {
     BlogData = await Alldata("/ratgeber");
     RatgeberData = await PostGet("/ratgeber");
      const metadata = await SEODATA("/ratgeber");
-    let schema = metadata?.schema;
-       // If wrapped inside "schema-xxxxx", unwrap it
-       if (schema && typeof schema === "object") {
-         const firstKey = Object.keys(schema)[0];
-         if (firstKey && schema[firstKey]) {
-           schema = schema[firstKey];
-         }
-       }
-       if (schema && !schema["@context"]) {
-         schema["@context"] = "https://schema.org";
-       }
-       schemaJSON = schema ? JSON.stringify(schema) : null;
+    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
     if (!BlogData || !RatgeberData) {
       return <div>Error loading data.</div>;
@@ -67,14 +56,27 @@ export default Page;
 
 export async function generateMetadata() {
   const metadata = await SEODATA("/ratgeber");
+  const seo = metadata?.seo?.computed || {};
 
-  // Fallback values if some field is missing
-  const title = metadata.title || "Ratgeber für Ästhetik und Naturheilmedizin";
-  const description = metadata.description || "Ratgeber für Ästhetik: Ästhetische Behandlungen und Naturheilverfahren im Überblick | Infos und Tipps zu Ernährung, Hautpflege und Co.";
+  const title =
+    seo.title ||
+    "ratgeber";
+
+  const description =
+    seo.description ||
+    "ratgeber";
+
   const canonical =
-    metadata.canonical && metadata.canonical !== ""
-      ? metadata.canonical
+    seo.canonical && seo.canonical !== ""
+      ? seo.canonical
       : "https://www.heilpraktikerin-nicolli.de/ratgeber";
+
+  const robots =
+    seo.robots && (seo.robots.index || seo.robots.follow)
+      ? `${seo.robots.index ? "index" : "noindex"},${
+          seo.robots.follow ? "follow" : "nofollow"
+        }`
+      : "noindex,nofollow";
 
   return {
     title,
@@ -82,6 +84,22 @@ export async function generateMetadata() {
     alternates: {
       canonical,
     },
-    robots: metadata.robots ? metadata.robots : "noindex,nofollow",
+    robots,
+    openGraph: {
+      title: seo.social?.facebook?.title || title,
+      description: seo.social?.facebook?.description || description,
+      url: canonical,
+      images: seo.social?.facebook?.image
+        ? [seo.social.facebook.image]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.social?.twitter?.title || title,
+      description: seo.social?.twitter?.description || description,
+      images: seo.social?.twitter?.image
+        ? [seo.social.twitter.image]
+        : undefined,
+    },
   };
 }
