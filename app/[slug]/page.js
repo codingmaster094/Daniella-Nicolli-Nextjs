@@ -6,11 +6,12 @@ import LeandingCategories from "../componants/LeandingCategories";
 import Leanding_AboutLambsheim from "../componants/Leanding_AboutLambsheim";
 import ReviewsData from "../ReviewsData/page";
 import getLandingData from "../until/getLandingData";
-import MetaDataAPIS from "../until/metadataAPI";
 import Custom404 from "../not-found";
-import dynamic from "next/dynamic";
 import Accordian from "../componants/Accordian";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
+import dynamic from "next/dynamic";
+const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"), {
+  ssr: true,
+});
 export default async function LandingPage({ params }) {
   const { slug } = await params;
      let landingData;

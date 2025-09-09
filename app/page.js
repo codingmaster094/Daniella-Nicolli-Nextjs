@@ -1,8 +1,9 @@
 import HomePage from "./Home/page";
 import dynamic from "next/dynamic";
 import SEODATA from "./until/SEO_Data";
-
-const SchemaInjector = dynamic(() => import("./componants/SchemaInjector"));
+const SchemaInjector = dynamic(() => import("./componants/SchemaInjector"), {
+  ssr: true,
+});
 
 export default async function Home() {
   let schemaJSON;

@@ -7,11 +7,12 @@ import Slidehover from "../componants/Slidehover";
 import Accordian from "../componants/Accordian";
 import MultipleAboutdetails from "../componants/MultipleAboutdetails";
 import Alldata from "../until/AllDatafetch";
-import MetaDataAPIS from "../until/metadataAPI";
-import dynamic from "next/dynamic";
 import SEODATA from "../until/SEO_Data";
+import dynamic from "next/dynamic";
+const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"), {
+  ssr: true,
+});
 
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"));
 
 const Page = async () => {
   let Naturheilmedizin = null;
