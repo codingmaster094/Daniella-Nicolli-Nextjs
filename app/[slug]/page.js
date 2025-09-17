@@ -17,14 +17,14 @@ export default async function LandingPage({ params }) {
   const { slug } = await params;
      let landingData;
      let schemaJSON;
-
      try {
         landingData = await getLandingData(`/landing?slug=${slug}`); 
        if (!landingData || Object.keys(landingData).length === 0) {
          return <Custom404 />;
        }
-        const metadata = await SEODATA(`landing/${slug}`);
+        const metadata = await SEODATA(`${slug}`);
           schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
+          console.log('metadata', metadata)
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>; 
@@ -93,7 +93,7 @@ export default async function LandingPage({ params }) {
 
 export async function generateMetadata({params}) {
    const { slug } = await params;
-  let metadata = await SEODATA(`landing/${slug}`);
+  let metadata = await SEODATA(`${slug}`);
   const seo = metadata?.seo?.computed || {};
 
   const title =
