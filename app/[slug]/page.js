@@ -9,6 +9,7 @@ import getLandingData from "../until/getLandingData";
 import Custom404 from "../not-found";
 import Accordian from "../componants/Accordian";
 import dynamic from "next/dynamic";
+import SEODATA from "../until/SEO_Data";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"), {
   ssr: true,
 });
