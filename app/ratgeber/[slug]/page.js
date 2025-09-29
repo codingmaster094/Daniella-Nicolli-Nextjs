@@ -5,10 +5,9 @@ import PostGet from "@/app/until/PostGet";
 import Image from "next/image";
 import ContentWithTOC from "@/app/componants/ContentWithTOC";
 import SEODATA from "@/app/until/SEO_Data";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../../componants/SchemaInjector"), {
-  ssr: true,
-});
+import generatePageMetadata from "@/app/until/generatePageMetadata";
+import SEO_schema from "@/app/componants/SEO_schema";
+
 
 const Page = async ({ params }) => {
 
@@ -23,17 +22,15 @@ const Page = async ({ params }) => {
     return <div>Error loading data.</div>;
   }
 
-  if (!blogData) {
+  if (!blogData || !schemaJSON) {
     return <div>No data available.</div>;
   }
 
+
   return (
+    <>
+     <SEO_schema schemaJSON={schemaJSON} faqs={blogData?.acf?.all_faqs} />
     <div className="wp-blogpage">
-      {
-schemaJSON && schemaJSON !== "[]" && (
-  <SchemaInjector schemaJSON={schemaJSON} />
-)
-}
       <section className="relative w-screen  lg:h-[75vh] h-full ">
         <div className="Banner relative w-full h-full bg-white">
           <div className="Banner-sliders relative overflow-hidden w-full h-full">
@@ -149,6 +146,7 @@ schemaJSON && schemaJSON !== "[]" && (
         />
       </div>
     </div>
+    </>
   );
 };
 
@@ -156,54 +154,11 @@ export default Page;
 
 
 
-
-export async function generateMetadata({ params }) {
-   const { slug } = await params;
-  const metadata = await SEODATA(`/${slug}`);
-  const seo = metadata?.seo?.computed || {};
-
-  const title =
-    seo.title ||
-    `${slug}`;
-
-  const description =
-    seo.description ||
-    `${slug}`;
-
-  const canonical =
-    seo.canonical && seo.canonical !== ""
-      ? seo.canonical
-      : "https://www.heilpraktikerin-nicolli.de/ratgeber/" + slug;
-
-  const robots =
-    seo.robots && (seo.robots.index || seo.robots.follow)
-      ? `${seo.robots.index ? "index" : "noindex"},${
-          seo.robots.follow ? "follow" : "nofollow"
-        }`
-      : "noindex,nofollow";
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-    robots,
-    openGraph: {
-      title: seo.social?.facebook?.title || title,
-      description: seo.social?.facebook?.description || description,
-      url: canonical,
-      images: seo.social?.facebook?.image
-        ? [seo.social.facebook.image]
-        : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.social?.twitter?.title || title,
-      description: seo.social?.twitter?.description || description,
-      images: seo.social?.twitter?.image
-        ? [seo.social.twitter.image]
-        : undefined,
-    },
-  };
+export async function generateMetadata({params}) {
+     const { slug } = await params;
+  return generatePageMetadata(`/${slug}`, {
+    title: "home",
+    description: "home",
+  });
 }
+

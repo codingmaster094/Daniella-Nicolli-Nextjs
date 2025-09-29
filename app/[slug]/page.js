@@ -24,7 +24,6 @@ export default async function LandingPage({ params }) {
        }
         const metadata = await SEODATA(`${slug}`);
           schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
-          console.log('metadata', metadata)
      } catch (error) {
        console.error("Error fetching data:", error);
        return <div>Error loading data.</div>; 

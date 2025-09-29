@@ -11,6 +11,8 @@ import Alldata from "../until/AllDatafetch";
 import Accordian from "../componants/Accordian";
 import SEODATA from "../until/SEO_Data";
 import dynamic from "next/dynamic";
+import SEO_schema from "../componants/SEO_schema";
+import generatePageMetadata from "../until/generatePageMetadata";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"), {
   ssr: true,
 });
@@ -26,18 +28,16 @@ const page = async () => {
     return <div>Error loading data.</div>; // Fallback UI
   }
 
-  if (!Ubermich) {
+  if (!Ubermich || !schemaJSON) {
     return <div>No data available.</div>; // Fallback UI
   }
 
 
   return (
     <>
-      {
-  schemaJSON && schemaJSON !== "[]" && (
-    <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+     <SEO_schema
+        schemaJSON={schemaJSON}
+      />
       <BannerCarousel
         title={Ubermich?.hero_slider_main_title?.value}
         img={Ubermich?.hero_slider_image?.value}
@@ -106,51 +106,8 @@ const page = async () => {
 export default page;
 
 export async function generateMetadata() {
-  const metadata = await SEODATA("/ueber-mich");
-  const seo = metadata?.seo?.computed || {};
-
-  const title =
-    seo.title ||
-    "ueber-mich";
-
-  const description =
-    seo.description ||
-    "ueber-mich";
-
-  const canonical =
-    seo.canonical && seo.canonical !== ""
-      ? seo.canonical
-      : "https://www.heilpraktikerin-nicolli.de/ueber-mich";
-
-  const robots =
-    seo.robots && (seo.robots.index || seo.robots.follow)
-      ? `${seo.robots.index ? "index" : "noindex"},${
-          seo.robots.follow ? "follow" : "nofollow"
-        }`
-      : "noindex,nofollow";
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-    robots,
-    openGraph: {
-      title: seo.social?.facebook?.title || title,
-      description: seo.social?.facebook?.description || description,
-      url: canonical,
-      images: seo.social?.facebook?.image
-        ? [seo.social.facebook.image]
-        : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.social?.twitter?.title || title,
-      description: seo.social?.twitter?.description || description,
-      images: seo.social?.twitter?.image
-        ? [seo.social.twitter.image]
-        : undefined,
-    },
-  };
+  return generatePageMetadata("/ueber-mich", {
+    title: "ueber-mich",
+    description: "ueber-mich",
+  });
 }

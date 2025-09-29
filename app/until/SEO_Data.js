@@ -11,8 +11,7 @@ export default async function SEODATA(params) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    console.log('data', data)
+    const data = await response.json(); 
     return data ;
   } catch (error) {
     console.error("Error in Alldata:", error);

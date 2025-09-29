@@ -1,41 +1,38 @@
 import React from "react";
-import ClientCarousel from "../componants/client"
+import ClientCarousel from "../componants/client";
 import ReviewsData from "../ReviewsData/page";
-import Accordian from "../componants/Accordian"
-import Slidehover from "../componants/Slidehover"
-import Terminbroncher from "../componants/Terminbroncher"
-import MultipleAboutdetails from "../componants/MultipleAboutdetails"
-import BannerCarousel from "../componants/Banner"
+import Accordian from "../componants/Accordian";
+import Slidehover from "../componants/Slidehover";
+import Terminbroncher from "../componants/Terminbroncher";
+import MultipleAboutdetails from "../componants/MultipleAboutdetails";
+import BannerCarousel from "../componants/Banner";
 import Alldata from "../until/AllDatafetch";
 import SEODATA from "../until/SEO_Data";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"), {
-  ssr: true,
-});
-const Page = async() => {
+import SEO_schema from "../componants/SEO_schema";
+import generatePageMetadata from "../until/generatePageMetadata";
+const Page = async () => {
   let AesthetikData;
   let schemaJSON;
   try {
-    const metadata = await SEODATA("/aesthetik");
     AesthetikData = await Alldata("/aesthetik");
-   schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
+    const metadata = await SEODATA("/aesthetik");
+    schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
   } catch (error) {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>;
   }
-  
-     if (!AesthetikData) {
-       return <div>No data available.</div>;
-     }
 
+  if (!AesthetikData || !schemaJSON) {
+    return <div>No data available.</div>;
+  }
 
   return (
     <>
-      {
-  schemaJSON && schemaJSON !== "[]" && (
-    <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+      <SEO_schema
+        schemaJSON={schemaJSON}
+        faqs={AesthetikData?.all_faqs?.value}
+      />
+
       <BannerCarousel
         title={AesthetikData?.hero_slider_main_title?.value}
         img={AesthetikData?.hero_slider_image?.value}
@@ -88,51 +85,8 @@ const Page = async() => {
 export default Page;
 
 export async function generateMetadata() {
-  const metadata = await SEODATA("/aesthetik");
-  const seo = metadata?.seo?.computed || {};
-
-  const title =
-    seo.title ||
-    "home";
-
-  const description =
-    seo.description ||
-    "home";
-
-  const canonical =
-    seo.canonical && seo.canonical !== ""
-      ? seo.canonical
-      : "https://www.heilpraktikerin-nicolli.de/aesthetik";
-
-  const robots =
-    seo.robots && (seo.robots.index || seo.robots.follow)
-      ? `${seo.robots.index ? "index" : "noindex"},${
-          seo.robots.follow ? "follow" : "nofollow"
-        }`
-      : "noindex,nofollow";
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-    robots,
-    openGraph: {
-      title: seo.social?.facebook?.title || title,
-      description: seo.social?.facebook?.description || description,
-      url: canonical,
-      images: seo.social?.facebook?.image
-        ? [seo.social.facebook.image]
-        : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.social?.twitter?.title || title,
-      description: seo.social?.twitter?.description || description,
-      images: seo.social?.twitter?.image
-        ? [seo.social.twitter.image]
-        : undefined,
-    },
-  };
+  return generatePageMetadata("/aesthetik", {
+    title: "aesthetik",
+    description: "aesthetik",
+  });
 }

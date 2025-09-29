@@ -7,8 +7,10 @@ import Slidehover from "../componants/Slidehover";
 import Accordian from "../componants/Accordian";
 import MultipleAboutdetails from "../componants/MultipleAboutdetails";
 import Alldata from "../until/AllDatafetch";
+import SEO_schema from "../componants/SEO_schema";
 import SEODATA from "../until/SEO_Data";
 import dynamic from "next/dynamic";
+import generatePageMetadata from "../until/generatePageMetadata";
 const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"), {
   ssr: true,
 });
@@ -28,16 +30,17 @@ const Page = async () => {
     return null;
   }
 
-  if (!Naturheilmedizin) {
+  if (!Naturheilmedizin || !schemaJSON) {
     // return null so build does not fail
     return null;
   }
 
   return (
     <>
-      {schemaJSON && schemaJSON !== "[]" && (
-        <SchemaInjector schemaJSON={schemaJSON} />
-      )}
+      <SEO_schema
+        schemaJSON={schemaJSON}
+        faqs={Naturheilmedizin?.all_faqs?.value}
+      />
 
       <BannerCarousel
         title={Naturheilmedizin?.hero_slider_main_title?.value}
@@ -98,51 +101,8 @@ const Page = async () => {
 export default Page;
 
 export async function generateMetadata() {
-  const metadata = await SEODATA("/naturheilmedizin");
-  const seo = metadata?.seo?.computed || {};
-
-  const title =
-    seo.title ||
-    "naturheilmedizin";
-
-  const description =
-    seo.description ||
-    "naturheilmedizin";
-
-  const canonical =
-    seo.canonical && seo.canonical !== ""
-      ? seo.canonical
-      : "https://www.heilpraktikerin-nicolli.de/naturheilmedizin";
-
-  const robots =
-    seo.robots && (seo.robots.index || seo.robots.follow)
-      ? `${seo.robots.index ? "index" : "noindex"},${
-          seo.robots.follow ? "follow" : "nofollow"
-        }`
-      : "noindex,nofollow";
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-    robots,
-    openGraph: {
-      title: seo.social?.facebook?.title || title,
-      description: seo.social?.facebook?.description || description,
-      url: canonical,
-      images: seo.social?.facebook?.image
-        ? [seo.social.facebook.image]
-        : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.social?.twitter?.title || title,
-      description: seo.social?.twitter?.description || description,
-      images: seo.social?.twitter?.image
-        ? [seo.social.twitter.image]
-        : undefined,
-    },
-  };
+  return generatePageMetadata("/naturheilmedizin", {
+    title: "naturheilmedizin",
+    description: "naturheilmedizin",
+  });
 }

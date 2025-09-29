@@ -13,6 +13,7 @@ import Alldata from "../until/AllDatafetch";
 
 const Page = async () => {
   let HomePageData;
+
   try {
     HomePageData = await Alldata("/home");
   } catch (error) {
@@ -26,6 +27,7 @@ const Page = async () => {
 
   return (
     <>
+    
       <BannerCarousel
         title={HomePageData?.hero_slider_main_title?.value}
         img={HomePageData?.hero_slider_image?.value}
@@ -104,6 +106,7 @@ const Page = async () => {
 };
 
 export default Page;
+
 
 
 

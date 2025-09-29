@@ -1,142 +1,88 @@
-  import React from "react";
-  import ContactAboutDetails from "../componants/ContactAboutDetails";
-  import Contactform from "../componants/Contactform";
-  import Maps from "../componants/Maps";
-  import BannerCarousel from "../componants/Banner";
-  import Alldata from "../until/AllDatafetch";
+import React from "react";
+import ContactAboutDetails from "../componants/ContactAboutDetails";
+import Contactform from "../componants/Contactform";
+import Maps from "../componants/Maps";
+import BannerCarousel from "../componants/Banner";
+import Alldata from "../until/AllDatafetch";
 import Accordian from "../componants/Accordian";
 import SEODATA from "../until/SEO_Data";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"), {
-  ssr: true,
-});
-  const page = async () => {
-    let ContactData;
-    let schemaJSON;
-    try {
-      ContactData = await Alldata("/kontakt");
+import SEO_schema from "../componants/SEO_schema";
+import generatePageMetadata from "../until/generatePageMetadata";
+
+const page = async () => {
+  let ContactData;
+  let schemaJSON;
+  try {
+    ContactData = await Alldata("/kontakt");
     const metadata = await SEODATA("/kontakt");
     schemaJSON = metadata.schema ? JSON.stringify(metadata.schema) : null;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      return <div>Error loading data.</div>;
-    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return <div>Error loading data.</div>;
+  }
 
-    if (!ContactData) {
-      return <div>No data available.</div>; 
-    }
-    
+  if (!ContactData || !schemaJSON) {
+    return <div>No data available.</div>;
+  }
 
-    return (
-      <>
-         {
-  schemaJSON && schemaJSON !== "[]" && (
-    <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
-        <BannerCarousel
-          title={ContactData?.hero_slider_main_title?.value}
-          img={ContactData?.hero_slider_image?.value}
-          content={ContactData?.hero_slider_content?.value.replace(
-            /<\/?ul[^>]*>/g,
-            ""
-          )}
-          BTN={ContactData?.hero_slider_button?.value}
-        />
+  return (
+    <>
+      <SEO_schema schemaJSON={schemaJSON} />
+      <BannerCarousel
+        title={ContactData?.hero_slider_main_title?.value}
+        img={ContactData?.hero_slider_image?.value}
+        content={ContactData?.hero_slider_content?.value.replace(
+          /<\/?ul[^>]*>/g,
+          ""
+        )}
+        BTN={ContactData?.hero_slider_button?.value}
+      />
 
-        <ContactAboutDetails
-          main_title={ContactData?.kontakt_uebersicht_main_title?.value}
-          content={ContactData?.kontakt_uebersicht_content?.value}
-          image={ContactData?.kontakt_uebersicht_image?.value}
-          telefonnummer_label={ContactData?.kontakt_telefonnummer_label?.value}
-          kontakt_whatsapp_label={ContactData?.kontakt_whatsapp_label?.value}
-          email_label={ContactData?.kontakt_email_label?.value}
-          terminbuchung_label={ContactData?.kontakt_terminbuchung_label?.value}
-          telefonnummer_button={
-            ContactData?.kontakt_telefonnummer_button?.value
-          }
-          kontakt_whatsapp_button_text={
-            ContactData?.kontakt_whatsapp_button_text?.value
-          }
-          email_button={ContactData?.kontakt_email_button?.value}
-          terminbuchung_button={
-            ContactData?.kontakt_terminbuchung_button?.value
-          }
-          terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
-          footer_whatsapp_number={ContactData?.footer_whatsapp_number?.value}
-          // add whatsaap detalis in
-        />
+      <ContactAboutDetails
+        main_title={ContactData?.kontakt_uebersicht_main_title?.value}
+        content={ContactData?.kontakt_uebersicht_content?.value}
+        image={ContactData?.kontakt_uebersicht_image?.value}
+        telefonnummer_label={ContactData?.kontakt_telefonnummer_label?.value}
+        kontakt_whatsapp_label={ContactData?.kontakt_whatsapp_label?.value}
+        email_label={ContactData?.kontakt_email_label?.value}
+        terminbuchung_label={ContactData?.kontakt_terminbuchung_label?.value}
+        telefonnummer_button={ContactData?.kontakt_telefonnummer_button?.value}
+        kontakt_whatsapp_button_text={
+          ContactData?.kontakt_whatsapp_button_text?.value
+        }
+        email_button={ContactData?.kontakt_email_button?.value}
+        terminbuchung_button={ContactData?.kontakt_terminbuchung_button?.value}
+        terminbuchung_text={ContactData?.kontakt_terminbuchung_text?.value}
+        footer_whatsapp_number={ContactData?.footer_whatsapp_number?.value}
+        // add whatsaap detalis in
+      />
 
-        <Maps
-          main_title={ContactData?.kontakt_standort_kartemain_title?.value}
-          map_image={ContactData?.map_image?.value}
-          map_url={ContactData?.map_url?.value}
-        />
+      <Maps
+        main_title={ContactData?.kontakt_standort_kartemain_title?.value}
+        map_image={ContactData?.map_image?.value}
+        map_url={ContactData?.map_url?.value}
+      />
 
-        <Contactform
-          main_title={ContactData?.kontakt_form_main_title?.value}
-          content={ContactData?.kontakt_form_content?.value}
-          live_chat_with_us={ContactData?.kontakt_form_live_chat_with_us?.value}
-          form_address={ContactData?.kontakt_form_address?.value}
-        />
+      <Contactform
+        main_title={ContactData?.kontakt_form_main_title?.value}
+        content={ContactData?.kontakt_form_content?.value}
+        live_chat_with_us={ContactData?.kontakt_form_live_chat_with_us?.value}
+        form_address={ContactData?.kontakt_form_address?.value}
+      />
 
-        <Accordian
-          main_title={ContactData?.faq_main_title?.value}
-          all_faqs={ContactData?.all_faqs?.value}
-          show_section={ContactData?.faq_main_faq_show.value}
-        />
-      </>
-    );
-  };
+      <Accordian
+        main_title={ContactData?.faq_main_title?.value}
+        all_faqs={ContactData?.all_faqs?.value}
+        show_section={ContactData?.faq_main_faq_show.value}
+      />
+    </>
+  );
+};
 
-  export default page;
-
+export default page;
 export async function generateMetadata() {
-  const metadata = await SEODATA("/kontakt");
-  const seo = metadata?.seo?.computed || {};
-
-  const title =
-    seo.title ||
-    "kontakt";
-
-  const description =
-    seo.description ||
-    "kontakt";
-
-  const canonical =
-    seo.canonical && seo.canonical !== ""
-      ? seo.canonical
-      : "https://www.heilpraktikerin-nicolli.de/kontakt";
-
-  const robots =
-    seo.robots && (seo.robots.index || seo.robots.follow)
-      ? `${seo.robots.index ? "index" : "noindex"},${
-          seo.robots.follow ? "follow" : "nofollow"
-        }`
-      : "noindex,nofollow";
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-    robots,
-    openGraph: {
-      title: seo.social?.facebook?.title || title,
-      description: seo.social?.facebook?.description || description,
-      url: canonical,
-      images: seo.social?.facebook?.image
-        ? [seo.social.facebook.image]
-        : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.social?.twitter?.title || title,
-      description: seo.social?.twitter?.description || description,
-      images: seo.social?.twitter?.image
-        ? [seo.social.twitter.image]
-        : undefined,
-    },
-  };
+  return generatePageMetadata("/kontakt", {
+    title: "kontakt",
+    description: "kontakt",
+  });
 }

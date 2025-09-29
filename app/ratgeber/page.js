@@ -4,10 +4,8 @@ import BannerCarousel from "../componants/Banner";
 import PostGet from "../until/PostGet";
 import Alldata from "../until/AllDatafetch";
 import SEODATA from "../until/SEO_Data";
-import dynamic from "next/dynamic";
-const SchemaInjector = dynamic(() => import("../componants/SchemaInjector"), {
-  ssr: true,
-});
+import generatePageMetadata from "../until/generatePageMetadata";
+import SEO_schema from "../componants/SEO_schema";
 
 
 const Page = async () => {
@@ -25,18 +23,18 @@ const Page = async () => {
     }
   }
   
-     if (!RatgeberData || !RatgeberData) {
+     if (!RatgeberData || !RatgeberData || !schemaJSON) {
        return <div>No data available.</div>;
      }
 
 
   return (
     <>
-        {
-  schemaJSON && schemaJSON !== "[]" && (
-    <SchemaInjector schemaJSON={schemaJSON} />
-  )
-}
+
+    <SEO_schema
+        schemaJSON={schemaJSON}
+      />
+
       <BannerCarousel
         title={BlogData?.hero_slider_main_title?.value}
         img={BlogData?.hero_slider_image?.value}
@@ -58,51 +56,8 @@ const Page = async () => {
 export default Page;
 
 export async function generateMetadata() {
-  const metadata = await SEODATA("/ratgeber");
-  const seo = metadata?.seo?.computed || {};
-
-  const title =
-    seo.title ||
-    "ratgeber";
-
-  const description =
-    seo.description ||
-    "ratgeber";
-
-  const canonical =
-    seo.canonical && seo.canonical !== ""
-      ? seo.canonical
-      : "https://www.heilpraktikerin-nicolli.de/ratgeber";
-
-  const robots =
-    seo.robots && (seo.robots.index || seo.robots.follow)
-      ? `${seo.robots.index ? "index" : "noindex"},${
-          seo.robots.follow ? "follow" : "nofollow"
-        }`
-      : "noindex,nofollow";
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical,
-    },
-    robots,
-    openGraph: {
-      title: seo.social?.facebook?.title || title,
-      description: seo.social?.facebook?.description || description,
-      url: canonical,
-      images: seo.social?.facebook?.image
-        ? [seo.social.facebook.image]
-        : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.social?.twitter?.title || title,
-      description: seo.social?.twitter?.description || description,
-      images: seo.social?.twitter?.image
-        ? [seo.social.twitter.image]
-        : undefined,
-    },
-  };
+  return generatePageMetadata("/ratgeber", {
+    title: "ratgeber",
+    description: "ratgeber",
+  });
 }
