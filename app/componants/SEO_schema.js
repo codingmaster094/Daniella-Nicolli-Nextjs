@@ -30,7 +30,9 @@ const SEO_schema = async ({ schemaJSON, faqs }) => {
               name: faq.all_faqs_question,
               acceptedAnswer: {
                 "@type": "Answer",
-                text: faq.all_faqs_answers.replace(/<\/?(p|ul|li|br|strong|span|em)>/g, "")
+                // FIX: Use a more general regex to remove all HTML tags,
+                // including those with attributes (like your <span style="...">)
+                text: faq.all_faqs_answers.replace(/<[^>]*>/g, "") 
               },
             })),
           }
