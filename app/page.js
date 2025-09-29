@@ -21,7 +21,11 @@ export default async function Home() {
   
   return (
     <>
-      <SEO_schema schemaJSON={schemaJSON} />
+      {
+      schemaJSON && schemaJSON !== "[]" && (
+        <SEO_schema schemaJSON={schemaJSON} />
+      )
+    }
       <HomePage />
     </>
   );
