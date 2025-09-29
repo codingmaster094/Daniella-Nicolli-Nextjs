@@ -2,9 +2,7 @@ import HomePage from "./Home/page";
 import dynamic from "next/dynamic";
 import SEODATA from "./until/SEO_Data";
 import generatePageMetadata from "./until/generatePageMetadata";
-const SchemaInjector = dynamic(() => import("./componants/SchemaInjector"), {
-  ssr: true,
-});
+import SEO_schema from "./componants/SEO_schema";
 
 export default async function Home() {
   let schemaJSON;
@@ -15,14 +13,14 @@ export default async function Home() {
     console.error("Error fetching data:", error);
     return <div>Error loading data.</div>;
   }
-
+if(!schemaJSON){
+  return <div>No data available.</div>;
+}
   return (
     <>
-     {
-      schemaJSON && schemaJSON !== "[]" && (
-        <SchemaInjector schemaJSON={schemaJSON} />
-      )
-    }
+     <SEO_schema
+        schemaJSON={schemaJSON}
+      />
       <HomePage />
     </>
   );
