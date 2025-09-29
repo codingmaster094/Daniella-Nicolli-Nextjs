@@ -1,28 +1,22 @@
 "use client";
 import { useEffect } from "react";
 
-export default function SchemaInjector({ schemaJSON, faqSchema }) {
+export default function SchemaInjector({ schemaJSON }) {
+  console.log('schemaJSON', schemaJSON)
   useEffect(() => {
-    if (!schemaJSON && !faqSchema) return;
-    const graphItems = [];
-    if (schemaJSON) graphItems.push(schemaJSON);
-    if (faqSchema) graphItems.push(faqSchema);
-
-    const schemaData = {
-      "@context": "https://schema.org",
-      "@graph": graphItems,
-    };
+    if (!schemaJSON) return;
 
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.id = "rank-math-schema";
-    script.text = JSON.stringify(schemaData);
+    script.text = schemaJSON;
 
+    // Remove old one if exists
     const oldScript = document.getElementById("rank-math-schema");
     if (oldScript) oldScript.remove();
 
     document.head.appendChild(script);
-  }, [schemaJSON, faqSchema]);
+  }, [schemaJSON]);
 
   return null;
 }
