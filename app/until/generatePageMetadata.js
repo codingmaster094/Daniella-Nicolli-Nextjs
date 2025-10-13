@@ -25,21 +25,19 @@ export default async function generatePageMetadata(slug, fallback = {}) {
       alternates: {
         canonical,
       },
-      robots,
+      robots, 
       openGraph: {
         type: "article",
-        title: seo.social?.facebook?.title || title,
-        description: seo.social?.facebook?.description || description,
+        title:  title,
+        description: description,
         url: canonical,
-        images: seo.social?.facebook?.image ? [seo.social.facebook.image] : [],
         publishedTime: post?.date,
         modifiedTime: post?.modified,
       },
       twitter: {
         card: "summary_large_image",
-        title: seo.social?.twitter?.title || title,
-        description: seo.social?.twitter?.description || description,
-        images: seo.social?.twitter?.image ? [seo.social.twitter.image] : [],
+        title:title,
+        description:description,
       },
     };
   } catch (err) {
