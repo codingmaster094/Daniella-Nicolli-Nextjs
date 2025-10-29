@@ -11,7 +11,7 @@ const Mobile_buttons = async () => {
   }
 
   return (
-    (Stick_button.sticky_call_button != "" && Stick_button.sticky_mail_button != "" )?
+  
       <div className="mobile-sticky fixed bottom-0 left-0 w-full bg-red z-[99999] sm:hidden block">
         <div className="flex mobile-s-wrapper">
           {/* Call Button */}
@@ -78,7 +78,7 @@ const Mobile_buttons = async () => {
               </Link> : null
           }
         </div>
-      </div> : null
+      </div> 
   );
 }
 
