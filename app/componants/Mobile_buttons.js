@@ -1,14 +1,22 @@
 import Link from 'next/link';
 import React from 'react'
+import HeaderDatas from '../until/HeaderData';
 
-const Mobile_buttons = () => {
+const Mobile_buttons = async() => {
+  let Stick_button = null;
+    try {
+     Stick_button = await HeaderDatas("/acf-options");
+    } catch (error) {
+      console.error("Error fetching header data:", error);
+    }
+  
   return (
     <div className="mobile-sticky fixed bottom-0 left-0 w-full bg-red z-[99999] sm:hidden block">
       <div className="flex mobile-s-wrapper">
         {/* Call Button */}
         <Link
-        
-          href="tel:+4971147745250"
+          href={Stick_button.sticky_call_button.url}
+          target={Stick_button.sticky_call_button.target}
           className="flex items-center justify-center gap-2 w-1/2 bg-Teal text-white m-call py-4 px-[36px]"
         >
           <svg
@@ -26,14 +34,14 @@ const Mobile_buttons = () => {
               fill="white"
             ></path>
           </svg>
-          <p className="text-[var(--white)]">Anrufen</p>
+          <p className="text-[var(--white)]">{Stick_button.sticky_call_button.title}</p>
         </Link>
 
         {/* Bewerben Button */}
         <Link
         
-          href="https://connect.shore.com/bookings/daniella-nicolli-heilpraktikerin/services?locale=de"
-          target="_blank"
+        href={Stick_button.sticky_mail_button.url}
+          target={Stick_button.sticky_mail_button.target}
           className="flex items-center justify-center gap-2 w-1/2 bg-white text-Teal m-call m-bewer py-4 px-[36px]"
         >
           <svg
@@ -61,7 +69,7 @@ const Mobile_buttons = () => {
               strokeLinejoin="round"
             ></path>
           </svg>
-          <p className="text-Teal">Bewerben</p>
+          <p className="text-Teal">{Stick_button.sticky_mail_button.title}</p>
         </Link>
       </div>
     </div>
