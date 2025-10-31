@@ -6,7 +6,6 @@ const nextConfig = {
     formats: ["image/webp"],
     unoptimized: true,
   },
-
   async redirects() {
     return [
       {
